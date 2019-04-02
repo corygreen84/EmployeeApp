@@ -18,8 +18,8 @@ var listOfEmployees = [];
 var listOfSelectedEmployees = [];
 
 // **** end of modal view variables **** //
-
-
+var listView = document.getElementById("job-listview-div");
+var listOfJobs = [];
 
 var db = firebase.firestore();
 
@@ -101,7 +101,7 @@ function loadEmployees(user, companyName){
 }
 
 
-
+// **** this is really the start of the modal view create job **** //
 function parseEmployeesAndAddToListView(){
 	
 	for(var j = 0; j < listOfEmployees.length; j++){
@@ -190,17 +190,11 @@ function addAllOnClick(){
 
 
 
-function loadJobs(user, companyName){
-	
-}
 
 
 
 
 
-
-
-// **** modal popup stuff **** //
 function createNewJobOnClick(){
 	modal.style.display = "block";
 	
@@ -218,16 +212,21 @@ function createNewJobOnClick(){
 	toggleCreateButton();
 }
 
+
+// removing the modal view //
 span.onclick = function(){
 	modal.style.display = "none";
 };
 
+
+// displaying the modal view //
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 } 
 
+// text field checks //
 function jobNameTextChange(){
 	if(jobNameTextField.value != ""){
 		nameTextFilled = true;
@@ -246,7 +245,7 @@ function addressTextChange(){
 	toggleCreateButton();
 }
 
-
+// toggling the create button //
 function toggleCreateButton(){
 	if(nameTextFilled == true && addressTextFilled == true){
 		createButton.disabled = false;
@@ -262,6 +261,9 @@ function toggleCreateButton(){
 // creation of the job //
 function createButtonOnClick(){
 	var tempListOfEmployeeEmails = [];
+	var date = new Date();
+	var dateString = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
+	console.log(dateString);
 	for(var p = 0; p < listOfSelectedEmployees.length; p++){
 		tempListOfEmployeeEmails.push(listOfSelectedEmployees[p].email);
 	}
@@ -269,8 +271,10 @@ function createButtonOnClick(){
 	var docData = {
 		name:jobNameTextField.value,
 		address: addressTextField.value,
-		employees: tempListOfEmployeeEmails
+		employees: tempListOfEmployeeEmails,
+		date: dateString
 	}
+	
 	
 	db.collection('companies').doc(companyName).collection('jobs').add(docData)
 	.then(function(){
@@ -281,6 +285,74 @@ function createButtonOnClick(){
 	});
 	
 }
+
+
+
+
+
+
+// **** this is the main list view area **** //
+
+// loading all the jobs //
+function loadJobs(user, companyName){
+	// loading the data //
+	
+	var jobRef = db.collection('companies').doc(companyName).collection('jobs');
+	jobRef.onSnapshot(function(querySnapshot){
+		var data = querySnapshot.docs.map(function(documentSnapshot){		
+			return documentSnapshot.data();
+		});	
+		
+		
+		// zeroing out the list of jobs //
+		listOfJobs = [];
+		for(var q = 0; q < data.length; q++){
+			
+			var newJob = new Jobs();
+			newJob.name = data[q].name;
+			newJob.address = data[q].address;
+			newJob.employees = data[q].employees;
+			newJob.date = data[q].date;
+			
+			listOfJobs.push(newJob);
+		}
+		parseJobs(listOfJobs);
+	});
+}
+
+
+
+function parseJobs(_listOfJobs){
+	
+	$("#job-listview-div ul").empty();
+	
+	for(var r = 0; r < _listOfJobs.length; r++){
+		
+		var name = _listOfJobs[r].name;
+		var date = _listOfJobs[r].date;
+		var employees = _listOfJobs[r].employees;
+		var address = _listOfJobs[r].address;
+		
+		// putting it all into a list view //
+		$("#job-listview-div ul").append('<li id=' + r + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + name + '</h2><p><strong>' + address + '</strong></p><p class="ui-li-aside"><strong>' + date + '</strong></p></a></li>');
+		
+	}
+	$("#job-listview-div ul").listview('refresh');
+}
+
+function mainJobListOnClick(event){
+	console.log("refresh");
+	$("#job-listview-div ul").listview('refresh');
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -296,3 +368,18 @@ class Employees{
 		var phone;
 	}
 }
+
+class Jobs{
+	constructor(){
+		var name;
+		var address;
+		var employees;
+		var date;
+	}
+}
+
+
+
+
+
+
