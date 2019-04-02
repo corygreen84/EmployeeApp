@@ -1,0 +1,126 @@
+body{
+	background-image: url("bg-01.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#account-login-div{
+	background-color: white;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:15%;
+	width:400px;
+	height:300px;
+	border-radius: 20px;
+}
+
+
+
+#login-credentials{
+	background-color:clear;
+	display:block;
+	padding-top:5%;
+	margin-right:auto;
+	text-align:center;
+}
+
+#submit-div{
+	display:block;
+	width:100%;
+
+	text-align:center;
+}
+
+#submit-button{
+	margin-top:20px;
+	width:60%;
+	height:40px;
+	border-radius:5px;
+	border-style:solid;
+	border-color: #0080ff;
+	background-color:#0080ff;
+	color:white;
+	
+}
+#submit-button:disabled{
+	background-color: white;
+	color:grey;
+	text-align:center;
+}
+
+#more-options{
+	background-color:clear;
+	display:block;
+	width:100%;
+	padding-top:10%;
+	text-align:center;
+}
+
+
+#title{
+	width:100%;
+	text-align: center;
+	padding-top:20px;
+}
+
+
+
+.text-fields{
+	margin-top:10px;
+	border-radius: 5px;
+	border-bottom-color: light-grey;
+	border-left-color: white;
+	border-right-color:white;
+	border-top-color:white;
+	border-style: solid;
+}
+
+.text-fields:focus{
+	/*border-color:#228B22;*/
+}
+
+.buttons{
+	border-radius: 5px;
+	border-style: solid;
+	background-color:white;
+	color:#0080ff;
+}
+
+.buttons:disabled{
+	background-color:white;
+	color:grey;
+}
+
+#create-user{
+	
+	border-bottom-color:#0080ff;
+	border-left-color:white;
+	border-top-color:white;
+	border-right-color:white;
+}
+
+#forgot-password{
+	
+	border-bottom-color:#0080ff;
+	border-left-color:white;
+	border-top-color:white;
+	border-right-color:white;
+}
+
+
+#forgot-password:disabled{
+	border-bottom-color:grey;
+}
+
+h3{
+	color:#0080ff;
+	font-family: Allerta;
+	font-size: 22px;
+}
+
+label{
+	display:block;
+	padding-bottom:5px;
+	padding-top:5px;
+}

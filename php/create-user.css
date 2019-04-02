@@ -1,0 +1,81 @@
+body{
+	background-image: url("bg-01.jpg");
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#account-create-div{
+	background-color: white;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:15%;
+	width:400px;
+	height:325px;
+	border-radius: 20px;
+}
+
+#login-credentials{
+	background-color:white;
+	display:block;
+	margin-right:auto;
+	text-align:center;
+}
+
+
+
+#title{
+	width:100%;
+	text-align: center;
+	background-color:white;
+	
+}
+
+#back-button-div{
+	padding-top:10px;
+	padding-left:10px;
+
+}
+
+#back-button{
+	height:40px;
+	width:60px;
+	border-radius: 20px;
+	border-style:solid;
+	color:#FF6347;
+	font-size:15px;
+}
+
+.text-fields{
+	margin-top:10px;
+	border-radius: 5px;
+	border-bottom-color: light-grey;
+	border-left-color: white;
+	border-right-color:white;
+	border-top-color:white;
+	border-style: solid;
+}
+
+
+.buttons{
+	border-radius: 5px;
+	border-style: solid;
+	border-color: #0080ff;
+	height:40px;
+	width:75%;
+	margin-top: 20px;
+	background-color:#0080ff;
+	color:white;
+}
+
+.buttons:disabled{
+	background-color:white;
+	color:grey;
+}
+
+h3{
+	color:#0080ff;
+	font-family: Allerta;
+	font-size: 22px;
+}
+	

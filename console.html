@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="/Employee/console.css" />
+		<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
+		 
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+		
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-messaging.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-functions.js"></script>
+		 
+	</head>
+
+	<body>
+		<div id="main-body">
+			<div id="top-banner">
+			<!-- user profile in the far top right hand corner -->
+				<div id="user-profile">
+					<img src="/Employee/profile.png" id="profile-pic">
+					<div id="user-name-block">
+						<label id="welcome-label">Welcome, </label>
+						<label id="user-name"></label>
+					</div>
+					<div class="dropdown">
+						<button onclick="showDropDown()" class="dropbtn">Profile</button>
+						<div id="myDropdown" class="dropdown-content">
+							<a href="#" id="0">View Profile</a>
+							<a href="#" id="1">Log Out</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+
+			<div id="side-nav" class="sidenav">
+				<div id="title-bar">
+					<label id="title-label"></label>
+				</div>
+				<a href="#" id="2">Jobs</a>
+				<a href="#" id="3">Employees</a>
+				<a href="#" id="4">Reports</a>
+				<a href="#" id="5">Pay Period</a>
+				<a href="#" id="6">Communication</a>
+			</div>
+			
+			<div>
+				<object type="text/html" id="frame-object">
+				</object>
+			</div>
+		</div>
+		
+		
+		
+		
+		<script type="text/javascript" src="/Employee/firebase-init.js"></script> 
+		<script type="text/javascript" src="/Employee/console.js"></script> 
+	</body>
+
+</html>
