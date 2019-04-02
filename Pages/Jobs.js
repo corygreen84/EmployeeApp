@@ -97,11 +97,12 @@ function loadEmployees(user, companyName){
 function parseEmployeesAndAddToListView(){
 	
 	for(var j = 0; j < listOfEmployees.length; j++){
-		
-		$("employee-ul").append('<li>').listview('refresh');
+		console.log("refreshing");
+		$("#employee-list-div ul").append('<li><a href="#"><h2>Gary Green</h2><p>Employee #:3413565</p><p class="ui-li-aside"><strong>Status: Available</strong></a></li>');
+		//$("employee-ul").append('<li>');
 	}
 
-
+	$("#employee-list-div ul").listview('refresh');
 
 /*
 
