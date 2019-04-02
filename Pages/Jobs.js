@@ -1,6 +1,6 @@
 
 
-/* **** this is for the modal view **** */
+// **** this is for the modal view variables **** //
 var span = document.getElementsByClassName("close")[0];
 var modal = document.getElementById('create-new-job-modal-box');
 
@@ -15,6 +15,9 @@ var addressTextFilled = false;
 
 var companyName = "";
 var listOfEmployees = [];
+var listOfSelectedEmployees = [];
+
+// **** end of modal view variables **** //
 
 var db = firebase.firestore();
 
@@ -24,10 +27,12 @@ var db = firebase.firestore();
 window.addEventListener('DOMContentLoaded', function () {
 	
 	listOfEmployees = [];
+	listOfSelectedEmployees = [];
 	
 	checkState();
 	
 	createButton.disabled = true;
+	
 }, false);
 
 function checkState(){
@@ -66,6 +71,8 @@ function checkState(){
 function loadEmployees(user, companyName){
 	if(user){
 		if(db != null){
+			
+			
 			var companyRef = db.collection('companies').doc(companyName).collection('employees');
 			companyRef.get().then(function(querySnapshot){
 				
@@ -80,12 +87,16 @@ function loadEmployees(user, companyName){
 					newEmployeeObject.last = data[i].last;
 					newEmployeeObject.employeeNumber = data[i].employeeNumber;
 					newEmployeeObject.status = data[i].status;
+					newEmployeeObject.phone = data[i].phoneNumber;
+					newEmployeeObject.email = data[i].email;
 					
 					listOfEmployees.push(newEmployeeObject);
 				}
 				
 				parseEmployeesAndAddToListView();
 			});
+			
+			
 		}
 	}else{
 			
@@ -97,24 +108,96 @@ function loadEmployees(user, companyName){
 function parseEmployeesAndAddToListView(){
 	
 	for(var j = 0; j < listOfEmployees.length; j++){
-		console.log("refreshing");
-		$("#employee-list-div ul").append('<li><a href="#"><h2>Gary Green</h2><p>Employee #:3413565</p><p class="ui-li-aside"><strong>Status: Available</strong></a></li>');
-		//$("employee-ul").append('<li>');
+		
+		var firstName = listOfEmployees[j].first;
+		var lastName = listOfEmployees[j].last;
+		var employeeNumber = listOfEmployees[j].employeeNumber;
+		var status = listOfEmployees[j].status;
+		var statusToString = "";
+		if(status == true){
+			statusToString = "Available";
+		}else{
+			statusToString = "Not Available";
+		}
+		
+		// appending the info to the modal views list view //
+		$("#employee-list-div ul").append('<li id=' + employeeNumber + ' onclick="listItemOnClick(this)" data-icon="plus"><a href="#" id="icon-' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' + statusToString + '</strong></p></a></li>');
 	}
-
-	$("#employee-list-div ul").listview('refresh');
-
-/*
-
-<li><a href="#">
-	<h2>Cory Green</h2>
-	<p>Employee #:324129</p>
-	<p class="ui-li-aside"><strong>Status: Available</strong></p>
-							
-</a></li>
-
-*/	
+	
+	// refreshing the list //
+	$("#employee-list-div ul").listview('refresh');	
 }
+
+
+
+// with this function I want to be able to toggle the + and - buttons per row //
+// and add/subtract it to the selected list //
+function listItemOnClick(item){
+
+	// if the list of selected employees is empty, then we just put the first selected item in it without //
+	// checking to see if the item is already in here... //
+	for(var l = 0; l < listOfEmployees.length; l++){
+		
+		console.log("" + listOfEmployees[l].employeeNumber + " id -> " + item.id + "list # " + listOfEmployees.length);
+		
+		if(listOfEmployees[l].employeeNumber == item.id){
+			if(!listOfSelectedEmployees.includes(listOfEmployees[l])){
+
+				listOfSelectedEmployees.push(listOfEmployees[l]);
+				
+				// change the button icon to be a minus symbol //
+				$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+			}else{
+				// if list of selected employees does not include the passed in employee //
+				// we need to remove it from the list //
+				// we need to remove it from the list //
+				for(var m = 0; m < listOfSelectedEmployees.length; m++){
+					if(listOfSelectedEmployees[m] === listOfEmployees[l]){
+						listOfSelectedEmployees.splice(m, 1);
+						
+						// change the button icon to be a plus symbol //
+						$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
+					}
+				}
+			}
+		}
+	}
+}
+
+
+// adding all employees to the list //
+function addAllOnClick(){
+	
+	var addAllButton = $('#add-all');
+	if(addAllButton.text() == "Add All"){
+		
+		// setting all the button icons to be - //
+		for(var n = 0; n < listOfEmployees.length; n++){
+			$('#icon-' + listOfEmployees[n].employeeNumber).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+		}
+		
+		// adding the list of employees to the list of selected employees //
+		for(var o = 0; o < listOfEmployees.length; o++){
+			listOfSelectedEmployees.push(listOfEmployees[o]);
+		}
+		
+		addAllButton.text("Remove All");
+	}else{
+		
+		
+		
+		for(var n = 0; n < listOfEmployees.length; n++){
+			$('#icon-' + listOfEmployees[n].employeeNumber).removeClass('ui-icon-minus').addClass('ui-icon-plus');
+		}
+		listOfSelectedEmployees = [];
+		addAllButton.text("Add All");
+	}
+	$("#employee-list-div ul").listview('refresh');
+}
+
+
+
+
 
 
 function loadJobs(user, companyName){
@@ -122,9 +205,23 @@ function loadJobs(user, companyName){
 }
 
 
+
+
+
+
+
 // **** modal popup stuff **** //
 function createNewJobOnClick(){
 	modal.style.display = "block";
+	
+	listOfSelectedEmployees = [];
+	
+	jobNameTextField.value = "";
+	addressTextField.value = "";
+	
+	nameTextFilled = false;
+	addressTextFilled = false;
+	toggleCreateButton();
 }
 
 span.onclick = function(){
@@ -165,10 +262,7 @@ function toggleCreateButton(){
 }
 
 
-// adding all employees to the list //
-function addAllOnClick(){
-	console.log("in here fool");
-}
+
 
 
 // creation of the job //
@@ -186,5 +280,7 @@ class Employees{
 		var last;
 		var employeeNumber;
 		var status;
+		var email;
+		var phone;
 	}
 }
