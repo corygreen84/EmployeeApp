@@ -19,6 +19,8 @@ var listOfSelectedEmployees = [];
 
 // **** end of modal view variables **** //
 
+
+
 var db = firebase.firestore();
 
 
@@ -71,8 +73,7 @@ function checkState(){
 function loadEmployees(user, companyName){
 	if(user){
 		if(db != null){
-			
-			
+
 			var companyRef = db.collection('companies').doc(companyName).collection('employees');
 			companyRef.get().then(function(querySnapshot){
 				
@@ -94,12 +95,8 @@ function loadEmployees(user, companyName){
 				}
 				
 				parseEmployeesAndAddToListView();
-			});
-			
-			
+			});	
 		}
-	}else{
-			
 	}
 }
 
@@ -150,7 +147,6 @@ function listItemOnClick(item){
 			}else{
 				// if list of selected employees does not include the passed in employee //
 				// we need to remove it from the list //
-				// we need to remove it from the list //
 				for(var m = 0; m < listOfSelectedEmployees.length; m++){
 					if(listOfSelectedEmployees[m] === listOfEmployees[l]){
 						listOfSelectedEmployees.splice(m, 1);
@@ -175,17 +171,11 @@ function addAllOnClick(){
 		for(var n = 0; n < listOfEmployees.length; n++){
 			$('#icon-' + listOfEmployees[n].employeeNumber).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 		}
-		
-		// adding the list of employees to the list of selected employees //
-		for(var o = 0; o < listOfEmployees.length; o++){
-			listOfSelectedEmployees.push(listOfEmployees[o]);
-		}
-		
+
+		listOfSelectedEmployees = listOfEmployees;		
 		addAllButton.text("Remove All");
 	}else{
-		
-		
-		
+
 		for(var n = 0; n < listOfEmployees.length; n++){
 			$('#icon-' + listOfEmployees[n].employeeNumber).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 		}
@@ -221,6 +211,10 @@ function createNewJobOnClick(){
 	
 	nameTextFilled = false;
 	addressTextFilled = false;
+	
+	for(var n = 0; n < listOfEmployees.length; n++){
+		$('#icon-' + listOfEmployees[n].employeeNumber).removeClass('ui-icon-minus').addClass('ui-icon-plus');
+	}
 	toggleCreateButton();
 }
 
@@ -267,7 +261,25 @@ function toggleCreateButton(){
 
 // creation of the job //
 function createButtonOnClick(){
-	console.log("also in here...");
+	var tempListOfEmployeeEmails = [];
+	for(var p = 0; p < listOfSelectedEmployees.length; p++){
+		tempListOfEmployeeEmails.push(listOfSelectedEmployees[p].email);
+	}
+	
+	var docData = {
+		name:jobNameTextField.value,
+		address: addressTextField.value,
+		employees: tempListOfEmployeeEmails
+	}
+	
+	db.collection('companies').doc(companyName).collection('jobs').add(docData)
+	.then(function(){
+		// removing the display //
+		modal.style.display = "none";
+	}).catch(function(error){
+		console.log("error");
+	});
+	
 }
 
 
