@@ -27,6 +27,8 @@ var db = firebase.firestore();
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 	
+	console.log("loaded");
+	
 	listOfEmployees = [];
 	listOfSelectedEmployees = [];
 	
@@ -82,17 +84,18 @@ function loadEmployees(user, companyName){
 				});	
 				
 				for(var i = 0; i < data.length; i++){
-					var newEmployeeObject = new Employees();
-					newEmployeeObject.first = data[i].first;
-					newEmployeeObject.last = data[i].last;
-					newEmployeeObject.employeeNumber = data[i].employeeNumber;
-					newEmployeeObject.status = data[i].status;
-					newEmployeeObject.phone = data[i].phoneNumber;
-					newEmployeeObject.email = data[i].email;
+					if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
+						var newEmployeeObject = new Employees();
+						newEmployeeObject.first = data[i].first;
+						newEmployeeObject.last = data[i].last;
+						newEmployeeObject.employeeNumber = data[i].employeeNumber;
+						newEmployeeObject.status = data[i].status;
+						newEmployeeObject.phone = data[i].phoneNumber;
+						newEmployeeObject.email = data[i].email;
 					
-					listOfEmployees.push(newEmployeeObject);
+						listOfEmployees.push(newEmployeeObject);
+					}
 				}
-				
 				parseEmployeesAndAddToListView();
 			});	
 		}
@@ -307,13 +310,15 @@ function loadJobs(user, companyName){
 		listOfJobs = [];
 		for(var q = 0; q < data.length; q++){
 			
-			var newJob = new Jobs();
-			newJob.name = data[q].name;
-			newJob.address = data[q].address;
-			newJob.employees = data[q].employees;
-			newJob.date = data[q].date;
+			if(data[q].name != undefined && data[q].address != undefined && data[q].employees != undefined && data[q].date != undefined){
+				var newJob = new Jobs();
+				newJob.name = data[q].name;
+				newJob.address = data[q].address;
+				newJob.employees = data[q].employees;
+				newJob.date = data[q].date;
 			
-			listOfJobs.push(newJob);
+				listOfJobs.push(newJob);
+			}
 		}
 		parseJobs(listOfJobs);
 	});
@@ -340,8 +345,8 @@ function parseJobs(_listOfJobs){
 }
 
 function mainJobListOnClick(event){
-	console.log("refresh");
-	$("#job-listview-div ul").listview('refresh');
+	// called when the user clicks on a job //
+	console.log("clicked on job");
 }
 
 

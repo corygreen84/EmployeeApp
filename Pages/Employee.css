@@ -1,0 +1,112 @@
+#create-new-employee-div{
+	width:100%;
+	text-align:right;
+}
+
+#create-new-employee{
+	width: 200px;
+	right: 40px;
+	top: 20px;
+	position: fixed;
+}
+
+
+
+/* this is for the modal form popup */
+.modal{
+	display: none;
+	position: fixed;
+	z-index: 1;
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	overflow: auto; 
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+}
+
+
+
+.modal-content {
+	background-color: #fefefe;
+	margin: 10% auto;
+	padding: 20px;
+	width: 40%;
+	height: 45%;
+	border-radius: 20px;
+}
+
+.modify-modal-content{
+	background-color: #fefefe;
+	margin: 10% auto;
+	padding: 20px;
+	width: 40%;
+	height: 50%;
+	border-radius: 20px;
+}
+
+.close, .closeModal {
+	color: #aaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+#jobs-attached-to-listview-div{
+	display:block;
+	margin-top: 10px;
+	height:100px;
+}
+
+#modify-button{
+	background-color:#0080ff;
+	color:white;
+	text-shadow: none;
+}
+
+#delete-button{
+	background-color:#DC143C;
+	color:white;
+	text-shadow: none;
+}
+
+
+#employee-create-button{
+	background-color:#0080ff;
+	color:white;
+	text-shadow: none;
+}
+
+.close:hover,
+.close:focus, 
+.closeModal:hover, 
+.closeModal:focus {
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.scrollable {
+	overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#employee-finalize-div{
+	width: 100%;
+}
+
+
+
+
+#employee-listview-div{
+	display:block;
+	margin-top: 100px;
+}
+
+
+
+
+
+
+

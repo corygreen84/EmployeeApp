@@ -96,7 +96,6 @@ function createOnClick(){
 	var username = document.getElementById("username-field-create").value;
 	var company = document.getElementById("company-field-create").value;
 
-	
 	// creates the user in the central database first the auth //
 	firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error){
 		
@@ -133,7 +132,7 @@ function createUserInDatabase(email, username, company, user){
 				}).then(function(){
 					if(user.emailVerified == false){
 						// once this is all done, we send out the email verification... only if this is the first time //
-						sendOutEmailVerification(user);	
+						createCompanyInDatabase(user, company);
 					}
 				}).catch(function(error){
 					console.log("something happened. " + error);
@@ -141,6 +140,30 @@ function createUserInDatabase(email, username, company, user){
 			}
 		});
 	}
+}
+
+
+function createCompanyInDatabase(user, companyName){
+	var db = firebase.firestore();
+	if(db != null){
+		
+		db.collection("companies").doc("" + companyName).collection("employees").add({
+			
+		}).then(function(event){
+			db.collection("companies").doc("" + companyName).collection("jobs").add({
+				
+			}).then(function(event){
+				sendOutEmailVerification(user);
+			}).catch(function(error){
+				
+			});
+		}).catch(function(error){
+			
+		});
+	
+		
+	}
+	
 }
 
 
@@ -153,6 +176,7 @@ function sendOutEmailVerification(user){
 	user.sendEmailVerification().then(function(){
 		let confirmOk = confirm("Please check your email address for an email verification link. Then, login once you have verified your email address.");
 		if(confirmOk){
+			
 			logOutUser();
 		}
 	}).catch(function(error){

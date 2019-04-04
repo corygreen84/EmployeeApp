@@ -97,10 +97,18 @@ function checkState(){
 			}else{
 				let confirmOk = confirm("Please follow the link sent via email to verify your email address");
 				if(confirmOk){
-					window.location.href = "/Employee/index.html";
+					logOutUser();
 				}
 			}
 		}
+	});
+}
+
+function logOutUser(){
+	firebase.auth().signOut().then(function() {
+		window.location.href = "/Employee/index.html";
+	}).catch(function(error) {
+		console.log("error signing out..." + error);
 	});
 }
 
