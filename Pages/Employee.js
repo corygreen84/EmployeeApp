@@ -390,11 +390,25 @@ function modifyOnClick(){
 	db.collection('companies').doc(companyName).collection('employees').doc(employee.email).set(docData)
 	.then(function(){
 		// removing the display //
-		closeModal.style.display = "none";
+		modifyModal.style.display = "none";
 	}).catch(function(error){
 		console.log("error");
 	});
 }
+
+
+
+function deleteOnClick(){
+	db.collection('companies').doc(companyName).collection('employees').doc(employee.email).delete()
+	.then(function(){
+		// removing the display //
+		modifyModal.style.display = "none";
+	}).catch(function(error){
+		console.log("error " + error);
+		modifyModal.style.display = "none";
+	});
+}
+
 
 
 
