@@ -12,7 +12,6 @@ var addressTextField = document.getElementById("address-text");
 var nameTextFilled = false;
 var addressTextFilled = false;
 
-
 var companyName = "";
 var listOfEmployees = [];
 var listOfSelectedEmployees = [];
