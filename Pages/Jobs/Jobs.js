@@ -150,13 +150,17 @@ function parseJobs(_listOfJobs){
 	
 	for(var r = 0; r < _listOfJobs.length; r++){
 		
-		var name = _listOfJobs[r].name;
-		var date = _listOfJobs[r].date;
-		var employees = _listOfJobs[r].employees;
-		var address = _listOfJobs[r].address;
+		var _name = _listOfJobs[r].name;
+		var _date = _listOfJobs[r].date;
+		var _employees = _listOfJobs[r].employees;
+		var _address = _listOfJobs[r].address;
+		
+		var replaceWhiteSpaceWithDash = _address.replace(/ /g, "-");
+		
+		
 		
 		// putting it all into a list view //
-		$("#job-listview-div ul").append('<li id=' + address + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + name + '</h2><p><strong>' + address + '</strong></p><p class="ui-li-aside"><strong>' + date + '</strong></p></a></li>');
+		$("#job-listview-div ul").append('<li id=job-' + replaceWhiteSpaceWithDash + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
 		
 	}
 	$("#job-listview-div ul").listview('refresh');

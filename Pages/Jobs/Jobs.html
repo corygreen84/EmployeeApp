@@ -43,10 +43,10 @@
 			<div class="create-job-modal-content">
 				<span class="createJobClose">&times;</span>
 				<p>Create a New Job</p>
-				<input type="text" id="job-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="jobNameTextChange()">
-				<input type="text" id="address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()">
+				<input type="text" id="create-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="jobNameTextChange()">
+				<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()">
 				
-				<div id="employee-list-div" >
+				<div id="employee-list-div">
 					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">
 						
 						<!-- dynamically added -->
@@ -54,7 +54,7 @@
 					</ul>
 				</div>
 				<div id="finalize-div">
-					<button type="button" id="create-button" class="buttons" onclick="createButtonOnClick()">Create</button>
+					<button type="button" id="create-job-button" class="buttons" onclick="createButtonOnClick()">Create</button>
 				</div>
 			</div>
 		</div>
@@ -66,7 +66,7 @@
 				<input type="text" id="modify-job-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="modifyJobNameTextChange()">
 				<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()">
 				
-				<div id="modify-employee-list-div" >
+				<div id="modify-employee-list-div">
 					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">
 						
 						<!-- dynamically added -->

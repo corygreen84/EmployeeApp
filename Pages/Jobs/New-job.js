@@ -4,10 +4,10 @@
 var createJobSpan = document.getElementsByClassName("createJobClose")[0];
 var createJobModal = document.getElementById("create-new-job-modal-box");
 
-var createButton = document.getElementById("create-button");
+var createButton = document.getElementById("create-job-button");
 
-var jobNameTextField = document.getElementById("job-name-text");
-var addressTextField = document.getElementById("address-text");
+var jobCreateNameTextField = document.getElementById("create-name-text");
+var addressCreateTextField = document.getElementById("create-address-text");
 
 var nameTextFilled = false;
 var addressTextFilled = false;
@@ -38,8 +38,8 @@ function createNewJobOnClick(){
 	
 	listOfSelectedEmployees = [];
 	
-	jobNameTextField.value = "";
-	addressTextField.value = "";
+	jobCreateNameTextField.value = "";
+	addressCreateTextField.value = "";
 	
 	nameTextFilled = false;
 	addressTextFilled = false;
@@ -64,7 +64,8 @@ createJobSpan.onclick = function(){
 
 // text field checks //
 function jobNameTextChange(){
-	if(jobNameTextField.value != ""){
+	console.log("job text -> " + jobCreateNameTextField.value);
+	if(jobCreateNameTextField.value != ""){
 		nameTextFilled = true;
 	}else{
 		nameTextFilled = false;
@@ -73,7 +74,8 @@ function jobNameTextChange(){
 }
 
 function addressTextChange(){
-	if(addressTextField.value != ""){
+	
+	if(addressCreateTextField.value != ""){
 		addressTextFilled = true;
 	}else{
 		addressTextFilled = false;
@@ -83,6 +85,7 @@ function addressTextChange(){
 
 // toggling the create button //
 function toggleCreateButton(){
+
 	if(nameTextFilled == true && addressTextFilled == true){
 		createButton.disabled = false;
 	}else{
@@ -162,8 +165,8 @@ function createButtonOnClick(){
 	}
 	
 	var docData = {
-		name:jobNameTextField.value,
-		address: addressTextField.value,
+		name:jobCreateNameTextField.value,
+		address: addressCreateTextField.value,
 		employees: tempListOfEmployeeEmails,
 		date: dateString
 	}
