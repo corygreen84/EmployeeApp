@@ -27,22 +27,44 @@
   background-color: rgba(0,0,0,0.4);
 }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 10% auto;
-  padding: 20px;
-  /*border: 1px solid #888;*/
-  width: 40%;
-  height: 50%;
-  border-radius: 20px;
+.create-job-modal-content {
+	background-color: #fefefe;
+	margin: 10% auto;
+	padding: 20px;
+	width: 40%;
+	height: 50%;
+	border-radius: 20px;
 }
 
-.close {
+.modify-job-modal-content{
+	background-color: #fefefe;
+	margin: 10% auto;
+	padding: 20px;
+	width: 40%;
+	height: 57%;
+	border-radius: 20px;
+}
+
+.createJobClose, .modifyJobClose {
   color: #aaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
+
+#modify-job-button{
+	background-color:#0080ff;
+	color:white;
+	text-shadow: none;
+}
+
+#delete-job-button{
+	background-color:#DC143C;
+	color:white;
+	text-shadow: none;
+}
+
+
 
 #create-button{
 	background-color:#0080ff;
@@ -50,8 +72,11 @@
 	text-shadow: none;
 }
 
-.close:hover,
-.close:focus {
+.createJobClose:hover,
+.createJobClose:focus,
+.modifyJobClose:hover,
+.modifyJobClose:focus
+ {
   color: black;
   text-decoration: none;
   cursor: pointer;

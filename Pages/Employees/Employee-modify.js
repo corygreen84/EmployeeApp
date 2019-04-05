@@ -1,6 +1,6 @@
 // **** this is for the modal view variables **** //
-var spanModal = document.getElementsByClassName("closeModal")[0];
-var modifyModal = document.getElementById('modify-employee-modal-box');
+var modifyEmployeeSpan = document.getElementsByClassName("modifyEmployeeModalClose")[0];
+var modifyEmployeeModal = document.getElementById('modify-employee-modal-box');
 
 // **** this is for the modify data section **** //
 var employee;
@@ -19,10 +19,6 @@ var emailModified = false;
 var phoneModified = false;
 var employeeNumberModified = false;
 
-
-// **** this is for the main area **** //
-var db = firebase.firestore();
-
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
@@ -35,18 +31,15 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
-spanModal.onclick = function(){
-	modifyModal.style.display = "none";
+modifyEmployeeSpan.onclick = function(){
+	modifyEmployeeModal.style.display = "none";
 }
 
 
+// **** closing the modal view is handled through window-onclick.js **** //
 
-// displaying the modal view //
-window.onclick = function(event) {
-	if (event.target == modal || event.target == modifyModal) {
-		modifyModal.style.display = "none";
-	}
-} 
+
+
 
 // **** when the user clicks on an employee, a new modal view will come up **** //
 function listItemOnClick(item){	
@@ -65,7 +58,7 @@ function listItemOnClick(item){
 	modifyPhone.value = employee.phone;
 	modifyEmployeeNumber.value = employee.employeeNumber;
 
-	modifyModal.style.display = "block";
+	modifyEmployeeModal.style.display = "block";
 }
 
 
@@ -127,35 +120,42 @@ function toggleModifyButton(){
 
 
 function modifyOnClick(){
-	var docData = {
-		first: modifyFirst.value,
-		last: modifyLast.value,
-		email: modifyEmail.value,
-		phoneNumber: parseInt(modifyPhone.value, 10),
-		employeeNumber: parseInt(modifyEmployeeNumber.value, 10),
-		status: false
-	}
+	let confirmOk = confirm("Are you sure you want to modify this employee?");
+	if(confirmOk){
+		var docData = {
+			first: modifyFirst.value,
+			last: modifyLast.value,
+			email: modifyEmail.value,
+			phoneNumber: parseInt(modifyPhone.value, 10),
+			employeeNumber: parseInt(modifyEmployeeNumber.value, 10),
+			status: false
+		}
 	
-	db.collection('companies').doc(companyName).collection('employees').doc(employee.email).set(docData)
-	.then(function(){
-		// removing the display //
-		modifyModal.style.display = "none";
-	}).catch(function(error){
-		console.log("error");
-	});
+		db.collection('companies').doc(companyName).collection('employees').doc(employee.email).set(docData)
+		.then(function(){
+			// removing the display //
+			modifyEmployeeModal.style.display = "none";
+		}).catch(function(error){
+			console.log("error");
+		});
+	}
 }
 
 
 
 function deleteOnClick(){
-	db.collection('companies').doc(companyName).collection('employees').doc(employee.email).delete()
-	.then(function(){
-		// removing the display //
-		modifyModal.style.display = "none";
-	}).catch(function(error){
-		console.log("error " + error);
-		modifyModal.style.display = "none";
-	});
+	
+	let confirmOk = confirm("Are you sure you want to delete this employee?");
+	if(confirmOk){
+		db.collection('companies').doc(companyName).collection('employees').doc(employee.email).delete()
+		.then(function(){
+			// removing the display //
+			modifyEmployeeModal.style.display = "none";
+		}).catch(function(error){
+			console.log("error " + error);
+			modifyEmployeeModal.style.display = "none";
+		});
+	}
 }
 
 

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="/Employee/index.css"/>
-		<link rel="stylesheet" href="/Employee/Pages/Employee.css"/>
+		<link rel="stylesheet" href="/Employee/Pages/Employees/Employee.css"/>
 		<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
 		
 		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -38,8 +38,8 @@
 		
 		<!-- modal pop up which allows the user to input data to create a new job -->
 		<div id="create-new-employee-modal-box" class="modal">
-			<div class="modal-content">
-				<span class="close">&times;</span>
+			<div class="create-employee-modal-content">
+				<span class="createEmployeeModalClose">&times;</span>
 				<p>Create New Employee</p>
 				<input type="text" id="first-name-text" class="text-fields" placeholder="First Name" size="35" onkeyup="firstNameTextChange()">
 				<input type="text" id="last-name-text" class="text-fields" placeholder="Last Name" size="35" onkeyup="lastNameTextChange()">
@@ -56,8 +56,8 @@
 		
 		<!-- modal pop up which allows the user to modify the employee data -->
 		<div id="modify-employee-modal-box" class="modal">
-			<div class="modify-modal-content">
-				<span class="closeModal">&times;</span>
+			<div class="modify-employee-modal-content">
+				<span class="modifyEmployeeModalClose">&times;</span>
 				<p>Modify Employee Data</p>
 				<input type="text" id="modify-first-name-text" class="text-fields" placeholder="First Name" size="35" onkeyup="modifyFirstNameTextChange()">
 				<input type="text" id="modify-last-name-text" class="text-fields" placeholder="Last Name" size="35" onkeyup="modifyLastNameTextChange()">
@@ -76,9 +76,10 @@
 		</div>
 
 		<script type="text/javascript" src="/Employee/firebase-init.js"></script> 
-		<script type="text/javascript" src="/Employee/Pages/Employee.js"></script>
-		<script type="text/javascript" src="/Employee/Pages/Create-employee.js"></script>
-		<script type="text/javascript" src="/Employee/Pages/Employee-modify.js"></script>
+		<script type="text/javascript" src="/Employee/Pages/Employees/Employee.js"></script>
+		<script type="text/javascript" src="/Employee/Pages/Employees/Create-employee.js"></script>
+		<script type="text/javascript" src="/Employee/Pages/Employees/Employee-modify.js"></script>
+		<script type="text/javascript" src="/Employee/Pages/Employees/Window-onclick.js"></script>
 	
 		
 	</body>

@@ -5,7 +5,7 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="/Employee/index.css"/>
-		<link rel="stylesheet" href="/Employee/Pages/Jobs.css"/>
+		<link rel="stylesheet" href="/Employee/Pages/Jobs/Jobs.css"/>
 		<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
 		
 		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -40,8 +40,8 @@
 		
 		<!-- modal pop up which allows the user to input data to create a new job -->
 		<div id="create-new-job-modal-box" class="modal">
-			<div class="modal-content">
-				<span class="close">&times;</span>
+			<div class="create-job-modal-content">
+				<span class="createJobClose">&times;</span>
 				<p>Create a New Job</p>
 				<input type="text" id="job-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="jobNameTextChange()">
 				<input type="text" id="address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()">
@@ -52,23 +52,40 @@
 						<!-- dynamically added -->
 						
 					</ul>
-					
 				</div>
-				<!--
-				<div id="add-all-button-div">
-					<button type="button" id="add-all" class="buttons" onclick="addAllOnClick()">Add All</button>
-				</div> -->
 				<div id="finalize-div">
 					<button type="button" id="create-button" class="buttons" onclick="createButtonOnClick()">Create</button>
 				</div>
-				
 			</div>
-			
-			
 		</div>
+		
+		<div id="modify-job-modal-box" class="modal">
+			<div class="modify-job-modal-content">
+				<span class="modifyJobClose">&times;</span>
+				<p>Modify Job</p>
+				<input type="text" id="modify-job-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="modifyJobNameTextChange()">
+				<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()">
+				
+				<div id="modify-employee-list-div" >
+					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">
+						
+						<!-- dynamically added -->
+						
+					</ul>
+				</div>
+				<div id="finalize-div">
+					<button type="button" id="modify-job-button" class="buttons" onclick="modifyJobOnClick()">Modify</button>
+					<button type="button" id="delete-job-button" class="buttons" onclick="deleteJobOnClick()">Delete</button>
+				</div>
+			</div>
+		</div>
+		
 
 		<script type="text/javascript" src="/Employee/firebase-init.js"></script> 
-		<script type="text/javascript" src="/Employee/Pages/Jobs.js"></script> 
+		<script type="text/javascript" src="/Employee/Pages/Jobs/Jobs.js"></script>
+		<script type="text/javascript" src="/Employee/Pages/Jobs/New-job.js"></script> 	
+		<script type="text/javascript" src="/Employee/Pages/Jobs/Modify-job.js"></script> 
+		<script type="text/javascript" src="/Employee/Pages/Jobs/Window-onclick.js"></script> 		
 	
 	
 		

@@ -1,6 +1,6 @@
 // **** this is for the modal view variables **** //
-var span = document.getElementsByClassName("close")[0];
-var modal = document.getElementById('create-new-employee-modal-box');
+var createEmployeeSpan = document.getElementsByClassName("createEmployeeModalClose")[0];
+var createEmployeeModal = document.getElementById('create-new-employee-modal-box');
 
 var firstName = document.getElementById("first-name-text");
 var lastName = document.getElementById("last-name-text");
@@ -16,10 +16,6 @@ var emailFilled = false;
 var phoneFilled = false;
 var employeeNumberFilled = false;
 
-// **** this is for the main area **** //
-var db = firebase.firestore();
-
-
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 	
@@ -31,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 // **** this is for the modal popup **** //
 function createEmployeeOnClick(){
-	modal.style.display = "block";
+	createEmployeeModal.style.display = "block";
 	firstName.value = "";
 	lastName.value = "";
 	email.value = "";
@@ -43,18 +39,15 @@ function createEmployeeOnClick(){
 
 
 // removing the modal view //
-span.onclick = function(){
-	modal.style.display = "none";
+createEmployeeSpan.onclick = function(){
+	createEmployeeModal.style.display = "none";
 };
 
-// displaying the modal view //
-window.onclick = function(event) {
-	if (event.target == modal || event.target == modifyModal) {
-	  
-		console.log("clicked elsewhere");
-		modal.style.display = "none";
-	}
-} 
+
+// **** closing the modal view is handled through window-onclick.js **** //
+
+
+
 
 // text field checks //
 function firstNameTextChange(){
@@ -139,12 +132,11 @@ function createEmployeeButtonOnClick(){
 		employeeNumber: parseInt(employeeNumber.value, 10),
 		status: false
 	}
-	
-	
+
 	db.collection('companies').doc(companyName).collection('employees').doc(email.value).set(docData)
 	.then(function(){
 		// removing the display //
-		modal.style.display = "none";
+		createEmployeeModal.style.display = "none";
 	}).catch(function(error){
 		console.log("error");
 	});

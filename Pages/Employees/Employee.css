@@ -28,7 +28,7 @@
 
 
 
-.modal-content {
+.create-employee-modal-content{
 	background-color: #fefefe;
 	margin: 10% auto;
 	padding: 20px;
@@ -37,7 +37,7 @@
 	border-radius: 20px;
 }
 
-.modify-modal-content{
+.modify-employee-modal-content{
 	background-color: #fefefe;
 	margin: 10% auto;
 	padding: 20px;
@@ -46,7 +46,7 @@
 	border-radius: 20px;
 }
 
-.close, .closeModal {
+.createEmployeeModalClose, .modifyEmployeeModalClose {
 	color: #aaa;
 	float: right;
 	font-size: 28px;
@@ -78,10 +78,10 @@
 	text-shadow: none;
 }
 
-.close:hover,
-.close:focus, 
-.closeModal:hover, 
-.closeModal:focus {
+.createEmployeeModalClose:hover,
+.createEmployeeModalClose:focus, 
+.modifyEmployeeModalClose:hover, 
+.modifyEmployeeModalClose:focus {
 	color: black;
 	text-decoration: none;
 	cursor: pointer;

@@ -3,8 +3,6 @@ var _user;
 var _companyName;
 var _username;
 
-
-
 window.addEventListener('DOMContentLoaded', function () {
 
 	var mainBody = document.getElementById("main-body");
@@ -20,7 +18,7 @@ window.addEventListener('DOMContentLoaded', function () {
 			_user = user;
 			bringUpUserCompanyName(_user.email);
 			
-			document.getElementById("frame-object").data = "/Employee/Pages/Jobs.html";
+			document.getElementById("frame-object").data = "/Employee/Pages/Jobs/Jobs.html";
 		}
 	});
 }, false);
@@ -38,15 +36,15 @@ window.onclick = function(event) {
 	}else if(event.target.id == "1"){
 		document.getElementById("myDropdown").classList.toggle("show");
 		loginOffOnClick();
-	}else if(event.target.id == "2"){
-		objectElement.data = "/Employee/Pages/Jobs.html";
-	}else if(event.target.id == "3"){
+	}else if(event.target.id == "JobsPage"){
+		objectElement.data = "/Employee/Pages/Jobs/Jobs.html";
+	}else if(event.target.id == "EmployeesPage"){
 		objectElement.data = "/Employee/Pages/Employees/Employees.html";
-	}else if(event.target.id == "4"){
+	}else if(event.target.id == "ReportsPage"){
 		objectElement.data = "/Employee/Pages/Reports.html";
-	}else if(event.target.id == "5"){
+	}else if(event.target.id == "PayPage"){
 		objectElement.data = "/Employee/Pages/Pay-Period.html";
-	}else if(event.target.id == "6"){
+	}else if(event.target.id == "CommunicationPage"){
 		objectElement.data = "/Employee/Pages/Communication.html";
 	}
 }
