@@ -6,10 +6,7 @@ var _username;
 
 
 window.addEventListener('DOMContentLoaded', function () {
-	
-	
-	
-	
+
 	var mainBody = document.getElementById("main-body");
 	mainBody.hidden = true;
 	
@@ -44,7 +41,7 @@ window.onclick = function(event) {
 	}else if(event.target.id == "2"){
 		objectElement.data = "/Employee/Pages/Jobs.html";
 	}else if(event.target.id == "3"){
-		objectElement.data = "/Employee/Pages/Employees.html";
+		objectElement.data = "/Employee/Pages/Employees/Employees.html";
 	}else if(event.target.id == "4"){
 		objectElement.data = "/Employee/Pages/Reports.html";
 	}else if(event.target.id == "5"){
