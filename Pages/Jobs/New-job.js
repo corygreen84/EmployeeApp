@@ -100,6 +100,27 @@ function toggleCreateButton(){
 // and add/subtract it to the selected list //
 function listItemOnClick(item){
 
+	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
+		$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+
+		for(var l = 0; l < listOfEmployees.length; l++){
+			if(listOfEmployees[l].employeeNumber == item.id){
+				listOfSelectedEmployees.push(listOfEmployees[l]);
+			}
+		}
+	}else{
+		$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
+
+		for(var m = 0; m < listOfSelectedEmployees.length; m++){
+			if(listOfSelectedEmployees[m] === listOfEmployees[l]){
+				listOfSelectedEmployees.splice(m, 1);
+				
+				// change the button icon to be a plus symbol //
+				$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
+			}
+		}
+	}
+	/*
 	for(var l = 0; l < listOfEmployees.length; l++){
 
 		if(listOfEmployees[l].employeeNumber == item.id){
@@ -123,6 +144,7 @@ function listItemOnClick(item){
 			}
 		}
 	}
+	*/
 }
 
 
