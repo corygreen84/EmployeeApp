@@ -17,6 +17,7 @@ var job;
 
 var listOfEmployeesForThisJob = [];
 
+
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 	
@@ -39,10 +40,11 @@ function mainJobListOnClick(item){
 		}
 	}
 	
-	
 	jobNameTextField.value = job.name;
 	jobAddressTextField.value = job.address;
-	
+
+	listOfEmployeesForThisJob = job.employees;
+
 	parseEmployeesAndAddToListViewModify();
 }
 
@@ -84,8 +86,7 @@ function changePlusToMinusOnEmployees(){
 	for(var j = 0; j < job.employees.length; j++){
 		for(var k = 0; k < listOfEmployees.length; k++){
 			if(job.employees[j] == listOfEmployees[k].email){
-				
-				console.log("" + listOfEmployees[k].employeeNumber);
+
 				$('#icon--' + listOfEmployees[k].employeeNumber).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 			}
 		}
@@ -93,14 +94,33 @@ function changePlusToMinusOnEmployees(){
 }
 
 
+
+// when the user selects the employee from the list //
 function modifyListItemOnClick(item){
-	
-	console.log("" + item.id);
+
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
+
+		for(var k = 0; k < listOfEmployees.length; k++){
+			if(listOfEmployees[k].employeeNumber == item.id){
+				listOfEmployeesForThisJob.push(listOfEmployees[k]);
+			}
+		}
+
+
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}else{
+
+		for(var l = 0; l < listOfEmployeesForThisJob.length; l++){
+			if(listOfEmployeesForThisJob[l].employeeNumber == item.id){
+				listOfEmployeesForThisJob.splice(l, 1);
+			}
+		}
+
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
+
+	console.log("" + listOfEmployeesForThisJob.length);
+
 }
 
 

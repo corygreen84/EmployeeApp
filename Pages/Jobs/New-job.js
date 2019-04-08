@@ -112,7 +112,7 @@ function listItemOnClick(item){
 		$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 
 		for(var m = 0; m < listOfSelectedEmployees.length; m++){
-			if(listOfSelectedEmployees[m] === listOfEmployees[l]){
+			if(listOfSelectedEmployees[m].employeeNumber == item.id){
 				listOfSelectedEmployees.splice(m, 1);
 				
 				// change the button icon to be a plus symbol //
@@ -120,31 +120,12 @@ function listItemOnClick(item){
 			}
 		}
 	}
-	/*
-	for(var l = 0; l < listOfEmployees.length; l++){
 
-		if(listOfEmployees[l].employeeNumber == item.id){
-			if(!listOfSelectedEmployees.includes(listOfEmployees[l])){
-
-				listOfSelectedEmployees.push(listOfEmployees[l]);
-				
-				// change the button icon to be a minus symbol //
-				$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
-			}else{
-				// if list of selected employees does not include the passed in employee //
-				// we need to remove it from the list //
-				for(var m = 0; m < listOfSelectedEmployees.length; m++){
-					if(listOfSelectedEmployees[m] === listOfEmployees[l]){
-						listOfSelectedEmployees.splice(m, 1);
-						
-						// change the button icon to be a plus symbol //
-						$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
-					}
-				}
-			}
-		}
+	console.log(listOfSelectedEmployees.length);
+	for(var j = 0; j < listOfSelectedEmployees.length; j++){
+		console.log("" + listOfSelectedEmployees[j]);
 	}
-	*/
+
 }
 
 
