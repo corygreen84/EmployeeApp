@@ -114,18 +114,9 @@ function listItemOnClick(item){
 		for(var m = 0; m < listOfSelectedEmployees.length; m++){
 			if(listOfSelectedEmployees[m].employeeNumber == item.id){
 				listOfSelectedEmployees.splice(m, 1);
-				
-				// change the button icon to be a plus symbol //
-				$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 			}
 		}
 	}
-
-	console.log(listOfSelectedEmployees.length);
-	for(var j = 0; j < listOfSelectedEmployees.length; j++){
-		console.log("" + listOfSelectedEmployees[j]);
-	}
-
 }
 
 
@@ -162,7 +153,7 @@ function createButtonOnClick(){
 	var tempListOfEmployeeEmails = [];
 	var date = new Date();
 	var dateString = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
-	console.log(dateString);
+
 	for(var p = 0; p < listOfSelectedEmployees.length; p++){
 		tempListOfEmployeeEmails.push(listOfSelectedEmployees[p].email);
 	}
@@ -176,13 +167,27 @@ function createButtonOnClick(){
 	
 	
 	db.collection('companies').doc(companyName).collection('jobs').add(docData)
-	.then(function(){
+	.then(function(docRef){
 		// removing the display //
+		addJobToEmployees(tempListOfEmployeeEmails, docRef.id);
 		createJobModal.style.display = "none";
 	}).catch(function(error){
-		console.log("error");
+		console.log("error" + error);
 	});
 	
+}
+
+function addJobToEmployees(_listOfEmployees, jobID){
+	
+	for(var q = 0; q < _listOfEmployees.length; q++){
+		db.collection('companies').doc(companyName).collection('employees').doc(_listOfEmployees[q]).update({
+			jobs: firebase.firestore.FieldValue.arrayUnion(jobID)
+		}).then(function(){
+			console.log("success");
+		}).catch(function(error){
+			console.log("error -> " + error);
+		});
+	}
 }
 
 

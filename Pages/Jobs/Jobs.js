@@ -117,23 +117,24 @@ function parseEmployeesAndAddToListView(){
 function loadJobs(user, companyName){
 	// loading the data //
 	
+	var arrayOfIds = [];
 	var jobRef = db.collection('companies').doc(companyName).collection('jobs');
 	jobRef.onSnapshot(function(querySnapshot){
-		var data = querySnapshot.docs.map(function(documentSnapshot){		
+		var data = querySnapshot.docs.map(function(documentSnapshot){
+			arrayOfIds.push(documentSnapshot.id);	
 			return documentSnapshot.data();
 		});	
-		
 		
 		// zeroing out the list of jobs //
 		listOfJobs = [];
 		for(var q = 0; q < data.length; q++){
-			
 			if(data[q].name != undefined && data[q].address != undefined && data[q].employees != undefined && data[q].date != undefined){
 				var newJob = new Jobs();
 				newJob.name = data[q].name;
 				newJob.address = data[q].address;
 				newJob.employees = data[q].employees;
 				newJob.date = data[q].date;
+				newJob.jobId = arrayOfIds[q];
 			
 				listOfJobs.push(newJob);
 			}
@@ -154,6 +155,7 @@ function parseJobs(_listOfJobs){
 		var _date = _listOfJobs[r].date;
 		var _employees = _listOfJobs[r].employees;
 		var _address = _listOfJobs[r].address;
+		var _id = _listOfJobs[r].jobId;
 		
 		var replaceWhiteSpaceWithDash = _address.replace(/ /g, "-");
 		
@@ -184,6 +186,7 @@ class Jobs{
 		var address;
 		var employees;
 		var date;
+		var jobId;
 	}
 }
 

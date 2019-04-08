@@ -14,6 +14,7 @@ var nameTextChanged = false;
 var addressTextChanged = false;
 
 var job;
+var jobId;
 
 var listOfEmployeesForThisJob = [];
 
@@ -28,7 +29,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 function mainJobListOnClick(item){
+
+	listOfEmployeesForThisJob = [];
 	
+
 	modifyJobModal.style.display = "block";
 	
 	for(var i = 0; i < listOfJobs.length; i++){
@@ -42,6 +46,7 @@ function mainJobListOnClick(item){
 	
 	jobNameTextField.value = job.name;
 	jobAddressTextField.value = job.address;
+	jobId = job.jobId;
 
 	listOfEmployeesForThisJob = job.employees;
 
@@ -50,7 +55,7 @@ function mainJobListOnClick(item){
 
 
 function parseEmployeesAndAddToListViewModify(){
-	
+
 	$("#modify-employee-list-div ul").empty();
 
 	for(var j = 0; j < listOfEmployees.length; j++){
@@ -69,9 +74,6 @@ function parseEmployeesAndAddToListViewModify(){
 		$("#modify-employee-list-div ul").append('<li id=' + employeeNumber + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' + statusToString + '</strong></p></a></li>');
 	}
 
-	
-	
-	
 	// refreshing the list //
 	$("#modify-employee-list-div ul").listview('refresh');	
 	
@@ -80,17 +82,23 @@ function parseEmployeesAndAddToListViewModify(){
 
 
 
-
+// once loaded, this goes through the list of total employees //
+// and checks to see what lines up with the list of employees //
+// that go along with the job //
 function changePlusToMinusOnEmployees(){
-	
+
+	console.log("im in here....");
 	for(var j = 0; j < job.employees.length; j++){
 		for(var k = 0; k < listOfEmployees.length; k++){
 			if(job.employees[j] == listOfEmployees[k].email){
-
 				$('#icon--' + listOfEmployees[k].employeeNumber).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+			}else{
+				$('#icon--' + listOfEmployees[k].employeeNumber).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 			}
 		}
 	}
+
+	console.log("" + listOfEmployeesForThisJob.length);
 }
 
 
@@ -102,16 +110,24 @@ function modifyListItemOnClick(item){
 
 		for(var k = 0; k < listOfEmployees.length; k++){
 			if(listOfEmployees[k].employeeNumber == item.id){
-				listOfEmployeesForThisJob.push(listOfEmployees[k]);
+				listOfEmployeesForThisJob.push(listOfEmployees[k].email);
 			}
 		}
 
-
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}else{
+		
+		// picking out the email from the selected index //
+		var tempEmployeeSelectedEmail;
+		for(var m = 0; m < listOfEmployees.length; m++){
+			if(listOfEmployees[m].employeeNumber == item.id){
+				tempEmployeeSelectedEmail = listOfEmployees[m].email;
+			}
+		}
 
+		// list of employees for this job will only be an array of email addresses //
 		for(var l = 0; l < listOfEmployeesForThisJob.length; l++){
-			if(listOfEmployeesForThisJob[l].employeeNumber == item.id){
+			if(listOfEmployeesForThisJob[l] == tempEmployeeSelectedEmail){
 				listOfEmployeesForThisJob.splice(l, 1);
 			}
 		}
@@ -120,7 +136,6 @@ function modifyListItemOnClick(item){
 	}
 
 	console.log("" + listOfEmployeesForThisJob.length);
-
 }
 
 
@@ -172,6 +187,40 @@ function toggleJobModifyButton(){
 // ending methods //
 function modifyJobOnClick(){
 	
+	for(var j = 0; j < listOfEmployeesForThisJob.length; j++){
+		console.log("" + listOfEmployeesForThisJob[j]);
+	}
+
+
+
+	/*
+	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
+		name: jobNameTextField.value,
+		address: jobAddressTextField.value,
+		employees: firebase.firestore.FieldValue.arrayUnion(listOfEmployeesForThisJob)
+	}).then(function(){
+		console.log("success!");
+	}).catch(function(error){
+		console.log("err " + error);
+	});
+	*/
+	/*
+	for(var q = 0; q < _listOfEmployees.length; q++){
+		db.collection('companies').doc(companyName).collection('employees').doc(_listOfEmployees[q]).update({
+			jobs: firebase.firestore.FieldValue.arrayUnion(jobID)
+		}).then(function(){
+			console.log("success");
+		}).catch(function(error){
+			console.log("error -> " + error);
+		});
+	}
+
+
+	jobNameTextField.value;
+	jobAddressTextField.value;
+	listOfEmployeesForThisJob;
+	*/
+
 }
 
 function deleteJobOnClick(){

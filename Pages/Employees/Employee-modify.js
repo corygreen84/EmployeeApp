@@ -13,6 +13,9 @@ var modifyEmail = document.getElementById("modify-email-text");
 var modifyPhone = document.getElementById("modify-phone-text");
 var modifyEmployeeNumber = document.getElementById("modify-employee-Number-text");
 
+var listOfEmployeeJobs = [];
+var listOfJobsForThisEmployee = [];
+
 var firstModified = false;
 var lastModified = false;
 var emailModified = false;
@@ -58,9 +61,13 @@ function listItemOnClick(item){
 	modifyPhone.value = employee.phone;
 	modifyEmployeeNumber.value = employee.employeeNumber;
 
+	listOfEmployeeJobs = employee.jobs;
+
+	$("#jobs-attached-to-listview-div ul").empty();
+	bringUpEmployeeJobs(listOfEmployeeJobs);
+
 	modifyEmployeeModal.style.display = "block";
 }
-
 
 
 function modifyFirstNameTextChange(){
@@ -115,6 +122,60 @@ function toggleModifyButton(){
 	}else{
 		modifyButton.disabled = true;
 	}
+}
+
+
+
+
+
+
+
+
+
+function bringUpEmployeeJobs(listOfJobs){
+	
+	listOfJobsForThisEmployee = [];
+	
+	for(var i = 0; i < listOfJobs.length; i++){
+		var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(listOfJobs[i]);
+		jobRef.get().then(function(doc){
+
+			var data = doc.data();
+
+			if(data.name != undefined && data.address != undefined && data.employees != undefined && data.date != undefined){
+				var newJob = new Jobs();
+				newJob.name = data.name;
+				newJob.address = data.address;
+				newJob.employees = data.employees;
+				newJob.date = data.date;
+			
+				listOfJobsForThisEmployee.push(newJob);
+			}
+			parseJobList(listOfJobsForThisEmployee);
+		}).catch(function(error){
+			
+		});	
+	}
+}
+
+
+
+function parseJobList(list){
+	$("#jobs-attached-to-listview-div ul").empty();
+	for(var i = 0; i < list.length; i++){
+		var _name = list[i].name;
+		var _address = list[i].address;
+		var _employees = list[i].employees;
+		var _date = list[i].date;
+		var replaceWhiteSpaceWithDash = _address.replace(/ /g, "-");
+		
+		console.log(replaceWhiteSpaceWithDash);
+
+
+		$("#jobs-attached-to-listview-div ul").append('<li id=job-' + replaceWhiteSpaceWithDash + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
+	}
+
+	$("#jobs-attached-to-listview-div ul").listview('refresh');
 }
 
 

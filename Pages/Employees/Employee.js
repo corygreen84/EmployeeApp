@@ -70,7 +70,7 @@ function loadEmployees(user, companyName){
 						newEmployeeObject.status = data[i].status;
 						newEmployeeObject.phone = data[i].phoneNumber;
 						newEmployeeObject.email = data[i].email;
-
+						newEmployeeObject.jobs = data[i].jobs;
 
 						listOfEmployees.push(newEmployeeObject);
 					}
@@ -117,6 +117,7 @@ class Employees{
 		var status;
 		var email;
 		var phone;
+		var jobs;
 	}
 }
 

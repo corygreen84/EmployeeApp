@@ -130,6 +130,7 @@ function createEmployeeButtonOnClick(){
 		email: email.value,
 		phoneNumber: parseInt(phone.value, 10),
 		employeeNumber: parseInt(employeeNumber.value, 10),
+		jobs: [],
 		status: false
 	}
 

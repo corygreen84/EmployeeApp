@@ -12,13 +12,13 @@
 		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
-		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-app.js"></script>
 		
-		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-auth.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-database.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-firestore.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-messaging.js"></script>
-		<script src="https://www.gstatic.com/firebasejs/5.9.0/firebase-functions.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-messaging.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-functions.js"></script>
 	</head>
 
 	<body>
@@ -65,6 +65,13 @@
 				<input type="text" id="modify-phone-text" class="text-fields" placeholder="Phone Number: xxx-xxx-xxxx" size="35" onkeyup="modifyPhoneTextChange()">
 				<input type="text" id="modify-employee-Number-text" class="text-fields" placeholder="Employee #" size="35" onkeyup="modifyEmployeeNumberTextChange()">
 				
+				<div id="jobs-attached-to-listview-div">
+					<ul data-role="listview" data-inset="true" id="employee-jobs-ul" class="scrollable">
+						
+						<!-- dynamically added -->
+						
+					</ul>
+				</div>
 
 				
 				<div id="employee-finalize-div">
