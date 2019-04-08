@@ -160,10 +160,7 @@ function createCompanyInDatabase(user, companyName){
 		}).catch(function(error){
 			
 		});
-	
-		
 	}
-	
 }
 
 

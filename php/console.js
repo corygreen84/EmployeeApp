@@ -3,22 +3,22 @@ var _user;
 var _companyName;
 var _username;
 
-
-
 window.addEventListener('DOMContentLoaded', function () {
-	
+
 	var mainBody = document.getElementById("main-body");
 	mainBody.hidden = true;
 	
 	firebase.auth().onAuthStateChanged(function(user){
 		
 		if(!user){
-			window.location.href = "/Employee/php/index.php";
+			window.location.href = "/Employee/index.html";
 		}else{
 			mainBody.hidden = false;
 			
 			_user = user;
 			bringUpUserCompanyName(_user.email);
+			
+			document.getElementById("frame-object").data = "/Employee/Pages/Jobs/Jobs.html";
 		}
 	});
 }, false);
@@ -29,11 +29,23 @@ function showDropDown(){
 }
 
 window.onclick = function(event) {
+	
+	var objectElement = document.getElementById("frame-object");
 	if(event.target.id == "0"){
 		document.getElementById("myDropdown").classList.toggle("show");
 	}else if(event.target.id == "1"){
 		document.getElementById("myDropdown").classList.toggle("show");
 		loginOffOnClick();
+	}else if(event.target.id == "JobsPage"){
+		objectElement.data = "/Employee/Pages/Jobs/Jobs.html";
+	}else if(event.target.id == "EmployeesPage"){
+		objectElement.data = "/Employee/Pages/Employees/Employees.html";
+	}else if(event.target.id == "ReportsPage"){
+		objectElement.data = "/Employee/Pages/Reports.html";
+	}else if(event.target.id == "PayPage"){
+		objectElement.data = "/Employee/Pages/Pay-Period.html";
+	}else if(event.target.id == "CommunicationPage"){
+		objectElement.data = "/Employee/Pages/Communication.html";
 	}
 }
 
@@ -71,7 +83,7 @@ function profileOnClick(){
 
 function loginOffOnClick(){
 	firebase.auth().signOut().then(function() {
-		window.location.href = "/Employee/php/index.php";
+		window.location.href = "/Employee/index.html";
 	}).catch(function(error) {
 		console.log("error signing out...");
 	});
