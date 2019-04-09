@@ -52,13 +52,6 @@ function mainJobListOnClick(item){
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
 
-
-	for(var o = 0; o < job.employees.length; o++){
-		console.log("email -> " + job.employees[o]);
-	}
-
-	//listOfEmployeesForThisJob = job.employees;
-
 	loadEmployeesModify(companyName);
 }
 
@@ -115,9 +108,9 @@ function parseEmployeesAndAddToListViewModify(){
 
 		$("#modify-employee-list-div ul").append('<li id=' + employeeNumber + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' + statusToString + '</strong></p></a></li>');
 	}
-
 	// refreshing the list //
 	$("#modify-employee-list-div ul").listview('refresh');	
+		
 	
 	changePlusToMinusOnEmployees();
 }
@@ -141,6 +134,8 @@ function changePlusToMinusOnEmployees(){
 	for(var h = 0; h < listOfEmployeeNumbersToBeMinused.length; h++){
 		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}
+
+	
 }
 
 
@@ -150,33 +145,13 @@ function modifyListItemOnClick(item){
 
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
-		for(var k = 0; k < listOfEmployees.length; k++){
-			if(listOfEmployees[k].employeeNumber == item.id){
-				listOfEmployeesForThisJob.push(listOfEmployees[k].email);
-			}
-		}
-
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+
 	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
 
-		// picking out the email from the selected index //
-		var tempEmployeeSelectedEmail;
-		for(var m = 0; m < listOfEmployees.length; m++){
-			if(listOfEmployees[m].employeeNumber == item.id){
-				tempEmployeeSelectedEmail = listOfEmployees[m].email;
-			}
-		}
-
-		// list of employees for this job will only be an array of email addresses //
-		for(var l = 0; l < listOfEmployeesForThisJob.length; l++){
-			if(listOfEmployeesForThisJob[l] == tempEmployeeSelectedEmail){
-				listOfEmployeesForThisJob.splice(l, 1);
-			}
-		}
-
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
-	}
 
+	}
 
 	toggleJobModifyButton();
 
@@ -218,7 +193,7 @@ function modifyAddressTextChange(){
 
 
 function toggleJobModifyButton(){
-	if(nameTextChanged == true || addressTextChanged == true || employeeListChanged == true){
+	if(nameTextChanged == true || addressTextChanged == true){
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
