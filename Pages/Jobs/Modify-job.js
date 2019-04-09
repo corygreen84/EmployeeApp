@@ -17,6 +17,7 @@ var job;
 var jobId;
 
 var listOfEmployeesForThisJob = [];
+var employeeListChanged = false;
 
 
 // checking if the user has logged in //
@@ -31,10 +32,12 @@ window.addEventListener('DOMContentLoaded', function () {
 function mainJobListOnClick(item){
 
 	listOfEmployeesForThisJob = [];
-	
-
 	modifyJobModal.style.display = "block";
-	
+
+
+	// getting the address so that we can match it up with that of the //
+	// list of jobs array. Then the entire job gets brought into the //
+	// job object. //
 	for(var i = 0; i < listOfJobs.length; i++){
 		var listOfJobsAddress = listOfJobs[i].address;
 		var addressWithReplacement = listOfJobsAddress.replace(/ /g, "-");
@@ -44,18 +47,57 @@ function mainJobListOnClick(item){
 		}
 	}
 	
+
 	jobNameTextField.value = job.name;
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
 
-	listOfEmployeesForThisJob = job.employees;
 
-	parseEmployeesAndAddToListViewModify();
+	for(var o = 0; o < job.employees.length; o++){
+		console.log("email -> " + job.employees[o]);
+	}
+
+	//listOfEmployeesForThisJob = job.employees;
+
+	loadEmployeesModify(companyName);
 }
 
 
-function parseEmployeesAndAddToListViewModify(){
 
+
+
+function loadEmployeesModify(companyName){
+	
+	listOfEmployees = [];
+	var companyRef = db.collection('companies').doc(companyName).collection('employees');
+	companyRef.get().then(function(querySnapshot){
+		
+		var data = querySnapshot.docs.map(function(documentSnapshot){
+			
+			return documentSnapshot.data();
+		});	
+		console.log("" + data.length);	
+		for(var i = 0; i < data.length; i++){
+			if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
+				var newEmployeeObject = new Employees();
+				newEmployeeObject.first = data[i].first;
+				newEmployeeObject.last = data[i].last;
+				newEmployeeObject.employeeNumber = data[i].employeeNumber;
+				newEmployeeObject.status = data[i].status;
+				newEmployeeObject.phone = data[i].phoneNumber;
+				newEmployeeObject.email = data[i].email;
+					
+				listOfEmployees.push(newEmployeeObject);
+			}
+		}
+		parseEmployeesAndAddToListViewModify();
+	});	
+}
+
+
+// shows all the possible employees for this company in the modify job panel //
+function parseEmployeesAndAddToListViewModify(){
+	
 	$("#modify-employee-list-div ul").empty();
 
 	for(var j = 0; j < listOfEmployees.length; j++){
@@ -86,19 +128,19 @@ function parseEmployeesAndAddToListViewModify(){
 // and checks to see what lines up with the list of employees //
 // that go along with the job //
 function changePlusToMinusOnEmployees(){
-
-	console.log("im in here....");
+	
+	var listOfEmployeeNumbersToBeMinused = [];
 	for(var j = 0; j < job.employees.length; j++){
 		for(var k = 0; k < listOfEmployees.length; k++){
 			if(job.employees[j] == listOfEmployees[k].email){
-				$('#icon--' + listOfEmployees[k].employeeNumber).removeClass('ui-icon-plus').addClass('ui-icon-minus');
-			}else{
-				$('#icon--' + listOfEmployees[k].employeeNumber).removeClass('ui-icon-minus').addClass('ui-icon-plus');
+				listOfEmployeeNumbersToBeMinused.push(listOfEmployees[k].employeeNumber);
 			}
 		}
 	}
 
-	console.log("" + listOfEmployeesForThisJob.length);
+	for(var h = 0; h < listOfEmployeeNumbersToBeMinused.length; h++){
+		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+	}
 }
 
 
@@ -115,8 +157,8 @@ function modifyListItemOnClick(item){
 		}
 
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
-	}else{
-		
+	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
+
 		// picking out the email from the selected index //
 		var tempEmployeeSelectedEmail;
 		for(var m = 0; m < listOfEmployees.length; m++){
@@ -135,7 +177,9 @@ function modifyListItemOnClick(item){
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
 
-	console.log("" + listOfEmployeesForThisJob.length);
+
+	toggleJobModifyButton();
+
 }
 
 
@@ -174,7 +218,7 @@ function modifyAddressTextChange(){
 
 
 function toggleJobModifyButton(){
-	if(nameTextChanged == true || addressTextChanged == true){
+	if(nameTextChanged == true || addressTextChanged == true || employeeListChanged == true){
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
@@ -186,43 +230,32 @@ function toggleJobModifyButton(){
 
 // ending methods //
 function modifyJobOnClick(){
-	
-	for(var j = 0; j < listOfEmployeesForThisJob.length; j++){
-		console.log("" + listOfEmployeesForThisJob[j]);
-	}
-
-
 
 	/*
+	// zeroing out the employees array //
 	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-		name: jobNameTextField.value,
-		address: jobAddressTextField.value,
-		employees: firebase.firestore.FieldValue.arrayUnion(listOfEmployeesForThisJob)
+		employees: []
 	}).then(function(){
-		console.log("success!");
-	}).catch(function(error){
-		console.log("err " + error);
+		console.log("complete");
+	});
+
+	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
+		employees: 
+	}).then(function(){
+		console.log("complete complete");
 	});
 	*/
-	/*
-	for(var q = 0; q < _listOfEmployees.length; q++){
-		db.collection('companies').doc(companyName).collection('employees').doc(_listOfEmployees[q]).update({
-			jobs: firebase.firestore.FieldValue.arrayUnion(jobID)
-		}).then(function(){
-			console.log("success");
-		}).catch(function(error){
-			console.log("error -> " + error);
-		});
-	}
+	
 
-
-	jobNameTextField.value;
-	jobAddressTextField.value;
-	listOfEmployeesForThisJob;
-	*/
 
 }
 
+// this should notify/modify the employees involved that the job has been deleted //
 function deleteJobOnClick(){
-	
+
+	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).delete().then(function(){
+		modifyJobModal.style.display = "none";
+	}).catch(function(error){
+		console.log("error " + error);
+	});
 }
