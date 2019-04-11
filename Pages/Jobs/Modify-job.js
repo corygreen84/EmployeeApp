@@ -47,10 +47,12 @@ function mainJobListOnClick(item){
 		}
 	}
 	
-
 	jobNameTextField.value = job.name;
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
+
+
+	listOfEmployeesForThisJob = job.employees;
 
 	loadEmployeesModify(companyName);
 }
@@ -69,7 +71,7 @@ function loadEmployeesModify(companyName){
 			
 			return documentSnapshot.data();
 		});	
-		console.log("" + data.length);	
+
 		for(var i = 0; i < data.length; i++){
 			if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
 				var newEmployeeObject = new Employees();
@@ -106,7 +108,14 @@ function parseEmployeesAndAddToListViewModify(){
 			statusToString = "Not Available";
 		}
 
-		$("#modify-employee-list-div ul").append('<li id=' + employeeNumber + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' + statusToString + '</strong></p></a></li>');
+		
+		$("#modify-employee-list-div ul").append('<li id=' 
+		+ employeeNumber + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' 
+		+ employeeNumber + '"><h2>' 
+		+ firstName + ' ' 
+		+ lastName + '</h2><p>Employee #: ' 
+		+ employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' 
+		+ statusToString + '</strong></p></a></li>');
 	}
 	// refreshing the list //
 	$("#modify-employee-list-div ul").listview('refresh');	
@@ -134,8 +143,6 @@ function changePlusToMinusOnEmployees(){
 	for(var h = 0; h < listOfEmployeeNumbersToBeMinused.length; h++){
 		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}
-
-	
 }
 
 
@@ -145,16 +152,38 @@ function modifyListItemOnClick(item){
 
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
+		// this adds the employee to the list of employees //
+		for(var i = 0; i < listOfEmployees.length; i++){
+			if(listOfEmployees[i].employeeNumber == item.id){
+				listOfEmployeesForThisJob.push(listOfEmployees[i]);
+			}
+		}
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 
 	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
+
+		// need to pull the email address from the item selected //
+		var employeeEmail;
+		for(var j = 0; j < listOfEmployees.length; j++){
+			if(listOfEmployees[j].employeeNumber == item.id){
+				employeeEmail = listOfEmployees[j].email;
+			}
+		}
+
+		var foundAt;
+		for(var k = 0; k < listOfEmployeesForThisJob.length; k++){
+			if(listOfEmployeesForThisJob[k] === employeeEmail){
+				foundAt = k;
+			}
+		}
+
+		listOfEmployeesForThisJob.splice(foundAt, 1);
 
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 
 	}
 
 	toggleJobModifyButton();
-
 }
 
 
@@ -206,7 +235,6 @@ function toggleJobModifyButton(){
 // ending methods //
 function modifyJobOnClick(){
 
-	/*
 	// zeroing out the employees array //
 	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
 		employees: []
@@ -215,11 +243,13 @@ function modifyJobOnClick(){
 	});
 
 	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-		employees: 
+		name: jobNameTextField.value,
+		address: jobAddressTextField.value,
+		employees: listOfEmployeesForThisJob
 	}).then(function(){
 		console.log("complete complete");
 	});
-	*/
+	
 	
 
 
