@@ -63,7 +63,10 @@ function listItemOnClick(item){
 
 	listOfEmployeeJobs = employee.jobs;
 
+	console.log("employee jobs " + employee.first);
+
 	$("#jobs-attached-to-listview-div ul").empty();
+
 	bringUpEmployeeJobs(listOfEmployeeJobs);
 
 	modifyEmployeeModal.style.display = "block";
@@ -132,15 +135,20 @@ function toggleModifyButton(){
 
 
 
-function bringUpEmployeeJobs(listOfJobs){
+function bringUpEmployeeJobs(_listOfJobs){
 	
 	listOfJobsForThisEmployee = [];
 	
-	for(var i = 0; i < listOfJobs.length; i++){
-		var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(listOfJobs[i]);
+	for(var i = 0; i < _listOfJobs.length; i++){
+		var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(_listOfJobs[i]);
 		jobRef.get().then(function(doc){
 
 			var data = doc.data();
+
+			console.log("" + data.name);
+			console.log("" + data.address);
+			console.log("" + data.employees);
+			console.log("" + data.date);
 
 			if(data.name != undefined && data.address != undefined && data.employees != undefined && data.date != undefined){
 				var newJob = new Jobs();
@@ -168,9 +176,6 @@ function parseJobList(list){
 		var _employees = list[i].employees;
 		var _date = list[i].date;
 		var replaceWhiteSpaceWithDash = _address.replace(/ /g, "-");
-		
-		console.log(replaceWhiteSpaceWithDash);
-
 
 		$("#jobs-attached-to-listview-div ul").append('<li id=job-' + replaceWhiteSpaceWithDash + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
 	}
