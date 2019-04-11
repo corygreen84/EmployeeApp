@@ -17,6 +17,7 @@ var job;
 var jobId;
 
 var listOfEmployeesForThisJob = [];
+let initialEmployees = 0;
 var employeeListChanged = false;
 
 
@@ -33,6 +34,7 @@ function mainJobListOnClick(item){
 
 	listOfEmployeesForThisJob = [];
 	modifyJobModal.style.display = "block";
+	modifyJobButton.disabled = true;
 
 
 	// getting the address so that we can match it up with that of the //
@@ -51,10 +53,12 @@ function mainJobListOnClick(item){
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
 
-
+	
 	listOfEmployeesForThisJob = job.employees;
+	initialEmployees = job.employees.length;
 
 	loadEmployeesModify(companyName);
+
 }
 
 
@@ -119,8 +123,7 @@ function parseEmployeesAndAddToListViewModify(){
 	}
 	// refreshing the list //
 	$("#modify-employee-list-div ul").listview('refresh');	
-		
-	
+
 	changePlusToMinusOnEmployees();
 }
 
@@ -149,17 +152,17 @@ function changePlusToMinusOnEmployees(){
 
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
-
+	
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
 		// this adds the employee to the list of employees //
 		for(var i = 0; i < listOfEmployees.length; i++){
 			if(listOfEmployees[i].employeeNumber == item.id){
-				listOfEmployeesForThisJob.push(listOfEmployees[i]);
+				listOfEmployeesForThisJob.push(listOfEmployees[i].email);
 			}
 		}
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
-
+		
 	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
 
 		// need to pull the email address from the item selected //
@@ -184,6 +187,8 @@ function modifyListItemOnClick(item){
 	}
 
 	toggleJobModifyButton();
+	
+	
 }
 
 
@@ -222,7 +227,7 @@ function modifyAddressTextChange(){
 
 
 function toggleJobModifyButton(){
-	if(nameTextChanged == true || addressTextChanged == true){
+	if(nameTextChanged == true || addressTextChanged == true || initialEmployees != listOfEmployeesForThisJob.length){
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
@@ -232,32 +237,33 @@ function toggleJobModifyButton(){
 
 
 
-// ending methods //
+// modifies the job with the data given //
 function modifyJobOnClick(){
-
-	// zeroing out the employees array //
-	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-		employees: []
-	}).then(function(){
-		console.log("complete");
-	});
 
 	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
 		name: jobNameTextField.value,
 		address: jobAddressTextField.value,
-		employees: listOfEmployeesForThisJob
+		employees: []
 	}).then(function(){
-		console.log("complete complete");
+		for(var i = 0; i < listOfEmployeesForThisJob.length; i++){
+			db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
+				employees: firebase.firestore.FieldValue.arrayUnion(listOfEmployeesForThisJob[i])
+			}).then(function(){
+				modifyJobModal.style.display = "none";
+			}).catch(function(error){
+				console.log("error " + error);
+			});
+		}
+		
+	}).catch(function(error){
+		console.log("error here " + error);
 	});
 	
 	
-
-
 }
 
 // this should notify/modify the employees involved that the job has been deleted //
 function deleteJobOnClick(){
-
 	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).delete().then(function(){
 		modifyJobModal.style.display = "none";
 	}).catch(function(error){
