@@ -60,6 +60,9 @@ function mainJobListOnClick(item){
 	for(var j in job.employees){
 		listOfEmployeesForThisJob.push(job.employees[j]);
 	}
+
+
+
 	initialEmployees = job.employees.length;
 
 	loadEmployeesModify(companyName);
@@ -94,9 +97,6 @@ function loadEmployeesModify(companyName){
 				listOfEmployees.push(newEmployeeObject);
 			}
 		}
-
-
-
 
 		parseEmployeesAndAddToListViewModify();
 		
@@ -144,6 +144,12 @@ function parseEmployeesAndAddToListViewModify(){
 // that go along with the job //
 function changePlusToMinusOnEmployees(){
 	
+
+
+
+
+
+	// **** im sure the bug is here.. **** //
 	var listOfEmployeeNumbersToBeMinused = [];
 	for(var j = 0; j < job.employees.length; j++){
 		for(var k = 0; k < listOfEmployees.length; k++){
