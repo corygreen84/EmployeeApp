@@ -55,7 +55,11 @@ function mainJobListOnClick(item){
 	jobId = job.jobId;
 
 	
-	listOfEmployeesForThisJob = job.employees;
+	// job.employees changed to a dictionary //
+
+	for(var j in job.employees){
+		listOfEmployeesForThisJob.push(job.employees[j]);
+	}
 	initialEmployees = job.employees.length;
 
 	loadEmployeesModify(companyName);
@@ -86,11 +90,16 @@ function loadEmployeesModify(companyName){
 				newEmployeeObject.status = data[i].status;
 				newEmployeeObject.phone = data[i].phoneNumber;
 				newEmployeeObject.email = data[i].email;
-					
+
 				listOfEmployees.push(newEmployeeObject);
 			}
 		}
+
+
+
+
 		parseEmployeesAndAddToListViewModify();
+		
 	});	
 }
 
@@ -153,6 +162,9 @@ function changePlusToMinusOnEmployees(){
 
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
+	
+	console.log("" + listOfEmployeesForThisJob.length);
+
 	
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
@@ -238,7 +250,6 @@ function toggleJobModifyButton(){
 
 // modifies the job with the data given //
 function modifyJobOnClick(){
-	
 
 	var listOfEmployeesDictionary = {};
 	for(var i in listOfEmployeesForThisJob){
