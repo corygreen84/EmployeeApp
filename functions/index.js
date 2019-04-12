@@ -12,11 +12,18 @@ exports.updateUser = functions.firestore.document('companies/{company}/{jobs}/{j
     var company = context.params.company;
     var job = context.params.job;
 
-    var employeeChange = change.after.data();
-    for(var key in employeeChange.employees){
-        console.log("employees " + employeeChange.employees[key]);
+
+    var employeeBeforeChange = change.before.data();
+    for(var i in employeeBeforeChange.employees){
+        console.log("employees before " + employeeBeforeChange.employees[i]);
     }
 
-    //console.log("change " + employeeChange.employees);
-    //admin.firestore.collection('companies').document(company).collection('employees').document(email).
+    var employeeChange = change.after.data();
+    for(var key in employeeChange.employees){
+        console.log("employees after " + employeeChange.employees[key]);
+    }
+
+
+    
+
 });

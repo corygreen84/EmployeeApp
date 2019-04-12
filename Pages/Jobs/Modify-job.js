@@ -1,3 +1,4 @@
+
 // **** this is for the modal view variables **** //
 var modifyJobSpan = document.getElementsByClassName("modifyJobClose")[0];
 var modifyJobModal = document.getElementById("modify-job-modal-box");
@@ -187,8 +188,6 @@ function modifyListItemOnClick(item){
 	}
 
 	toggleJobModifyButton();
-	
-	
 }
 
 
@@ -239,28 +238,73 @@ function toggleJobModifyButton(){
 
 // modifies the job with the data given //
 function modifyJobOnClick(){
+	
 
+	var listOfEmployeesDictionary = {};
+	for(var i in listOfEmployeesForThisJob){
+		listOfEmployeesDictionary[i] = listOfEmployeesForThisJob[i];
+	}
+
+	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
+		name: jobNameTextField.value,
+		address: jobAddressTextField.value,
+		employees: listOfEmployeesDictionary
+	}).then(function(){
+		console.log("good to go");
+	}).catch(function(error){
+		console.log("error " + erro);
+	})
+
+
+
+
+	/*
 	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
 		name: jobNameTextField.value,
 		address: jobAddressTextField.value,
 		employees: []
 	}).then(function(){
-		for(var i = 0; i < listOfEmployeesForThisJob.length; i++){
-			db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-				employees: firebase.firestore.FieldValue.arrayUnion(listOfEmployeesForThisJob[i])
-			}).then(function(){
-				modifyJobModal.style.display = "none";
-			}).catch(function(error){
-				console.log("error " + error);
-			});
+
+		if(listOfEmployeesForThisJob.length != 0){
+			for(var i = 0; i < listOfEmployeesForThisJob.length; i++){
+				db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
+					employees: firebase.firestore.FieldValue.arrayUnion(listOfEmployeesForThisJob[i])
+				}).then(function(){
+					modifyJobModal.style.display = "none";
+				}).catch(function(error){
+					console.log("error " + error);
+				});
+			}
+		}else{
+			modifyJobModal.style.display = "none";
 		}
 		
 	}).catch(function(error){
 		console.log("error here " + error);
 	});
-	
-	
+	*/
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // this should notify/modify the employees involved that the job has been deleted //
 function deleteJobOnClick(){
