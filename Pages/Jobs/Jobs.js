@@ -88,6 +88,9 @@ function loadEmployees(user, companyName){
 // **** this is really the start of the modal view create job **** //
 function parseEmployeesAndAddToListView(){
 	
+	
+
+
 	for(var j = 0; j < listOfEmployees.length; j++){
 		
 		var firstName = listOfEmployees[j].first;
@@ -100,6 +103,10 @@ function parseEmployeesAndAddToListView(){
 		}else{
 			statusToString = "Not Available";
 		}
+
+
+
+		
 		
 		// appending the info to the modal views list view //
 		$("#employee-list-div ul").append('<li id=' + employeeNumber + ' onclick="listItemOnClick(this)" data-icon="plus"><a href="#" id="icon-' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' + statusToString + '</strong></p></a></li>');
