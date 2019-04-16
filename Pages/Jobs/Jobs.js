@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	
 }, false);
 
+
 function checkState(){
 	firebase.auth().onAuthStateChanged(function(user){
 		
@@ -35,7 +36,6 @@ function checkState(){
 					
 					// from this, we load the employees and the jobs tied to this company //
 					loadJobs(user, companyName);
-					loadEmployees(user ,companyName);
 				}).then(function(){
 					
 				}).catch(function(error){
@@ -47,75 +47,6 @@ function checkState(){
 		}
 	});
 }
-
-
-
-
-
-
-function loadEmployees(user, companyName){
-	if(user){
-		if(db != null){
-
-			var companyRef = db.collection('companies').doc(companyName).collection('employees');
-			companyRef.get().then(function(querySnapshot){
-				
-				var data = querySnapshot.docs.map(function(documentSnapshot){
-					
-					return documentSnapshot.data();
-				});	
-				
-				for(var i = 0; i < data.length; i++){
-					if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
-						var newEmployeeObject = new Employees();
-						newEmployeeObject.first = data[i].first;
-						newEmployeeObject.last = data[i].last;
-						newEmployeeObject.employeeNumber = data[i].employeeNumber;
-						newEmployeeObject.status = data[i].status;
-						newEmployeeObject.phone = data[i].phoneNumber;
-						newEmployeeObject.email = data[i].email;
-					
-						listOfEmployees.push(newEmployeeObject);
-					}
-				}
-				parseEmployeesAndAddToListView();
-			});	
-		}
-	}
-}
-
-
-// **** this is really the start of the modal view create job **** //
-function parseEmployeesAndAddToListView(){
-	
-	
-
-
-	for(var j = 0; j < listOfEmployees.length; j++){
-		
-		var firstName = listOfEmployees[j].first;
-		var lastName = listOfEmployees[j].last;
-		var employeeNumber = listOfEmployees[j].employeeNumber;
-		var status = listOfEmployees[j].status;
-		var statusToString = "";
-		if(status == true){
-			statusToString = "Available";
-		}else{
-			statusToString = "Not Available";
-		}
-
-
-
-		
-		
-		// appending the info to the modal views list view //
-		$("#employee-list-div ul").append('<li id=' + employeeNumber + ' onclick="listItemOnClick(this)" data-icon="plus"><a href="#" id="icon-' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' + statusToString + '</strong></p></a></li>');
-	}
-	
-	// refreshing the list //
-	$("#employee-list-div ul").listview('refresh');	
-}
-
 
 
 // **** this is the main list view area **** //
@@ -142,7 +73,7 @@ function loadJobs(user, companyName){
 				newJob.employees = data[q].employees;
 				newJob.date = data[q].date;
 				newJob.jobId = arrayOfIds[q];
-			
+				
 				listOfJobs.push(newJob);
 			}
 		}
@@ -160,7 +91,6 @@ function parseJobs(_listOfJobs){
 		
 		var _name = _listOfJobs[r].name;
 		var _date = _listOfJobs[r].date;
-		var _employees = _listOfJobs[r].employees;
 		var _address = _listOfJobs[r].address;
 		var _id = _listOfJobs[r].jobId;
 		

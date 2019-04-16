@@ -13,6 +13,7 @@ var nameTextFilled = false;
 var addressTextFilled = false;
 
 var listOfSelectedEmployees = [];
+var listOfEmployeesCreate = [];
 
 // **** end of modal view variables **** //
 var listView = document.getElementById("job-listview-div");
@@ -25,7 +26,7 @@ var db = firebase.firestore();
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
-	listOfEmployees = [];
+	//listOfEmployees = [];
 	listOfSelectedEmployees = [];
 
 	createButton.disabled = true;
@@ -43,11 +44,9 @@ function createNewJobOnClick(){
 	
 	nameTextFilled = false;
 	addressTextFilled = false;
-	
-	for(var n = 0; n < listOfEmployees.length; n++){
-		$('#icon-' + listOfEmployees[n].employeeNumber).removeClass('ui-icon-minus').addClass('ui-icon-plus');
-	}
+
 	toggleCreateButton();
+	loadEmployeesCreate(companyName);
 }
 
 
@@ -64,7 +63,6 @@ createJobSpan.onclick = function(){
 
 // text field checks //
 function jobNameTextChange(){
-	console.log("job text -> " + jobCreateNameTextField.value);
 	if(jobCreateNameTextField.value != ""){
 		nameTextFilled = true;
 	}else{
@@ -96,16 +94,80 @@ function toggleCreateButton(){
 
 
 
+// brings up all the employees for this company //
+function loadEmployeesCreate(companyName){
+	
+	listOfEmployeesCreate = [];
+	var companyRef = db.collection('companies').doc(companyName).collection('employees');
+	companyRef.get().then(function(querySnapshot){
+		
+		var data = querySnapshot.docs.map(function(documentSnapshot){
+			
+			return documentSnapshot.data();
+		});	
+
+		for(var i = 0; i < data.length; i++){
+			if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
+				var newEmployeeObject = new Employees();
+				newEmployeeObject.first = data[i].first;
+				newEmployeeObject.last = data[i].last;
+				newEmployeeObject.employeeNumber = data[i].employeeNumber;
+				newEmployeeObject.status = data[i].status;
+				newEmployeeObject.phone = data[i].phoneNumber;
+				newEmployeeObject.email = data[i].email;
+
+				listOfEmployeesCreate.push(newEmployeeObject);
+			}
+		}
+		parseEmployeesAndAddToListViewCreate();
+	});	
+}
+
+
+// shows all the possible employees for this company in the modify job panel //
+function parseEmployeesAndAddToListViewCreate(){
+	
+	$("#employee-list-div ul").empty();
+
+	for(var j = 0; j < listOfEmployeesCreate.length; j++){
+		
+		var firstName = listOfEmployeesCreate[j].first;
+		var lastName = listOfEmployeesCreate[j].last;
+		var employeeNumber = listOfEmployeesCreate[j].employeeNumber;
+		var status = listOfEmployeesCreate[j].status;
+		var statusToString = "";
+		if(status == true){
+			statusToString = "Available";
+		}else{
+			statusToString = "Not Available";
+		}
+
+		
+		$("#employee-list-div ul").append('<li id=' 
+		+ employeeNumber + ' onclick="createListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon-' 
+		+ employeeNumber + '"><h2>' 
+		+ firstName + ' ' 
+		+ lastName + '</h2><p>Employee #: ' 
+		+ employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' 
+		+ statusToString + '</strong></p></a></li>');
+	}
+	// refreshing the list //
+	$("#employee-list-div ul").listview('refresh');	
+}
+
+
+
+
 // with this function I want to be able to toggle the + and - buttons per row //
 // and add/subtract it to the selected list //
-function listItemOnClick(item){
+function createListItemOnClick(item){
 
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
 		$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 
-		for(var l = 0; l < listOfEmployees.length; l++){
-			if(listOfEmployees[l].employeeNumber == item.id){
-				listOfSelectedEmployees.push(listOfEmployees[l]);
+		for(var l = 0; l < listOfEmployeesCreate.length; l++){
+			if(listOfEmployeesCreate[l].employeeNumber == item.id){
+				listOfSelectedEmployees.push(listOfEmployeesCreate[l]);
 			}
 		}
 	}else{
@@ -120,56 +182,27 @@ function listItemOnClick(item){
 }
 
 
-// adding all employees to the list //
-function addAllOnClick(){
-	
-	var addAllButton = $('#add-all');
-	if(addAllButton.text() == "Add All"){
-		
-		// setting all the button icons to be - //
-		for(var n = 0; n < listOfEmployees.length; n++){
-			$('#icon-' + listOfEmployees[n].employeeNumber).removeClass('ui-icon-plus').addClass('ui-icon-minus');
-		}
-
-		listOfSelectedEmployees = listOfEmployees;		
-		addAllButton.text("Remove All");
-	}else{
-
-		for(var n = 0; n < listOfEmployees.length; n++){
-			$('#icon-' + listOfEmployees[n].employeeNumber).removeClass('ui-icon-minus').addClass('ui-icon-plus');
-		}
-		listOfSelectedEmployees = [];
-		addAllButton.text("Add All");
-	}
-	$("#employee-list-div ul").listview('refresh');
-}
-
-
-
-
-
 // creation of the job //
 function createButtonOnClick(){
-	var tempListOfEmployeeEmails = [];
+	var tempListOfEmployeeEmails = {};
 	var date = new Date();
 	var dateString = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
 	for(var p = 0; p < listOfSelectedEmployees.length; p++){
-		tempListOfEmployeeEmails.push(listOfSelectedEmployees[p].email);
+		tempListOfEmployeeEmails[listOfSelectedEmployees[p].employeeNumber] = listOfSelectedEmployees[p].email;
 	}
 	
+	
 	var docData = {
-		name:jobCreateNameTextField.value,
+		name: jobCreateNameTextField.value,
 		address: addressCreateTextField.value,
 		employees: tempListOfEmployeeEmails,
 		date: dateString
 	}
 	
-	
 	db.collection('companies').doc(companyName).collection('jobs').add(docData)
 	.then(function(docRef){
-		// removing the display //
-		addJobToEmployees(tempListOfEmployeeEmails, docRef.id);
+		console.log("success!");
 		createJobModal.style.display = "none";
 	}).catch(function(error){
 		console.log("error" + error);
@@ -177,18 +210,6 @@ function createButtonOnClick(){
 	
 }
 
-function addJobToEmployees(_listOfEmployees, jobID){
-	
-	for(var q = 0; q < _listOfEmployees.length; q++){
-		db.collection('companies').doc(companyName).collection('employees').doc(_listOfEmployees[q]).update({
-			jobs: firebase.firestore.FieldValue.arrayUnion(jobID)
-		}).then(function(){
-			console.log("success");
-		}).catch(function(error){
-			console.log("error -> " + error);
-		});
-	}
-}
 
 
 

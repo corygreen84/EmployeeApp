@@ -17,8 +17,9 @@ var addressTextChanged = false;
 var job;
 var jobId;
 
-var listOfEmployeesForThisJob = [];
-let initialEmployees = 0;
+//var listOfEmployeesForThisJob = [];
+var dictionaryOfEmployeesForThisJob = {};
+var listOfEmployeesModify = [];
 var employeeListChanged = false;
 
 
@@ -31,6 +32,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
+// user clicks on a job //
 function mainJobListOnClick(item){
 
 	listOfEmployeesForThisJob = [];
@@ -54,16 +56,8 @@ function mainJobListOnClick(item){
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
 
-	
-	// job.employees changed to a dictionary //
-
-	for(var j in job.employees){
-		listOfEmployeesForThisJob.push(job.employees[j]);
-	}
-
-
-
-	initialEmployees = job.employees.length;
+	// the employees are loaded into a dictionary //
+	dictionaryOfEmployeesForThisJob = job.employees;
 
 	loadEmployeesModify(companyName);
 
@@ -72,10 +66,10 @@ function mainJobListOnClick(item){
 
 
 
-
+// brings up all the employees for this company //
 function loadEmployeesModify(companyName){
 	
-	listOfEmployees = [];
+	listOfEmployeesModify = [];
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	companyRef.get().then(function(querySnapshot){
 		
@@ -94,12 +88,10 @@ function loadEmployeesModify(companyName){
 				newEmployeeObject.phone = data[i].phoneNumber;
 				newEmployeeObject.email = data[i].email;
 
-				listOfEmployees.push(newEmployeeObject);
+				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
-
 		parseEmployeesAndAddToListViewModify();
-		
 	});	
 }
 
@@ -109,12 +101,12 @@ function parseEmployeesAndAddToListViewModify(){
 	
 	$("#modify-employee-list-div ul").empty();
 
-	for(var j = 0; j < listOfEmployees.length; j++){
+	for(var j = 0; j < listOfEmployeesModify.length; j++){
 		
-		var firstName = listOfEmployees[j].first;
-		var lastName = listOfEmployees[j].last;
-		var employeeNumber = listOfEmployees[j].employeeNumber;
-		var status = listOfEmployees[j].status;
+		var firstName = listOfEmployeesModify[j].first;
+		var lastName = listOfEmployeesModify[j].last;
+		var employeeNumber = listOfEmployeesModify[j].employeeNumber;
+		var status = listOfEmployeesModify[j].status;
 		var statusToString = "";
 		if(status == true){
 			statusToString = "Available";
@@ -143,18 +135,12 @@ function parseEmployeesAndAddToListViewModify(){
 // and checks to see what lines up with the list of employees //
 // that go along with the job //
 function changePlusToMinusOnEmployees(){
-	
 
-
-
-
-
-	// **** im sure the bug is here.. **** //
 	var listOfEmployeeNumbersToBeMinused = [];
-	for(var j = 0; j < job.employees.length; j++){
-		for(var k = 0; k < listOfEmployees.length; k++){
-			if(job.employees[j] == listOfEmployees[k].email){
-				listOfEmployeeNumbersToBeMinused.push(listOfEmployees[k].employeeNumber);
+	for(var i in listOfEmployeesModify){
+		for(var j in dictionaryOfEmployeesForThisJob){
+			if(dictionaryOfEmployeesForThisJob[j] == listOfEmployeesModify[i].email){
+				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].employeeNumber);
 			}
 		}
 	}
@@ -168,44 +154,23 @@ function changePlusToMinusOnEmployees(){
 
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
-	
-	console.log("" + listOfEmployeesForThisJob.length);
-
-	
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
-		// this adds the employee to the list of employees //
-		for(var i = 0; i < listOfEmployees.length; i++){
-			if(listOfEmployees[i].employeeNumber == item.id){
-				listOfEmployeesForThisJob.push(listOfEmployees[i].email);
+		for(var i = 0; i < listOfEmployeesModify.length; i++){
+			if(listOfEmployeesModify[i].employeeNumber == item.id){
+				dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[i].email;
 			}
 		}
+
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
-		
 	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
 
-		// need to pull the email address from the item selected //
-		var employeeEmail;
-		for(var j = 0; j < listOfEmployees.length; j++){
-			if(listOfEmployees[j].employeeNumber == item.id){
-				employeeEmail = listOfEmployees[j].email;
-			}
+		if(dictionaryOfEmployeesForThisJob[item.id] != null){
+			delete dictionaryOfEmployeesForThisJob[item.id];
 		}
-
-		var foundAt;
-		for(var k = 0; k < listOfEmployeesForThisJob.length; k++){
-			if(listOfEmployeesForThisJob[k] === employeeEmail){
-				foundAt = k;
-			}
-		}
-
-		listOfEmployeesForThisJob.splice(foundAt, 1);
-
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
-
 	}
 
-	toggleJobModifyButton();
 }
 
 
@@ -244,7 +209,7 @@ function modifyAddressTextChange(){
 
 
 function toggleJobModifyButton(){
-	if(nameTextChanged == true || addressTextChanged == true || initialEmployees != listOfEmployeesForThisJob.length){
+	if(nameTextChanged == true || addressTextChanged == true){
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
@@ -257,69 +222,16 @@ function toggleJobModifyButton(){
 // modifies the job with the data given //
 function modifyJobOnClick(){
 
-	var listOfEmployeesDictionary = {};
-	for(var i in listOfEmployeesForThisJob){
-		listOfEmployeesDictionary[i] = listOfEmployeesForThisJob[i];
-	}
-
 	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
 		name: jobNameTextField.value,
 		address: jobAddressTextField.value,
-		employees: listOfEmployeesDictionary
+		employees: dictionaryOfEmployeesForThisJob
 	}).then(function(){
-		console.log("good to go");
+		modifyJobModal.style.display = "none";
 	}).catch(function(error){
 		console.log("error " + erro);
 	})
-
-
-
-
-	/*
-	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-		name: jobNameTextField.value,
-		address: jobAddressTextField.value,
-		employees: []
-	}).then(function(){
-
-		if(listOfEmployeesForThisJob.length != 0){
-			for(var i = 0; i < listOfEmployeesForThisJob.length; i++){
-				db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-					employees: firebase.firestore.FieldValue.arrayUnion(listOfEmployeesForThisJob[i])
-				}).then(function(){
-					modifyJobModal.style.display = "none";
-				}).catch(function(error){
-					console.log("error " + error);
-				});
-			}
-		}else{
-			modifyJobModal.style.display = "none";
-		}
-		
-	}).catch(function(error){
-		console.log("error here " + error);
-	});
-	*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
