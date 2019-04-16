@@ -56,10 +56,14 @@ function loadJobs(user, companyName){
 	// loading the data //
 	
 	var arrayOfIds = [];
+	var dictionaryOfIds = {};
 	var jobRef = db.collection('companies').doc(companyName).collection('jobs');
 	jobRef.onSnapshot(function(querySnapshot){
+
 		var data = querySnapshot.docs.map(function(documentSnapshot){
-			arrayOfIds.push(documentSnapshot.id);	
+
+			dictionaryOfIds[documentSnapshot.data().name] = documentSnapshot.id;
+
 			return documentSnapshot.data();
 		});	
 		
@@ -72,8 +76,8 @@ function loadJobs(user, companyName){
 				newJob.address = data[q].address;
 				newJob.employees = data[q].employees;
 				newJob.date = data[q].date;
-				newJob.jobId = arrayOfIds[q];
-				
+				newJob.jobId = dictionaryOfIds[data[q].name];
+
 				listOfJobs.push(newJob);
 			}
 		}
@@ -97,7 +101,7 @@ function parseJobs(_listOfJobs){
 		var replaceWhiteSpaceWithDash = _address.replace(/ /g, "-");
 
 		// putting it all into a list view //
-		$("#job-listview-div ul").append('<li id=job-' + replaceWhiteSpaceWithDash + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
+		$("#job-listview-div ul").append('<li id=job-' + _id + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
 		
 	}
 	$("#job-listview-div ul").listview('refresh');

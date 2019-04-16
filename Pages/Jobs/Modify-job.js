@@ -20,6 +20,7 @@ var jobId;
 //var listOfEmployeesForThisJob = [];
 var dictionaryOfEmployeesForThisJob = {};
 var listOfEmployeesModify = [];
+var dictionaryOfEmployeesModify = {};
 var employeeListChanged = false;
 
 
@@ -47,7 +48,7 @@ function mainJobListOnClick(item){
 		var listOfJobsAddress = listOfJobs[i].address;
 		var addressWithReplacement = listOfJobsAddress.replace(/ /g, "-");
 
-		if("job-" + addressWithReplacement == item.id){
+		if("job-" + listOfJobs[i].jobId == item.id){
 			job = listOfJobs[i];
 		}
 	}
@@ -55,6 +56,9 @@ function mainJobListOnClick(item){
 	jobNameTextField.value = job.name;
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
+
+
+	console.log("job " + jobId + " Job name " + job.name);
 
 	// the employees are loaded into a dictionary //
 	dictionaryOfEmployeesForThisJob = job.employees;
@@ -70,6 +74,7 @@ function mainJobListOnClick(item){
 function loadEmployeesModify(companyName){
 	
 	listOfEmployeesModify = [];
+	dictionaryOfEmployeesModify = {};
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	companyRef.get().then(function(querySnapshot){
 		
@@ -89,6 +94,7 @@ function loadEmployeesModify(companyName){
 				newEmployeeObject.email = data[i].email;
 
 				listOfEmployeesModify.push(newEmployeeObject);
+				dictionaryOfEmployeesModify[newEmployeeObject.employeeNumber] = newEmployeeObject.email;
 			}
 		}
 		parseEmployeesAndAddToListViewModify();
@@ -168,10 +174,13 @@ function modifyListItemOnClick(item){
 		if(dictionaryOfEmployeesForThisJob[item.id] != null){
 			delete dictionaryOfEmployeesForThisJob[item.id];
 		}
+
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
 
 }
+
+
 
 
 
@@ -229,7 +238,7 @@ function modifyJobOnClick(){
 	}).then(function(){
 		modifyJobModal.style.display = "none";
 	}).catch(function(error){
-		console.log("error " + erro);
+		console.log("error " + error);
 	})
 }
 
