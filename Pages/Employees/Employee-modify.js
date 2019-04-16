@@ -197,7 +197,7 @@ function modifyOnClick(){
 			status: false
 		}
 	
-		db.collection('companies').doc(companyName).collection('employees').doc(employee.email).set(docData)
+		db.collection('companies').doc(companyName).collection('employees').doc(employee.email).update(docData)
 		.then(function(){
 			// removing the display //
 			modifyEmployeeModal.style.display = "none";

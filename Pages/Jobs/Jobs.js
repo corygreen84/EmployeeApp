@@ -53,9 +53,7 @@ function checkState(){
 
 // loading all the jobs //
 function loadJobs(user, companyName){
-	// loading the data //
-	
-	var arrayOfIds = [];
+
 	var dictionaryOfIds = {};
 	var jobRef = db.collection('companies').doc(companyName).collection('jobs');
 	jobRef.onSnapshot(function(querySnapshot){
@@ -97,8 +95,6 @@ function parseJobs(_listOfJobs){
 		var _date = _listOfJobs[r].date;
 		var _address = _listOfJobs[r].address;
 		var _id = _listOfJobs[r].jobId;
-		
-		var replaceWhiteSpaceWithDash = _address.replace(/ /g, "-");
 
 		// putting it all into a list view //
 		$("#job-listview-div ul").append('<li id=job-' + _id + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');

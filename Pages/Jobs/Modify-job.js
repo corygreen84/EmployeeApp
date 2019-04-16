@@ -17,10 +17,11 @@ var addressTextChanged = false;
 var job;
 var jobId;
 
-//var listOfEmployeesForThisJob = [];
+let originalDictionaryOfJobs = {};
 var dictionaryOfEmployeesForThisJob = {};
 var listOfEmployeesModify = [];
 var dictionaryOfEmployeesModify = {};
+
 var employeeListChanged = false;
 
 
@@ -40,14 +41,7 @@ function mainJobListOnClick(item){
 	modifyJobModal.style.display = "block";
 	modifyJobButton.disabled = true;
 
-
-	// getting the address so that we can match it up with that of the //
-	// list of jobs array. Then the entire job gets brought into the //
-	// job object. //
 	for(var i = 0; i < listOfJobs.length; i++){
-		var listOfJobsAddress = listOfJobs[i].address;
-		var addressWithReplacement = listOfJobsAddress.replace(/ /g, "-");
-
 		if("job-" + listOfJobs[i].jobId == item.id){
 			job = listOfJobs[i];
 		}
@@ -57,14 +51,11 @@ function mainJobListOnClick(item){
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
 
-
-	console.log("job " + jobId + " Job name " + job.name);
-
 	// the employees are loaded into a dictionary //
 	dictionaryOfEmployeesForThisJob = job.employees;
+	originalDictionaryOfJobs = job.employees;
 
 	loadEmployeesModify(companyName);
-
 }
 
 
@@ -85,6 +76,7 @@ function loadEmployeesModify(companyName){
 
 		for(var i = 0; i < data.length; i++){
 			if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
+				
 				var newEmployeeObject = new Employees();
 				newEmployeeObject.first = data[i].first;
 				newEmployeeObject.last = data[i].last;
@@ -178,6 +170,31 @@ function modifyListItemOnClick(item){
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
 
+
+
+
+	// **** need to retouch this.  Not currently doing what I want but it passes for now **** //
+	var newCount = 0;
+	for(var emp in dictionaryOfEmployeesForThisJob){
+		newCount++;
+	}
+
+	if(newCount != listOfEmployeesModify.length){
+		employeeListChanged = true;
+	}else{
+		
+		var itExists = false;
+		for(var empMod in listOfEmployeesModify){
+			console.log(empMod);
+		}
+
+		for(var dictMod in dictionaryOfEmployeesForThisJob){
+			console.log(dictionaryOfEmployeesForThisJob[dictMod]);
+		}
+		//employeeListChanged = false;
+	}
+
+	toggleJobModifyButton();
 }
 
 
@@ -218,7 +235,7 @@ function modifyAddressTextChange(){
 
 
 function toggleJobModifyButton(){
-	if(nameTextChanged == true || addressTextChanged == true){
+	if(nameTextChanged == true || addressTextChanged == true || employeeListChanged == true){
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
