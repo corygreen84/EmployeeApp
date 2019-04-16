@@ -63,8 +63,6 @@ function listItemOnClick(item){
 
 	listOfEmployeeJobs = employee.jobs;
 
-	console.log("employee jobs " + employee.first);
-
 	$("#jobs-attached-to-listview-div ul").empty();
 
 	bringUpEmployeeJobs(listOfEmployeeJobs);
@@ -144,11 +142,6 @@ function bringUpEmployeeJobs(_listOfJobs){
 		jobRef.get().then(function(doc){
 
 			var data = doc.data();
-
-			console.log("" + data.name);
-			console.log("" + data.address);
-			console.log("" + data.employees);
-			console.log("" + data.date);
 
 			if(data.name != undefined && data.address != undefined && data.employees != undefined && data.date != undefined){
 				var newJob = new Jobs();

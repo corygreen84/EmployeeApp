@@ -183,14 +183,6 @@ function modifyListItemOnClick(item){
 		employeeListChanged = true;
 	}else{
 		
-		var itExists = false;
-		for(var empMod in listOfEmployeesModify){
-			console.log(empMod);
-		}
-
-		for(var dictMod in dictionaryOfEmployeesForThisJob){
-			console.log(dictionaryOfEmployeesForThisJob[dictMod]);
-		}
 		//employeeListChanged = false;
 	}
 
