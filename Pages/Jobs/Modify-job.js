@@ -171,19 +171,22 @@ function modifyListItemOnClick(item){
 	}
 
 
-
+	
 
 	// **** need to retouch this.  Not currently doing what I want but it passes for now **** //
-	var newCount = 0;
+	var tempArrayForThisJob = [];
 	for(var emp in dictionaryOfEmployeesForThisJob){
-		newCount++;
+		tempArrayForThisJob.push(dictionaryOfEmployeesForThisJob[emp]);
 	}
 
-	if(newCount != listOfEmployeesModify.length){
-		employeeListChanged = true;
-	}else{
-		
-		//employeeListChanged = false;
+	
+	// pick up here tomorrow //
+	var resultOfCheckingDifferenceInArrays = checkDifferenceBetweenTwoArrays(tempArrayForThisJob, listOfEmployeesModify);
+
+	for(var things in resultOfCheckingDifferenceInArrays){
+		var key = things;
+		console.log(key);
+		console.log(resultOfCheckingDifferenceInArrays[key]);
 	}
 
 	toggleJobModifyButton();
