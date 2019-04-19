@@ -18,11 +18,12 @@ var job;
 var jobId;
 
 let originalDictionaryOfJobs = {};
-var dictionaryOfEmployeesForThisJob = {};
+let dictionaryOfEmployeesForThisJob = {};
 var listOfEmployeesModify = [];
 var dictionaryOfEmployeesModify = {};
 
 var employeeListChanged = false;
+
 
 
 // checking if the user has logged in //
@@ -37,7 +38,15 @@ window.addEventListener('DOMContentLoaded', function () {
 // user clicks on a job //
 function mainJobListOnClick(item){
 
-	listOfEmployeesForThisJob = [];
+	for(var h in originalDictionaryOfJobs){
+		delete originalDictionaryOfJobs[h];
+	}
+
+	for(var l in dictionaryOfEmployeesForThisJob){
+		delete dictionaryOfEmployeesForThisJob[l];
+	}
+	
+	
 	modifyJobModal.style.display = "block";
 	modifyJobButton.disabled = true;
 
@@ -51,10 +60,20 @@ function mainJobListOnClick(item){
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
 
-	// the employees are loaded into a dictionary //
-	dictionaryOfEmployeesForThisJob = job.employees;
-	originalDictionaryOfJobs = job.employees;
 
+	// loading the original list of employees into a dictionary //
+	// this dictionary will not change //
+	for(var j in job.employees){
+		originalDictionaryOfJobs[j] = job.employees[j];
+	}
+
+	for(var k in job.employees){
+		dictionaryOfEmployeesForThisJob[k] = job.employees[k];
+	}
+	
+
+	//dictionaryOfEmployeesForThisJob = job.employees;
+	
 	loadEmployeesModify(companyName);
 }
 
@@ -170,45 +189,36 @@ function modifyListItemOnClick(item){
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
 
-	var tempOriginalEmployees = [];
 
-	for(var emp in dictionaryOfEmployeesForThisJob){
-		tempOriginalEmployees.push(dictionaryOfEmployeesForThisJob[emp]);
-	}
-
+	// **** this section is for figuring out what has and hasnt been added to the job **** //
 	var tempArrayOfEmployeesModify = [];
-
-	for(var mod in listOfEmployeesModify){
-		tempArrayOfEmployeesModify.push(listOfEmployeesModify[mod].email);
-	}
-
-	var resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempOriginalEmployees, tempArrayOfEmployeesModify);
-
-	for(var things in resultsOfCheckingDifferencesInArrays){
-		var key = things;
-		console.log(key);
-		console.log(resultsOfCheckingDifferencesInArrays[key]);
-	}
-	
-/*
-	// **** need to retouch this.  Not currently doing what I want but it passes for now **** //
-	var tempArrayForThisJob = [];
-	for(var emp in dictionaryOfEmployeesForThisJob){
-		tempArrayForThisJob.push(dictionaryOfEmployeesForThisJob[emp]);
-	}
+	var tempArrayOfOriginalEmployees = [];
 
 	
-	// pick up here tomorrow //
-	var resultOfCheckingDifferenceInArrays = checkDifferenceBetweenTwoArrays(tempArrayForThisJob, listOfEmployeesModify);
-
-	for(var things in resultOfCheckingDifferenceInArrays){
-		var key = things;
-		console.log(key);
-		console.log(resultOfCheckingDifferenceInArrays[key]);
+	for(var mod in dictionaryOfEmployeesForThisJob){
+		tempArrayOfEmployeesModify.push(dictionaryOfEmployeesForThisJob[mod]);
 	}
+	
+	for(var orig in originalDictionaryOfJobs){
+		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
+	}
+	
+	var resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
+	
+	for(var _ in resultsOfCheckingDifferencesInArrays){
+		var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
+		var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
+
+		if(addedArray.length > 0 || deletedArray.length > 0){
+			employeeListChanged = true;
+		}else{
+			employeeListChanged = false;
+		}
+		
+	}
+	
 
 	toggleJobModifyButton();
-	*/
 }
 
 
@@ -254,6 +264,9 @@ function toggleJobModifyButton(){
 	}else{
 		modifyJobButton.disabled = true;
 	}
+
+
+	
 }
 
 
@@ -270,7 +283,7 @@ function modifyJobOnClick(){
 		modifyJobModal.style.display = "none";
 	}).catch(function(error){
 		console.log("error " + error);
-	})
+	});
 }
 
 
