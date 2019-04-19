@@ -170,9 +170,27 @@ function modifyListItemOnClick(item){
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
 
+	var tempOriginalEmployees = [];
 
+	for(var emp in dictionaryOfEmployeesForThisJob){
+		tempOriginalEmployees.push(dictionaryOfEmployeesForThisJob[emp]);
+	}
+
+	var tempArrayOfEmployeesModify = [];
+
+	for(var mod in listOfEmployeesModify){
+		tempArrayOfEmployeesModify.push(listOfEmployeesModify[mod].email);
+	}
+
+	var resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempOriginalEmployees, tempArrayOfEmployeesModify);
+
+	for(var things in resultsOfCheckingDifferencesInArrays){
+		var key = things;
+		console.log(key);
+		console.log(resultsOfCheckingDifferencesInArrays[key]);
+	}
 	
-
+/*
 	// **** need to retouch this.  Not currently doing what I want but it passes for now **** //
 	var tempArrayForThisJob = [];
 	for(var emp in dictionaryOfEmployeesForThisJob){
@@ -190,6 +208,7 @@ function modifyListItemOnClick(item){
 	}
 
 	toggleJobModifyButton();
+	*/
 }
 
 
