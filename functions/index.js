@@ -51,6 +51,75 @@ exports.updateUser = functions.firestore.document('companies/{company}/{jobs}/{j
 
 
 
+
+// deleting the employees associated with this job //
+exports.deleteUser = functions.firestore.document('companies/{company}/{jobs}/{job}').onDelete((change, context) =>{
+
+	const deletedValue = change.data();
+	var db = admin.firestore();
+
+	var company = context.params.company;
+	var job = context.params.job;
+
+	var employees = deletedValue["employees"];
+	
+
+	for(var k in employees){
+		var dbD = db.doc('companies/' + company + '/employees/' + employees[k]);
+
+		dbD.update({
+			jobs: admin.firestore.FieldValue.arrayRemove(job)
+		});
+	}
+	return 0;
+});
+
+
+
+
+
+// when a job is created, this gets notified and adds the job to the employees //
+exports.createUser = functions.firestore.document('companies/{company}/{jobs}/{job}').onCreate((change, context) =>{
+
+	var db = admin.firestore();
+	var company = context.params.company;
+	var job = context.params.job;
+
+	const addedValue = change.data();
+
+	var employees = addedValue["employees"];
+
+	for(var k in employees){
+		var dbD = db.doc('companies/' + company + '/employees/' + employees[k]);
+
+		dbD.update({
+			jobs: admin.firestore.FieldValue.arrayUnion(job)
+		});
+	}
+
+	return 0;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// checking the difference in dictionaries //
 function checkDifferenceBetweenTwoArrays(_originalArray, _updatedArray){
 
 	let tempArrayOfOriginalEmailsToDelete = _originalArray;
@@ -98,48 +167,3 @@ function checkDifferenceBetweenTwoArrays(_originalArray, _updatedArray){
 
 
 
-exports.deleteUser = functions.firestore.document('companies/{company}/{jobs}/{job}').onDelete((change, context) =>{
-
-	const deletedValue = change.data();
-	var db = admin.firestore();
-
-	var company = context.params.company;
-	var job = context.params.job;
-
-	var employees = deletedValue["employees"];
-	
-
-	for(var k in employees){
-		var dbD = db.doc('companies/' + company + '/employees/' + employees[k]);
-
-		dbD.update({
-			jobs: admin.firestore.FieldValue.arrayRemove(job)
-		});
-	}
-
-	return 0;
-});
-
-
-
-
-exports.createUser = functions.firestore.document('companies/{company}/{jobs}/{job}').onCreate((change, context) =>{
-
-	var db = admin.firestore();
-	var company = context.params.company;
-	var job = context.params.job;
-
-	const addedValue = change.data();
-
-	var employees = addedValue["employees"];
-
-	for(var k in employees){
-		var dbD = db.doc('companies/' + company + '/employees/' + employees[k]);
-
-		dbD.update({
-			jobs: admin.firestore.FieldValue.arrayUnion(job)
-		});
-	}
-
-	return 0;
-});
