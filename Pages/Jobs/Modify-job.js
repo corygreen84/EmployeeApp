@@ -95,12 +95,6 @@ function loadEmployeesForThisJob(companyName, jobId){
 		for(var l in arrayOfJobs){
 			dictionaryOfEmployeesForThisJob[l] = arrayOfJobs[l];
 		}
-
-
-		for(var m in dictionaryOfEmployeesForThisJob){
-			console.log("key " + m);
-			console.log("value " + dictionaryOfEmployeesForThisJob[m]);
-		}
 	});
 }
 
@@ -186,12 +180,11 @@ function parseEmployeesAndAddToListViewModify(){
 // that go along with the job //
 function changePlusToMinusOnEmployees(){
 
-
 	var listOfEmployeeNumbersToBeMinused = [];
 	for(var i in listOfEmployeesModify){
 		for(var j in dictionaryOfEmployeesForThisJob){
-			if(dictionaryOfEmployeesForThisJob[j] == originalDictionaryOfJobs[i]){
-				listOfEmployeeNumbersToBeMinused.push(i);
+			if(dictionaryOfEmployeesForThisJob[j] == listOfEmployeesModify[i].email){
+				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].employeeNumber);
 			}
 		}
 	}
