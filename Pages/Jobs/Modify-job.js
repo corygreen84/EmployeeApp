@@ -56,6 +56,9 @@ function mainJobListOnClick(item){
 		}
 	}
 	
+
+
+
 	jobNameTextField.value = job.name;
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
@@ -67,14 +70,38 @@ function mainJobListOnClick(item){
 		originalDictionaryOfJobs[j] = job.employees[j];
 	}
 
+
+	
 	for(var k in job.employees){
 		dictionaryOfEmployeesForThisJob[k] = job.employees[k];
 	}
 	
+	//loadEmployeesForThisJob(companyName, jobId);
 
-	//dictionaryOfEmployeesForThisJob = job.employees;
-	
 	loadEmployeesModify(companyName);
+}
+
+
+
+
+function loadEmployeesForThisJob(companyName, jobId){
+	dictionaryOfEmployeesForThisJob = {};
+	var ref = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
+	ref.onSnapshot(function(doc){
+		var dataArray = doc.data();
+
+		var arrayOfJobs = dataArray["employees"];
+
+		for(var l in arrayOfJobs){
+			dictionaryOfEmployeesForThisJob[l] = arrayOfJobs[l];
+		}
+
+
+		for(var m in dictionaryOfEmployeesForThisJob){
+			console.log("key " + m);
+			console.log("value " + dictionaryOfEmployeesForThisJob[m]);
+		}
+	});
 }
 
 
@@ -82,9 +109,14 @@ function mainJobListOnClick(item){
 
 // brings up all the employees for this company //
 function loadEmployeesModify(companyName){
+
+	for(var h in originalDictionaryOfJobs){
+		delete originalDictionaryOfJobs[h];
+	}
 	
 	listOfEmployeesModify = [];
 	dictionaryOfEmployeesModify = {};
+
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	companyRef.get().then(function(querySnapshot){
 		
@@ -105,6 +137,7 @@ function loadEmployeesModify(companyName){
 				newEmployeeObject.email = data[i].email;
 
 				listOfEmployeesModify.push(newEmployeeObject);
+				//originalDictionaryOfJobs[newEmployeeObject.employeeNumber] = newEmployeeObject.email;
 				dictionaryOfEmployeesModify[newEmployeeObject.employeeNumber] = newEmployeeObject.email;
 			}
 		}
@@ -153,11 +186,12 @@ function parseEmployeesAndAddToListViewModify(){
 // that go along with the job //
 function changePlusToMinusOnEmployees(){
 
+
 	var listOfEmployeeNumbersToBeMinused = [];
 	for(var i in listOfEmployeesModify){
 		for(var j in dictionaryOfEmployeesForThisJob){
-			if(dictionaryOfEmployeesForThisJob[j] == listOfEmployeesModify[i].email){
-				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].employeeNumber);
+			if(dictionaryOfEmployeesForThisJob[j] == originalDictionaryOfJobs[i]){
+				listOfEmployeeNumbersToBeMinused.push(i);
 			}
 		}
 	}
@@ -165,19 +199,32 @@ function changePlusToMinusOnEmployees(){
 	for(var h = 0; h < listOfEmployeeNumbersToBeMinused.length; h++){
 		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}
+
 }
 
 
 
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
+
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
+		/*
+		for(var i in originalDictionaryOfJobs){
+			if(i == item.id){
+				dictionaryOfEmployeesForThisJob[item.id] = originalDictionaryOfJobs[i];
+			}
+		}
+		*/
+		
+		
 		for(var i = 0; i < listOfEmployeesModify.length; i++){
 			if(listOfEmployeesModify[i].employeeNumber == item.id){
 				dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[i].email;
 			}
 		}
+		
+		
 
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
@@ -274,25 +321,30 @@ function toggleJobModifyButton(){
 
 // modifies the job with the data given //
 function modifyJobOnClick(){
-
-	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-		name: jobNameTextField.value,
-		address: jobAddressTextField.value,
-		employees: dictionaryOfEmployeesForThisJob
-	}).then(function(){
-		modifyJobModal.style.display = "none";
-	}).catch(function(error){
-		console.log("error " + error);
-	});
+	let confirmOk = confirm("Are you sure you want to modify this job?");
+	if(confirmOk){
+		db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
+			name: jobNameTextField.value,
+			address: jobAddressTextField.value,
+			employees: dictionaryOfEmployeesForThisJob
+		}).then(function(){
+			modifyJobModal.style.display = "none";
+		}).catch(function(error){
+			console.log("error " + error);
+		});
+	}
 }
 
 
 
 // this should notify/modify the employees involved that the job has been deleted //
 function deleteJobOnClick(){
-	db.collection('companies').doc(companyName).collection('jobs').doc(jobId).delete().then(function(){
-		modifyJobModal.style.display = "none";
-	}).catch(function(error){
-		console.log("error " + error);
-	});
+	let confirmOk = confirm("Are you sure you want to delete this job?");
+	if(confirmOk){
+		db.collection('companies').doc(companyName).collection('jobs').doc(jobId).delete().then(function(){
+			modifyJobModal.style.display = "none";
+		}).catch(function(error){
+			console.log("error " + error);
+		});
+	}
 }

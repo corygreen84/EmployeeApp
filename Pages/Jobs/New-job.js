@@ -101,7 +101,7 @@ function loadEmployeesCreate(companyName){
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	companyRef.get().then(function(querySnapshot){
 		
-		var data = querySnapshot.docs.map(function(documentSnapshot){
+			var data = querySnapshot.docs.map(function(documentSnapshot){
 			
 			return documentSnapshot.data();
 		});	

@@ -20,11 +20,6 @@ exports.updateUser = functions.firestore.document('companies/{company}/{jobs}/{j
 	var deletedEmployees = returnedData["delete"];
 	var addedEmployees = returnedData["add"];
 
-	
-
-	// if the job has been deleted, then I need to take the job away from the employee //
-
-
 	// going through and removing the employees //
 	for(var i in deletedEmployees){
 		var dbD = db.doc('companies/' + company + '/employees/' + deletedEmployees[i]);
@@ -101,6 +96,33 @@ exports.createUser = functions.firestore.document('companies/{company}/{jobs}/{j
 });
 
 
+
+
+
+
+// **** this is for deleting an employee **** //
+exports.deleteEmployee = functions.firestore.document('companies/{company}/{employees}/{employee}').onDelete((change, context) =>{
+
+	var db = admin.firestore();
+	var company = context.params.company;
+
+	var changeAfter = change.data();
+
+	var employeeNumber = changeAfter["employeeNumber"];
+	var employeejobs = changeAfter["jobs"];
+
+	for(var i in employeejobs){
+		console.log("jobs " + employeejobs[i]);
+
+		var dbData = db.doc('companies/' + company + '/jobs/' + employeejobs[i]);
+		
+		dbData.update({
+			['employees.' + employeeNumber]: admin.firestore.FieldValue.delete()
+		});
+		
+	}
+	return 0;
+});
 
 
 

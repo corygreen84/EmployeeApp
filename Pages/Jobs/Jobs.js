@@ -16,9 +16,14 @@ window.addEventListener('DOMContentLoaded', function () {
 	
 	checkState();
 	
-	createButton.disabled = true;
-	
 }, false);
+
+
+
+window.onload = function(){
+	var createButton = document.getElementById("create-new-job").getBoundingClientRect();
+	console.log("rect -> " + createButton.top + " " + createButton.right + " " + createButton.bottom + " " + createButton.left);
+}
 
 
 function checkState(){

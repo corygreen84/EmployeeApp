@@ -6,8 +6,11 @@ var listOfEmployees = [];
 
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {	
-	
-	createButton.disabled = true;
+
+	var createButton = document.getElementById("employee-create-button").getBoundingClientRect();
+	console.log("rect -> " + createButton.top + " " + createButton.right + " " + createButton.bottom + " " + createButton.left);
+
+
 	checkState();
 	
 }, false);

@@ -1,10 +1,9 @@
 
 /* **** nav bar stuff **** */
 #title-bar{
-	width:250px;
 	background-color:grey;
 	padding: 60px 8px 8px 20px;
-	top:0px;
+	display: inline-block;
 }
 
 #title-label{
@@ -14,6 +13,11 @@
 
 #main-body{
 	margin-left:250px;
+}
+
+#top-side-nav{
+	background-color:grey;
+	padding: 90px 8px 8px 20px;
 }
 
 .sidenav {
@@ -45,7 +49,6 @@
 
 .sidenav a:focus{
 	color: white;
-	background-color:#FF7F50;
 	border-style: none;
 	border-width:1px;
 	outline:none;

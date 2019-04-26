@@ -46,14 +46,22 @@ modifyEmployeeSpan.onclick = function(){
 
 // **** when the user clicks on an employee, a new modal view will come up **** //
 function listItemOnClick(item){	
+
+	console.log("" + item.id);
+
 	// get the employee info from the main array of employees //
 	for(var r = 0; r < listOfEmployees.length; r++){
 		if(listOfEmployees[r].employeeNumber == item.id){
 			employee = listOfEmployees[r];
 		}
 	}
-	
+
 	modifyButton.disabled = true;
+	
+	modifyEmail.value = employee.email;
+
+
+
 	
 	modifyFirst.value = employee.first;
 	modifyLast.value = employee.last;
@@ -61,13 +69,18 @@ function listItemOnClick(item){
 	modifyPhone.value = employee.phone;
 	modifyEmployeeNumber.value = employee.employeeNumber;
 
-	listOfEmployeeJobs = employee.jobs;
-
+	
+	//listOfEmployeeJobs = employee.jobs;
+	
 	$("#jobs-attached-to-listview-div ul").empty();
 
-	bringUpEmployeeJobs(listOfEmployeeJobs);
+	//bringUpEmployeeJobs(listOfEmployeeJobs);
+	
 
+	bringUpEmployeeJobsByEmail(employee.email);
 	modifyEmployeeModal.style.display = "block";
+
+	
 }
 
 
@@ -124,6 +137,46 @@ function toggleModifyButton(){
 		modifyButton.disabled = true;
 	}
 }
+
+function bringUpEmployeeJobsByEmail(email){
+	listOfJobsForThisEmployee = [];
+
+	var emailRef = db.collection('companies').doc(companyName).collection('employees').doc(email);
+	emailRef.onSnapshot(function(doc){
+		var dataArray = doc.data();
+
+		var arrayOfJobs = dataArray["jobs"];
+
+		for(var i in arrayOfJobs){
+			var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(arrayOfJobs[i]);
+			jobRef.get().then(function(doc){
+
+				var data = doc.data();
+
+				if(data.name != undefined && data.address != undefined && data.employees != undefined && data.date != undefined){
+					var newJob = new Jobs();
+					newJob.name = data.name;
+					newJob.address = data.address;
+					newJob.employees = data.employees;
+					newJob.date = data.date;
+			
+					listOfJobsForThisEmployee.push(newJob);
+				}
+				parseJobList(listOfJobsForThisEmployee);
+			}).catch(function(error){
+			
+			});	
+		}
+	});
+
+}
+
+
+
+
+
+
+
 
 
 
