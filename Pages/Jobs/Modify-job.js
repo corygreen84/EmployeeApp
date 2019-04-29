@@ -70,13 +70,10 @@ function mainJobListOnClick(item){
 		originalDictionaryOfJobs[j] = job.employees[j];
 	}
 
-
 	
 	for(var k in job.employees){
 		dictionaryOfEmployeesForThisJob[k] = job.employees[k];
 	}
-	
-	//loadEmployeesForThisJob(companyName, jobId);
 
 	loadEmployeesModify(companyName);
 }
@@ -84,30 +81,11 @@ function mainJobListOnClick(item){
 
 
 
-function loadEmployeesForThisJob(companyName, jobId){
-	dictionaryOfEmployeesForThisJob = {};
-	var ref = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
-	ref.onSnapshot(function(doc){
-		var dataArray = doc.data();
-
-		var arrayOfJobs = dataArray["employees"];
-
-		for(var l in arrayOfJobs){
-			dictionaryOfEmployeesForThisJob[l] = arrayOfJobs[l];
-		}
-	});
-}
-
-
 
 
 // brings up all the employees for this company //
 function loadEmployeesModify(companyName){
 
-	for(var h in originalDictionaryOfJobs){
-		delete originalDictionaryOfJobs[h];
-	}
-	
 	listOfEmployeesModify = [];
 	dictionaryOfEmployeesModify = {};
 
@@ -202,15 +180,6 @@ function modifyListItemOnClick(item){
 
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
-		/*
-		for(var i in originalDictionaryOfJobs){
-			if(i == item.id){
-				dictionaryOfEmployeesForThisJob[item.id] = originalDictionaryOfJobs[i];
-			}
-		}
-		*/
-		
-		
 		for(var i = 0; i < listOfEmployeesModify.length; i++){
 			if(listOfEmployeesModify[i].employeeNumber == item.id){
 				dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[i].email;
@@ -242,6 +211,7 @@ function modifyListItemOnClick(item){
 	for(var orig in originalDictionaryOfJobs){
 		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
 	}
+
 	
 	var resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
 	
@@ -256,8 +226,6 @@ function modifyListItemOnClick(item){
 		}
 		
 	}
-	
-
 	toggleJobModifyButton();
 }
 
@@ -314,18 +282,52 @@ function toggleJobModifyButton(){
 
 // modifies the job with the data given //
 function modifyJobOnClick(){
+	var tempArrayOfEmployeesModify = [];
+	var tempArrayOfOriginalEmployees = [];
+
+	for(var mod in dictionaryOfEmployeesForThisJob){
+		tempArrayOfEmployeesModify.push(dictionaryOfEmployeesForThisJob[mod]);
+	}
+	
+	for(var orig in originalDictionaryOfJobs){
+		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
+	}
+
+	
+	var resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
+	
+	var updateToAdd = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
+	var originalsToDelete = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
+
 	let confirmOk = confirm("Are you sure you want to modify this job?");
 	if(confirmOk){
-		db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-			name: jobNameTextField.value,
-			address: jobAddressTextField.value,
-			employees: dictionaryOfEmployeesForThisJob
-		}).then(function(){
-			modifyJobModal.style.display = "none";
-		}).catch(function(error){
-			console.log("error " + error);
+
+
+		// setting up the batch update //
+		var batch = db.batch();
+
+		var jobUpdate = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
+		batch.update(jobUpdate, {"name": jobNameTextField.value, 
+								"address": jobAddressTextField.value,
+								"employees": dictionaryOfEmployeesForThisJob});
+		
+		for(var j in updateToAdd){
+			var updateOnEmployees = db.collection('companies').doc(companyName).collection('employees').doc(updateToAdd[j]);
+			batch.update(updateOnEmployees, {"jobs": firebase.firestore.FieldValue.arrayUnion(jobId)});
+		}
+
+		for(var h in originalsToDelete){
+			var deleteOnEmployees = db.collection('companies').doc(companyName).collection('employees').doc(originalsToDelete[h]);
+			batch.update(deleteOnEmployees, {"jobs": firebase.firestore.FieldValue.arrayRemove(jobId)});
+		}
+		
+
+		batch.commit().then(function(){
+			console.log("good!");
 		});
+
 	}
+	
 }
 
 
