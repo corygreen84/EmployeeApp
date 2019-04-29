@@ -323,7 +323,7 @@ function modifyJobOnClick(){
 		
 
 		batch.commit().then(function(){
-			console.log("good!");
+			modifyJobModal.style.display = "none";
 		});
 
 	}
