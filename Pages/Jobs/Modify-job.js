@@ -17,6 +17,12 @@ var addressTextChanged = false;
 var job;
 var jobId;
 
+
+
+//let originalJobs = [];
+//var employeesForThisJob = [];
+
+
 let originalDictionaryOfJobs = {};
 let dictionaryOfEmployeesForThisJob = {};
 var listOfEmployeesModify = [];
@@ -40,6 +46,8 @@ window.addEventListener('DOMContentLoaded', function () {
 // user clicks on a job //
 function mainJobListOnClick(item){
 
+
+	
 	for(var h in originalDictionaryOfJobs){
 		delete originalDictionaryOfJobs[h];
 	}
@@ -71,20 +79,14 @@ function mainJobListOnClick(item){
 
 
 	// I dont want to go by employee number anymore.  Its difficult to modify once set in stone //
+	
 	for(var j in job.employees){
-
-		// j is the employee number //
-		
 		originalDictionaryOfJobs[j] = job.employees[j];
+		
 	}
 
-	
 
-
-	
 	for(var k in job.employees){
-
-		// k is the employee number //
 		dictionaryOfEmployeesForThisJob[k] = job.employees[k];
 	}
 
@@ -126,9 +128,6 @@ function loadEmployeesModify(companyName){
 			}
 		}
 
-
-
-		
 		parseEmployeesAndAddToListViewModify();
 	});	
 }
@@ -159,6 +158,10 @@ function parseEmployeesAndAddToListViewModify(){
 		}
 
 		
+
+
+
+		// **** major changes **** //
 		$("#modify-employee-list-div ul").append('<li id=' 
 		+ employeeNumber + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' 
 		+ employeeNumber + '"><h2>' 
@@ -166,6 +169,11 @@ function parseEmployeesAndAddToListViewModify(){
 		+ lastName + '</h2><p>Employee #: ' 
 		+ employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' 
 		+ statusToString + '</strong></p></a></li>');
+
+
+
+
+		// **** **** //
 	}
 	// refreshing the list //
 	$("#modify-employee-list-div ul").listview('refresh');	
@@ -210,7 +218,6 @@ function changePlusToMinusOnEmployees(){
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
 
-
 	resultsOfCheckingDifferencesInArrays = {};
 
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
@@ -227,23 +234,29 @@ function modifyListItemOnClick(item){
 		if(dictionaryOfEmployeesForThisJob[item.id] != null){
 			delete dictionaryOfEmployeesForThisJob[item.id];
 		}
-
+	
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
+	}
+
+	for(var j in dictionaryOfEmployeesForThisJob){
+		console.log("fjkl -> " + dictionaryOfEmployeesForThisJob[j]);
+		console.log("key -> " + j);
 	}
 
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
 	var tempArrayOfEmployeesModify = [];
 	var tempArrayOfOriginalEmployees = [];
 
-	
 	for(var mod in dictionaryOfEmployeesForThisJob){
 		tempArrayOfEmployeesModify.push(dictionaryOfEmployeesForThisJob[mod]);
 	}
 	
+	
 	for(var orig in originalDictionaryOfJobs){
 		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
 	}
-
+	
+	
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
 	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
@@ -258,6 +271,7 @@ function modifyListItemOnClick(item){
 	}
 	
 	toggleJobModifyButton();
+	
 }
 
 
