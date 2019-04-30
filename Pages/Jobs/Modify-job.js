@@ -23,6 +23,7 @@ var listOfEmployeesModify = [];
 
 var resultsOfCheckingDifferencesInArrays = {};
 
+
 var employeeListChanged = false;
 
 
@@ -67,13 +68,23 @@ function mainJobListOnClick(item){
 
 	// loading the original list of employees into a dictionary //
 	// this dictionary will not change //
+
+
+	// I dont want to go by employee number anymore.  Its difficult to modify once set in stone //
 	for(var j in job.employees){
+
+		// j is the employee number //
+		
 		originalDictionaryOfJobs[j] = job.employees[j];
 	}
+
+	
 
 
 	
 	for(var k in job.employees){
+
+		// k is the employee number //
 		dictionaryOfEmployeesForThisJob[k] = job.employees[k];
 	}
 
@@ -90,10 +101,6 @@ function mainJobListOnClick(item){
 // brings up all the employees for this company //
 function loadEmployeesModify(companyName){
 
-	for(var h in originalDictionaryOfJobs){
-		delete originalDictionaryOfJobs[h];
-	}
-	
 	listOfEmployeesModify = [];
 
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
@@ -118,9 +125,19 @@ function loadEmployeesModify(companyName){
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
+
+
+
+		
 		parseEmployeesAndAddToListViewModify();
 	});	
 }
+
+
+
+
+
+
 
 
 // shows all the possible employees for this company in the modify job panel //
@@ -172,6 +189,10 @@ function changePlusToMinusOnEmployees(){
 		}
 	}
 
+
+
+
+
 	for(var h = 0; h < listOfEmployeeNumbersToBeMinused.length; h++){
 		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}
@@ -180,8 +201,15 @@ function changePlusToMinusOnEmployees(){
 
 
 
+
+
+
+
+
+
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
+
 
 	resultsOfCheckingDifferencesInArrays = {};
 
@@ -193,7 +221,6 @@ function modifyListItemOnClick(item){
 			}
 		}
 		
-	
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
 
@@ -203,7 +230,6 @@ function modifyListItemOnClick(item){
 
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
-
 
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
 	var tempArrayOfEmployeesModify = [];
@@ -217,22 +243,20 @@ function modifyListItemOnClick(item){
 	for(var orig in originalDictionaryOfJobs){
 		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
 	}
-	
-	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
-	
-	for(var _ in resultsOfCheckingDifferencesInArrays){
-		var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
-		var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
 
-		if(addedArray.length > 0 || deletedArray.length > 0){
-			employeeListChanged = true;
-		}else{
-			employeeListChanged = false;
-		}
-		
+
+	// **** checking to see what is the same, what has been added and what has been deleted **** //
+	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
+
+	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
+	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
+
+	if(addedArray.length > 0 || deletedArray.length > 0){
+		employeeListChanged = true;
+	}else{
+		employeeListChanged = false;
 	}
 	
-
 	toggleJobModifyButton();
 }
 
@@ -273,6 +297,7 @@ function modifyAddressTextChange(){
 }
 
 
+
 function toggleJobModifyButton(){
 	if(nameTextChanged == true || addressTextChanged == true || employeeListChanged == true){
 		modifyJobButton.disabled = false;
@@ -288,14 +313,29 @@ function toggleJobModifyButton(){
 function modifyJobOnClick(){
 	let confirmOk = confirm("Are you sure you want to modify this job?");
 	if(confirmOk){
-		db.collection('companies').doc(companyName).collection('jobs').doc(jobId).update({
-			name: jobNameTextField.value,
-			address: jobAddressTextField.value,
-			employees: dictionaryOfEmployeesForThisJob
-		}).then(function(){
+		var batch = db.batch();
+
+		var mainUpdate = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
+		batch.update(mainUpdate, {"name": jobNameTextField.value, 
+								"address": jobAddressTextField.value, 
+								"employees": dictionaryOfEmployeesForThisJob});
+
+		var addedArr = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
+		var deletedArr = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
+
+		for(var i in addedArr){
+			var employeesUpdate = db.collection('companies').doc(companyName).collection('employees').doc(addedArr[i]);
+			batch.update(employeesUpdate, {"jobs": firebase.firestore.FieldValue.arrayUnion(jobId)});
+		}
+
+		for(var j in deletedArr){
+			var employeesDelete = db.collection('companies').doc(companyName).collection('employees').doc(deletedArr[j]);
+			batch.update(employeesDelete, {"jobs": firebase.firestore.FieldValue.arrayRemove(jobId)});
+		}
+
+		batch.commit().then(function(){
+		
 			modifyJobModal.style.display = "none";
-		}).catch(function(error){
-			console.log("error " + error);
 		});
 	}
 }
@@ -304,12 +344,21 @@ function modifyJobOnClick(){
 
 // this should notify/modify the employees involved that the job has been deleted //
 function deleteJobOnClick(){
+
 	let confirmOk = confirm("Are you sure you want to delete this job?");
 	if(confirmOk){
-		db.collection('companies').doc(companyName).collection('jobs').doc(jobId).delete().then(function(){
+		var batch = db.batch();
+
+		var deleteFromJob = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
+		batch.delete(deleteFromJob);
+
+		for(var j in dictionaryOfEmployeesForThisJob){
+			var deleteFromEmployee = db.collection('companies').doc(companyName).collection('employees').doc(dictionaryOfEmployeesForThisJob[j]);
+			batch.update(deleteFromEmployee, {"jobs": firebase.firestore.FieldValue.arrayRemove(jobId)});
+		}
+
+		batch.commit().then(function(){
 			modifyJobModal.style.display = "none";
-		}).catch(function(error){
-			console.log("error " + error);
 		});
 	}
 }

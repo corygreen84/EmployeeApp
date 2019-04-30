@@ -100,7 +100,7 @@ function parseJobs(_listOfJobs){
 		var _date = _listOfJobs[r].date;
 		var _address = _listOfJobs[r].address;
 		var _id = _listOfJobs[r].jobId;
-
+		
 		// putting it all into a list view //
 		$("#job-listview-div ul").append('<li id=job-' + _id + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
 		

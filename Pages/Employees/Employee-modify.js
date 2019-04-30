@@ -13,8 +13,9 @@ var modifyEmail = document.getElementById("modify-email-text");
 var modifyPhone = document.getElementById("modify-phone-text");
 var modifyEmployeeNumber = document.getElementById("modify-employee-Number-text");
 
-var listOfEmployeeJobs = [];
 var listOfJobsForThisEmployee = [];
+
+var arrayOfJobs = [];
 
 var firstModified = false;
 var lastModified = false;
@@ -46,9 +47,6 @@ modifyEmployeeSpan.onclick = function(){
 
 // **** when the user clicks on an employee, a new modal view will come up **** //
 function listItemOnClick(item){	
-
-	console.log("" + item.id);
-
 	// get the employee info from the main array of employees //
 	for(var r = 0; r < listOfEmployees.length; r++){
 		if(listOfEmployees[r].employeeNumber == item.id){
@@ -70,11 +68,8 @@ function listItemOnClick(item){
 	modifyEmployeeNumber.value = employee.employeeNumber;
 
 	
-	//listOfEmployeeJobs = employee.jobs;
-	
 	$("#jobs-attached-to-listview-div ul").empty();
 
-	//bringUpEmployeeJobs(listOfEmployeeJobs);
 	
 
 	bringUpEmployeeJobsByEmail(employee.email);
@@ -145,9 +140,11 @@ function bringUpEmployeeJobsByEmail(email){
 	emailRef.onSnapshot(function(doc){
 		var dataArray = doc.data();
 
-		var arrayOfJobs = dataArray["jobs"];
+		arrayOfJobs = dataArray["jobs"];
+
 
 		for(var i in arrayOfJobs){
+			
 			var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(arrayOfJobs[i]);
 			jobRef.get().then(function(doc){
 
@@ -216,6 +213,7 @@ function bringUpEmployeeJobs(_listOfJobs){
 
 function parseJobList(list){
 	$("#jobs-attached-to-listview-div ul").empty();
+
 	for(var i = 0; i < list.length; i++){
 		var _name = list[i].name;
 		var _address = list[i].address;
@@ -232,6 +230,43 @@ function parseJobList(list){
 
 
 function modifyOnClick(){
+
+	let confirmOk = confirm("Are you sure you want to modify this employee?");
+	if(confirmOk){
+		var batch = db.batch();
+
+		var updateEmployeeAtEmployees = db.collection('companies').doc(companyName).collection('employees').doc(employee.email);
+		batch.update(updateEmployeeAtEmployees, {"first": modifyFirst.value,
+												"last": modifyLast.value,
+												"email": modifyEmail.value,
+												"phoneNumber": parseInt(modifyPhone.value, 10),
+												"employeeNumber": parseInt(modifyEmployeeNumber.value, 10),
+												"status": false});
+
+		/*
+		for(var i in arrayOfJobs){
+			var updateJobs = db.collection('companies').doc(companyName).collection('jobs').doc(arrayOfJobs[i]);
+
+
+
+			// **** need to move employees from dictionary to array to make this all work **** //
+			batch.update(updateJobs, {"employees": firebase.firestore.FieldValue.arrayUnion(employee.email)});
+
+
+		}
+		*/
+
+		batch.commit().then(function(){
+			modifyEmployeeModal.style.display = "none";
+		});
+	}
+	
+
+
+
+
+
+	/*
 	let confirmOk = confirm("Are you sure you want to modify this employee?");
 	if(confirmOk){
 		var docData = {
@@ -251,6 +286,7 @@ function modifyOnClick(){
 			console.log("error");
 		});
 	}
+	*/
 }
 
 

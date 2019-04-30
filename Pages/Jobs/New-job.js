@@ -191,8 +191,11 @@ function createButtonOnClick(){
 	for(var p = 0; p < listOfSelectedEmployees.length; p++){
 		tempListOfEmployeeEmails[listOfSelectedEmployees[p].employeeNumber] = listOfSelectedEmployees[p].email;
 	}
+
+
+
 	
-	
+	var batch = db.batch();
 	var docData = {
 		name: jobCreateNameTextField.value,
 		address: addressCreateTextField.value,
@@ -202,8 +205,17 @@ function createButtonOnClick(){
 	
 	db.collection('companies').doc(companyName).collection('jobs').add(docData)
 	.then(function(docRef){
-		console.log("success!");
-		createJobModal.style.display = "none";
+
+		for(var j in tempListOfEmployeeEmails){
+			var createInEmployees = db.collection('companies').doc(companyName).collection('employees').doc(tempListOfEmployeeEmails[j]);
+			batch.update(createInEmployees, {"jobs": firebase.firestore.FieldValue.arrayUnion(docRef.id)});
+		}
+		
+		batch.commit().then(function(){
+			createJobModal.style.display = "none";
+		});
+
+		
 	}).catch(function(error){
 		console.log("error" + error);
 	});

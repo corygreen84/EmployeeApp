@@ -3,9 +3,11 @@ var _user;
 var _companyName;
 var _username;
 
+var activeNav = "JobsPage";
+
 window.addEventListener('DOMContentLoaded', function () {
 
-	toggleHighlightedNav("JobsPage");
+	toggleHighlightedNav();
 
 	var mainBody = document.getElementById("main-body");
 	mainBody.hidden = true;
@@ -33,7 +35,7 @@ function showDropDown(){
 window.onclick = function(event) {
 	
 	var objectElement = document.getElementById("frame-object");
-	var activeNav;
+	
 
 
 	if(event.target.id == "0"){
@@ -58,12 +60,12 @@ window.onclick = function(event) {
 		objectElement.data = "/Employee/Pages/Communication.html";
 	}
 
-	toggleHighlightedNav(activeNav);
+	toggleHighlightedNav();
 }
 
 
 
-function toggleHighlightedNav(activeElement){
+function toggleHighlightedNav(){
 
 	var navItems = document.getElementsByClassName("a nav-item");
 	for(var i in navItems){
@@ -72,7 +74,11 @@ function toggleHighlightedNav(activeElement){
 		}
 	}
 	
-	document.getElementById(activeElement).style.backgroundColor = "#FF7F50";
+	
+	document.getElementById(activeNav).style.backgroundColor = "#FF7F50";
+	
+
+	
 }
 
 
