@@ -107,7 +107,7 @@ function loadEmployeesCreate(companyName){
 		});	
 
 		for(var i = 0; i < data.length; i++){
-			if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
+			if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined && data[i].id != undefined){
 				var newEmployeeObject = new Employees();
 				newEmployeeObject.first = data[i].first;
 				newEmployeeObject.last = data[i].last;
@@ -115,6 +115,7 @@ function loadEmployeesCreate(companyName){
 				newEmployeeObject.status = data[i].status;
 				newEmployeeObject.phone = data[i].phoneNumber;
 				newEmployeeObject.email = data[i].email;
+				newEmployeeObject.uniqueId = data[i].id;
 
 				listOfEmployeesCreate.push(newEmployeeObject);
 			}
@@ -135,6 +136,7 @@ function parseEmployeesAndAddToListViewCreate(){
 		var lastName = listOfEmployeesCreate[j].last;
 		var employeeNumber = listOfEmployeesCreate[j].employeeNumber;
 		var status = listOfEmployeesCreate[j].status;
+		var uniqueIdentifier = listOfEmployeesCreate[j].uniqueId;
 		var statusToString = "";
 		if(status == true){
 			statusToString = "Available";
@@ -144,8 +146,8 @@ function parseEmployeesAndAddToListViewCreate(){
 
 		
 		$("#employee-list-div ul").append('<li id=' 
-		+ employeeNumber + ' onclick="createListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon-' 
-		+ employeeNumber + '"><h2>' 
+		+ uniqueIdentifier + ' onclick="createListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon-' 
+		+ uniqueIdentifier + '"><h2>' 
 		+ firstName + ' ' 
 		+ lastName + '</h2><p>Employee #: ' 
 		+ employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' 
@@ -166,7 +168,7 @@ function createListItemOnClick(item){
 		$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 
 		for(var l = 0; l < listOfEmployeesCreate.length; l++){
-			if(listOfEmployeesCreate[l].employeeNumber == item.id){
+			if(listOfEmployeesCreate[l].uniqueId == item.id){
 				listOfSelectedEmployees.push(listOfEmployeesCreate[l]);
 			}
 		}
@@ -174,7 +176,7 @@ function createListItemOnClick(item){
 		$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 
 		for(var m = 0; m < listOfSelectedEmployees.length; m++){
-			if(listOfSelectedEmployees[m].employeeNumber == item.id){
+			if(listOfSelectedEmployees[m].uniqueIdentifier == item.id){
 				listOfSelectedEmployees.splice(m, 1);
 			}
 		}
@@ -202,8 +204,8 @@ function createButtonOnClick(){
 		var employeesRefJobs = db.collection('companies').doc(companyName).collection('jobs').doc(docRef.id);
 		for(var i in listOfSelectedEmployees){
 
-			batch.update(employeesRefJobs, {"employees": firebase.firestore.FieldValue.arrayUnion(listOfSelectedEmployees[i].email) });
-			var jobEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc(listOfSelectedEmployees[i].email);
+			batch.update(employeesRefJobs, {"employees": firebase.firestore.FieldValue.arrayUnion(listOfSelectedEmployees[i].uniqueId) });
+			var jobEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc(listOfSelectedEmployees[i].uniqueId);
 			
 			batch.update(jobEmployeeRef, {"jobs": firebase.firestore.FieldValue.arrayUnion(docRef.id) });
 		}

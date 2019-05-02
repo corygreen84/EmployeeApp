@@ -7,10 +7,6 @@ var listOfEmployees = [];
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {	
 
-	var createButton = document.getElementById("employee-create-button").getBoundingClientRect();
-	console.log("rect -> " + createButton.top + " " + createButton.right + " " + createButton.bottom + " " + createButton.left);
-
-
 	checkState();
 	
 }, false);
@@ -64,8 +60,12 @@ function loadEmployees(user, companyName){
 					return documentSnapshot.data();
 				});	
 				
+				
+
+				// adding all the employee data to the list of employees //
 				for(var i = 0; i < data.length; i++){
-					if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
+
+					if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined && data[i].id != undefined){
 						var newEmployeeObject = new Employees();
 						newEmployeeObject.first = data[i].first;
 						newEmployeeObject.last = data[i].last;
@@ -74,12 +74,12 @@ function loadEmployees(user, companyName){
 						newEmployeeObject.phone = data[i].phoneNumber;
 						newEmployeeObject.email = data[i].email;
 						newEmployeeObject.jobs = data[i].jobs;
+						newEmployeeObject.uniqueId = data[i].id;
 
 						listOfEmployees.push(newEmployeeObject);
 					}
+					
 				}
-
-				
 				parseEmployeesAndAddToListView();
 			});	
 		}
@@ -121,6 +121,7 @@ class Employees{
 		var email;
 		var phone;
 		var jobs;
+		var uniqueId;
 	}
 }
 
@@ -130,6 +131,7 @@ class Jobs{
 		var address;
 		var employees;
 		var date;
+		var id;
 	}
 }
 

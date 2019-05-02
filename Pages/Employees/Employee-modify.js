@@ -58,9 +58,6 @@ function listItemOnClick(item){
 	
 	modifyEmail.value = employee.email;
 
-
-
-	
 	modifyFirst.value = employee.first;
 	modifyLast.value = employee.last;
 	modifyEmail.value = employee.email;
@@ -74,8 +71,6 @@ function listItemOnClick(item){
 
 	bringUpEmployeeJobsByEmail(employee.email);
 	modifyEmployeeModal.style.display = "block";
-
-	
 }
 
 
@@ -141,8 +136,7 @@ function bringUpEmployeeJobsByEmail(email){
 		var dataArray = doc.data();
 
 		arrayOfJobs = dataArray["jobs"];
-
-
+		
 		for(var i in arrayOfJobs){
 			
 			var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(arrayOfJobs[i]);

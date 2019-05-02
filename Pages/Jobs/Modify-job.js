@@ -19,10 +19,6 @@ var jobId;
 
 
 
-//let originalJobs = [];
-//var employeesForThisJob = [];
-
-
 let originalDictionaryOfJobs = {};
 let dictionaryOfEmployeesForThisJob = {};
 var listOfEmployeesModify = [];
@@ -46,8 +42,6 @@ window.addEventListener('DOMContentLoaded', function () {
 // user clicks on a job //
 function mainJobListOnClick(item){
 
-
-	
 	for(var h in originalDictionaryOfJobs){
 		delete originalDictionaryOfJobs[h];
 	}
@@ -86,10 +80,11 @@ function mainJobListOnClick(item){
 
 
 	for(var k in job.employees){
-		dictionaryOfEmployeesForThisJob[k] = job.employees[k];
+		dictionaryOfEmployeesForThisJob[job.employees[k]] = job.employees[k];
 	}
 
-	loadEmployeesModify(companyName);
+
+	loadAllEmployees(companyName);
 }
 
 
@@ -100,7 +95,7 @@ function mainJobListOnClick(item){
 
 
 // brings up all the employees for this company //
-function loadEmployeesModify(companyName){
+function loadAllEmployees(companyName){
 
 	listOfEmployeesModify = [];
 
@@ -113,7 +108,7 @@ function loadEmployeesModify(companyName){
 		});	
 
 		for(var i = 0; i < data.length; i++){
-			if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined){
+			if(data[i].first != undefined && data[i].last != undefined && data[i].employeeNumber != undefined && data[i].status != undefined && data[i].phoneNumber != undefined && data[i].email != undefined && data[i].id){
 				
 				var newEmployeeObject = new Employees();
 				newEmployeeObject.first = data[i].first;
@@ -122,11 +117,11 @@ function loadEmployeesModify(companyName){
 				newEmployeeObject.status = data[i].status;
 				newEmployeeObject.phone = data[i].phoneNumber;
 				newEmployeeObject.email = data[i].email;
+				newEmployeeObject.uniqueId = data[i].id;
 
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
-
 		parseEmployeesAndAddToListViewModify();
 	});	
 }
@@ -149,6 +144,7 @@ function parseEmployeesAndAddToListViewModify(){
 		var lastName = listOfEmployeesModify[j].last;
 		var employeeNumber = listOfEmployeesModify[j].employeeNumber;
 		var status = listOfEmployeesModify[j].status;
+		var uniqueIdentifier = listOfEmployeesModify[j].uniqueId;
 		var statusToString = "";
 		if(status == true){
 			statusToString = "Available";
@@ -157,22 +153,15 @@ function parseEmployeesAndAddToListViewModify(){
 		}
 
 		
-
-
-
 		// **** major changes **** //
 		$("#modify-employee-list-div ul").append('<li id=' 
-		+ j + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' 
-		+ j + '"><h2>' 
+		+ uniqueIdentifier + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' 
+		+ uniqueIdentifier + '"><h2>' 
 		+ firstName + ' ' 
 		+ lastName + '</h2><p>Employee #: ' 
 		+ employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' 
 		+ statusToString + '</strong></p></a></li>');
 
-
-
-
-		// **** **** //
 	}
 	// refreshing the list //
 	$("#modify-employee-list-div ul").listview('refresh');	
@@ -187,23 +176,19 @@ function parseEmployeesAndAddToListViewModify(){
 // that go along with the job //
 function changePlusToMinusOnEmployees(){
 
+
+	// dictionary for this job holds the unique ids for each employee //
 	var listOfEmployeeNumbersToBeMinused = [];
 	for(var i in listOfEmployeesModify){
 		for(var j in dictionaryOfEmployeesForThisJob){
-			if(dictionaryOfEmployeesForThisJob[j] == listOfEmployeesModify[i].email){
-				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].employeeNumber);
+			if(dictionaryOfEmployeesForThisJob[j] == listOfEmployeesModify[i].uniqueId){
+				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].uniqueId);
 			}
 		}
 	}
 
-	for(var k in dictionaryOfEmployeesForThisJob){
-		console.log("keys -> " + k);
-		console.log("dict -> " + dictionaryOfEmployeesForThisJob[k]);
-	}
-
-	for(var h = 0; h < listOfEmployeeNumbersToBeMinused.length; h++){
-		//$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
-		$('#icon--' + h).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+	for(var h in listOfEmployeeNumbersToBeMinused){
+		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}
 
 }
@@ -222,59 +207,24 @@ function modifyListItemOnClick(item){
 	//console.log("item id - > " + item.id);
 	resultsOfCheckingDifferencesInArrays = {};
 
+
+
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
-		var exists = false;
-		for(var i in dictionaryOfEmployeesForThisJob){
-			if(dictionaryOfEmployeesForThisJob[i] == listOfEmployeesModify[item.id].email){
-				exists = true;
+		for(var i in listOfEmployeesModify){
+			if(listOfEmployeesModify[i].uniqueId == item.id){
+				dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[i].uniqueId;
 			}
 		}
-		if(!exists){
-			dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[item.id].email;
-		}
-
-		/*
-		for(var i = 0; i < listOfEmployeesModify.length; i++){
-			if(listOfEmployeesModify[i].employeeNumber == item.id){
-				dictionaryOfEmployeesForThisJob[i] = listOfEmployeesModify[i].email;
-			}
-		}
-		*/
 		
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 
 	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
 
 		delete dictionaryOfEmployeesForThisJob[item.id];
-		/*
-		for(var j in listOfEmployeesModify){
-			for(var k in dictionaryOfEmployeesForThisJob){
-				if(listOfEmployeesModify[j].email == dictionaryOfEmployeesForThisJob[k]){
-					delete dictionaryOfEmployeesForThisJob[k];
-				}
-			}
-		}
-		*/
 
-		/*
-		if(dictionaryOfEmployeesForThisJob[item.id] != null){
-			delete dictionaryOfEmployeesForThisJob[item.id];
-		}
-		*/
-	
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
-
-	console.log("length -> " + Object.keys(dictionaryOfEmployeesForThisJob).length);
-	
-	/*
-	for(var k in dictionaryOfEmployeesForThisJob){
-		//console.log("keys -> " + k);
-		console.log("dict -> " + dictionaryOfEmployeesForThisJob[k]);
-	}
-	*/
-
 
 
 
@@ -282,7 +232,6 @@ function modifyListItemOnClick(item){
 	var tempArrayOfEmployeesModify = [];
 	var tempArrayOfOriginalEmployees = [];
 
-	console.log("dictionary for this job " + Object.keys(dictionaryOfEmployeesForThisJob).length);
 
 	for(var mod in dictionaryOfEmployeesForThisJob){
 		tempArrayOfEmployeesModify.push(dictionaryOfEmployeesForThisJob[mod]);
@@ -292,11 +241,6 @@ function modifyListItemOnClick(item){
 	for(var orig in originalDictionaryOfJobs){
 		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
 	}
-	
-
-	console.log("employees for this job " + tempArrayOfEmployeesModify.length);
-	console.log("original employees " + tempArrayOfOriginalEmployees.length);
-	
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
 	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);

@@ -124,23 +124,23 @@ function toggleCreateButton(){
 
 // creation of the Employee //
 function createEmployeeButtonOnClick(){
-	var docData = {
+
+
+	// using a unique identifier instead of their email for the document title. //
+	var newEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc();
+	newEmployeeRef.set({
 		first:firstName.value,
 		last: lastName.value,
 		email: email.value,
 		phoneNumber: parseInt(phone.value, 10),
 		employeeNumber: parseInt(employeeNumber.value, 10),
 		jobs: [],
+		id: newEmployeeRef.id,
 		status: false
-	}
-
-	db.collection('companies').doc(companyName).collection('employees').doc(email.value).set(docData)
-	.then(function(){
-		// removing the display //
+	}).then(function(){
 		createEmployeeModal.style.display = "none";
-	}).catch(function(error){
-		console.log("error");
 	});
+
 	
 }
 

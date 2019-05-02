@@ -20,11 +20,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
-window.onload = function(){
-	var createButton = document.getElementById("create-new-job").getBoundingClientRect();
-	console.log("rect -> " + createButton.top + " " + createButton.right + " " + createButton.bottom + " " + createButton.left);
-}
-
 
 function checkState(){
 	firebase.auth().onAuthStateChanged(function(user){
@@ -118,6 +113,7 @@ class Employees{
 		var status;
 		var email;
 		var phone;
+		var uniqueId;
 	}
 }
 
