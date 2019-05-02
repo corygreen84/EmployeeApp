@@ -184,38 +184,33 @@ function createListItemOnClick(item){
 
 // creation of the job //
 function createButtonOnClick(){
-	var tempListOfEmployeeEmails = {};
 	var date = new Date();
 	var dateString = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
-	for(var p = 0; p < listOfSelectedEmployees.length; p++){
-		tempListOfEmployeeEmails[listOfSelectedEmployees[p].employeeNumber] = listOfSelectedEmployees[p].email;
-	}
 
-
-
-	
+	// adds the data to both the job itself and the employees involved //
 	var batch = db.batch();
 	var docData = {
 		name: jobCreateNameTextField.value,
 		address: addressCreateTextField.value,
-		employees: tempListOfEmployeeEmails,
 		date: dateString
 	}
 	
 	db.collection('companies').doc(companyName).collection('jobs').add(docData)
 	.then(function(docRef){
-
-		for(var j in tempListOfEmployeeEmails){
-			var createInEmployees = db.collection('companies').doc(companyName).collection('employees').doc(tempListOfEmployeeEmails[j]);
-			batch.update(createInEmployees, {"jobs": firebase.firestore.FieldValue.arrayUnion(docRef.id)});
-		}
 		
+		var employeesRefJobs = db.collection('companies').doc(companyName).collection('jobs').doc(docRef.id);
+		for(var i in listOfSelectedEmployees){
+
+			batch.update(employeesRefJobs, {"employees": firebase.firestore.FieldValue.arrayUnion(listOfSelectedEmployees[i].email) });
+			var jobEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc(listOfSelectedEmployees[i].email);
+			
+			batch.update(jobEmployeeRef, {"jobs": firebase.firestore.FieldValue.arrayUnion(docRef.id) });
+		}
+
 		batch.commit().then(function(){
 			createJobModal.style.display = "none";
 		});
-
-		
 	}).catch(function(error){
 		console.log("error" + error);
 	});
