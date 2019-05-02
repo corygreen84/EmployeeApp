@@ -82,7 +82,6 @@ function mainJobListOnClick(item){
 	
 	for(var j in job.employees){
 		originalDictionaryOfJobs[j] = job.employees[j];
-		
 	}
 
 
@@ -163,8 +162,8 @@ function parseEmployeesAndAddToListViewModify(){
 
 		// **** major changes **** //
 		$("#modify-employee-list-div ul").append('<li id=' 
-		+ employeeNumber + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' 
-		+ employeeNumber + '"><h2>' 
+		+ j + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon--' 
+		+ j + '"><h2>' 
 		+ firstName + ' ' 
 		+ lastName + '</h2><p>Employee #: ' 
 		+ employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' 
@@ -197,12 +196,14 @@ function changePlusToMinusOnEmployees(){
 		}
 	}
 
-
-
-
+	for(var k in dictionaryOfEmployeesForThisJob){
+		console.log("keys -> " + k);
+		console.log("dict -> " + dictionaryOfEmployeesForThisJob[k]);
+	}
 
 	for(var h = 0; h < listOfEmployeeNumbersToBeMinused.length; h++){
-		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+		//$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+		$('#icon--' + h).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}
 
 }
@@ -218,34 +219,70 @@ function changePlusToMinusOnEmployees(){
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
 
+	//console.log("item id - > " + item.id);
 	resultsOfCheckingDifferencesInArrays = {};
 
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
-		for(var i = 0; i < listOfEmployeesModify.length; i++){
-			if(listOfEmployeesModify[i].employeeNumber == item.id){
-				dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[i].email;
+		var exists = false;
+		for(var i in dictionaryOfEmployeesForThisJob){
+			if(dictionaryOfEmployeesForThisJob[i] == listOfEmployeesModify[item.id].email){
+				exists = true;
 			}
 		}
+		if(!exists){
+			dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[item.id].email;
+		}
+
+		/*
+		for(var i = 0; i < listOfEmployeesModify.length; i++){
+			if(listOfEmployeesModify[i].employeeNumber == item.id){
+				dictionaryOfEmployeesForThisJob[i] = listOfEmployeesModify[i].email;
+			}
+		}
+		*/
 		
 		$('#icon--' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+
 	}else if($('#icon--' + item.id).hasClass('ui-icon-minus') == true){
 
+		delete dictionaryOfEmployeesForThisJob[item.id];
+		/*
+		for(var j in listOfEmployeesModify){
+			for(var k in dictionaryOfEmployeesForThisJob){
+				if(listOfEmployeesModify[j].email == dictionaryOfEmployeesForThisJob[k]){
+					delete dictionaryOfEmployeesForThisJob[k];
+				}
+			}
+		}
+		*/
+
+		/*
 		if(dictionaryOfEmployeesForThisJob[item.id] != null){
 			delete dictionaryOfEmployeesForThisJob[item.id];
 		}
+		*/
 	
 		$('#icon--' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 	}
 
-	for(var j in dictionaryOfEmployeesForThisJob){
-		console.log("fjkl -> " + dictionaryOfEmployeesForThisJob[j]);
-		console.log("key -> " + j);
+	console.log("length -> " + Object.keys(dictionaryOfEmployeesForThisJob).length);
+	
+	/*
+	for(var k in dictionaryOfEmployeesForThisJob){
+		//console.log("keys -> " + k);
+		console.log("dict -> " + dictionaryOfEmployeesForThisJob[k]);
 	}
+	*/
+
+
+
 
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
 	var tempArrayOfEmployeesModify = [];
 	var tempArrayOfOriginalEmployees = [];
+
+	console.log("dictionary for this job " + Object.keys(dictionaryOfEmployeesForThisJob).length);
 
 	for(var mod in dictionaryOfEmployeesForThisJob){
 		tempArrayOfEmployeesModify.push(dictionaryOfEmployeesForThisJob[mod]);
@@ -256,6 +293,9 @@ function modifyListItemOnClick(item){
 		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
 	}
 	
+
+	console.log("employees for this job " + tempArrayOfEmployeesModify.length);
+	console.log("original employees " + tempArrayOfOriginalEmployees.length);
 	
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
