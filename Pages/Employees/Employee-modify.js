@@ -69,7 +69,7 @@ function listItemOnClick(item){
 
 	
 
-	bringUpEmployeeJobsByEmail(employee.email);
+	bringUpEmployeeJobsByUniqueId(employee.uniqueId);
 	modifyEmployeeModal.style.display = "block";
 }
 
@@ -128,80 +128,62 @@ function toggleModifyButton(){
 	}
 }
 
-function bringUpEmployeeJobsByEmail(email){
+function bringUpEmployeeJobsByUniqueId(uId){
 	listOfJobsForThisEmployee = [];
 
-	var emailRef = db.collection('companies').doc(companyName).collection('employees').doc(email);
+	var emailRef = db.collection('companies').doc(companyName).collection('employees').doc(uId);
 	emailRef.onSnapshot(function(doc){
-		var dataArray = doc.data();
+		if(doc.data() != undefined){
+			var dataArray = doc.data();
 
-		arrayOfJobs = dataArray["jobs"];
 		
-		for(var i in arrayOfJobs){
+			arrayOfJobs = dataArray["jobs"];
+		
+			for(var i in arrayOfJobs){
 			
-			var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(arrayOfJobs[i]);
-			jobRef.get().then(function(doc){
+				var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(arrayOfJobs[i]);
+				jobRef.get().then(function(doc){
 
-				var data = doc.data();
+					var data = doc.data();
 
-				if(data.name != undefined && data.address != undefined && data.employees != undefined && data.date != undefined){
-					var newJob = new Jobs();
-					newJob.name = data.name;
-					newJob.address = data.address;
-					newJob.employees = data.employees;
-					newJob.date = data.date;
+				
+				
+					if(data.name != undefined && data.address != undefined && data.employees != undefined && data.date != undefined){
+						var newJob = new Jobs();
+						newJob.name = data.name;
+						newJob.address = data.address;
+						newJob.employees = data.employees;
+						newJob.date = data.date;
+						newJob.id = doc.id;
 			
-					listOfJobsForThisEmployee.push(newJob);
-				}
-				parseJobList(listOfJobsForThisEmployee);
-			}).catch(function(error){
+						listOfJobsForThisEmployee.push(newJob);
+					}
+					parseJobList(listOfJobsForThisEmployee);
+				}).catch(function(error){
 			
-			});	
-		}
-	});
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function bringUpEmployeeJobs(_listOfJobs){
-	
-	listOfJobsForThisEmployee = [];
-	
-	for(var i = 0; i < _listOfJobs.length; i++){
-		var jobRef = db.collection('companies').doc(companyName).collection('jobs').doc(_listOfJobs[i]);
-		jobRef.get().then(function(doc){
-
-			var data = doc.data();
-
-			if(data.name != undefined && data.address != undefined && data.employees != undefined && data.date != undefined){
-				var newJob = new Jobs();
-				newJob.name = data.name;
-				newJob.address = data.address;
-				newJob.employees = data.employees;
-				newJob.date = data.date;
-			
-				listOfJobsForThisEmployee.push(newJob);
+				});	
 			}
-			parseJobList(listOfJobsForThisEmployee);
-		}).catch(function(error){
-			
-		});	
-	}
+		}
+		
+	});
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -229,7 +211,7 @@ function modifyOnClick(){
 	if(confirmOk){
 		var batch = db.batch();
 
-		var updateEmployeeAtEmployees = db.collection('companies').doc(companyName).collection('employees').doc(employee.email);
+		var updateEmployeeAtEmployees = db.collection('companies').doc(companyName).collection('employees').doc(employee.uniqueId);
 		batch.update(updateEmployeeAtEmployees, {"first": modifyFirst.value,
 												"last": modifyLast.value,
 												"email": modifyEmail.value,
@@ -237,50 +219,10 @@ function modifyOnClick(){
 												"employeeNumber": parseInt(modifyEmployeeNumber.value, 10),
 												"status": false});
 
-		/*
-		for(var i in arrayOfJobs){
-			var updateJobs = db.collection('companies').doc(companyName).collection('jobs').doc(arrayOfJobs[i]);
-
-
-
-			// **** need to move employees from dictionary to array to make this all work **** //
-			batch.update(updateJobs, {"employees": firebase.firestore.FieldValue.arrayUnion(employee.email)});
-
-
-		}
-		*/
-
 		batch.commit().then(function(){
 			modifyEmployeeModal.style.display = "none";
 		});
 	}
-	
-
-
-
-
-
-	/*
-	let confirmOk = confirm("Are you sure you want to modify this employee?");
-	if(confirmOk){
-		var docData = {
-			first: modifyFirst.value,
-			last: modifyLast.value,
-			email: modifyEmail.value,
-			phoneNumber: parseInt(modifyPhone.value, 10),
-			employeeNumber: parseInt(modifyEmployeeNumber.value, 10),
-			status: false
-		}
-	
-		db.collection('companies').doc(companyName).collection('employees').doc(employee.email).update(docData)
-		.then(function(){
-			// removing the display //
-			modifyEmployeeModal.style.display = "none";
-		}).catch(function(error){
-			console.log("error");
-		});
-	}
-	*/
 }
 
 
@@ -289,14 +231,45 @@ function deleteOnClick(){
 	
 	let confirmOk = confirm("Are you sure you want to delete this employee?");
 	if(confirmOk){
-		db.collection('companies').doc(companyName).collection('employees').doc(employee.email).delete()
-		.then(function(){
-			// removing the display //
-			modifyEmployeeModal.style.display = "none";
-		}).catch(function(error){
-			console.log("error " + error);
+
+		
+		//var batch = db.batch();
+		//batch.delete(employeeToDeleteRef);
+		
+		
+
+			/*
+			var updateJobsRef = db.collection('companies').doc(companyName).collection('jobs').doc(listOfJobsForThisEmployee[i].id);
+			db.runTransaction(function(transaction){
+				return transaction.get(updateJobsRef).then(function(docRef){
+					if(!docRef.exists){
+						throw "doesnt exist";
+					}
+
+					var jobs = docRef.data().employees;
+					for(var j in jobs){
+						if(jobs[j] == employee.uniqueId){
+							delete jobs[j];
+						}
+					}
+
+					transaction.update(updateJobsRef, {employees: jobs});
+					return jobs;
+					
+
+				});
+			}).then(function(){
+				console.log("good to go");
+			})
+			*/
+		
+
+/*
+		batch.commit().then(function(){
 			modifyEmployeeModal.style.display = "none";
 		});
+		*/
+		
 	}
 }
 

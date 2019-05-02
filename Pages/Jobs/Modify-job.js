@@ -315,8 +315,7 @@ function modifyJobOnClick(){
 
 		var mainUpdate = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
 		batch.update(mainUpdate, {"name": jobNameTextField.value, 
-								"address": jobAddressTextField.value, 
-								"employees": dictionaryOfEmployeesForThisJob});
+								"address": jobAddressTextField.value});
 
 		var addedArr = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 		var deletedArr = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
@@ -324,11 +323,15 @@ function modifyJobOnClick(){
 		for(var i in addedArr){
 			var employeesUpdate = db.collection('companies').doc(companyName).collection('employees').doc(addedArr[i]);
 			batch.update(employeesUpdate, {"jobs": firebase.firestore.FieldValue.arrayUnion(jobId)});
+
+			batch.update(mainUpdate, {"employees": firebase.firestore.FieldValue.arrayUnion(addedArr[i])} );
 		}
 
 		for(var j in deletedArr){
 			var employeesDelete = db.collection('companies').doc(companyName).collection('employees').doc(deletedArr[j]);
 			batch.update(employeesDelete, {"jobs": firebase.firestore.FieldValue.arrayRemove(jobId)});
+
+			batch.update(mainUpdate, {"employees": firebase.firestore.FieldValue.arrayRemove(deletedArr[j])} );
 		}
 
 		batch.commit().then(function(){
