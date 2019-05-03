@@ -195,7 +195,8 @@ function createButtonOnClick(){
 	var docData = {
 		name: jobCreateNameTextField.value,
 		address: addressCreateTextField.value,
-		date: dateString
+		date: dateString,
+		employees: []
 	}
 	
 	db.collection('companies').doc(companyName).collection('jobs').add(docData)

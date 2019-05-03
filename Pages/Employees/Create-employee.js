@@ -33,6 +33,12 @@ function createEmployeeOnClick(){
 	email.value = "";
 	phone.value = "";
 	employeeNumber.value = "";
+
+	firstNameFilled = false;
+	lastNameFilled = false;
+	emailFilled = false;
+	phoneFilled = false;
+	employeeNumberFilled = false;
 	
 	createButton.disabled = true;
 }

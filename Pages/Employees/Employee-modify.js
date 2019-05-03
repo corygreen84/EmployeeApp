@@ -232,12 +232,24 @@ function deleteOnClick(){
 	let confirmOk = confirm("Are you sure you want to delete this employee?");
 	if(confirmOk){
 
-		
+		var batch = db.batch();
+		var deleteFromEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc(employee.uniqueId);
+		batch.delete(deleteFromEmployeeRef);
+
+		for(var i in listOfJobsForThisEmployee){
+			var deleteFromJobRef = db.collection('companies').doc(companyName).collection('jobs').doc(listOfJobsForThisEmployee[i].id);
+			batch.update(deleteFromJobRef, {"employees": firebase.firestore.FieldValue.arrayRemove(employee.uniqueId)} );
+		}
+
+		batch.commit().then(function(){
+			modifyEmployeeModal.style.display = "none";
+		});
+
+
+
 		//var batch = db.batch();
 		//batch.delete(employeeToDeleteRef);
 		
-		
-
 			/*
 			var updateJobsRef = db.collection('companies').doc(companyName).collection('jobs').doc(listOfJobsForThisEmployee[i].id);
 			db.runTransaction(function(transaction){
