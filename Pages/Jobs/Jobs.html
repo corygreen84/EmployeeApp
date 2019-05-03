@@ -46,6 +46,8 @@
 				<input type="text" id="create-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="jobNameTextChange()">
 				<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()">
 				
+
+
 				<div id="long-lat-div">
 					<div id="long-div">
 						<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude(Optional)"  onkeyup="longTextChange()">
@@ -55,12 +57,19 @@
 					</div>
 				</div>
 
+
+
 				<div id="createMapView">
+					<!--
 					<object type="text/html" id="map-object">
-					</object>
+					</object>-->
+					<div id="map">
+					</div>
 				</div>
 				
-			
+
+
+
 				<div id="employee-list-div">
 					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">
 						
@@ -101,7 +110,11 @@
 		
 
 		<script type="text/javascript" src="/Employee/firebase-init.js"></script> 
+		<script type="text/javascript" src="/Employee/Pages/Maps/Map.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbrSfOKkZEFVCLYk254tLC3dNGX3k7yiU&callback=initMap"
+		async defer></script>
 		<script type="text/javascript" src="/Employee/Pages/Jobs/Jobs.js"></script>
+		
 		<script type="text/javascript" src="/Employee/Pages/Jobs/New-job.js"></script> 	
 		<script type="text/javascript" src="/Employee/Pages/Jobs/Modify-job.js"></script>
 		<script type="text/javascript" src="/Employee/Pages/Jobs/checkDifferencesInArrays.js"></script>  

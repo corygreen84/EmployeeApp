@@ -33,7 +33,6 @@ window.addEventListener('DOMContentLoaded', function () {
 	listOfSelectedEmployees = [];
 
 	createButton.disabled = true;
-	document.getElementById("map-object").data = "/Employee/Pages/Maps/Map.html";
 	
 }, false);
 
