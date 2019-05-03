@@ -40,12 +40,27 @@
 		
 		<!-- modal pop up which allows the user to input data to create a new job -->
 		<div id="create-new-job-modal-box" class="modal">
-			<div class="create-job-modal-content">
+			<div class="create-job-modal-content" id="create-job-modal-content-id">
 				<span class="createJobClose">&times;</span>
-				<p>Create a New Job</p>
+				<p>Create A New Job</p>
 				<input type="text" id="create-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="jobNameTextChange()">
 				<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()">
 				
+				<div id="long-lat-div">
+					<div id="long-div">
+						<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude(Optional)"  onkeyup="longTextChange()">
+					</div>
+					<div id="lat-div">			
+						<input type="text" id="create-lat-text" class="text-fields" placeholder="Latitude(Optional)"  onkeyup="latTextChange()">
+					</div>
+				</div>
+
+				<div id="createMapView">
+					<object type="text/html" id="map-object">
+					</object>
+				</div>
+				
+			
 				<div id="employee-list-div">
 					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">
 						
@@ -64,8 +79,11 @@
 			<div class="modify-job-modal-content">
 				<span class="modifyJobClose">&times;</span>
 				<p>Modify Job</p>
+
 				<input type="text" id="modify-job-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="modifyJobNameTextChange()">
 				<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()">
+				<input type="text" id="modify-long-text" class="text-fields" placeholder="Longitude(Optional)" size="35" onkeyup="modifyLongTextChange()">
+				<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude(Optional)" size="35" onkeyup="modifyLatTextChange()">
 				
 				<div id="modify-employee-list-div">
 					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">

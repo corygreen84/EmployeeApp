@@ -3,6 +3,7 @@
 // **** this is for the modal view variables **** //
 var createJobSpan = document.getElementsByClassName("createJobClose")[0];
 var createJobModal = document.getElementById("create-new-job-modal-box");
+var createJobContent = document.getElementById("create-job-modal-content-id");
 
 var createButton = document.getElementById("create-job-button");
 
@@ -14,6 +15,8 @@ var addressTextFilled = false;
 
 var listOfSelectedEmployees = [];
 var listOfEmployeesCreate = [];
+
+var mapView = document.getElementById("createMapView");
 
 // **** end of modal view variables **** //
 var listView = document.getElementById("job-listview-div");
@@ -30,6 +33,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	listOfSelectedEmployees = [];
 
 	createButton.disabled = true;
+	document.getElementById("map-object").data = "/Employee/Pages/Maps/Map.html";
 	
 }, false);
 
@@ -44,6 +48,10 @@ function createNewJobOnClick(){
 	
 	nameTextFilled = false;
 	addressTextFilled = false;
+
+	// making the mapview invisible //
+	//mapView.style.display = "none";
+	
 
 	toggleCreateButton();
 	loadEmployeesCreate(companyName);
@@ -71,15 +79,47 @@ function jobNameTextChange(){
 	toggleCreateButton();
 }
 
+
+
+
+
+
+// **** address text changes **** //
 function addressTextChange(){
 	
 	if(addressCreateTextField.value != ""){
 		addressTextFilled = true;
+		
 	}else{
 		addressTextFilled = false;
 	}
+
 	toggleCreateButton();
 }
+
+// **** **** //
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // toggling the create button //
 function toggleCreateButton(){

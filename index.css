@@ -1,6 +1,13 @@
-body{
+
+
+html{
 	background-image: url("bg-01.jpg");
+	margin: 0;
+	padding: 0;
 	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+	-o-background-size: cover;
 	background-size: cover;
 }
 
@@ -76,9 +83,7 @@ body{
 	border-style: solid;
 }
 
-.text-fields:focus{
-	/*border-color:#228B22;*/
-}
+
 
 .buttons{
 	border-radius: 5px;

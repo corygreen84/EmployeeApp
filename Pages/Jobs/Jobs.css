@@ -32,7 +32,7 @@
 	margin: 10% auto;
 	padding: 20px;
 	width: 40%;
-	height: 50%;
+	height: 76%;
 	border-radius: 20px;
 }
 
@@ -41,7 +41,7 @@
 	margin: 10% auto;
 	padding: 20px;
 	width: 40%;
-	height: 57%;
+	height: 67%;
 	border-radius: 20px;
 }
 
@@ -51,6 +51,47 @@
   font-size: 28px;
   font-weight: bold;
 }
+
+#createMapView{
+	display: block;
+	height: 150px;
+	width: 100%;
+}
+
+#employee-list-div{
+	display: block;
+	margin-top: 10px;
+}
+
+#map-object{
+	width: 100%;
+	height: 150px;
+	display: block;
+	border-radius: 10px;
+}
+
+#long-lat-div{
+	width: 100%;
+	height: 50px;
+	display: inline-block;
+}
+
+#long-div{
+	width: 50%;
+	display: inline-block;
+}
+#lat-div{
+	width: 50%;
+	margin-right: 0px;
+	float: right;
+	
+}
+
+
+
+
+
+
 
 #modify-job-button{
 	background-color:#0080ff;
@@ -112,6 +153,7 @@
 #job-listview-div{
 	display:block;
 	margin-top: 100px;
+	width: 100%;
 }
 
 

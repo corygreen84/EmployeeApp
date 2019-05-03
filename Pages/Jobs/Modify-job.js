@@ -285,6 +285,12 @@ function modifyJobNameTextChange(){
 	toggleJobModifyButton();
 }
 
+
+
+
+
+
+// **** address text changes **** //
 function modifyAddressTextChange(){
 	if(jobAddressTextField.value != job.address){
 		addressTextChanged = true;
@@ -294,6 +300,17 @@ function modifyAddressTextChange(){
 	toggleJobModifyButton();
 }
 
+
+
+function modifyLongTextChange(){
+
+}
+
+function modifyLatTextChange(){
+
+}
+
+// **** **** //
 
 
 function toggleJobModifyButton(){
@@ -335,7 +352,6 @@ function modifyJobOnClick(){
 		}
 
 		batch.commit().then(function(){
-		
 			modifyJobModal.style.display = "none";
 		});
 	}

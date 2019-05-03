@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	listOfEmployees = [];
 	
 	checkState();
+
 	
 }, false);
 
