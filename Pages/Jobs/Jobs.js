@@ -122,6 +122,8 @@ class Jobs{
 	constructor(){
 		var name;
 		var address;
+		var lat;
+		var long;
 		var employees;
 		var date;
 		var jobId;

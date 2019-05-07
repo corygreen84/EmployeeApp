@@ -5,13 +5,23 @@ var createJobSpan = document.getElementsByClassName("createJobClose")[0];
 var createJobModal = document.getElementById("create-new-job-modal-box");
 var createJobContent = document.getElementById("create-job-modal-content-id");
 
+
+var searchButton = document.getElementById("create-address-search");
 var createButton = document.getElementById("create-job-button");
+
 
 var jobCreateNameTextField = document.getElementById("create-name-text");
 var addressCreateTextField = document.getElementById("create-address-text");
+var longitudeTextField = document.getElementById("create-long-text");
+var latitudeTextField = document.getElementById("create-lat-text");
+
+
 
 var nameTextFilled = false;
 var addressTextFilled = false;
+
+var longitudeTextFilled = false;
+var latitudeTextFilled = false;
 
 var listOfSelectedEmployees = [];
 var listOfEmployeesCreate = [];
@@ -29,21 +39,26 @@ var db = firebase.firestore();
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
-	//listOfEmployees = [];
 	listOfSelectedEmployees = [];
 
 	createButton.disabled = true;
+	searchButton.disabled = true;
 	
 }, false);
 
 
 function createNewJobOnClick(){
+
+	initMap();
+
 	createJobModal.style.display = "block";
 	
 	listOfSelectedEmployees = [];
 	
 	jobCreateNameTextField.value = "";
 	addressCreateTextField.value = "";
+	latitudeTextField.value = "";
+	longitudeTextField.value = "";
 	
 	nameTextFilled = false;
 	addressTextFilled = false;
@@ -88,12 +103,48 @@ function addressTextChange(){
 	
 	if(addressCreateTextField.value != ""){
 		addressTextFilled = true;
-		
 	}else{
 		addressTextFilled = false;
 	}
+	
+	toggleSearchButton();
+	
+}
 
-	toggleCreateButton();
+function longTextChange(){
+	if(longitudeTextField.value != ""){
+		longitudeTextFilled = true;
+	}else{
+		longitudeTextFilled = false;
+	}
+	toggleSearchButton();
+}
+
+function latTextChange(){
+	if(latitudeTextField.value != ""){
+		latitudeTextFilled = true;
+	}else{
+		latitudeTextFilled = false;
+	}
+	toggleSearchButton();
+}
+
+function toggleSearchButton(){
+	if(addressTextFilled == true || (longitudeTextFilled == true && latitudeTextFilled == true)){
+		searchButton.disabled = false;
+	}else{
+		searchButton.disabled = true;
+	}
+}
+
+
+function searchButtonOnClick(){
+	var addressFieldText = addressCreateTextField.value;
+	var longFieldText = longitudeTextField.value;
+	var latFieldText = latitudeTextField.value;
+
+	searchForPlace(addressFieldText, longFieldText, latFieldText);
+	
 }
 
 // **** **** //

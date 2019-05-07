@@ -42,29 +42,41 @@
 		<div id="create-new-job-modal-box" class="modal">
 			<div class="create-job-modal-content" id="create-job-modal-content-id">
 				<span class="createJobClose">&times;</span>
-				<p>Create A New Job</p>
+
+				<p class="job-p-text" id="job-title">Create A New Job</p>
+
 				<input type="text" id="create-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="jobNameTextChange()">
-				<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()">
-				
+				<div id="address-search-div">
+					<div id="address-text-field">
+						<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()">
+					</div>
+					<p class="job-p-text">or</p>
 
 
-				<div id="long-lat-div">
-					<div id="long-div">
-						<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude(Optional)"  onkeyup="longTextChange()">
+					<div id="long-lat-div">
+						<div id="long-div">
+							<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude"  onkeyup="longTextChange()">
+						</div>
+						<div id="lat-div">			
+							<input type="text" id="create-lat-text" class="text-fields" placeholder="Latitude"  onkeyup="latTextChange()">
+						</div>
 					</div>
-					<div id="lat-div">			
-						<input type="text" id="create-lat-text" class="text-fields" placeholder="Latitude(Optional)"  onkeyup="latTextChange()">
+					<div id="search-button-div">
+						<button type="button" id="create-address-search" class="buttons" onclick="searchButtonOnClick()">Search</button>
 					</div>
+
 				</div>
 
-
-
 				<div id="createMapView">
-					<!--
-					<object type="text/html" id="map-object">
-					</object>-->
-					<div id="map">
+					<div id="erase-marker-button-div" class="map-buttons">
+						<button type="button" id="erase-marker-button" class="buttons" onclick="eraseButtonOnClick()">-</button>
+						<button type="button" id="add-marker-button" class="buttons" onclick="addButtonOnClick()">+</button>
 					</div>
+					
+
+					<div id="map"></div>
+					
+					
 				</div>
 				
 
@@ -91,8 +103,8 @@
 
 				<input type="text" id="modify-job-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="modifyJobNameTextChange()">
 				<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()">
-				<input type="text" id="modify-long-text" class="text-fields" placeholder="Longitude(Optional)" size="35" onkeyup="modifyLongTextChange()">
-				<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude(Optional)" size="35" onkeyup="modifyLatTextChange()">
+				<input type="text" id="modify-long-text" class="text-fields" placeholder="Longitude" size="35" onkeyup="modifyLongTextChange()">
+				<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude" size="35" onkeyup="modifyLatTextChange()">
 				
 				<div id="modify-employee-list-div">
 					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">
