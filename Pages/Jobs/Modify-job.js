@@ -314,6 +314,7 @@ function modifyAddressTextChange(){
 
 
 function modifyLongTextChange(){
+
 	if(modifyLongitudeTextField.value != "" + locationLong){
 		longitudeChanged = true;
 	}else{

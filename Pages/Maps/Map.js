@@ -271,6 +271,8 @@ function eraseButtonOnClick(){
 	}
 
 	toggleCoordinatesFilled(false, true);
+	toggleAddressFilled(false, true);
+	toggleSearchButton();
 	toggleCreateButton();
 }
 
@@ -283,14 +285,15 @@ function modifyEraseButtonOnClick(){
 	modifyLongitudeTextField.value = "";
 	modifyLatitudeTextField.value = "";
 
-	
 
 	if(marker != null){
 		marker.setMap(null);
 		google.maps.event.clearInstanceListeners(modifyMap);
 	}
+
 	toggleCoordinatesFilled(false, false);
-	//toggleCreateButton();
+	toggleAddressFilled(false, false);
+	toggleModifySearchButton();
 	toggleJobModifyButton();
 }
 
@@ -320,8 +323,8 @@ function addButtonOnClick(){
 		createLatitudeTextField.value = newJobLat;
 
 		toggleCoordinatesFilled(true, true);
-
 		toggleCreateButton();
+		toggleSearchButton();
 	});
 }
 
@@ -345,8 +348,7 @@ function modifyAddButtonOnClick(){
 		modifyLatitudeTextField.value = newJobLat;
 
 		toggleCoordinatesFilled(true, false);
-
-		toggleJobModifyButton();
+		toggleModifySearchButton();
 	});
 }
 
