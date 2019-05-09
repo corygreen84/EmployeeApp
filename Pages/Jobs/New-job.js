@@ -27,8 +27,6 @@ var latitudeTextFilled = false;
 var listOfSelectedEmployees = [];
 var listOfEmployeesCreate = [];
 
-var mapView = document.getElementById("createMapView");
-
 // **** end of modal view variables **** //
 var listView = document.getElementById("job-listview-div");
 var listOfJobs = [];
@@ -63,8 +61,6 @@ function createNewJobOnClick(){
 	nameTextFilled = false;
 	addressTextFilled = false;
 
-	// making the mapview invisible //
-	//mapView.style.display = "none";
 	
 
 	toggleCreateButton();
@@ -122,7 +118,6 @@ function longTextChange(){
 }
 
 function latTextChange(){
-	console.log(latitudeTextField.value);
 	if(latitudeTextField.value != ""){
 		latitudeTextFilled = true;
 	}else{
@@ -147,7 +142,7 @@ function searchButtonOnClick(){
 	var longFieldText = longitudeTextField.value;
 	var latFieldText = latitudeTextField.value;
 
-	searchForPlace(addressFieldText, longFieldText, latFieldText);
+	searchForPlace(addressFieldText, longFieldText, latFieldText, true);
 	
 }
 
@@ -284,12 +279,16 @@ function createButtonOnClick(){
 	var dateString = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
 
+	var floatLong = parseFloat(longitudeTextField.value);
+	var floatLat = parseFloat(latitudeTextField.value);
+
 	// adds the data to both the job itself and the employees involved //
 	var batch = db.batch();
 	var docData = {
 		name: jobCreateNameTextField.value,
 		address: addressCreateTextField.value,
 		date: dateString,
+		location: new firebase.firestore.GeoPoint(floatLat, floatLong),
 		employees: []
 	}
 	

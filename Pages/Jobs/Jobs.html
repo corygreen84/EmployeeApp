@@ -67,14 +67,14 @@
 
 				</div>
 
-				<div id="createMapView">
+				<div class="map-view">
 					<div id="erase-marker-button-div" class="map-buttons">
 						<button type="button" id="erase-marker-button" class="buttons" onclick="eraseButtonOnClick()">-</button>
 						<button type="button" id="add-marker-button" class="buttons" onclick="addButtonOnClick()">+</button>
 					</div>
 					
 
-					<div id="map"></div>
+					<div id="create-map" class="map"></div>
 					
 					
 				</div>
@@ -99,12 +99,48 @@
 		<div id="modify-job-modal-box" class="modal">
 			<div class="modify-job-modal-content">
 				<span class="modifyJobClose">&times;</span>
-				<p>Modify Job</p>
+				<p class="job-p-text" id="modify-job-title">Modify Job</p>
 
 				<input type="text" id="modify-job-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="modifyJobNameTextChange()">
-				<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()">
+
+				<div id="address-search-div">
+					<div id="address-text-field">
+						<!--<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()" onchange="addressTextChange()">-->
+						<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()" onchange="modifyAddressTextChange()">
+					</div>
+					<p class="job-p-text">or</p>
+
+
+					<div id="long-lat-div">
+						<div id="long-div">
+							<input type="text" id="modify-long-text" class="text-fields" placeholder="Longitude"  onkeyup="modifyLongTextChange()" oninput="modifyLongTextChange()">
+						</div>
+						<div id="lat-div">			
+							<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude"  onkeyup="modifyLatTextChange()" oninput="modifyLatTextChange()">
+						</div>
+					</div>
+					<div id="search-button-div">
+						<button type="button" id="modify-address-search" class="buttons" onclick="modifySearchButtonOnClick()">Search</button>
+					</div>
+
+				</div>
+
+				<div class="map-view">
+					<div id="erase-marker-button-div" class="map-buttons">
+						<button type="button" id="modify-erase-marker-button" class="buttons" onclick="modifyEraseButtonOnClick()">-</button>
+						<button type="button" id="modify-add-marker-button" class="buttons" onclick="modifyAddButtonOnClick()">+</button>
+					</div>
+					
+
+					<div id="modify-map"></div>
+					
+					
+				</div>
+
+				<!--<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()">
+
 				<input type="text" id="modify-long-text" class="text-fields" placeholder="Longitude" size="35" onkeyup="modifyLongTextChange()">
-				<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude" size="35" onkeyup="modifyLatTextChange()">
+				<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude" size="35" onkeyup="modifyLatTextChange()"> -->
 				
 				<div id="modify-employee-list-div">
 					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">

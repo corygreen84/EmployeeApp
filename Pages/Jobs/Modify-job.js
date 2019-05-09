@@ -9,14 +9,23 @@ var deleteJobButton = document.getElementById("delete-job-button");
 var jobNameTextField = document.getElementById("modify-job-name-text");
 var jobAddressTextField = document.getElementById("modify-address-text");
 
+var jobLongitudeTextField = document.getElementById("modify-long-text");
+var jobLatitudeTextField = document.getElementById("modify-lat-text");
+
+var modifySearchButton = document.getElementById("modify-address-search");
+
 var listView = document.getElementById("modify-employee-list-div");
 
 var nameTextChanged = false;
 var addressTextChanged = false;
+var longitudeChanged = false;
+var latitudeChanged = false;
 
 var job;
 var jobId;
 
+var locationLat;
+var locationLong;
 
 
 let originalDictionaryOfJobs = {};
@@ -32,8 +41,6 @@ var employeeListChanged = false;
 
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
-	
-	modifyJobButton.disabled = true;
 	
 }, false);
 
@@ -53,6 +60,7 @@ function mainJobListOnClick(item){
 	
 	modifyJobModal.style.display = "block";
 	modifyJobButton.disabled = true;
+	modifySearchButton.disabled = true;
 
 	for(var i = 0; i < listOfJobs.length; i++){
 		if("job-" + listOfJobs[i].jobId == item.id){
@@ -66,14 +74,11 @@ function mainJobListOnClick(item){
 	jobNameTextField.value = job.name;
 	jobAddressTextField.value = job.address;
 	jobId = job.jobId;
+	locationLat = job.lat;
+	locationLong = job.long;
 
 
 	// loading the original list of employees into a dictionary //
-	// this dictionary will not change //
-
-
-	// I dont want to go by employee number anymore.  Its difficult to modify once set in stone //
-	
 	for(var j in job.employees){
 		originalDictionaryOfJobs[j] = job.employees[j];
 	}
@@ -82,11 +87,17 @@ function mainJobListOnClick(item){
 	for(var k in job.employees){
 		dictionaryOfEmployeesForThisJob[job.employees[k]] = job.employees[k];
 	}
-
-
 	loadAllEmployees(companyName);
+	placeLocationOnMap(locationLong, locationLat, job.address);
 }
 
+
+
+function placeLocationOnMap(long, lat, address){
+	jobLongitudeTextField.value = long;
+	jobLatitudeTextField.value = lat;
+	placeOnMapModify(long, lat, address);
+}
 
 
 
@@ -190,7 +201,6 @@ function changePlusToMinusOnEmployees(){
 	for(var h in listOfEmployeeNumbersToBeMinused){
 		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}
-
 }
 
 
@@ -298,23 +308,55 @@ function modifyAddressTextChange(){
 		addressTextChanged = false;
 	}
 	toggleJobModifyButton();
+	toggleModifySearchButton();
 }
 
 
 
 function modifyLongTextChange(){
-
+	if(modifyLongitudeTextField.value != "" + locationLong){
+		longitudeChanged = true;
+	}else{
+		longitudeChanged = false;
+	}
+	toggleJobModifyButton();
+	toggleModifySearchButton();
 }
 
 function modifyLatTextChange(){
-
+	if(modifyLatitudeTextField.value != "" + locationLat){
+		latitudeChanged = true;
+	}else{
+		latitudeChanged = false;
+	}
+	toggleJobModifyButton();
+	toggleModifySearchButton();
 }
 
+
+function toggleModifySearchButton(){
+	if(addressTextChanged == true || longitudeChanged == true || latitudeChanged == true){
+		modifySearchButton.disabled = false;
+	}else{
+		modifySearchButton.disabled = true;
+	}
+}
+
+
+
+
+function modifySearchButtonOnClick(){
+	var addressFieldText = jobAddressTextField.value;
+	var longFieldText = jobLongitudeTextField.value;
+	var latFieldText = jobLatitudeTextField.value;
+
+	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
+}
 // **** **** //
 
 
 function toggleJobModifyButton(){
-	if(nameTextChanged == true || addressTextChanged == true || employeeListChanged == true){
+	if(nameTextChanged == true || addressTextChanged == true || employeeListChanged == true || latitudeChanged == true || longitudeChanged == true){
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
@@ -332,7 +374,8 @@ function modifyJobOnClick(){
 
 		var mainUpdate = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
 		batch.update(mainUpdate, {"name": jobNameTextField.value, 
-								"address": jobAddressTextField.value});
+								"address": jobAddressTextField.value,
+								"location": new firebase.firestore.GeoPoint(parseFloat(jobLatitudeTextField.value),parseFloat(jobLongitudeTextField.value))});
 
 		var addedArr = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 		var deletedArr = resultsOfCheckingDifferencesInArrays["originalsToDelete"];

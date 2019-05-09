@@ -75,7 +75,10 @@ function loadJobs(user, companyName){
 				newJob.address = data[q].address;
 				newJob.employees = data[q].employees;
 				newJob.date = data[q].date;
+				newJob.lat = data[q].location["_lat"];
+				newJob.long = data[q].location["_long"];
 				newJob.jobId = dictionaryOfIds[data[q].name];
+				
 
 				listOfJobs.push(newJob);
 			}

@@ -8,12 +8,17 @@ var address = "";
 var newJobLong;
 var newJobLat;
 
-var map;
+var createMap;
+var modifyMap;
 var marker;
 
-var longitudeTextField = document.getElementById("create-long-text");
-var latitudeTextField = document.getElementById("create-lat-text");
-var addressTextField = document.getElementById("create-address-text");
+var createLongitudeTextField = document.getElementById("create-long-text");
+var createLatitudeTextField = document.getElementById("create-lat-text");
+var createAddressTextField = document.getElementById("create-address-text");
+
+var modifyLongitudeTextField = document.getElementById("modify-long-text");
+var modifyLatitudeTextField = document.getElementById("modify-lat-text");
+var modifyAddressTextField = document.getElementById("modify-address-text");
 
 
 
@@ -25,7 +30,13 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 function initMap(){
-	map = new google.maps.Map(document.getElementById("map"), {
+
+	createMap = new google.maps.Map(document.getElementById("create-map"), {
+		center: {lat: 37.984361, lng:-120.381767},
+		zoom: 7
+	});
+
+	modifyMap = new google.maps.Map(document.getElementById("modify-map"),{
 		center: {lat: 37.984361, lng:-120.381767},
 		zoom: 7
 	});
@@ -33,74 +44,90 @@ function initMap(){
 	
 }
 
-function searchForPlace(address, long, lat){
 
-	if(address != "" && long != "" && lat != ""){
-		let alertConfirm = confirm("Please enter either an Address or a Coordinate to search.  Not both.");
-		if(alertConfirm){
-			longitudeTextField.value = "";
-			latitudeTextField.value = "";
-			addressTextField.value = "";
+// came from create is a boolean value to signify that the source was from //
+// creating a new job.  If it is false, its source came from Modifying //
+// a previous job //
+function searchForPlace(address, long, lat, cameFromCreate){
 
-			toggleCoordinatesFilled(false);
+	var addressField;
+	var longitudeField;
+	var latitudeField;
 
-			return;
-		}
-	}else if(address != "" && long == "" && lat == ""){
-		// address search //
-		longitudeTextField.value = "";
-		latitudeTextField.value = "";
-
-		toggleCoordinatesFilled(false);
-
-		this.address = address;
-
-		// I should have a popup appear when both the address and long/lat fields are filled in //
-		// that asks which set of data the user wants to use //
-		var replaceWhiteSpaceInAddress = address.replace(/\s/g, "+");
-		var finalUrl = url + "address=" + replaceWhiteSpaceInAddress + key;
-	
-		httpRequest.open("GET", finalUrl);
-		httpRequest.send();
-
-		httpRequest.onreadystatechange = function(){
-			if(httpRequest.readyState == 4 && httpRequest.status == 200){
-				var jsonParse = JSON.parse(httpRequest.responseText);
-				parsePlaceByAddress(jsonParse);
-			}
-		}
-
-	}else if(address == "" && long != "" && lat != ""){
-		// long search //
-		longitudeTextField.value = "";
-		latitudeTextField.value = "";
-
-		toggleCoordinatesFilled(false);
-
-		this.address = address;
-
-		// I should have a popup appear when both the address and long/lat fields are filled in //
-		// that asks which set of data the user wants to use //
-		var finalUrl = url + "latlng=" + lat + "," + long + key;
-	
-		httpRequest.open("GET", finalUrl);
-		httpRequest.send();
-
-		httpRequest.onreadystatechange = function(){
-			if(httpRequest.readyState == 4 && httpRequest.status == 200){
-				var jsonParse = JSON.parse(httpRequest.responseText);
-
-				// this is coming up with multiple results //
-				// need a way of presenting this data //
-				parsePlaceByCoordinate(jsonParse);
-			}
-		}
+	if(cameFromCreate){
+		
+		addressField = createAddressTextField;
+		longitudeField = createLongitudeTextField;
+		latitudeField = createLatitudeTextField;
+	}else{
+		addressField = modifyAddressTextField;
+		longitudeField = modifyLongitudeTextField;
+		latitudeField = modifyLatitudeTextField;
 	}
-	toggleCreateButton();
+
+		if(address != "" && (long != "" || lat != "")){
+			let alertConfirm = confirm("Please enter either an Address or a Coordinate to search.  Not both.");
+			if(alertConfirm){
+				longitudeField.value = "";
+				latitudeField.value = "";
+				addressField.value = "";
+
+				toggleCoordinatesFilled(false, cameFromCreate);
+
+				return;
+			}
+		}else if(address != "" && long == "" && lat == ""){
+			// address search //
+			longitudeField.value = "";
+			latitudeField.value = "";
+
+			toggleCoordinatesFilled(false, cameFromCreate);
+
+			this.address = address;
+
+			// I should have a popup appear when both the address and long/lat fields are filled in //
+			// that asks which set of data the user wants to use //
+			var replaceWhiteSpaceInAddress = address.replace(/\s/g, "+");
+			var finalUrl = url + "address=" + replaceWhiteSpaceInAddress + key;
+	
+			httpRequest.open("GET", finalUrl);
+			httpRequest.send();
+
+			httpRequest.onreadystatechange = function(){
+				if(httpRequest.readyState == 4 && httpRequest.status == 200){
+					var jsonParse = JSON.parse(httpRequest.responseText);
+					parsePlaceByAddress(jsonParse, cameFromCreate);
+				}
+			}
+
+		}else if(address == "" && long != "" && lat != ""){
+			// long search //
+			longitudeField.value = "";
+			latitudeField.value = "";
+
+			toggleCoordinatesFilled(false, cameFromCreate);
+
+			this.address = address;
+			var finalUrl = url + "latlng=" + lat + "," + long + key;
+	
+			httpRequest.open("GET", finalUrl);
+			httpRequest.send();
+
+			httpRequest.onreadystatechange = function(){
+				if(httpRequest.readyState == 4 && httpRequest.status == 200){
+					var jsonParse = JSON.parse(httpRequest.responseText);
+
+					// this is coming up with multiple results //
+					// need a way of presenting this data //
+					parsePlaceByCoordinate(jsonParse, cameFromCreate);
+				}
+			}
+		}
+		//toggleCreateButton();
 }
 
 
-function parsePlaceByAddress(json){
+function parsePlaceByAddress(json, cameFromCreate){
 	
 	if(json["results"] != undefined){
 		var results = json["results"];
@@ -115,15 +142,27 @@ function parsePlaceByAddress(json){
 						newJobLong = locationResults["lng"];
 						newJobLat = locationResults["lat"];
 						
-						// place on the map //
-						placeOnMap(newJobLong, newJobLat);
+						if(cameFromCreate){
+							// place on the map //
+							placeOnMapCreate(newJobLong, newJobLat);
 
-						longitudeTextField.value = newJobLong;
-						latitudeTextField.value = newJobLat;
+							createLongitudeTextField.value = newJobLong;
+							createLatitudeTextField.value = newJobLat;
 
-						toggleCoordinatesFilled(true);
+							toggleCoordinatesFilled(true, cameFromCreate);
 						
-						toggleCreateButton();
+							toggleCreateButton();
+						}else{
+							placeOnMapModify(newJobLong, newJobLat);
+
+							modifyLongitudeTextField.value = newJobLong;
+							modifyLatitudeTextField.value = newJobLat;
+
+							toggleCoordinatesFilled(true, cameFromCreate);
+						
+							//toggleCreateButton();
+							toggleJobModifyButton();
+						}
 					}
 				}
 			}
@@ -131,7 +170,7 @@ function parsePlaceByAddress(json){
 	}
 }
 
-function parsePlaceByCoordinate(json){
+function parsePlaceByCoordinate(json, cameFromCreate){
 	if(json["results"] != undefined){
 		var results = json["results"];
 		for(var i in results){
@@ -147,18 +186,31 @@ function parsePlaceByCoordinate(json){
 							newJobLong = locationResults["lng"];
 							newJobLat = locationResults["lat"];
 						
-							
-							// place on the map //
-							placeOnMap(newJobLong, newJobLat, formattedAddress);
+							if(cameFromCreate){
+								// place on the map //
+								placeOnMapCreate(newJobLong, newJobLat, formattedAddress);
 
-							addressTextField.value = formattedAddress;
-							longitudeTextField.value = newJobLong;
-							latitudeTextField.value = newJobLat;
+								createAddressTextField.value = formattedAddress;
+								createLongitudeTextField.value = newJobLong;
+								createLatitudeTextField.value = newJobLat;
 							
-							toggleAddressFilled(true);
-							toggleCoordinatesFilled(true);
+								toggleAddressFilled(true, cameFromCreate);
+								toggleCoordinatesFilled(true, cameFromCreate);
 
-							toggleCreateButton();
+								toggleCreateButton();
+							}else{
+								placeOnMapModify(newJobLong, newJobLat, formattedAddress);
+
+								modifyAddressTextField.value = formattedAddress;
+								modifyLongitudeTextField.value = newJobLong;
+								modifyLatitudeTextField.value = newJobLat;
+							
+								toggleAddressFilled(true, cameFromCreate);
+								toggleCoordinatesFilled(true, cameFromCreate);
+
+								//toggleCreateButton();
+								toggleJobModifyButton();
+							}
 						}
 					}
 				}
@@ -170,15 +222,30 @@ function parsePlaceByCoordinate(json){
 
 
 // placing on the map and putting a marker on //
-function placeOnMap(long, lat, address){
-	map = new google.maps.Map(document.getElementById("map"), {
+function placeOnMapCreate(long, lat, address){
+	createMap = new google.maps.Map(document.getElementById("create-map"), {
 		center: {lat: lat, lng:long},
 		zoom: 17
 	});
 
 	marker = new google.maps.Marker({
 		position: {lat: lat, lng: long},
-		map: map,
+		map: createMap,
+		animation: google.maps.Animation.DROP,
+		title: address
+	});
+}
+
+
+function placeOnMapModify(long, lat, address){
+	modifyMap = new google.maps.Map(document.getElementById("modify-map"), {
+		center: {lat: lat, lng:long},
+		zoom: 17
+	});
+
+	marker = new google.maps.Marker({
+		position: {lat: lat, lng: long},
+		map: modifyMap,
 		animation: google.maps.Animation.DROP,
 		title: address
 	});
@@ -192,51 +259,112 @@ function eraseButtonOnClick(){
 	newJobLong = null;
 	newJobLat = null;
 
-	addressTextField.value = "";
-	longitudeTextField.value = "";
-	latitudeTextField.value = "";
+	createAddressTextField.value = "";
+	createLongitudeTextField.value = "";
+	createLatitudeTextField.value = "";
 
-	toggleCoordinatesFilled(false);
+	
 
 	if(marker != null){
 		marker.setMap(null);
-		google.maps.event.clearInstanceListeners(map);
+		google.maps.event.clearInstanceListeners(createMap);
 	}
 
+	toggleCoordinatesFilled(false, true);
 	toggleCreateButton();
-	
 }
+
+function modifyEraseButtonOnClick(){
+	address = "";
+	newJobLong = null;
+	newJobLat = null;
+
+	modifyAddressTextField.value = "";
+	modifyLongitudeTextField.value = "";
+	modifyLatitudeTextField.value = "";
+
+	
+
+	if(marker != null){
+		marker.setMap(null);
+		google.maps.event.clearInstanceListeners(modifyMap);
+	}
+	toggleCoordinatesFilled(false, false);
+	//toggleCreateButton();
+	toggleJobModifyButton();
+}
+
+
+
+
+
+
+
 
 // adds a marker to the map //
 function addButtonOnClick(){
-	var _ = map.addListener('click', function(event){
+	var _ = createMap.addListener('click', function(event){
 		if(marker != null){
 			marker.setMap(null);
 		}
 		var location = event.latLng;
 		marker = new google.maps.Marker({
 			position: location,
-			map: map,
+			map: createMap,
 			title: "Custom Marker"
 		});
 		newJobLong = marker.getPosition().lng();
 		newJobLat = marker.getPosition().lat();
 
-		longitudeTextField.value = newJobLong;
-		latitudeTextField.value = newJobLat;
+		createLongitudeTextField.value = newJobLong;
+		createLatitudeTextField.value = newJobLat;
 
-		toggleCoordinatesFilled(true);
+		toggleCoordinatesFilled(true, true);
 
 		toggleCreateButton();
 	});
 }
 
 
-function toggleCoordinatesFilled(filled){
-	longitudeTextFilled = filled;
-	latitudeTextFilled = filled;
+
+function modifyAddButtonOnClick(){
+	var _ = modifyMap.addListener('click', function(event){
+		if(marker != null){
+			marker.setMap(null);
+		}
+		var location = event.latLng;
+		marker = new google.maps.Marker({
+			position: location,
+			map: modifyMap,
+			title: "Custom Marker"
+		});
+		newJobLong = marker.getPosition().lng();
+		newJobLat = marker.getPosition().lat();
+
+		modifyLongitudeTextField.value = newJobLong;
+		modifyLatitudeTextField.value = newJobLat;
+
+		toggleCoordinatesFilled(true, false);
+
+		toggleJobModifyButton();
+	});
 }
 
-function toggleAddressFilled(filled){
-	addressTextFilled = filled;
+
+function toggleCoordinatesFilled(filled, cameFromCreate){
+	if(cameFromCreate){
+		longitudeTextFilled = filled;
+		latitudeTextFilled = filled;
+	}else{
+		longitudeChanged = filled;
+		latitudeChanged = filled;
+	}
+}
+
+function toggleAddressFilled(filled, cameFromCreate){
+	if(cameFromCreate){
+		addressTextFilled = filled;
+	}else{
+		addressTextChanged = filled;
+	}
 }
