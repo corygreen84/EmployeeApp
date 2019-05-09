@@ -48,17 +48,17 @@
 				<input type="text" id="create-name-text" class="text-fields" placeholder="Job Name" size="35" onkeyup="jobNameTextChange()">
 				<div id="address-search-div">
 					<div id="address-text-field">
-						<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()">
+						<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()" onchange="addressTextChange()">
 					</div>
 					<p class="job-p-text">or</p>
 
 
 					<div id="long-lat-div">
 						<div id="long-div">
-							<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude"  onkeyup="longTextChange()">
+							<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude"  onkeyup="longTextChange()" oninput="longTextChange()">
 						</div>
 						<div id="lat-div">			
-							<input type="text" id="create-lat-text" class="text-fields" placeholder="Latitude"  onkeyup="latTextChange()">
+							<input type="text" id="create-lat-text" class="text-fields" placeholder="Latitude"  onkeyup="latTextChange()" oninput="latTextChange()">
 						</div>
 					</div>
 					<div id="search-button-div">

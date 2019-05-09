@@ -12,6 +12,7 @@ var createButton = document.getElementById("create-job-button");
 
 var jobCreateNameTextField = document.getElementById("create-name-text");
 var addressCreateTextField = document.getElementById("create-address-text");
+
 var longitudeTextField = document.getElementById("create-long-text");
 var latitudeTextField = document.getElementById("create-lat-text");
 
@@ -43,7 +44,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	createButton.disabled = true;
 	searchButton.disabled = true;
-	
 }, false);
 
 
@@ -108,7 +108,7 @@ function addressTextChange(){
 	}
 	
 	toggleSearchButton();
-	
+	toggleCreateButton();
 }
 
 function longTextChange(){
@@ -118,15 +118,19 @@ function longTextChange(){
 		longitudeTextFilled = false;
 	}
 	toggleSearchButton();
+	toggleCreateButton();
 }
 
 function latTextChange(){
+	console.log(latitudeTextField.value);
 	if(latitudeTextField.value != ""){
 		latitudeTextFilled = true;
 	}else{
 		latitudeTextFilled = false;
 	}
+
 	toggleSearchButton();
+	toggleCreateButton();
 }
 
 function toggleSearchButton(){
@@ -174,7 +178,7 @@ function searchButtonOnClick(){
 // toggling the create button //
 function toggleCreateButton(){
 
-	if(nameTextFilled == true && addressTextFilled == true){
+	if(nameTextFilled == true && addressTextFilled == true && (longitudeTextFilled == true && latitudeTextFilled == true)){
 		createButton.disabled = false;
 	}else{
 		createButton.disabled = true;

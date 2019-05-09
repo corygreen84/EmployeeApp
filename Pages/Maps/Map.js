@@ -20,9 +20,6 @@ var addressTextField = document.getElementById("create-address-text");
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 	marker = null;
-
-	
-
 }, false);
 
 
@@ -33,10 +30,7 @@ function initMap(){
 		zoom: 7
 	});
 
-	// positioning the erase and add new marker buttons //
 	
-
-
 }
 
 function searchForPlace(address, long, lat){
@@ -47,12 +41,17 @@ function searchForPlace(address, long, lat){
 			longitudeTextField.value = "";
 			latitudeTextField.value = "";
 			addressTextField.value = "";
+
+			toggleCoordinatesFilled(false);
+
 			return;
 		}
 	}else if(address != "" && long == "" && lat == ""){
 		// address search //
 		longitudeTextField.value = "";
 		latitudeTextField.value = "";
+
+		toggleCoordinatesFilled(false);
 
 		this.address = address;
 
@@ -70,10 +69,13 @@ function searchForPlace(address, long, lat){
 				parsePlaceByAddress(jsonParse);
 			}
 		}
+
 	}else if(address == "" && long != "" && lat != ""){
 		// long search //
 		longitudeTextField.value = "";
 		latitudeTextField.value = "";
+
+		toggleCoordinatesFilled(false);
 
 		this.address = address;
 
@@ -94,6 +96,7 @@ function searchForPlace(address, long, lat){
 			}
 		}
 	}
+	toggleCreateButton();
 }
 
 
@@ -112,12 +115,15 @@ function parsePlaceByAddress(json){
 						newJobLong = locationResults["lng"];
 						newJobLat = locationResults["lat"];
 						
-
 						// place on the map //
 						placeOnMap(newJobLong, newJobLat);
 
 						longitudeTextField.value = newJobLong;
 						latitudeTextField.value = newJobLat;
+
+						toggleCoordinatesFilled(true);
+						
+						toggleCreateButton();
 					}
 				}
 			}
@@ -143,12 +149,16 @@ function parsePlaceByCoordinate(json){
 						
 							
 							// place on the map //
-							placeOnMap(newJobLong, newJobLat);
+							placeOnMap(newJobLong, newJobLat, formattedAddress);
 
 							addressTextField.value = formattedAddress;
 							longitudeTextField.value = newJobLong;
 							latitudeTextField.value = newJobLat;
 							
+							toggleAddressFilled(true);
+							toggleCoordinatesFilled(true);
+
+							toggleCreateButton();
 						}
 					}
 				}
@@ -160,7 +170,7 @@ function parsePlaceByCoordinate(json){
 
 
 // placing on the map and putting a marker on //
-function placeOnMap(long, lat){
+function placeOnMap(long, lat, address){
 	map = new google.maps.Map(document.getElementById("map"), {
 		center: {lat: lat, lng:long},
 		zoom: 17
@@ -176,9 +186,8 @@ function placeOnMap(long, lat){
 
 
 
-
+// erases the markers on the map //
 function eraseButtonOnClick(){
-
 	address = "";
 	newJobLong = null;
 	newJobLat = null;
@@ -186,22 +195,48 @@ function eraseButtonOnClick(){
 	addressTextField.value = "";
 	longitudeTextField.value = "";
 	latitudeTextField.value = "";
+
+	toggleCoordinatesFilled(false);
+
+	if(marker != null){
+		marker.setMap(null);
+		google.maps.event.clearInstanceListeners(map);
+	}
+
+	toggleCreateButton();
 	
 }
 
+// adds a marker to the map //
 function addButtonOnClick(){
-	map.addListener('click', function(event){
+	var _ = map.addListener('click', function(event){
 		if(marker != null){
 			marker.setMap(null);
-			
-			var location = event.latlng;
-			console.log(location);
-			marker = new google.maps.Marker({
-				position: location,
-				map: map
-			});
 		}
+		var location = event.latLng;
+		marker = new google.maps.Marker({
+			position: location,
+			map: map,
+			title: "Custom Marker"
+		});
+		newJobLong = marker.getPosition().lng();
+		newJobLat = marker.getPosition().lat();
+
+		longitudeTextField.value = newJobLong;
+		latitudeTextField.value = newJobLat;
+
+		toggleCoordinatesFilled(true);
+
+		toggleCreateButton();
 	});
 }
 
 
+function toggleCoordinatesFilled(filled){
+	longitudeTextFilled = filled;
+	latitudeTextFilled = filled;
+}
+
+function toggleAddressFilled(filled){
+	addressTextFilled = filled;
+}
