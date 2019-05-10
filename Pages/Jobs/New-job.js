@@ -47,6 +47,10 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function createNewJobOnClick(){
 
+	$('#erase-marker-button').removeClass('ui-btn');
+	$('#add-marker-button').removeClass('ui-btn');
+	
+
 	initMap();
 
 	createJobModal.style.display = "block";

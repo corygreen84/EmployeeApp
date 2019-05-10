@@ -3,7 +3,7 @@ var _user;
 var _companyName;
 var _username;
 
-var activeNav = "JobsPage";
+var activeNav = "JobsPageDiv";
 
 window.addEventListener('DOMContentLoaded', function () {
 
@@ -44,19 +44,19 @@ window.onclick = function(event) {
 		document.getElementById("myDropdown").classList.toggle("show");
 		loginOffOnClick();
 	}else if(event.target.id == "JobsPage"){
-		activeNav = "JobsPage";
+		activeNav = "JobsPageDiv";
 		objectElement.data = "/Employee/Pages/Jobs/Jobs.html";
 	}else if(event.target.id == "EmployeesPage"){
-		activeNav = "EmployeesPage";
+		activeNav = "EmployeesPageDiv";
 		objectElement.data = "/Employee/Pages/Employees/Employees.html";
 	}else if(event.target.id == "ReportsPage"){
-		activeNav = "ReportsPage";
+		activeNav = "ReportsPageDiv";
 		objectElement.data = "/Employee/Pages/Reports.html";
 	}else if(event.target.id == "PayPage"){
-		activeNav = "PayPage";
+		activeNav = "PayPageDiv";
 		objectElement.data = "/Employee/Pages/Pay-Period.html";
 	}else if(event.target.id == "CommunicationPage"){
-		activeNav = "CommunicationPage";
+		activeNav = "CommunicationPageDiv";
 		objectElement.data = "/Employee/Pages/Communication.html";
 	}
 
@@ -67,7 +67,7 @@ window.onclick = function(event) {
 
 function toggleHighlightedNav(){
 
-	var navItems = document.getElementsByClassName("a nav-item");
+	var navItems = document.getElementsByClassName("side-nav-bar-div");
 	for(var i in navItems){
 		if(navItems[i].id != undefined){
 			navItems[i].style.backgroundColor = "#0080ff";

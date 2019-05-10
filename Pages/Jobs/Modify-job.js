@@ -49,6 +49,9 @@ window.addEventListener('DOMContentLoaded', function () {
 // user clicks on a job //
 function mainJobListOnClick(item){
 
+	$('#modify-erase-marker-button').removeClass('ui-btn');
+	$('#modify-add-marker-button').removeClass('ui-btn');
+
 	for(var h in originalDictionaryOfJobs){
 		delete originalDictionaryOfJobs[h];
 	}

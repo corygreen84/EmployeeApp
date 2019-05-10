@@ -5,6 +5,7 @@
 		<meta charset="utf-8" />
 		<link rel="stylesheet" href="/Employee/console.css" />
 		<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 		 
 		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-app.js"></script>
 		
@@ -42,11 +43,28 @@
 
 			<div id="side-nav" class="sidenav">
 				<div id="top-side-nav"></div>
-				<a href="#" id="JobsPage" class="a nav-item">Jobs</a>
-				<a href="#" id="EmployeesPage" class="a nav-item">Employees</a>
-				<a href="#" id="ReportsPage" class="a nav-item">Reports</a>
-				<a href="#" id="PayPage" class="a nav-item">Pay Period</a>
-				<a href="#" id="CommunicationPage" class="a nav-item">Communication</a>
+				<div id="nav-bar-group">
+					<div class="side-nav-bar-div" id="JobsPageDiv">
+						<i class="glyphicon glyphicon-list-alt nav-icon"></i>
+						<a href="#" id="JobsPage" class="a nav-item">Jobs</a>
+					</div>
+					<div class="side-nav-bar-div" id="EmployeesPageDiv">
+						<i class="glyphicon glyphicon-user nav-icon"></i>
+						<a href="#" id="EmployeesPage" class="a nav-item">Employees</a>
+					</div>
+					<div class="side-nav-bar-div" id="ReportsPageDiv">
+						<i class="glyphicon glyphicon-duplicate nav-icon"></i>
+						<a href="#" id="ReportsPage" class="a nav-item">Reports</a>
+					</div>
+					<div class="side-nav-bar-div" id="PayPageDiv">
+						<i class="glyphicon glyphicon-usd nav-icon"></i>
+						<a href="#" id="PayPage" class="a nav-item">Pay Period</a>
+					</div>
+					<div class="side-nav-bar-div" id="CommunicationPageDiv">
+						<i class="glyphicon glyphicon-comment nav-icon"></i>
+						<a href="#" id="CommunicationPage" class="a nav-item">Communication</a>
+					</div>
+				</div>
 			</div>
 			
 			<div>
