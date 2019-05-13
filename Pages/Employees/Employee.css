@@ -29,7 +29,7 @@
 
 
 .create-employee-modal-content{
-	background-color: #bad9f8;
+	background-color: #525963;
 	margin: 10% auto;
 	padding: 20px;
 	width: 40%;
@@ -37,8 +37,11 @@
 	border-radius: 20px;
 }
 
+/* #525963 
+   #bad9f8*/
+
 .modify-employee-modal-content{
-	background-color: #bad9f8;
+	background-color: #525963;
 	margin: 10% auto;
 	padding: 20px;
 	width: 40%;
@@ -53,14 +56,17 @@
 	margin-bottom: 2px;
 	text-align: center;
 	text-shadow: none;
-	color:rgb(73, 71, 71);
+	color:white;
+
+	/* rgb(73, 71, 71) */
 }
 
 .createEmployeeModalClose, .modifyEmployeeModalClose {
-	color:rgb(73, 71, 71);
+	color:white;
 	float: right;
 	font-size: 28px;
 	font-weight: bold;
+	text-shadow: none;
 }
 
 #jobs-attached-to-listview-div{

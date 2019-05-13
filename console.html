@@ -30,8 +30,8 @@
 						<label id="welcome-label">Welcome, </label>
 						<label id="user-name"></label>
 					</div>
-					<div class="dropdown">
-						<button onclick="showDropDown()" class="dropbtn">Profile</button>
+					<div class="dropdown" id="dropDownDiv">
+						<button onclick="showDropDown()" class="dropbtn" id="dropDownBtn" onblur="dropDownOnBlur()">Profile</button>
 						<div id="myDropdown" class="dropdown-content">
 							<a href="#" id="0">View Profile</a>
 							<a href="#" id="1">Log Out</a>
@@ -67,7 +67,7 @@
 				</div>
 			</div>
 			
-			<div>
+			<div id="frameObjectDiv" >
 				<object type="text/html" id="frame-object">
 				</object>
 			</div>
@@ -77,7 +77,8 @@
 		
 		
 		<script type="text/javascript" src="/Employee/firebase-init.js"></script> 
-		<script type="text/javascript" src="/Employee/console.js"></script> 
+		<script type="text/javascript" src="/Employee/console.js"></script>
+		<script type="text/javascript" src="/Employee/Window-onclick.js"></script>  
 	</body>
 
 </html>

@@ -5,6 +5,7 @@ var _username;
 
 var activeNav = "JobsPageDiv";
 
+
 window.addEventListener('DOMContentLoaded', function () {
 
 	toggleHighlightedNav();
@@ -25,6 +26,7 @@ window.addEventListener('DOMContentLoaded', function () {
 			document.getElementById("frame-object").data = "/Employee/Pages/Jobs/Jobs.html";
 		}
 	});
+
 }, false);
 
 
@@ -70,12 +72,15 @@ function toggleHighlightedNav(){
 	var navItems = document.getElementsByClassName("side-nav-bar-div");
 	for(var i in navItems){
 		if(navItems[i].id != undefined){
-			navItems[i].style.backgroundColor = "#0080ff";
+			navItems[i].style.backgroundColor = "#525963";
 		}
 	}
+	/* #0080ff */
 	
 	
-	document.getElementById(activeNav).style.backgroundColor = "#FF7F50";
+	document.getElementById(activeNav).style.backgroundColor = "#0080ff";
+
+	/* #FF7F50 */
 	
 
 	

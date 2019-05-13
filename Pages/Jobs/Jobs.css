@@ -6,7 +6,7 @@
 }
 
 #create-new-job{
-	width: 100px;
+	width: 120px;
 	right: 40px;
 	top: 20px;
 	position: fixed;
@@ -30,7 +30,7 @@
 }
 
 .create-job-modal-content {
-	background-color: #bad9f8;
+	background-color: #525963;
 	margin: 2% auto;
 	padding: 20px;
 	width: 40%;
@@ -39,8 +39,10 @@
 	border-radius: 20px;
 }
 
+/* light blue -> #bad9f8 */
+
 .modify-job-modal-content{
-	background-color: #bad9f8;
+	background-color: #525963;
 	margin: 0% auto;
 	padding: 20px;
 	width: 40%;
@@ -50,16 +52,21 @@
 }
 
 .createJobClose, .modifyJobClose {
-  color: #aaa;
+  color: white;
   float: right;
   font-size: 28px;
-  font-weight: bold;
+	font-weight: bold;
+	text-shadow: none;
 }
 
+/* color: #aaa; */ 
+
 #address-search-div{
-	background-color: #d4ebf2;
+	background-color: grey;
 	border-radius: 10px;
 }
+
+/* #d4ebf2*/
 
 #address-text-field{
 	width: 98%;
@@ -74,8 +81,10 @@
 	margin-bottom: 2px;
 	text-align: center;
 	text-shadow: none;
-	color:rgb(73, 71, 71);
+	color:white;
 }
+
+/*  color:rgb(73, 71, 71);*/
 #job-title{
 	margin-bottom: 4px;
 }
@@ -184,9 +193,6 @@
 	text-shadow: none;
 }
 
-.createJobClose, .modifyJobClose{
-	color:rgb(73, 71, 71);
-}
 
 .createJobClose:hover,
 .createJobClose:focus,

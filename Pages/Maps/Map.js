@@ -102,8 +102,8 @@ function searchForPlace(address, long, lat, cameFromCreate){
 
 		}else if(address == "" && long != "" && lat != ""){
 			// long search //
-			longitudeField.value = "";
-			latitudeField.value = "";
+			//longitudeField.value = "";
+			//latitudeField.value = "";
 
 			toggleCoordinatesFilled(false, cameFromCreate);
 
@@ -171,50 +171,65 @@ function parsePlaceByAddress(json, cameFromCreate){
 }
 
 function parsePlaceByCoordinate(json, cameFromCreate){
+	console.log(json);
 	if(json["results"] != undefined){
 		var results = json["results"];
-		for(var i in results){
-			if(i == 0){
-				var resultsArray = results[i];
-				if(resultsArray != undefined){
-					var geometryResults = resultsArray["geometry"];
-					var formattedAddress = resultsArray["formatted_address"];
-					if(geometryResults != undefined && formattedAddress != undefined){
-						var locationResults = geometryResults["location"];
+
+		if(Object.keys(results).length == 0){
+			toggleCoordinatesFilled(true, cameFromCreate);
+			if(cameFromCreate){
+				addressTextFilled = false;
+				toggleCreateButton();
+			}else{
+				addressTextChanged = false;
+				toggleJobModifyButton();
+			}
+		}else{
+			for(var i in results){
+				if(i == 0){
+					var resultsArray = results[i];
+					if(resultsArray != undefined){
+						var geometryResults = resultsArray["geometry"];
+						var formattedAddress = resultsArray["formatted_address"];
+						if(geometryResults != undefined && formattedAddress != undefined){
+							var locationResults = geometryResults["location"];
 						
-						if(locationResults != undefined){
-							newJobLong = locationResults["lng"];
-							newJobLat = locationResults["lat"];
+							if(locationResults != undefined){
+								newJobLong = locationResults["lng"];
+								newJobLat = locationResults["lat"];
 						
-							if(cameFromCreate){
-								// place on the map //
-								placeOnMapCreate(newJobLong, newJobLat, formattedAddress);
 
-								createAddressTextField.value = formattedAddress;
-								createLongitudeTextField.value = newJobLong;
-								createLatitudeTextField.value = newJobLat;
+
+								if(cameFromCreate){
+									// place on the map //
+									placeOnMapCreate(newJobLong, newJobLat, formattedAddress);
+
+									createAddressTextField.value = formattedAddress;
+									createLongitudeTextField.value = newJobLong;
+									createLatitudeTextField.value = newJobLat;
 							
-								toggleAddressFilled(true, cameFromCreate);
-								toggleCoordinatesFilled(true, cameFromCreate);
+									toggleAddressFilled(true, cameFromCreate);
+									toggleCoordinatesFilled(true, cameFromCreate);
 
-								toggleCreateButton();
-							}else{
-								placeOnMapModify(newJobLong, newJobLat, formattedAddress);
+									toggleCreateButton();
+								}else{
+									placeOnMapModify(newJobLong, newJobLat, formattedAddress);
 
-								modifyAddressTextField.value = formattedAddress;
-								modifyLongitudeTextField.value = newJobLong;
-								modifyLatitudeTextField.value = newJobLat;
+									modifyAddressTextField.value = formattedAddress;
+									modifyLongitudeTextField.value = newJobLong;
+									modifyLatitudeTextField.value = newJobLat;
 							
-								toggleAddressFilled(true, cameFromCreate);
-								toggleCoordinatesFilled(true, cameFromCreate);
+									toggleAddressFilled(true, cameFromCreate);
+									toggleCoordinatesFilled(true, cameFromCreate);
 
-								//toggleCreateButton();
-								toggleJobModifyButton();
+									//toggleCreateButton();
+									toggleJobModifyButton();
+								}
 							}
 						}
 					}
+					return;
 				}
-				return;
 			}
 		}
 	}

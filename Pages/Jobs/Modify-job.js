@@ -310,6 +310,7 @@ function modifyAddressTextChange(){
 	}else{
 		addressTextChanged = false;
 	}
+
 	toggleJobModifyButton();
 	toggleModifySearchButton();
 }
@@ -360,7 +361,12 @@ function modifySearchButtonOnClick(){
 
 
 function toggleJobModifyButton(){
-	if(nameTextChanged == true || addressTextChanged == true || employeeListChanged == true || latitudeChanged == true || longitudeChanged == true){
+	if(nameTextChanged == true || 
+		addressTextChanged == true || 
+		employeeListChanged == true || 
+		latitudeChanged == true || 
+		longitudeChanged == true){
+
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
