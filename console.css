@@ -105,9 +105,10 @@
 
 #user-profile{
 	float: right;
-	width: 200px;
-	margin-top: 5px;
-	
+	width: 100px;
+	margin-top: 15px;
+	margin-right: 20px;
+	height: 100%;
 }
 
 #profile-pic{
@@ -115,7 +116,7 @@
 	height: 50px;
 	float: left;
 	border-radius: 10px;
-	
+	margin-left: 4px;
 }
 
 #user-name-block{
@@ -133,46 +134,54 @@
 	
 }
 
-#user-name{
-	color: white;
-	
-	
+#username-profile{
+	margin-left: 16px;
+	margin-top:5px;
+	font-size: 18px;
+	text-decoration: underline;
 }
 
 .dropbtn {
-	background-color: #3498DB;
+	background-color: grey;
 	color: white;
 	padding: 2px;
 	font-size: 13px;
 	border: none;
 	cursor: pointer;
-	margin-left:20px;
-	margin-top:5px;
+
+	margin-top:0px;
 	margin-right: 10px;
-	padding-left:10px;
+	padding-left: 10px;
 	padding-right:10px;
 	float: right;
 }
 
 .dropbtn:hover, .dropbtn:focus {
-	background-color: #2275df;
+	background-color: grey;
 }
 
 .dropdown {
-	position: relative;
+	display: inline-block;
+	margin-top: 0px;
+	padding-left: 0px;
+	margin-left: 10px;
 }
 
 
 
 .dropdown-content {
 	display: none;
-	position: absolute;
+	position: absolute; 
+	right: -50px;
+	margin-top: 40px;
+	margin-right: 0px;
 	background-color: #f1f1f1;
 	min-width: 160px;
 	overflow: auto;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-	z-index: 1;
+	float: left;
 }
+
 
 .dropdown-content a {
 	color: black;

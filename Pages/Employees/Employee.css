@@ -35,10 +35,8 @@
 	width: 40%;
 	height: 40%;
 	border-radius: 20px;
+	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
 }
-
-/* #525963 
-   #bad9f8*/
 
 .modify-employee-modal-content{
 	background-color: #525963;
@@ -47,6 +45,7 @@
 	width: 40%;
 	height: 70%;
 	border-radius: 20px;
+	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
 }
 
 .employee-p-text{
@@ -57,8 +56,7 @@
 	text-align: center;
 	text-shadow: none;
 	color:white;
-
-	/* rgb(73, 71, 71) */
+	font-size: 20px;
 }
 
 .createEmployeeModalClose, .modifyEmployeeModalClose {

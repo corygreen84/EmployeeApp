@@ -30,21 +30,17 @@ window.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 
-function showDropDown(){
-	document.getElementById("myDropdown").classList.toggle("show");
-}
 
 window.onclick = function(event) {
 	
 	var objectElement = document.getElementById("frame-object");
-	
-
 
 	if(event.target.id == "0"){
-		document.getElementById("myDropdown").classList.toggle("show");
+		showDropDown();
 	}else if(event.target.id == "1"){
-		document.getElementById("myDropdown").classList.toggle("show");
 		loginOffOnClick();
+
+		showDropDown();
 	}else if(event.target.id == "JobsPage"){
 		activeNav = "JobsPageDiv";
 		objectElement.data = "/Employee/Pages/Jobs/Jobs.html";
@@ -65,6 +61,12 @@ window.onclick = function(event) {
 	toggleHighlightedNav();
 }
 
+function showDropDown(){
+	document.getElementById("myDropdown").classList.toggle("show");
+}
+
+
+
 
 
 function toggleHighlightedNav(){
@@ -75,15 +77,7 @@ function toggleHighlightedNav(){
 			navItems[i].style.backgroundColor = "#525963";
 		}
 	}
-	/* #0080ff */
-	
-	
 	document.getElementById(activeNav).style.backgroundColor = "#0080ff";
-
-	/* #FF7F50 */
-	
-
-	
 }
 
 
@@ -100,7 +94,7 @@ function bringUpUserCompanyName(email){
 			_username = doc.data().username;
 			
 			var title = document.getElementById("title-label");
-			var username = document.getElementById("user-name");
+			var username = document.getElementById("username-profile");
 			
 			title.innerHTML = _companyName.toString();
 			username.innerHTML = _username.toString();
@@ -108,10 +102,6 @@ function bringUpUserCompanyName(email){
 	}).catch(function(error){
 		console.log("error getting document: " + error);
 	});
-}
-
-function profileOnClick(){
-	console.log("profile clicked");
 }
 
 

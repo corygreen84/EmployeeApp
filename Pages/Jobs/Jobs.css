@@ -26,7 +26,8 @@
   height: 100%;
   overflow: auto; 
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0);
+	background-color: rgba(0,0,0,0);
+	
 }
 
 .create-job-modal-content {
@@ -37,9 +38,8 @@
 	min-width: 400px;
 	height: 88%;
 	border-radius: 20px;
+	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
 }
-
-/* light blue -> #bad9f8 */
 
 .modify-job-modal-content{
 	background-color: #525963;
@@ -49,6 +49,7 @@
 	min-width: 400px;
 	height: 94%;
 	border-radius: 20px;
+	box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
 }
 
 .createJobClose, .modifyJobClose {
@@ -59,14 +60,10 @@
 	text-shadow: none;
 }
 
-/* color: #aaa; */ 
-
 #address-search-div{
 	background-color: grey;
 	border-radius: 10px;
 }
-
-/* #d4ebf2*/
 
 #address-text-field{
 	width: 98%;
@@ -81,10 +78,10 @@
 	margin-bottom: 2px;
 	text-align: center;
 	text-shadow: none;
+	font-size: 20px;
 	color:white;
 }
 
-/*  color:rgb(73, 71, 71);*/
 #job-title{
 	margin-bottom: 4px;
 }
