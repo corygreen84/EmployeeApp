@@ -23,7 +23,8 @@ window.addEventListener('DOMContentLoaded', function () {
 			_user = user;
 			bringUpUserCompanyName(_user.email);
 			
-			document.getElementById("frame-object").data = "/Employee/Pages/Jobs/Jobs.html";
+			//document.getElementById("frame-object").data = "/Employee/Pages/Jobs/Jobs.html";
+			document.getElementById("frame-object").src = "/Employee/Pages/Jobs/Jobs.html";
 		}
 	});
 
@@ -43,19 +44,24 @@ window.onclick = function(event) {
 		showDropDown();
 	}else if(event.target.id == "JobsPage"){
 		activeNav = "JobsPageDiv";
-		objectElement.data = "/Employee/Pages/Jobs/Jobs.html";
+		//objectElement.data = "/Employee/Pages/Jobs/Jobs.html";
+		objectElement.src = "/Employee/Pages/Jobs/Jobs.html";
 	}else if(event.target.id == "EmployeesPage"){
 		activeNav = "EmployeesPageDiv";
-		objectElement.data = "/Employee/Pages/Employees/Employees.html";
+		//objectElement.data = "/Employee/Pages/Employees/Employees.html";
+		objectElement.src = "/Employee/Pages/Employees/Employees.html";
 	}else if(event.target.id == "ReportsPage"){
 		activeNav = "ReportsPageDiv";
-		objectElement.data = "/Employee/Pages/Reports.html";
+		//objectElement.data = "/Employee/Pages/Reports.html";
+		objectElement.src = "/Employee/Pages/Reports.html";
 	}else if(event.target.id == "PayPage"){
 		activeNav = "PayPageDiv";
-		objectElement.data = "/Employee/Pages/Pay-Period.html";
+		//objectElement.data = "/Employee/Pages/Pay-Period.html";
+		objectElement.src = "/Employee/Pages/Pay-Period.html";
 	}else if(event.target.id == "CommunicationPage"){
 		activeNav = "CommunicationPageDiv";
-		objectElement.data = "/Employee/Pages/Communication.html";
+		//objectElement.data = "/Employee/Pages/Communication.html";
+		objectElement.src = "/Employee/Pages/Communication.html";
 	}
 
 	toggleHighlightedNav();
