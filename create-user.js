@@ -103,7 +103,7 @@ function createOnClick(){
 		companyRef.get().then(function(querySnapshot){
 			console.log("stuff should be here... " + querySnapshot);
 			for(var i in querySnapshot){
-				console.log(querySnapshot[i]);
+				console.log(querySnapshot[i].id);
 			}
 			var exists = false
 			querySnapshot.forEach(function(doc){
