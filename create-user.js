@@ -100,7 +100,7 @@ function createOnClick(){
 	if(db != null){
 		
 		
-		consolel.log("company ->" + company);
+		console.log("company ->" + company);
 		var companyRef = db.collection("companies").doc(company);
 		companyRef.get().then(function(doc){
 			if(doc.exists){
