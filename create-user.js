@@ -104,8 +104,6 @@ function createOnClick(){
 			var exists = false
 			querySnapshot.forEach(function(doc){
 				console.log("in here " + doc.id);
-			}).catch(function(error){
-				console.log("error -> " + error);
 			});
 			
 			/*
@@ -140,6 +138,8 @@ function createOnClick(){
 				});
 				*/
 			}
+		}).catch(function(error){
+			console.log("error -> " + error);
 		});
 	}else{
 		console.log("db is null");
