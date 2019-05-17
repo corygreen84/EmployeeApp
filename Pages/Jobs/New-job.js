@@ -1,5 +1,5 @@
 
-var jobListViewElement = document.getElementById("job-listview");
+var jobListViewElement = document.getElementById("jobs-main-body");
 
 
 // **** this is for the modal view variables **** //
