@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	firebase.auth().onAuthStateChanged(function(user){
 		
 		if(!user){
-			window.location.href = "/Employee/index.html";
+			window.location.href = "index.html";
 		}else{
 			mainBody.hidden = false;
 			
@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', function () {
 			bringUpUserCompanyName(_user.email);
 			
 			//document.getElementById("frame-object").data = "/Employee/Pages/Jobs/Jobs.html";
-			document.getElementById("frame-object").src = "/Employee/Pages/Jobs/Jobs.html";
+			document.getElementById("frame-object").src = "Pages/Jobs/Jobs.html";
 		}
 	});
 
@@ -45,23 +45,23 @@ window.onclick = function(event) {
 	}else if(event.target.id == "JobsPage"){
 		activeNav = "JobsPageDiv";
 		//objectElement.data = "/Employee/Pages/Jobs/Jobs.html";
-		objectElement.src = "/Employee/Pages/Jobs/Jobs.html";
+		objectElement.src = "Pages/Jobs/Jobs.html";
 	}else if(event.target.id == "EmployeesPage"){
 		activeNav = "EmployeesPageDiv";
 		//objectElement.data = "/Employee/Pages/Employees/Employees.html";
-		objectElement.src = "/Employee/Pages/Employees/Employees.html";
+		objectElement.src = "Pages/Employees/Employees.html";
 	}else if(event.target.id == "ReportsPage"){
 		activeNav = "ReportsPageDiv";
 		//objectElement.data = "/Employee/Pages/Reports.html";
-		objectElement.src = "/Employee/Pages/Reports.html";
+		objectElement.src = "Pages/Reports.html";
 	}else if(event.target.id == "PayPage"){
 		activeNav = "PayPageDiv";
 		//objectElement.data = "/Employee/Pages/Pay-Period.html";
-		objectElement.src = "/Employee/Pages/Pay-Period.html";
+		objectElement.src = "Pages/Pay-Period.html";
 	}else if(event.target.id == "CommunicationPage"){
 		activeNav = "CommunicationPageDiv";
 		//objectElement.data = "/Employee/Pages/Communication.html";
-		objectElement.src = "/Employee/Pages/Communication.html";
+		objectElement.src = "Pages/Communication.html";
 	}
 
 	toggleHighlightedNav();
@@ -116,7 +116,7 @@ function bringUpUserCompanyName(email){
 
 function loginOffOnClick(){
 	firebase.auth().signOut().then(function() {
-		window.location.href = "/Employee/index.html";
+		window.location.href = "index.html";
 	}).catch(function(error) {
 		console.log("error signing out...");
 	});
