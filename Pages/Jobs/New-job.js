@@ -44,8 +44,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	createButton.disabled = true;
 	searchButton.disabled = true;
-	
-	jobListViewElement.preventDefault();
 }, false);
 
 
