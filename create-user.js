@@ -101,12 +101,12 @@ function createOnClick(){
 		
 		var companyRef = db.collection("companies").doc(company).collection("jobs");
 		companyRef.get().then(function(querySnapshot){
+			var exists = false;
 			querySnapshot.forEach(function(doc){
-				console.log(doc.id);
+				exists = true;
 			});
 			
-			/*
-			if(doc.exists){
+			if(exists){
 				
 				console.log("exists");
 				let confirmOk = confirm("The company already exists.  Please check again.");
@@ -133,10 +133,8 @@ function createOnClick(){
 					}else{
 						console.log("User logged out");
 					}
-		
 				});
-				*/
-			//}
+			}
 		}).catch(function(error){
 			console.log("error -> " + error);
 		});
