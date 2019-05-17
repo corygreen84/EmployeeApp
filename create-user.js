@@ -101,7 +101,7 @@ function createOnClick(){
 		
 		
 		console.log("company ->" + company);
-		var companyRef = db.collection("companies").doc("" + company);
+		var companyRef = db.collection("companies");
 		companyRef.get().then(function(querySnapshot){
 			querySnapshot.forEach(function(doc){
 				console.log("in here " + doc.data())
