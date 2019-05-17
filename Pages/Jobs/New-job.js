@@ -1,4 +1,6 @@
 
+var jobListViewElement = document.getElementById("job-listview");
+
 
 // **** this is for the modal view variables **** //
 var createJobSpan = document.getElementsByClassName("createJobClose")[0];
@@ -42,6 +44,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	createButton.disabled = true;
 	searchButton.disabled = true;
+	
+	jobListViewElement.preventDefault();
 }, false);
 
 

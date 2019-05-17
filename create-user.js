@@ -107,15 +107,11 @@ function createOnClick(){
 			});
 			
 			if(exists){
-				
-				console.log("exists");
 				let confirmOk = confirm("The company already exists.  Please check again.");
 				if(confirmOk){
 					window.location.href = "index.html";
 				}
 			}else{
-				console.log("doesnt exists");
-				
 				// creates the user in the central database first the auth //
 				firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error){
 		
