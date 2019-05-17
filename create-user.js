@@ -99,8 +99,6 @@ function createOnClick(){
 	var db = firebase.firestore();
 	if(db != null){
 		
-		
-		console.log("company ->" + company);
 		var companyRef = db.collection("companies");
 		companyRef.get().then(function(querySnapshot){
 			var exists = false
@@ -108,6 +106,7 @@ function createOnClick(){
 				console.log("in here " + doc.id)
 			});
 			
+			/*
 			if(doc.exists){
 				
 				console.log("exists");
@@ -117,7 +116,7 @@ function createOnClick(){
 				}
 			}else{
 				console.log("doesnt exists");
-				/*
+				
 				// creates the user in the central database first the auth //
 				firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error){
 		
