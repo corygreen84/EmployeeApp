@@ -98,6 +98,9 @@ function createOnClick(){
 	
 	var db = firebase.firestore();
 	if(db != null){
+		
+		
+		consolel.log(company);
 		var companyRef = db.collection("companies").doc(company);
 		companyRef.get().then(function(doc){
 			if(doc.exists){
