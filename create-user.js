@@ -99,15 +99,10 @@ function createOnClick(){
 	var db = firebase.firestore();
 	if(db != null){
 		
-		var companyRef = db.collection("companies");
+		var companyRef = db.collection("companies").doc(company).collection("jobs");
 		companyRef.get().then(function(querySnapshot){
-			console.log("stuff should be here... " + querySnapshot);
-			for(var i in querySnapshot){
-				console.log(querySnapshot[i].data());
-			}
-			var exists = false
 			querySnapshot.forEach(function(doc){
-				console.log("in here " + doc.id);
+				console.log(doc.id);
 			});
 			
 			/*
