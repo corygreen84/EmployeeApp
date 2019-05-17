@@ -103,6 +103,8 @@ function createOnClick(){
 		console.log("company ->" + company);
 		var companyRef = db.collection("companies").doc("" + company);
 		companyRef.get().then(function(doc){
+			
+			console.log(doc.data());
 			if(doc.exists){
 				
 				console.log("exists");
