@@ -245,43 +245,6 @@ function deleteOnClick(){
 			modifyEmployeeModal.style.display = "none";
 		});
 
-
-
-		//var batch = db.batch();
-		//batch.delete(employeeToDeleteRef);
-		
-			/*
-			var updateJobsRef = db.collection('companies').doc(companyName).collection('jobs').doc(listOfJobsForThisEmployee[i].id);
-			db.runTransaction(function(transaction){
-				return transaction.get(updateJobsRef).then(function(docRef){
-					if(!docRef.exists){
-						throw "doesnt exist";
-					}
-
-					var jobs = docRef.data().employees;
-					for(var j in jobs){
-						if(jobs[j] == employee.uniqueId){
-							delete jobs[j];
-						}
-					}
-
-					transaction.update(updateJobsRef, {employees: jobs});
-					return jobs;
-					
-
-				});
-			}).then(function(){
-				console.log("good to go");
-			})
-			*/
-		
-
-/*
-		batch.commit().then(function(){
-			modifyEmployeeModal.style.display = "none";
-		});
-		*/
-		
 	}
 }
 

@@ -103,7 +103,7 @@ function createOnClick(){
 		var errorMessage = error.message;
 		let confirmOk = confirm(errorMessage);
 		if(confirmOk){
-			window.location.href = "/Employee/index.html";
+			window.location.href = "index.html";
 		}
 		
 	});
@@ -185,7 +185,7 @@ function sendOutEmailVerification(user){
 
 function logOutUser(){
 	firebase.auth().signOut().then(function() {
-		window.location.href = "/Employee/index.html";
+		window.location.href = "index.html";
 	}).catch(function(error) {
 		console.log("error signing out..." + error);
 	});
@@ -194,7 +194,7 @@ function logOutUser(){
 
 
 function backOnClick(){
-	window.location.href = "/Employee/index.html";
+	window.location.href = "index.html";
 }
   
 

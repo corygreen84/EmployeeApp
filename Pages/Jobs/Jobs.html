@@ -4,8 +4,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="stylesheet" href="/Employee/index.css"/>
-		<link rel="stylesheet" href="/Employee/Pages/Jobs/Jobs.css"/>
+		<link rel="stylesheet" href="index.css"/>
+		<link rel="stylesheet" href="Pages/Jobs/Jobs.css"/>
 		<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
 		
 		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
@@ -72,7 +72,6 @@
 						<button type="button" id="erase-marker-button" class="buttons-map" onclick="eraseButtonOnClick()"><img src="/Employee/Pictures/red-marker-45x45.png"/></button>
 						<button type="button" id="add-marker-button" class="buttons-map" onclick="addButtonOnClick()"><img src="/Employee/Pictures/blue-marker-45x45.png"/></button>
 					</div>
-					<!--C:\xampp\htdocs\Employee\Pictures\red-marker-45x45.png-->
 
 					<div id="create-map" class="map"></div>
 					
@@ -105,7 +104,6 @@
 
 				<div id="address-search-div">
 					<div id="address-text-field">
-						<!--<input type="text" id="create-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="addressTextChange()" onchange="addressTextChange()">-->
 						<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()" onchange="modifyAddressTextChange()">
 					</div>
 					<p class="job-p-text">or</p>
@@ -137,11 +135,6 @@
 					
 				</div>
 
-				<!--<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" size="35" onkeyup="modifyAddressTextChange()">
-
-				<input type="text" id="modify-long-text" class="text-fields" placeholder="Longitude" size="35" onkeyup="modifyLongTextChange()">
-				<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude" size="35" onkeyup="modifyLatTextChange()"> -->
-				
 				<div id="modify-employee-list-div">
 					<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">
 						
@@ -157,16 +150,16 @@
 		</div>
 		
 
-		<script type="text/javascript" src="/Employee/firebase-init.js"></script> 
-		<script type="text/javascript" src="/Employee/Pages/Maps/Map.js"></script>
+		<script src="firebase-init.js"></script> 
+		<script src="Pages/Maps/Map.js"></script>
 		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbrSfOKkZEFVCLYk254tLC3dNGX3k7yiU&callback=initMap"
 		async defer></script>
-		<script type="text/javascript" src="/Employee/Pages/Jobs/Jobs.js"></script>
+		<script src="Pages/Jobs/Jobs.js"></script>
 		
-		<script type="text/javascript" src="/Employee/Pages/Jobs/New-job.js"></script> 	
-		<script type="text/javascript" src="/Employee/Pages/Jobs/Modify-job.js"></script>
-		<script type="text/javascript" src="/Employee/Pages/Jobs/checkDifferencesInArrays.js"></script>  
-		<script type="text/javascript" src="/Employee/Pages/Jobs/Window-onclick.js"></script> 		
+		<script src="Pages/Jobs/New-job.js"></script> 	
+		<script src="Pages/Jobs/Modify-job.js"></script>
+		<script src="Pages/Jobs/checkDifferencesInArrays.js"></script>  
+		<script src="Pages/Jobs/Window-onclick.js"></script> 		
 	
 	
 		

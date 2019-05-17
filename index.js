@@ -73,7 +73,7 @@ function loginOnClick(){
 		var errorMessage = error.message;
 		let confirmOk = confirm(errorMessage);
 		if(confirmOk){
-			window.location.href = "/Employee/index.html";
+			window.location.href = "index.html";
 		}
 	});
 
@@ -81,7 +81,7 @@ function loginOnClick(){
 
 
 function createUserAccountOnClick(){
-	window.location.href = "/Employee/create-user.html";
+	window.location.href = "create-user.html";
 }
 
 
@@ -94,7 +94,7 @@ function checkState(){
 		
 		if(user){
 			if(user.emailVerified){
-				window.location.href = "/Employee/console.html";
+				window.location.href = "console.html";
 			}else{
 				let confirmOk = confirm("Please follow the link sent via email to verify your email address");
 				if(confirmOk){
@@ -107,7 +107,7 @@ function checkState(){
 
 function logOutUser(){
 	firebase.auth().signOut().then(function() {
-		window.location.href = "/Employee/index.html";
+		window.location.href = "index.html";
 	}).catch(function(error) {
 		console.log("error signing out..." + error);
 	});
@@ -122,12 +122,12 @@ function forgotPasswordOnClick(){
 	firebase.auth().sendPasswordResetEmail(email).then(function(){
 		let confirmOk = confirm("Please follow the link sent via email to reset your password.");
 		if(confirmOk){
-			window.location.href = "/Employee/index.html";
+			window.location.href = "index.html";
 		}
 	}).catch(function(error){
 		let confirmOk = confirm(error);
 		if(confirmOk){
-			window.location.href = "/Employee/index.html";
+			window.location.href = "index.html";
 		}
 	});
 }
