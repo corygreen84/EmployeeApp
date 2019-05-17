@@ -102,7 +102,10 @@ function createOnClick(){
 		
 		console.log("company ->" + company);
 		var companyRef = db.collection("companies").doc("" + company);
-		companyRef.get().then(function(doc){
+		companyRef.get().then(function(querySnapshot){
+			querySnapshot.forEach(function(doc){
+				console.log("in here " + doc.data())
+			});
 			
 			console.log(doc.data());
 			if(doc.exists){
