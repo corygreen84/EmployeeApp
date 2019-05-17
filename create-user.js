@@ -96,48 +96,41 @@ function createOnClick(){
 	var username = document.getElementById("username-field-create").value;
 	var company = document.getElementById("company-field-create").value;
 	
-	if(checkToSeeIfCompanyExists(company) != true){
-		// creates the user in the central database first the auth //
-		firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error){
-		
-			// if there is a problem with creating an account such as the user already exists ... //
-			var errorMessage = error.message;
-			let confirmOk = confirm(errorMessage);
-			if(confirmOk){
-				window.location.href = "index.html";
-			}
-		});
-	
-		firebase.auth().onAuthStateChanged(function(user){
-			if(user){
-				createUserInDatabase(email, username, company, user);
-			}else{
-				console.log("User logged out");
-			}
-		
-		});
-	}else{
-		let confirmOk = confirm("The company already exists.  Please check again.");
-		if(confirmOk){
-		}
-	}
-}
-
-
-
-function checkToSeeIfCompanyExists(company){
 	var db = firebase.firestore();
 	if(db != null){
 		var companyRef = db.collection("companies").doc(company);
 		companyRef.get().then(function(doc){
 			if(doc.exists){
-				return true;
+				let confirmOk = confirm("The company already exists.  Please check again.");
+				if(confirmOk){
+					window.location.href = "index.html";
+				}
 			}else{
-				return false;
+				// creates the user in the central database first the auth //
+				firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error){
+		
+					// if there is a problem with creating an account such as the user already exists ... //
+					var errorMessage = error.message;
+					let confirmOk = confirm(errorMessage);
+					if(confirmOk){
+						window.location.href = "index.html";
+					}
+				});
+	
+				firebase.auth().onAuthStateChanged(function(user){
+					if(user){
+						createUserInDatabase(email, username, company, user);
+					}else{
+						console.log("User logged out");
+					}
+		
+				});
 			}
 		});
 	}
+		
 }
+
 
 function createUserInDatabase(email, username, company, user){
 	var db = firebase.firestore();
