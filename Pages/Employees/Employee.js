@@ -96,8 +96,14 @@ function parseEmployeesAndAddToListView(){
 		var lastName = listOfEmployees[j].last;
 		var employeeNumber = listOfEmployees[j].employeeNumber;
 		var status = listOfEmployees[j].status;
-		var jobsAt= listOfEmployees[j].jobsCurrentlyAt;
+		var jobsAt = listOfEmployees[j].jobsCurrentlyAt;
 
+		var currentlyAtString = "Current Location: ";
+		if(jobsAt == ""){
+			currentlyAtString = currentlyAtString + "OffSite";
+		}else{
+			currentlyAtString = currentlyAtString + "" + jobsAt;
+		}
 
 		var statusToString = "";
 
@@ -108,7 +114,7 @@ function parseEmployeesAndAddToListView(){
 		}
 		
 		// appending the info to the modal views list view //
-		$("#employee-listview-div ul").append('<li id=' + employeeNumber + ' onclick="listItemOnClick(this)"><a href="#" id="icon-' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' + statusToString + '</strong></p><p>Job at: Offsite</p></a></li>');
+		$("#employee-listview-div ul").append('<li id=' + employeeNumber + ' onclick="listItemOnClick(this)"><a href="#" id="icon-' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p><p class="ui-li-aside"><strong>Status: ' + statusToString + '</strong></p><p>' + currentlyAtString + '</p></a></li>');
 	}
 	
 	// refreshing the list //

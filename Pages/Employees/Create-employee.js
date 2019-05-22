@@ -141,14 +141,12 @@ function createEmployeeButtonOnClick(){
 		phoneNumber: parseInt(phone.value, 10),
 		employeeNumber: parseInt(employeeNumber.value, 10),
 		jobs: [],
-		jobsCurrentlyAt: [],
+		jobsCurrentlyAt: "",
 		id: newEmployeeRef.id,
 		status: false
 	}).then(function(){
 		createEmployeeModal.style.display = "none";
 	});
-
-	
 }
 
 
