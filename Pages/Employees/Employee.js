@@ -75,10 +75,10 @@ function loadEmployees(user, companyName){
 						newEmployeeObject.email = data[i].email;
 						newEmployeeObject.jobs = data[i].jobs;
 						newEmployeeObject.uniqueId = data[i].id;
+						newEmployeeObject.jobsCurrentlyAt = data[i].jobsCurrentlyAt;
 
 						listOfEmployees.push(newEmployeeObject);
 					}
-					
 				}
 				parseEmployeesAndAddToListView();
 			});	
@@ -122,6 +122,7 @@ class Employees{
 		var phone;
 		var jobs;
 		var uniqueId;
+		var jobsCurrentlyAt;
 	}
 }
 
