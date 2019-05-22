@@ -31,18 +31,12 @@ window.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 
-
-
-
-
 modifyEmployeeSpan.onclick = function(){
 	modifyEmployeeModal.style.display = "none";
 }
 
 
 // **** closing the modal view is handled through window-onclick.js **** //
-
-
 
 
 // **** when the user clicks on an employee, a new modal view will come up **** //
@@ -146,8 +140,6 @@ function bringUpEmployeeJobsByUniqueId(uId){
 
 					var data = doc.data();
 
-				
-				
 					if(data.name != undefined && data.address != undefined && data.employees != undefined && data.date != undefined){
 						var newJob = new Jobs();
 						newJob.name = data.name;
@@ -164,9 +156,7 @@ function bringUpEmployeeJobsByUniqueId(uId){
 				});	
 			}
 		}
-		
 	});
-	
 }
 
 
