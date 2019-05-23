@@ -138,8 +138,10 @@ function groupingLocationAndTimes(employeeHistory){
 
 		var dateKey = key.split(",");
 
-		console.log(dateKey[0]);
-		console.log(dateKey[1]);
+		var dayString = dateKey[0].trim();
+		var timeString = dateKey[1].trim();
+		console.log(dayString);
+		console.log(timeString);
 
 
 		//console.log("key " + key);
