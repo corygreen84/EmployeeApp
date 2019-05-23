@@ -51,7 +51,7 @@ function loadEmployeeData(user, companyName){
 
 
 		for(var d in data){
-			console.log("data! -> " + data[d]);
+			console.log("data! -> " + data[d].jobHistory);
 			/*
 			if(data[d].first != undefined || data[d].last != undefined){
 				var newEmployee = new Employees()
