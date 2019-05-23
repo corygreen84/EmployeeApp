@@ -51,17 +51,19 @@ function loadEmployeeData(user, companyName){
 
 
 		for(var d in data){
-			var newEmployee = new Employees()
-			newEmployee.first = data[d].first;
-			newEmployee.last = data[d].last;
-			newEmployee.employeeNumber = data[d].employeeNumber;
-			newEmployee.status = data[d].status;
-			newEmployee.email = data[d].email;
-			newEmployee.phone = data[d].phone;
-			newEmployee.uniqueId = data[d].uniqueId;
-			newEmployee.jobHistory = data[d].jobHistory;
+			if(data[d].first != undefined || data[d].last != undefined){
+				var newEmployee = new Employees()
+				newEmployee.first = data[d].first;
+				newEmployee.last = data[d].last;
+				newEmployee.employeeNumber = data[d].employeeNumber;
+				newEmployee.status = data[d].status;
+				newEmployee.email = data[d].email;
+				newEmployee.phone = data[d].phone;
+				newEmployee.uniqueId = data[d].uniqueId;
+				newEmployee.jobHistory = data[d].jobHistory;
 
-			employees.push(newEmployee);
+				employees.push(newEmployee);
+			}
 		};
 
 		parseEmployeeData(employees);
