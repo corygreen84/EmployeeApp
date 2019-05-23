@@ -73,6 +73,8 @@ function loadEmployeeData(user, companyName){
 function parseEmployeeData(employees){
 	//$("#employee-report-ul").empty();
 	
+	// getting the main list
+	$("#employee-list-ul").listview('refresh');
 
 	for(var e in employees){
 		var name = "" + employees[e].first + " " + employees[e].last;
@@ -80,29 +82,15 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].employeeHistory;
 
-		
+		// start constructing the list items //
+		$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + '</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">');
 	}
+	
 	/*
-	for(var r = 0; r < _listOfJobs.length; r++){
-		
-		var _name = _listOfJobs[r].name;
-		var _date = _listOfJobs[r].date;
-		var _address = _listOfJobs[r].address;
-		var _id = _listOfJobs[r].jobId;
-		
-
-		// putting it all into a list view //
-		$("#job-listview-div ul").append('<li id=job-' + _id + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
-		
-	}
-	*/
-	//$("#job-listview-div ul").listview('refresh');
-
-	/*
-		<div data-role="collapsible" >
+		<li><div data-role="collapsible" >
 					<h2>Cory Green</h2>
 						<ul data-role="listview" data-theme="a" data-divider-theme="b">
-							<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
+							
 							<li><a href="index.html">
 								<h3>Stephen Weber</h3>
 							<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
@@ -116,7 +104,7 @@ function parseEmployeeData(employees){
 								<p class="ui-li-aside"><strong>9:18</strong>AM</p>
 							</a></li>
 						</ul>
-				</div>
+				</div></li>
 	*/
 
 
