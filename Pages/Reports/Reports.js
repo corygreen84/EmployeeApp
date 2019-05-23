@@ -71,7 +71,7 @@ function loadEmployeeData(user, companyName){
 
 
 function parseEmployeeData(employees){
-	//$("#employee-report-ul").empty();
+	$("#employee-list-ul").empty();
 	
 	// getting the main list
 	
@@ -84,7 +84,7 @@ function parseEmployeeData(employees){
 
 		// start constructing the list items //
 		$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + '</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">');
-		$("#employee-list-ul").listview('refresh');
+		//$("#employee-list-ul").listview('refresh');
 	}
 	
 	/*
