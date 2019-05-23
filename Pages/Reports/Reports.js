@@ -74,7 +74,7 @@ function parseEmployeeData(employees){
 	//$("#employee-report-ul").empty();
 	
 	// getting the main list
-	$("#employee-list-ul").listview('refresh');
+	
 
 	for(var e in employees){
 		var name = "" + employees[e].first + " " + employees[e].last;
@@ -84,6 +84,7 @@ function parseEmployeeData(employees){
 
 		// start constructing the list items //
 		$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + '</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">');
+		$("#employee-list-ul").listview('refresh');
 	}
 	
 	/*
