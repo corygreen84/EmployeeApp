@@ -64,9 +64,34 @@ function loadEmployeeData(user, companyName){
 			employees.push(newEmployee);
 		};
 
-
-		console.log(employees.length);
+		parseEmployeeData(employees);
 	});
+}
+
+
+
+function parseEmployeeData(employees){
+	$("#employee-report-ul").empty();
+	
+
+	for(var e in employees){
+		var name = "" + employees[e].first + " " + employees[e].last;
+	}
+	/*
+	for(var r = 0; r < _listOfJobs.length; r++){
+		
+		var _name = _listOfJobs[r].name;
+		var _date = _listOfJobs[r].date;
+		var _address = _listOfJobs[r].address;
+		var _id = _listOfJobs[r].jobId;
+		
+
+		// putting it all into a list view //
+		$("#job-listview-div ul").append('<li id=job-' + _id + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
+		
+	}
+	*/
+	$("#job-listview-div ul").listview('refresh');
 }
 
 
