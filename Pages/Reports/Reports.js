@@ -22,7 +22,6 @@ function checkState(){
 					
 					// getting the company name //
 					companyName = doc.data().company;
-					console.log("company name ->" + companyName);
 					// from this, we load the employees and the jobs tied to this company //
 					loadEmployeeData(user, companyName);
 				}).then(function(){
@@ -47,8 +46,13 @@ function loadEmployeeData(user, companyName){
 
 		var data = querySnapshot.docs.map(function(documentSnapshot){
 
-			console.log(data);
+			return documentSnapshot.data();
 		});
+
+
+		for(var d in data){
+			console.log(data[d]);
+		};
 	});
 }
 
