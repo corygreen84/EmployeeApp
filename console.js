@@ -53,7 +53,7 @@ window.onclick = function(event) {
 	}else if(event.target.id == "ReportsPage"){
 		activeNav = "ReportsPageDiv";
 		//objectElement.data = "/Employee/Pages/Reports.html";
-		objectElement.src = "Pages/Reports.html";
+		objectElement.src = "Pages/Reports/Reports.html";
 	}else if(event.target.id == "PayPage"){
 		activeNav = "PayPageDiv";
 		//objectElement.data = "/Employee/Pages/Pay-Period.html";
