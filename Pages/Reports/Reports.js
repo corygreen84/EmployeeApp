@@ -137,14 +137,16 @@ function groupingLocationAndTimes(employeeHistory){
 
 	var listOfTempOffSite = [];
 	var listOfTempOnSite = [];
+	console.log(Object.keys(employeeHistory).length);
+	/*
 	for(var key in employeeHistory){
 
-		/*
+		
 		var dateKey = key.split(",");
 
 		var dayString = dateKey[0].trim();
 		var timeString = dateKey[1].trim();
-		*/
+		
 		if(employeeHistory[key] == "Offsite"){
 			listOfTempOffSite[key] = employeeHistory[key];
 		}else{
@@ -158,6 +160,7 @@ function groupingLocationAndTimes(employeeHistory){
 		//console.log("key " + key);
 		//console.log("value " + employeeHistory[key]);
 	}
+	*/
 }
 
 
