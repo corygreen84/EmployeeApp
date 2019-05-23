@@ -158,9 +158,6 @@ function groupingLocationAndTimes(employeeHistory){
 		//console.log("key " + key);
 		//console.log("value " + employeeHistory[key]);
 	}
-
-	print();
-
 }
 
 
