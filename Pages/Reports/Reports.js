@@ -40,10 +40,10 @@ function checkState(){
 
 
 function loadEmployeeData(user, companyName){
-	var employees = [];
+	
 	var empRef = db.collection('companies').doc(companyName).collection('employees');
 	empRef.onSnapshot(function(querySnapshot){
-
+		var employees = [];
 		var data = querySnapshot.docs.map(function(documentSnapshot){
 
 			return documentSnapshot.data();
@@ -135,8 +135,15 @@ function parseEmployeeData(employees){
 // this function will group things together and return where they were and for how long //
 function groupingLocationAndTimes(employeeHistory){
 	for(var key in employeeHistory){
-		console.log("key " + key);
-		console.log("value " + employeeHistory[key]);
+
+		var dateKey = key.split(",");
+
+		console.log(dateKey[0]);
+		console.log(dateKey[1]);
+
+
+		//console.log("key " + key);
+		//console.log("value " + employeeHistory[key]);
 	}
 }
 
