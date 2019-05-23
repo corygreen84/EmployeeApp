@@ -142,9 +142,11 @@ function groupingLocationAndTimes(employeeHistory){
 	// gives me the date:time and then the event //
 	for(var key in employeeHistory){
 		if(employeeHistory[key] == "Offsite"){
-			console.log("yep -> " + key);
+			listOfTempOffSite[key] = employeeHistory[key];
 		}
 	}
+
+	console.log(Object.keys(listOfTempOffSite).length);
 
 
 
