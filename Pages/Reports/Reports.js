@@ -86,7 +86,11 @@ function parseEmployeeData(employees){
 		var employeeHistory = employees[e].jobHistory;
 
 		for(var h in employeeHistory){
-			console.log("history -> " + employeeHistory[h].key);
+			console.log("history -> " + employeeHistory[h]);
+			var employeeHist = employeeHistory[h];
+			for(var key in employeeHist){
+				console.log(key);
+			}
 		}
 
 		// start constructing the list items //
