@@ -47,7 +47,7 @@ function loadEmployeeData(user, companyName){
 
 		var data = querySnapshot.docs.map(function(documentSnapshot){
 
-			console.log(data.data());
+			console.log(data);
 		});
 	});
 }
