@@ -24,7 +24,11 @@
 
 	<body>
 	
-	<h3>Reports in here</h3>
+	<div id="button-selections">
+		<button type="button" id="create-new-job" class="buttons" onclick="employeeReportOnClick()">New Job</button>
+		<button type="button" id="create-new-job" class="buttons" onclick="jobReportOnClick()">New Job</button>
+	</div>
+
 	<div data-role="collapsible">
 		<h2>Formatted text</h2>
 			<ul data-role="listview" data-theme="a" data-divider-theme="b">
@@ -44,6 +48,8 @@
 			</ul>
 		</div>
 		
+		<script type="application/javascript" src="/EmployeeApp/firebase-init.js"></script> 
+		<script type="application/javascript" src="/EmployeeApp/Pages/Reports/Reports.js"></script> 
 		
 	</body>
 
