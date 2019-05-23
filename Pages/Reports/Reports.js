@@ -76,6 +76,11 @@ function parseEmployeeData(employees){
 
 	for(var e in employees){
 		var name = "" + employees[e].first + " " + employees[e].last;
+		var employeeNumber = employees[e].employeeNumber;
+		var employeeEmail = employees[e].employeeEmail;
+		var employeeHistory = employees[e].employeeHistory;
+
+		
 	}
 	/*
 	for(var r = 0; r < _listOfJobs.length; r++){
@@ -91,7 +96,31 @@ function parseEmployeeData(employees){
 		
 	}
 	*/
-	$("#job-listview-div ul").listview('refresh');
+	//$("#job-listview-div ul").listview('refresh');
+
+	/*
+		<div data-role="collapsible" >
+					<h2>Cory Green</h2>
+						<ul data-role="listview" data-theme="a" data-divider-theme="b">
+							<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
+							<li><a href="index.html">
+								<h3>Stephen Weber</h3>
+							<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+							<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+								<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+							</a></li>
+							<li><a href="index.html">
+								<h3>jQuery Team</h3>
+							<p><strong>Boston Conference Planning</strong></p>
+							<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
+								<p class="ui-li-aside"><strong>9:18</strong>AM</p>
+							</a></li>
+						</ul>
+				</div>
+	*/
+
+
+
 }
 
 
