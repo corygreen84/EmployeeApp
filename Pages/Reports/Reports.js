@@ -134,19 +134,33 @@ function parseEmployeeData(employees){
 
 // this function will group things together and return where they were and for how long //
 function groupingLocationAndTimes(employeeHistory){
+
+	var listOfTempOffSite = [];
+	var listOfTempOnSite = [];
 	for(var key in employeeHistory){
 
+		/*
 		var dateKey = key.split(",");
 
 		var dayString = dateKey[0].trim();
 		var timeString = dateKey[1].trim();
-		console.log(dayString);
-		console.log(timeString);
+		*/
+		if(employeeHistory[key] == "Offsite"){
+			listOfTempOffSite[key] = employeeHistory[key];
+		}else{
+			listOfTempOnSite[key] = employeeHistory[key];
+		}
+
+		console.log(Object.keys(listOfTempOffSite).length);
+		console.log(Object.keys(listOfTempOnSite).length);
 
 
 		//console.log("key " + key);
 		//console.log("value " + employeeHistory[key]);
 	}
+
+	print();
+
 }
 
 
