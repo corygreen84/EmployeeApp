@@ -22,7 +22,7 @@ function checkState(){
 					
 					// getting the company name //
 					companyName = doc.data().company;
-					
+					console.log("company name ->" + companyName);
 					// from this, we load the employees and the jobs tied to this company //
 					loadEmployeeData(user, companyName);
 				}).then(function(){
