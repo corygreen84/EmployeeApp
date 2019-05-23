@@ -71,7 +71,7 @@ function loadEmployeeData(user, companyName){
 
 
 function parseEmployeeData(employees){
-	$("#employee-report-ul").empty();
+	//$("#employee-report-ul").empty();
 	
 
 	for(var e in employees){
