@@ -66,7 +66,7 @@ function loadEmployeeData(user, companyName){
 			}
 		};
 
-		//parseEmployeeData(employees);
+		parseEmployeeData(employees);
 	});
 }
 
