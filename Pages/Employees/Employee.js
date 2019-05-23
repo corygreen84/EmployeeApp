@@ -76,6 +76,8 @@ function loadEmployees(user, companyName){
 						newEmployeeObject.jobs = data[i].jobs;
 						newEmployeeObject.uniqueId = data[i].id;
 						newEmployeeObject.jobsCurrentlyAt = data[i].jobsCurrentlyAt;
+			
+						// I dont think I need to see job history here //
 
 						listOfEmployees.push(newEmployeeObject);
 					}
@@ -133,6 +135,7 @@ class Employees{
 		var jobs;
 		var uniqueId;
 		var jobsCurrentlyAt;
+		var jobHistory;
 	}
 }
 

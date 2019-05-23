@@ -142,6 +142,7 @@ function createEmployeeButtonOnClick(){
 		employeeNumber: parseInt(employeeNumber.value, 10),
 		jobs: [],
 		jobsCurrentlyAt: "",
+		jobHistory: [],
 		id: newEmployeeRef.id,
 		status: false
 	}).then(function(){
