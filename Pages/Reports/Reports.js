@@ -86,11 +86,12 @@ function parseEmployeeData(employees){
 		var employeeHistory = employees[e].jobHistory;
 
 		for(var h in employeeHistory){
+
+			// this is a dictionary containing the date and time as the key and the status/address as the value //
 			var employeeHist = employeeHistory[h];
-			for(var key in employeeHist){
-				console.log(key);
-				console.log(employeeHist[key]);
-			}
+
+			// this function will group things together and return where they were and for how long //
+			groupingLocationAndTimes(employeeHist);
 		}
 
 		// start constructing the list items //
@@ -128,6 +129,15 @@ function parseEmployeeData(employees){
 
 
 
+}
+
+
+// this function will group things together and return where they were and for how long //
+function groupingLocationAndTimes(employeeHistory){
+	for(var key in employeeHistory){
+		console.log("key " + key);
+		console.log("value " + employeeHistory[key]);
+	}
 }
 
 
