@@ -82,6 +82,7 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].employeeHistory;
 
+		console.log("h -> " + employeeHistory);
 		for(var h in employeeHistory){
 			console.log("history -> " + employeeHistory[h]);
 		}
