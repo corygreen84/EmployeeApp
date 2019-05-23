@@ -51,8 +51,21 @@ function loadEmployeeData(user, companyName){
 
 
 		for(var d in data){
-			console.log(data[d]);
+			var newEmployee = new Employees()
+			newEmployee.first = data[d].first;
+			newEmployee.last = data[d].last;
+			newEmployee.employeeNumber = data[d].employeeNumber;
+			newEmployee.status = data[d].status;
+			newEmployee.email = data[d].email;
+			newEmployee.phone = data[d].phone;
+			newEmployee.uniqueId = data[d].uniqueId;
+			newEmployee.jobHistory = data[d].jobHistory;
+
+			employees.push(newEmployee);
 		};
+
+
+		console.log(employees.length);
 	});
 }
 
@@ -79,6 +92,7 @@ class Employees{
 		var email;
 		var phone;
 		var uniqueId;
+		var jobHistory;
 	}
 }
 
