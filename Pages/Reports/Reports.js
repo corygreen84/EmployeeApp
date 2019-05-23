@@ -66,7 +66,7 @@ function loadEmployeeData(user, companyName){
 			}
 		};
 
-		parseEmployeeData(employees);
+		//parseEmployeeData(employees);
 	});
 }
 
@@ -85,7 +85,12 @@ function parseEmployeeData(employees){
 		var employeeHistory = employees[e].employeeHistory;
 
 		// start constructing the list items //
-		$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + '</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">');
+		$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + 
+		'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">');
+
+
+
+
 		//$("#employee-list-ul").listview('refresh');
 	}
 	
