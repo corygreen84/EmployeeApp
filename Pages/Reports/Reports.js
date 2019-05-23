@@ -51,8 +51,7 @@ function loadEmployeeData(user, companyName){
 
 
 		for(var d in data){
-			console.log("data! -> " + data[d].jobHistory);
-			/*
+			
 			if(data[d].first != undefined || data[d].last != undefined){
 				var newEmployee = new Employees()
 				newEmployee.first = data[d].first;
@@ -66,10 +65,10 @@ function loadEmployeeData(user, companyName){
 
 				employees.push(newEmployee);
 			}
-			*/
+			
 		};
 
-		//parseEmployeeData(employees);
+		parseEmployeeData(employees);
 		
 	});
 }
@@ -84,9 +83,8 @@ function parseEmployeeData(employees){
 		var name = "" + employees[e].first + " " + employees[e].last;
 		var employeeNumber = employees[e].employeeNumber;
 		var employeeEmail = employees[e].employeeEmail;
-		var employeeHistory = employees[e].employeeHistory;
+		var employeeHistory = employees[e].jobHistory;
 
-		console.log("h -> " + employeeHistory);
 		for(var h in employeeHistory){
 			console.log("history -> " + employeeHistory[h]);
 		}
