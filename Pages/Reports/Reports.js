@@ -89,28 +89,19 @@ function parseEmployeeData(employees){
 		
 		//console.log(htmlEventString);
 
-		//$("#employee-list-ul").append('<li><h2>'+ name + 
-		//'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b"><li><a href="index.html"><h3>Stephen Weber</h3><p><strong>Youve been invited to a meeting at Filament Group in Boston, MA</strong></p><p>Hey Stephen, if youre available at 10am tomorrow, weve got a meeting with the jQuery team.</p><p class="ui-li-aside"><strong>6:24</strong>PM</p></a></li></ul></li>');
 		
-		
+		/*
 
-		
-	}
-	//$('#employee-list-ul').listview('refresh');
-	//$('#employee-list-ul').listview('refresh');	
-	
-	/*
 		<li><div data-role="collapsible" >
 					<h2>Cory Green</h2>
 						<ul data-role="listview" data-theme="a" data-divider-theme="b">
-							
+							<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
 							<li><a href="index.html">
 								<h3>Stephen Weber</h3>
 							<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
 							<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
 								<p class="ui-li-aside"><strong>6:24</strong>PM</p>
 							</a></li>
-
 							<li><a href="index.html">
 								<h3>jQuery Team</h3>
 							<p><strong>Boston Conference Planning</strong></p>
@@ -119,7 +110,12 @@ function parseEmployeeData(employees){
 							</a></li>
 						</ul>
 				</div></li>
-	*/
+
+		*/
+
+		
+	}
+
 
 
 
