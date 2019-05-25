@@ -90,9 +90,10 @@ function parseEmployeeData(employees){
 		
 		$("#employee-list-ul").append('<li id="employee-report-'+ e + '><div data-role="collapsible"><h2>'+ name + 
 		'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">' + htmlEventString + '</ul></div></li>');
-
+		
+		$('#employee-list-ul').listview().listview('refresh');
 	}
-	$('#employee-list-ul').listview().listview('refresh');
+	
 	
 	/*
 		<li><div data-role="collapsible" >
