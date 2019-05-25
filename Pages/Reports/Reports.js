@@ -135,6 +135,15 @@ function groupingLocationAndTimes(employeeHistory){
 	var returnString = "";
 	for(var key in employeeHistory){
 		var historyObject = employeeHistory[key];
+		
+		let nameOfJob = historyObject.jobName;
+		let addressOfJob = historyObject.jobAddress;
+		let dateOfJob = historyObject.date;
+		let timeOfJob = historyObject.time;
+
+		console.log(nameOfJob);
+
+		/*
 		for(var hoKey in historyObject){
 			console.log(hoKey);
 
@@ -144,14 +153,15 @@ function groupingLocationAndTimes(employeeHistory){
 			let timeOfJob = historyObject[hoKey].time;
 
 			console.log("\n\nname of job -> " + nameOfJob);
-			/*
+			
 			<li><a href="index.html">
 				<h3>Name of Job</h3>
 				<p><strong>Address of Job</strong></p>
 				<p class="ui-li-aside">Date and Time</p>
 			</a></li>
-			*/
+			
 		}
+		*/
 	}
 }
 
