@@ -115,7 +115,8 @@ function parseEmployeeData(employees){
 		
 	}
 
-	$("#employee-list-ul").listview('refresh');
+	//$("#employee-list-ul").listview('refresh');
+	$('#employee-list-ul').listview().listview('refresh');
 	
 	/*
 		<li><div data-role="collapsible" >
