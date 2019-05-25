@@ -85,10 +85,7 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].jobHistory;
 
-		for(var eh in employeeHistory){
-			console.log("key -> " + eh);
-			console.log("value -> " + employeeHistory[eh]);
-		}
+		groupingLocationAndTimes(employeeHistory);
 
 		// start constructing the list items //
 		$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + 
@@ -131,46 +128,13 @@ function parseEmployeeData(employees){
 // this function will group things together and return where they were and for how long //
 function groupingLocationAndTimes(employeeHistory){
 
-	var listOfTempOffSite = [];
-	var listOfTempOnSite = [];
-	
-
-	// gives me the date:time and then the event //
 	for(var key in employeeHistory){
-		if(employeeHistory[key] == "Offsite"){
-			listOfTempOffSite[key] = employeeHistory[key];
+		var historyObject = employeeHistory[key];
+		for(var ho in historyObject){
+			console.log("key -> " + ho);
+			console.log("object -> " + historyObject[ho]);
 		}
 	}
-
-	console.log(Object.keys(listOfTempOffSite).length);
-
-
-
-
-
-	/*
-	for(var key in employeeHistory){
-
-		
-		var dateKey = key.split(",");
-
-		var dayString = dateKey[0].trim();
-		var timeString = dateKey[1].trim();
-		
-		if(employeeHistory[key] == "Offsite"){
-			listOfTempOffSite[key] = employeeHistory[key];
-		}else{
-			listOfTempOnSite[key] = employeeHistory[key];
-		}
-
-		console.log(Object.keys(listOfTempOffSite).length);
-		console.log(Object.keys(listOfTempOnSite).length);
-
-
-		//console.log("key " + key);
-		//console.log("value " + employeeHistory[key]);
-	}
-	*/
 }
 
 
