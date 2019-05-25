@@ -138,7 +138,7 @@ function groupingLocationAndTimes(employeeHistory){
 		var tempString = '<li><a href="index.html"><h3>' + nameOfJob + 
 		'</h3><p><strong>'+ addressOfJob + 
 		'</strong></p><p class="ui-li-aside">'+ dateOfJob + 
-		'" "' + timeOfJob + 
+		' ' + timeOfJob + 
 		'</p></a></li>';
 
 		returnString = returnString + tempString;
