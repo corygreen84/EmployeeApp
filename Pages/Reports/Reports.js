@@ -76,7 +76,7 @@ function loadEmployeeData(user, companyName){
 
 
 function parseEmployeeData(employees){
-	//$("#employee-list-ul").empty();
+	$("#employee-list-ul").empty();
 	
 	// getting the main list //
 	for(var e in employees){
@@ -85,29 +85,30 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].jobHistory;
 
-		var htmlEventString = groupingLocationAndTimes(employeeHistory);
+		//var htmlEventString = groupingLocationAndTimes(employeeHistory);
+		var htmlEventString = '<li><a href="index.html"><h3>Roofing Job</h3><p><strong>18991 Middle Camp Rd. Twain Harte CA, 95383</strong></p><p class="ui-li-aside"><strong>05-18-2019 11:36</strong>am</p></a></li><li><a href="index.html"><h3>Offsite</h3><p><strong>Offsite</strong></p><p class="ui-li-aside"><strong>05-18-2019 12:59</strong>pm</p></a></li><li data-role="list-divider">05-18-2019 Total Hours: 4 Onsite</li>';
 		
-		//console.log(htmlEventString);
+		var initialListItem = '<li><div data-role="collapsible"><h2>'+ name +
+		'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">' + htmlEventString +'</ul></div></li>';
 
+		$("#employee-list-ul").append(initialListItem);
 		
 		/*
 
 		<li><div data-role="collapsible" >
 					<h2>Cory Green</h2>
 						<ul data-role="listview" data-theme="a" data-divider-theme="b">
-							<li data-role="list-divider">Friday, October 8, 2010 <span class="ui-li-count">2</span></li>
 							<li><a href="index.html">
-								<h3>Stephen Weber</h3>
-							<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
-							<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
-								<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+								<h3>Roofing Job</h3>
+							<p><strong>18991 Middle Camp Rd. Twain Harte CA, 95383</strong></p>
+								<p class="ui-li-aside"><strong>05-18-2019 11:36</strong>am</p>
 							</a></li>
 							<li><a href="index.html">
-								<h3>jQuery Team</h3>
-							<p><strong>Boston Conference Planning</strong></p>
-							<p>In preparation for the upcoming conference in Boston, we need to start gathering a list of sponsors and speakers.</p>
-								<p class="ui-li-aside"><strong>9:18</strong>AM</p>
+								<h3>Offsite</h3>
+							<p><strong>Offsite</strong></p>
+								<p class="ui-li-aside"><strong>05-18-2019 12:59</strong>pm</p>
 							</a></li>
+							<li data-role="list-divider">05-18-2019 Total Hours: 4 Onsite</li>
 						</ul>
 				</div></li>
 
@@ -115,7 +116,7 @@ function parseEmployeeData(employees){
 
 		
 	}
-
+	$("#employee-list-ul").listview('refresh');
 
 
 
@@ -135,25 +136,6 @@ function groupingLocationAndTimes(employeeHistory){
 		let timeOfJob = historyObject.time;
 
 		let dateAndTimeString = "" + dateOfJob + " " + timeOfJob;
-
-		var tempString = '<li><a href="index.html"><h3>' + nameOfJob + 
-		'</h3><p><strong>'+ addressOfJob + 
-		'</strong></p><p class="ui-li-aside">'+ dateAndTimeString + 
-		'</p></a></li>';
-
-		returnString = returnString + tempString;
-		/*
-		for(var hoKey in historyObject){
-			
-			
-			<li><a href="index.html">
-				<h3>Name of Job</h3>
-				<p><strong>Address of Job</strong></p>
-				<p class="ui-li-aside">Date and Time</p>
-			</a></li>
-			
-		}
-		*/
 		
 	}
 	return returnString;
