@@ -97,6 +97,11 @@ function parseEmployeeData(employees){
 
 		employeeListUl.append(employeeListItem);
 
+		var listItem = $('<li><a href="index.html"><h3>Stephen Weber</h3><p><strong>Youve been invited to a meeting at Filament Group in Boston, MA</strong></p><p>Hey Stephen, if youre available at 10am tomorrow, weve got a meeting with the jQuery team.</p><p class="ui-li-aside"><strong>6:24</strong>PM</p></a></li>');
+
+		employeeListUl.append(listItem);
+
+
 		
 
 
@@ -116,6 +121,7 @@ function parseEmployeeData(employees){
 							<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
 								<p class="ui-li-aside"><strong>6:24</strong>PM</p>
 							</a></li>
+
 							<li><a href="index.html">
 								<h3>jQuery Team</h3>
 							<p><strong>Boston Conference Planning</strong></p>
