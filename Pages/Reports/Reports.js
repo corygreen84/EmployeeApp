@@ -88,8 +88,8 @@ function parseEmployeeData(employees){
 		groupingLocationAndTimes(employeeHistory);
 
 		// start constructing the list items //
-		$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + 
-		'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">');
+		//$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + 
+		//'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">');
 
 		
 
@@ -130,9 +130,8 @@ function groupingLocationAndTimes(employeeHistory){
 
 	for(var key in employeeHistory){
 		var historyObject = employeeHistory[key];
-		for(var ho in historyObject){
-			console.log("key -> " + ho);
-			console.log("object -> " + historyObject[ho]);
+		for(var hoKey in historyObject){
+			
 		}
 	}
 }
