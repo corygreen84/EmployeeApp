@@ -138,7 +138,10 @@ function groupingLocationAndTimes(employeeHistory){
 		for(var hoKey in historyObject){
 			console.log(hoKey);
 
-			let nameOfJob = historyObject[hoKey];
+			let nameOfJob = historyObject[hoKey].jobName;
+			let addressOfJob = historyObject[hoKey].jobAddress;
+			let dateOfJob = historyObject[hoKey].date;
+			let timeOfJob = historyObject[hoKey].time;
 			/*
 			<li><a href="index.html">
 				<h3>Name of Job</h3>
