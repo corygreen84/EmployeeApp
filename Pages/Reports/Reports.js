@@ -86,21 +86,13 @@ function parseEmployeeData(employees){
 		var employeeHistory = employees[e].jobHistory;
 
 		var htmlEventString = groupingLocationAndTimes(employeeHistory);
-		console.log(htmlEventString);
 		
 		
-		
+		$("#employee-list-ul").append('<li id="employee-report-'+ e + '><div data-role="collapsible"><h2>'+ name + 
+		'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">' + htmlEventString + '</ul></div></li>');
 
-		//$("#job-listview-div ul").append('<li id=job-' + _id + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
-
-		
-
-
-
-
-		
 	}
-	//$('#employee-list-ul').listview().listview('refresh');
+	$('#employee-list-ul').listview().listview('refresh');
 	
 	/*
 		<li><div data-role="collapsible" >
