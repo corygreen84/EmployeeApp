@@ -93,7 +93,7 @@ function parseEmployeeData(employees){
 
 		
 		
-		$("#employee-list-ul").append('<li id="employee-report-'+ e + '><div data-role="collapsible"><h2>'+ name + 
+		$("#employee-list-ul").append('<li><div data-role="collapsible"><h2>'+ name + 
 		'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">'+'</ul></div></li>');
 		
 
