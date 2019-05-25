@@ -136,13 +136,14 @@ function groupingLocationAndTimes(employeeHistory){
 	for(var key in employeeHistory){
 		var historyObject = employeeHistory[key];
 		for(var hoKey in historyObject){
-			
+			console.log(hoKey);
+
+			let nameOfJob = historyObject[hoKey];
 			/*
 			<li><a href="index.html">
-				<h3>Stephen Weber</h3>
-				<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
-				<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
-				<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+				<h3>Name of Job</h3>
+				<p><strong>Address of Job</strong></p>
+				<p class="ui-li-aside">Date and Time</p>
 			</a></li>
 			*/
 		}
