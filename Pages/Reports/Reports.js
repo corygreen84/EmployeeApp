@@ -134,7 +134,12 @@ function groupingLocationAndTimes(employeeHistory){
 		let dateOfJob = historyObject.date;
 		let timeOfJob = historyObject.time;
 
-		var tempString = '<li><a href="index.html"><h3>' + nameOfJob + '</h3><p><strong>'+ addressOfJob + '</strong></p><p class="ui-li-aside">'+ dateOfJob + ' ' + timeOfJob + '</p></a></li>';
+		var tempString = '<li><a href="index.html"><h3>' + nameOfJob + 
+		'</h3><p><strong>'+ addressOfJob + 
+		'</strong></p><p class="ui-li-aside">'+ dateOfJob + 
+		'" "' + timeOfJob + 
+		'</p></a></li>';
+
 		returnString = returnString + tempString;
 		/*
 		for(var hoKey in historyObject){
