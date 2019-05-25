@@ -76,7 +76,7 @@ function loadEmployeeData(user, companyName){
 
 
 function parseEmployeeData(employees){
-	$("#employee-list-ul").empty();
+	//$("#employee-list-ul").empty();
 	
 	// getting the main list //
 	for(var e in employees){
@@ -85,27 +85,13 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].jobHistory;
 
-		groupingLocationAndTimes(employeeHistory);
+		var htmlEventString = groupingLocationAndTimes(employeeHistory);
 
-		// start constructing the list items //
-		//$("#employee-list-ul").append('<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + 
-		//'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b">');
+		
+		
+		
 
-		var employeeListUl = $("#employee-list-ul");
-		var employeeListItem = '<li id=employee-Report-' + e + '><div data-role="collapsible"><h2>' + name + 
-		'</h2>';
-
-		employeeListUl.append(employeeListItem);
-		/*
-		var employeeDataUl = '<ul data-role="listview" data-theme="a" data-divider-theme="b">';
-
-		employeeListUl.append(employeeListItem);
-		employeeListItem.append(employeeDataUl);
-
-		var listItem = $('<li><a href="index.html"><h3>Stephen Weber</h3><p><strong>Youve been invited to a meeting at Filament Group in Boston, MA</strong></p><p>Hey Stephen, if youre available at 10am tomorrow, weve got a meeting with the jQuery team.</p><p class="ui-li-aside"><strong>6:24</strong>PM</p></a></li>');
-
-		employeeDataUl.append(listItem);
-	*/
+		//$("#job-listview-div ul").append('<li id=job-' + _id + ' onclick="mainJobListOnClick(this)"><a href="#"><h2>' + _name + '</h2><p><strong>' + _address + '</strong></p><p class="ui-li-aside"><strong>' + _date + '</strong></p></a></li>');
 
 		
 
@@ -114,9 +100,7 @@ function parseEmployeeData(employees){
 
 		
 	}
-
-	//$("#employee-list-ul").listview('refresh');
-	$('#employee-list-ul').listview().listview('refresh');
+	//$('#employee-list-ul').listview().listview('refresh');
 	
 	/*
 		<li><div data-role="collapsible" >
@@ -148,10 +132,19 @@ function parseEmployeeData(employees){
 // this function will group things together and return where they were and for how long //
 function groupingLocationAndTimes(employeeHistory){
 
+	var returnString = "";
 	for(var key in employeeHistory){
 		var historyObject = employeeHistory[key];
 		for(var hoKey in historyObject){
 			
+			/*
+			<li><a href="index.html">
+				<h3>Stephen Weber</h3>
+				<p><strong>You've been invited to a meeting at Filament Group in Boston, MA</strong></p>
+				<p>Hey Stephen, if you're available at 10am tomorrow, we've got a meeting with the jQuery team.</p>
+				<p class="ui-li-aside"><strong>6:24</strong>PM</p>
+			</a></li>
+			*/
 		}
 	}
 }
