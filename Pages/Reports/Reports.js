@@ -86,7 +86,7 @@ function parseEmployeeData(employees){
 		var employeeHistory = employees[e].jobHistory;
 
 		var htmlEventString = groupingLocationAndTimes(employeeHistory);
-
+		console.log(htmlEventString);
 		
 		
 		
@@ -141,18 +141,11 @@ function groupingLocationAndTimes(employeeHistory){
 		let dateOfJob = historyObject.date;
 		let timeOfJob = historyObject.time;
 
-		console.log(nameOfJob);
-
+		var tempString = '<li><a href="index.html"><h3>' + nameOfJob + '</h3><p><strong>'+ addressOfJob + '</strong></p><p class="ui-li-aside">'+ dateOfJob + ' ' + timeOfJob + '</p></a></li>';
+		returnString = returnString + tempString;
 		/*
 		for(var hoKey in historyObject){
-			console.log(hoKey);
-
-			let nameOfJob = historyObject[hoKey].jobName;
-			let addressOfJob = historyObject[hoKey].jobAddress;
-			let dateOfJob = historyObject[hoKey].date;
-			let timeOfJob = historyObject[hoKey].time;
-
-			console.log("\n\nname of job -> " + nameOfJob);
+			
 			
 			<li><a href="index.html">
 				<h3>Name of Job</h3>
@@ -162,7 +155,9 @@ function groupingLocationAndTimes(employeeHistory){
 			
 		}
 		*/
+		
 	}
+	return returnString;
 }
 
 
