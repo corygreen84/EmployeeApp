@@ -87,6 +87,7 @@ function parseEmployeeData(employees){
 
 		var htmlEventString = groupingLocationAndTimes(employeeHistory);
 		
+		console.log(htmlEventString);
 		
 		$("#employee-list-ul").append('<li id="employee-report-'+ e + '><div data-role="collapsible"><h2>'+ name + 
 		'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b"></ul></div></li>');
