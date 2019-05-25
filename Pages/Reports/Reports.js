@@ -85,13 +85,9 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].jobHistory;
 
-		for(var h in employeeHistory){
-
-			// this is a dictionary containing the date and time as the key and the status/address as the value //
-			var employeeHist = employeeHistory[h];
-
-			// this function will group things together and return where they were and for how long //
-			groupingLocationAndTimes(employeeHist);
+		for(var eh in employeeHistory){
+			console.log("key -> " + eh);
+			console.log("value -> " + employeeHistory[eh]);
 		}
 
 		// start constructing the list items //
