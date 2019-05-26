@@ -87,7 +87,7 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].jobHistory;
 
-		listView.append('<li data-role="collapsible" data-iconpose="right" data-inset="false"><h2>Croy Geern</h2><ul data-role="listview" data-theme="b"><li><a href="#">First Item</a></li><li><a href="#">Second Item</a></li><li><a href="#">Third Item</a></li></ul>');
+		listView.append('<li data-role="collapsible" data-iconpose="right" data-inset="false"><h2>Croy Geern</h2><ul data-role="listview" data-theme="b" id="sub-list-view"><li><a href="#">First Item</a></li><li><a href="#">Second Item</a></li><li><a href="#">Third Item</a></li></ul>');
 
 		/*
 
@@ -104,6 +104,7 @@ function parseEmployeeData(employees){
 
 		
 		$("#main-list-view").listview('refresh');
+		$("#sub-list-view").listview('refresh');
 	}
 	
 }
