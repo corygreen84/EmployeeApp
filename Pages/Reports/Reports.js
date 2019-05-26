@@ -76,7 +76,7 @@ function loadEmployeeData(user, companyName){
 
 
 function parseEmployeeData(employees){
-	//$("#employee-list-ul").empty();
+	$("#main-list-view").empty();
 
 	var listView = $("#main-list-view");
 	
