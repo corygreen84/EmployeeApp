@@ -104,9 +104,9 @@ function parseEmployeeData(employees){
 
 		
 		$("#main-list-view").listview('refresh');
-		$(".sub-list-view").listview('refresh');
+		
 	}
-	
+	$(".sub-list-view").listview('refresh');
 }
 
 
