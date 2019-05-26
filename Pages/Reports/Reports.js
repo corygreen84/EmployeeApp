@@ -77,6 +77,8 @@ function loadEmployeeData(user, companyName){
 
 function parseEmployeeData(employees){
 	//$("#employee-list-ul").empty();
+
+	var listView = $("#main-list-view");
 	
 	// getting the main list //
 	for(var e in employees){
@@ -85,42 +87,24 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].jobHistory;
 
-		//var htmlEventString = groupingLocationAndTimes(employeeHistory);
-		var htmlEventString = '<li><a href="index.html"><h3>Roofing Job</h3><p><strong>18991 Middle Camp Rd. Twain Harte CA, 95383</strong></p><p class="ui-li-aside"><strong>05-18-2019 11:36</strong>am</p></a></li><li><a href="index.html"><h3>Offsite</h3><p><strong>Offsite</strong></p><p class="ui-li-aside"><strong>05-18-2019 12:59</strong>pm</p></a></li><li data-role="list-divider">05-18-2019 Total Hours: 4 Onsite</li>';
-		
-		var initialListItem = '<li><div data-role="collapsible"><h2>'+ name +
-		'</h2><ul data-role="listview" data-theme="a" data-divider-theme="b" class="listview-class">' + htmlEventString +'</ul></div></li>';
+		listView.append('<li data-role="collapsible" data-iconpose="right" data-inset="false"><h2>Croy Geern</h2><ul data-role="listview" data-theme="b"><li><a href="#">First Item</a></li><li><a href="#">Second Item</a></li><li><a href="#">Third Item</a></li></ul>');
 
-		$("#employee-list-ul").append(initialListItem);
-		
 		/*
 
-		<li><div data-role="collapsible" >
-					<h2>Cory Green</h2>
-						<ul data-role="listview" data-theme="a" data-divider-theme="b">
-							<li><a href="index.html">
-								<h3>Roofing Job</h3>
-							<p><strong>18991 Middle Camp Rd. Twain Harte CA, 95383</strong></p>
-								<p class="ui-li-aside"><strong>05-18-2019 11:36</strong>am</p>
-							</a></li>
-							<li><a href="index.html">
-								<h3>Offsite</h3>
-							<p><strong>Offsite</strong></p>
-								<p class="ui-li-aside"><strong>05-18-2019 12:59</strong>pm</p>
-							</a></li>
-							<li data-role="list-divider">05-18-2019 Total Hours: 4 Onsite</li>
-						</ul>
-				</div></li>
+		<li data-role="collapsible" data-iconpose="right" data-inset="false">
+			<h2>Cory Green</h2>
+			<ul data-role="listview" data-theme="b">
+				<li><a href="#">First Item</a></li>
+				<li><a href="#">Second Item</a></li>
+				<li><a href="#">Third Item</a></li>
+			</ul>
+		</li>
 
 		*/
 
-		
+		$("#employee-list-ul").listview('refresh');
 	}
-	$("#employee-list-ul").listview('refresh');
-	$(".listview-class").listview('refresh');
-
-
-
+	
 }
 
 
