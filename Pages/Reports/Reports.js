@@ -102,7 +102,8 @@ function parseEmployeeData(employees){
 
 		*/
 
-		$("#employee-list-ul").listview('refresh');
+		
+		$("#main-list-view").listview('refresh');
 	}
 	
 }
