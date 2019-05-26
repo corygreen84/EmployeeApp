@@ -95,12 +95,18 @@ function parseEmployeeData(employees){
 		let h2Title = document.createElement("h2");
 		h2Title.innerHTML = "Cory Green";
 
+		var secondUnorderedListItem = document.createElement("ul");
+		secondUnorderedListItem.setAttribute("data-role", "listview");
+		secondUnorderedListItem.setAttribute("data-theme", "b");
+
 
 
 
 		listView.append(listViewItem);
 
 		listViewItem.append(h2Title);
+
+		h2Title.append(secondUnorderedListItem);
 
 		//listView.append('<li data-role="collapsible" data-iconpose="right" data-inset="false"><h2>Croy Geern</h2><ul data-role="listview" data-theme="b" class="sub-list-view"><li><a href="#">First Item</a></li><li><a href="#">Second Item</a></li><li><a href="#">Third Item</a></li></ul>');
 
