@@ -92,7 +92,15 @@ function parseEmployeeData(employees){
 		listViewItem.setAttribute("data-iconpose", "right");
 		listViewItem.setAttribute("data-inset", "false");
 
+		let h2Title = document.createElement("h2");
+		h2Title.innerHTML = "Cory Green";
+
+
+
+
 		listView.append(listViewItem);
+
+		listViewItem.append(h2Title);
 
 		//listView.append('<li data-role="collapsible" data-iconpose="right" data-inset="false"><h2>Croy Geern</h2><ul data-role="listview" data-theme="b" class="sub-list-view"><li><a href="#">First Item</a></li><li><a href="#">Second Item</a></li><li><a href="#">Third Item</a></li></ul>');
 
