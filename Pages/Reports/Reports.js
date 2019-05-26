@@ -99,6 +99,8 @@ function parseEmployeeData(employees){
 		secondUnorderedListItem.setAttribute("data-role", "listview");
 		secondUnorderedListItem.setAttribute("data-theme", "b");
 
+		var secondaryListItem = document.createElement("li");
+
 
 
 
@@ -125,9 +127,9 @@ function parseEmployeeData(employees){
 
 		
 		
-		
+		$("#main-list-view").listview('refresh');	
 	}
-	$("#main-list-view").listview('refresh');
+	
 }
 
 
