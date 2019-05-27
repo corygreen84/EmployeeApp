@@ -76,9 +76,9 @@ function loadEmployeeData(user, companyName){
 
 
 function parseEmployeeData(employees){
-	$("#main-list-view").empty();
+	$("#main-list-view-div").empty();
 
-	var listView = $("#main-list-view");
+	var listView = $("#main-list-view-div");
 	
 	// getting the main list //
 	for(var e in employees){
@@ -87,50 +87,34 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].employeeEmail;
 		var employeeHistory = employees[e].jobHistory;
 
-		var listViewItem = document.createElement("li");
-		listViewItem.setAttribute("data-role", "collapsible");
-		listViewItem.setAttribute("data-iconpose", "right");
-		listViewItem.setAttribute("data-inset", "false");
+		// creating the first level div //
+		var firstDiv = $('<div>', {"data-role":"collapsible"});
+		listView.append(firstDiv);
 
-		let h2Title = document.createElement("h2");
-		h2Title.innerHTML = "Cory Green";
+		// creating the title for the collapsing item //
+		var nameOfCollapse = $('<h2>Hey there '+ i +'</h2>');
+		firstDiv.append(nameOfCollapse);
 
-		var secondUnorderedListItem = document.createElement("ul");
-		secondUnorderedListItem.setAttribute("data-role", "listview");
-		secondUnorderedListItem.setAttribute("data-theme", "b");
+		// creating an unordered list //
+		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a"});
+		firstDiv.append(secondLevelUl);
 
-		var secondaryListItem = document.createElement("li");
+		// adding a list item to the second ul //
+		// <li><a href="#"> //
+		var secondaryLi1 = $('<li><a href="#"><h3>Roofing job</h3><p><strong>18991 Middle Camp Rd.  Twain Harte CA, 95383</strong></p><p class="ui-li-aside">May 18th, 2019 @ 11:32am</p></a></li>');
+		var secondaryLi2 = $('<li><a href="#"><h3>Roofing job</h3><p><strong>18991 Middle Camp Rd.  Twain Harte CA, 95383</strong></p><p class="ui-li-aside">May 18th, 2019 @ 11:32am</p></a></li>');
+		secondLevelUl.append(secondaryLi1);
+		secondLevelUl.append(secondaryLi2);
 
 
-
-
-		listView.append(listViewItem);
-
-		listViewItem.append(h2Title);
-
-		h2Title.append(secondUnorderedListItem);
-
-		//listView.append('<li data-role="collapsible" data-iconpose="right" data-inset="false"><h2>Croy Geern</h2><ul data-role="listview" data-theme="b" class="sub-list-view"><li><a href="#">First Item</a></li><li><a href="#">Second Item</a></li><li><a href="#">Third Item</a></li></ul>');
-
-		/*
-
-		<li data-role="collapsible" data-iconpose="right" data-inset="false">
-			<h2>Cory Green</h2>
-			<ul data-role="listview" data-theme="b">
-				<li><a href="#">First Item</a></li>
-				<li><a href="#">Second Item</a></li>
-				<li><a href="#">Third Item</a></li>
-			</ul>
-		</li>
-
-		*/
-
-		
-		
-		$("#main-list-view").listview('refresh');	
+			
 	}
-	
+	$("#main-list-view-div").trigger("create");	
 }
+
+
+
+
 
 
 // this function will group things together and return where they were and for how long //
