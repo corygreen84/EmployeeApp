@@ -95,14 +95,15 @@ function parseEmployeeData(employees){
 		var nameOfCollapse = $('<h2>'+ name + ' # ' + employeeNumber + '</h2>');
 		firstDiv.append(nameOfCollapse);
 
-
-		for(var eh in employeeHistory){
-
-		}
-
 		// creating an unordered list //
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a"});
 		firstDiv.append(secondLevelUl);
+
+		for(var eh in employeeHistory){
+			console.log(employeeHistory[eh]);
+		}
+
+		
 
 		// adding a list item to the second ul //
 		// <li><a href="#"> //
