@@ -92,7 +92,7 @@ function parseEmployeeData(employees){
 		listView.append(firstDiv);
 
 		// creating the title for the collapsing item //
-		var nameOfCollapse = $('<h2>Hey there</h2>');
+		var nameOfCollapse = $('<h2>'+ name +'</h2>');
 		firstDiv.append(nameOfCollapse);
 
 		// creating an unordered list //
