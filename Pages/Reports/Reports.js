@@ -100,7 +100,12 @@ function parseEmployeeData(employees){
 		firstDiv.append(secondLevelUl);
 
 		for(var eh in employeeHistory){
-			console.log(employeeHistory[eh]);
+			var date = employeeHistory[eh].date;
+			var time = employeeHistory[eh].time;
+			var address = employeeHistory[eh].jobAddress;
+			var name = employeeHistory[eh].jobName;
+
+			console.log(name);
 		}
 
 		
