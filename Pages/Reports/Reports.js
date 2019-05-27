@@ -105,18 +105,20 @@ function parseEmployeeData(employees){
 			var address = employeeHistory[eh].jobAddress;
 			var name = employeeHistory[eh].jobName;
 
-			console.log(name);
+			var secondaryLi1 = $('<li><a href="#"><h3>Roofing job</h3><p><strong>18991 Middle Camp Rd.  Twain Harte CA, 95383</strong></p><p class="ui-li-aside">May 18th, 2019 @ 11:32am</p></a></li>');
+			secondLevelUl.append(secondaryLi1);
 		}
 
 		
 
 		// adding a list item to the second ul //
 		// <li><a href="#"> //
+		/*
 		var secondaryLi1 = $('<li><a href="#"><h3>Roofing job</h3><p><strong>18991 Middle Camp Rd.  Twain Harte CA, 95383</strong></p><p class="ui-li-aside">May 18th, 2019 @ 11:32am</p></a></li>');
 		var secondaryLi2 = $('<li><a href="#"><h3>Roofing job</h3><p><strong>18991 Middle Camp Rd.  Twain Harte CA, 95383</strong></p><p class="ui-li-aside">May 18th, 2019 @ 11:32am</p></a></li>');
 		secondLevelUl.append(secondaryLi1);
 		secondLevelUl.append(secondaryLi2);
-
+		*/
 
 			
 	}
