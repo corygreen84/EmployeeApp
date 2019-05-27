@@ -92,7 +92,7 @@ function parseEmployeeData(employees){
 		listView.append(firstDiv);
 
 		// creating the title for the collapsing item //
-		var nameOfCollapse = $('<h2>'+ name + ' # ' + employeeNumber + '</h2>');
+		var nameOfCollapse = $('<h2>'+ name + ' # ' + employeeNumber + ' - ' + employeeEmail + '</h2>');
 		firstDiv.append(nameOfCollapse);
 
 		// creating an unordered list //
@@ -108,19 +108,6 @@ function parseEmployeeData(employees){
 			var secondaryLi1 = $('<li><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
 			secondLevelUl.append(secondaryLi1);
 		}
-
-		
-
-		// adding a list item to the second ul //
-		// <li><a href="#"> //
-		/*
-		var secondaryLi1 = $('<li><a href="#"><h3>Roofing job</h3><p><strong>18991 Middle Camp Rd.  Twain Harte CA, 95383</strong></p><p class="ui-li-aside">May 18th, 2019 @ 11:32am</p></a></li>');
-		var secondaryLi2 = $('<li><a href="#"><h3>Roofing job</h3><p><strong>18991 Middle Camp Rd.  Twain Harte CA, 95383</strong></p><p class="ui-li-aside">May 18th, 2019 @ 11:32am</p></a></li>');
-		secondLevelUl.append(secondaryLi1);
-		secondLevelUl.append(secondaryLi2);
-		*/
-
-			
 	}
 	$("#main-list-view-div").trigger("create");	
 }
