@@ -92,8 +92,13 @@ function parseEmployeeData(employees){
 		listView.append(firstDiv);
 
 		// creating the title for the collapsing item //
-		var nameOfCollapse = $('<h2>'+ name +'</h2>');
+		var nameOfCollapse = $('<h2>'+ name + ' # ' + employeeNumber + '</h2>');
 		firstDiv.append(nameOfCollapse);
+
+
+		for(var eh in employeeHistory){
+
+		}
 
 		// creating an unordered list //
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a"});
