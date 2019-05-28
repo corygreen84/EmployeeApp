@@ -311,13 +311,15 @@ function modifyAddressTextChange(){
 		addressTextChanged = false;
 	}
 
+	toggleJobModifyButton();
+	toggleModifySearchButton();
 
 	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" && modifyLatitudeTextField.value != "")){
 		addressTextChanged = false;
+		modifySearchButton.disabled = false;
 	}
 
-	toggleJobModifyButton();
-	toggleModifySearchButton();
+	
 }
 
 
