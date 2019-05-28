@@ -220,8 +220,6 @@ function modifyListItemOnClick(item){
 	//console.log("item id - > " + item.id);
 	resultsOfCheckingDifferencesInArrays = {};
 
-
-
 	if($('#icon--' + item.id).hasClass('ui-icon-plus') == true){
 
 		for(var i in listOfEmployeesModify){
@@ -286,6 +284,15 @@ modifyJobSpan.onclick = function(){
 
 
 // **** closing the modal view is handled through Window-onclick.js **** //
+
+
+
+
+
+
+
+
+
 
 
 // text change methods //
@@ -380,17 +387,6 @@ function toggleModifySearchButton(){
 		modifySearchButton.disabled = true;
 	}
 }
-
-
-
-
-function modifySearchButtonOnClick(){
-	var addressFieldText = jobAddressTextField.value;
-	var longFieldText = jobLongitudeTextField.value;
-	var latFieldText = jobLatitudeTextField.value;
-
-	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
-}
 // **** **** //
 
 
@@ -405,6 +401,22 @@ function toggleJobModifyButton(){
 	}else{
 		modifyJobButton.disabled = true;
 	}
+}
+
+
+
+
+
+
+
+
+
+function modifySearchButtonOnClick(){
+	var addressFieldText = jobAddressTextField.value;
+	var longFieldText = jobLongitudeTextField.value;
+	var latFieldText = jobLatitudeTextField.value;
+
+	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
 }
 
 
