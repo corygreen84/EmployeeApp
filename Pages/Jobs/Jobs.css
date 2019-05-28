@@ -84,12 +84,25 @@
 	color:white;
 }
 
-.coordinate-p{
-	width: 98%;
+.long-lat-div{
+	width: 100%;
+}
+
+.coordinate-long{
+	width: 49%;
 	color:white;
 	text-align: center;
 	text-shadow: none;
 	font-size: 13px;
+	display: inline-block;
+}
+.coordinate-lat{
+	width: 49%;
+	color:white;
+	text-align: center;
+	text-shadow: none;
+	font-size: 13px;
+	float:right;
 }
 
 #job-title{

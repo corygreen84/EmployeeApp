@@ -54,12 +54,14 @@
 
 
 					<div id="long-lat-div">
+							<div class="long-lat-div">
+								<p class="coordinate-long">Longitude</p>
+								<p class="coordinate-lat">Latitude</p>
+							</div>
 						<div id="long-div">
-							<p class="coordinate-p">Longitude</p>
 							<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude"  onkeyup="longTextChange()" oninput="longTextChange()">
 						</div>
-						<div id="lat-div">	
-							<p class="coordinate-p">Latitude</p>		
+						<div id="lat-div">			
 							<input type="text" id="create-lat-text" class="text-fields" placeholder="Latitude"  onkeyup="latTextChange()" oninput="latTextChange()">
 						</div>
 					</div>
@@ -112,16 +114,20 @@
 
 
 					<div id="long-lat-div">
+						<div class="long-lat-div">
+							<p class="coordinate-long">Longitude</p>
+							<p class="coordinate-lat">Latitude</p>
+						</div>
 						<div id="long-div">
-							<p class="coordinate-p">Longitude</p>
+							
 							<input type="text" id="modify-long-text" class="text-fields" placeholder="Longitude"  onkeyup="modifyLongTextChange()" oninput="modifyLongTextChange()">
 						</div>
 						<div id="lat-div">	
-							<p class="coordinate-p">Latitude</p>		
+									
 							<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude"  onkeyup="modifyLatTextChange()" oninput="modifyLatTextChange()">
 						</div>
 					</div>
-					
+
 					<div id="search-button-div">
 						
 						<button type="button" id="modify-address-search" class="buttons" onclick="modifySearchButtonOnClick()">Search</button>
