@@ -84,7 +84,7 @@ function parseEmployeeData(employees){
 	for(var e in employees){
 		var name = "" + employees[e].first + " " + employees[e].last;
 		var employeeNumber = employees[e].employeeNumber;
-		var employeeEmail = employees[e].employeeEmail;
+		var employeeEmail = employees[e].email;
 		var employeeHistory = employees[e].jobHistory;
 
 		// creating the first level div //
