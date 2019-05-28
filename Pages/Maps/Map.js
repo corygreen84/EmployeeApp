@@ -73,6 +73,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 				addressField.value = "";
 
 				toggleCoordinatesFilled(false, cameFromCreate);
+				toggleModifySearchButton();
 
 				return;
 			}
@@ -171,7 +172,7 @@ function parsePlaceByAddress(json, cameFromCreate){
 }
 
 function parsePlaceByCoordinate(json, cameFromCreate){
-	
+
 	if(json["results"] != undefined){
 		var results = json["results"];
 
@@ -376,6 +377,7 @@ function toggleCoordinatesFilled(filled, cameFromCreate){
 		longitudeChanged = filled;
 		latitudeChanged = filled;
 	}
+
 }
 
 function toggleAddressFilled(filled, cameFromCreate){
