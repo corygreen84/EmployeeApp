@@ -13,5 +13,6 @@ li{
 }
 
 #employee-report-div, #job-report-div{
-	width: 10%;
+	display: inline-block;
+	width: 20%;
 }
