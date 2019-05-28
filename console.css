@@ -137,7 +137,6 @@
 #welcome-label{
 	color: white;
 	font-weight: bold;
-	
 }
 
 #username-profile{
@@ -148,7 +147,7 @@
 }
 
 .dropbtn {
-	background-color: grey;
+	/*background-color: grey;*/
 	color: white;
 	padding: 2px;
 	font-size: 13px;
