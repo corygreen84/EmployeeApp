@@ -117,9 +117,6 @@ function parseEmployeeData(employees){
 			}
 
 			var secondaryLi = $('<li '+ dataTheme +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
-			
-			console.log(secondaryLi);
-			
 			secondLevelUl.append(secondaryLi);
 		}
 	}
