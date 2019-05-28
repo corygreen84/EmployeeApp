@@ -1,3 +1,8 @@
+#main-list-view-div{
+	height: 100%;
+	width: 90%;
+}
+
 
 li{
 	list-style-type: none;
