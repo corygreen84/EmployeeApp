@@ -86,10 +86,10 @@
 .long-lat-div-title{
 	width: 100%;
 	display: inline-block;
-	margin-top: -20px;
+	margin-top: -40px;
 	margin-bottom: -30px;
-
 }
+
 .coordinate-long{
 	width: 49%;
 	color:white;
