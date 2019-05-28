@@ -399,6 +399,14 @@ function modifySearchButtonOnClick(){
 
 // modifies the job with the data given //
 function modifyJobOnClick(){
+
+	if(jobNameTextField.value == "" || jobAddressTextField.value == "" || jobLatitudeTextField.value == "" || jobLongitudeTextField.value == ""){
+		let confirmOk = confirm("Error: One or more field(s) are not filled in.  Please correct these fields and try again.");
+		if(confirmOk){
+			
+		}
+	}else{
+
 	let confirmOk = confirm("Are you sure you want to modify this job?");
 	if(confirmOk){
 		var batch = db.batch();
@@ -429,6 +437,7 @@ function modifyJobOnClick(){
 			modifyJobModal.style.display = "none";
 		});
 	}
+}
 }
 
 
