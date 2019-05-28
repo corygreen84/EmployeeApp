@@ -317,6 +317,8 @@ function modifyAddressTextChange(){
 	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
 		addressTextChanged = false;
 		//toggleJobModifyButton();
+	}else{
+		addressTextChanged = true;
 	}
 
 	
@@ -340,6 +342,8 @@ function modifyLongTextChange(){
 	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
 		longitudeChanged = false;
 		//toggleJobModifyButton();
+	}else{
+		longitudeChanged = true;
 	}
 
 	
@@ -361,6 +365,8 @@ function modifyLatTextChange(){
 	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
 		latitudeChanged = false;
 		//toggleJobModifyButton();
+	}else{
+		latitudeChanged = true;
 	}
 
 	
