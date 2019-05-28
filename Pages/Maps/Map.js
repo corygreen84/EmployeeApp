@@ -171,7 +171,7 @@ function parsePlaceByAddress(json, cameFromCreate){
 }
 
 function parsePlaceByCoordinate(json, cameFromCreate){
-	console.log(json);
+	
 	if(json["results"] != undefined){
 		var results = json["results"];
 
