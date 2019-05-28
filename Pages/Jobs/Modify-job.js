@@ -347,9 +347,6 @@ function modifyLatTextChange(){
 
 
 function toggleModifySearchButton(){
-
-	console.log("address changed " + addressTextChanged);
-
 	if(addressTextChanged == true || longitudeChanged == true || latitudeChanged == true){
 		modifySearchButton.disabled = false;
 	}else{
