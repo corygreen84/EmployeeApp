@@ -84,6 +84,14 @@
 	color:white;
 }
 
+.coordinate-p{
+	width: 98%;
+	color:white;
+	text-align: center;
+	text-shadow: none;
+	font-size: 20px;
+}
+
 #job-title{
 	margin-bottom: 4px;
 }
