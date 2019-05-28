@@ -68,10 +68,13 @@ function searchForPlace(address, long, lat, cameFromCreate){
 		if(address != "" && (long != "" || lat != "")){
 			let alertConfirm = confirm("Please enter either an Address or a Coordinate to search.  Not both.");
 			if(alertConfirm){
+
+				
 				longitudeField.value = "";
 				latitudeField.value = "";
 				addressField.value = "";
 
+				
 				toggleCoordinatesFilled(false, cameFromCreate);
 				toggleModifySearchButton();
 
