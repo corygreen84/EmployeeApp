@@ -12,6 +12,10 @@ li{
 	width: 100%;
 }
 
+#employee-report-div{
+	margin-left: 20px;
+}
+
 #employee-report-div, #job-report-div{
 	display: inline-block;
 	width: 20%;
