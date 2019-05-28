@@ -90,6 +90,11 @@
 	height: 20px;
 }
 */
+
+.long-lat-div-title{
+	width: 100%;
+	display: inline-block;
+}
 .coordinate-long{
 	width: 49%;
 	color:white;
