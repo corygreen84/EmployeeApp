@@ -96,9 +96,6 @@ function parseEmployeeData(employees){
 		firstDiv.append(nameOfCollapse);
 
 		
-
-
-
 		// creating an unordered list //
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a"});
 		firstDiv.append(secondLevelUl);
