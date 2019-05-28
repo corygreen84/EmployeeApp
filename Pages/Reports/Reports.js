@@ -114,8 +114,11 @@ function parseEmployeeData(employees){
 				className = "Logged";
 			}
 
-			var secondaryLi1 = $('<li class='+ className +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
-			secondLevelUl.append(secondaryLi1);
+			var secondaryLi = $('<li class='+ className +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
+			
+			console.log(secondaryLi);
+			
+			secondLevelUl.append(secondaryLi);
 		}
 	}
 	$("#main-list-view-div").trigger("create");	
