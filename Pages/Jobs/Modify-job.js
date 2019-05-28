@@ -314,7 +314,6 @@ function modifyAddressTextChange(){
 
 	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" && modifyLatitudeTextField.value != "")){
 		addressTextChanged = false;
-		modifyJobButton.disabled = false;
 	}
 
 	toggleJobModifyButton();
@@ -346,6 +345,8 @@ function modifyLatTextChange(){
 
 
 function toggleModifySearchButton(){
+
+	console.log("address changed " + addressTextChanged);
 
 	if(addressTextChanged == true || longitudeChanged == true || latitudeChanged == true){
 		modifySearchButton.disabled = false;
