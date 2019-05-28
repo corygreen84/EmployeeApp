@@ -313,7 +313,7 @@ function modifyAddressTextChange(){
 
 
 	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" && modifyLatitudeTextField.value != "")){
-		addressTextChanged = true;
+		addressTextChanged = false;
 		modifyJobButton.disabled = false;
 	}
 
