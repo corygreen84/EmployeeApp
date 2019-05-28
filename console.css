@@ -1,8 +1,7 @@
 
 /* **** nav bar stuff **** */
 #title-bar{
-	/*background-color:grey;*/
-	/*padding: 40px 8px 8px 20px;*/
+
 	margin-left: 20px;
 	/*margin-bottom: 5px;*/
 	margin-top: 60px;
@@ -11,7 +10,7 @@
 }
 
 #title-label{
-	font-size: 25px;
+	font-size: 30px;
 	color:white;
 	text-shadow: 2px 2px #525963;
 }
@@ -40,9 +39,6 @@
 	left: 0;
 	background-color: #525963; 
 	overflow-x: hidden; 
-	/*border-right-color:#525963;
-	border-right-style:solid;
-	border-right-width:2px;*/
 }
 
 /* BLUE -#0080ff */
