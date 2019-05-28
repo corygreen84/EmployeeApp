@@ -6,6 +6,7 @@
 	margin-left: 20px;
 	/*margin-bottom: 5px;*/
 	margin-top: 60px;
+	
 	display: inline-block;
 }
 
@@ -106,6 +107,7 @@
 	border-bottom-style:solid;
 	border-bottom-width:2px;*/
 	position: fixed;
+	min-width: 600px;
 }
 
 #user-profile{
