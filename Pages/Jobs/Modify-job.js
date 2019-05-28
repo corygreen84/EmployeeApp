@@ -342,14 +342,10 @@ function modifyLongTextChange(){
 	toggleJobModifyButton();
 	toggleModifySearchButton();
 
-	/*
-	if(modifyLongitudeTextField.value == "" || modifyLongitudeTextField.value == "-"){
+	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
 		longitudeChanged = false;
-		//toggleModifySearchButton();
 		toggleJobModifyButton();
-		toggleModifySearchButton();
 	}
-	*/
 }
 
 function modifyLatTextChange(){
@@ -360,6 +356,11 @@ function modifyLatTextChange(){
 	}
 	toggleJobModifyButton();
 	toggleModifySearchButton();
+
+	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
+		latitudeChanged = false;
+		toggleJobModifyButton();
+	}
 }
 
 
