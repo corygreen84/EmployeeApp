@@ -370,11 +370,8 @@ function toggleJobModifyButton(){
 		latitudeChanged == true || 
 		longitudeChanged == true){
 
-			if(addressFieldText.value != "" && longFieldText.value != "" && latFieldText.value != ""){
-				modifyJobButton.disabled = false;
-			}else{
-				modifyJobButton.disabled = true;
-			}
+			modifyJobButton.disabled = false;
+			
 	}else{
 		modifyJobButton.disabled = true;
 	}
