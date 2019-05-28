@@ -95,6 +95,8 @@ function parseEmployeeData(employees){
 		var nameOfCollapse = $('<h2>'+ name + ' # ' + employeeNumber + ' - ' + employeeEmail + '</h2>');
 		firstDiv.append(nameOfCollapse);
 
+		
+
 		// creating an unordered list //
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a"});
 		firstDiv.append(secondLevelUl);
@@ -113,27 +115,6 @@ function parseEmployeeData(employees){
 }
 
 
-
-
-
-
-// this function will group things together and return where they were and for how long //
-function groupingLocationAndTimes(employeeHistory){
-
-	var returnString = "";
-	for(var key in employeeHistory){
-		var historyObject = employeeHistory[key];
-		
-		let nameOfJob = historyObject.jobName;
-		let addressOfJob = historyObject.jobAddress;
-		let dateOfJob = historyObject.date;
-		let timeOfJob = historyObject.time;
-
-		let dateAndTimeString = "" + dateOfJob + " " + timeOfJob;
-		
-	}
-	return returnString;
-}
 
 
 
