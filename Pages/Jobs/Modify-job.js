@@ -354,7 +354,6 @@ function modifyLatTextChange(){
 
 
 function toggleModifySearchButton(){
-	console.log("address changed -> " + addressTextChanged);
 	if(addressTextChanged == true || longitudeChanged == true || latitudeChanged == true){
 		modifySearchButton.disabled = false;
 	}else{
@@ -403,7 +402,7 @@ function modifyJobOnClick(){
 	if(jobNameTextField.value == "" || jobAddressTextField.value == "" || jobLatitudeTextField.value == "" || jobLongitudeTextField.value == ""){
 		let confirmOk = confirm("Error: One or more field(s) are not filled in.  Please correct these fields and try again.");
 		if(confirmOk){
-			
+
 		}
 	}else{
 
