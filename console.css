@@ -162,7 +162,7 @@
 }
 
 .dropbtn:hover, .dropbtn:focus {
-	background-color: grey;
+	/*background-color: grey;*/
 }
 
 .dropdown {
