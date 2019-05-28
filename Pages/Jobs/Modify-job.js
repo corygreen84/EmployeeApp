@@ -314,14 +314,19 @@ function modifyAddressTextChange(){
 	toggleJobModifyButton();
 	toggleModifySearchButton();
 
+	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
+		addressTextChanged = false;
+		toggleModifySearchButton();
+	}
 
 
-	//**** need to come back here ****//
+	/*
 	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" && modifyLatitudeTextField.value != "")){
 		addressTextChanged = false;
 		//toggleModifySearchButton();
 		toggleJobModifyButton();
 	}
+	*/
 }
 
 
