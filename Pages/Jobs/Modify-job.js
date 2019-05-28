@@ -336,7 +336,8 @@ function modifyLongTextChange(){
 
 	if(modifyLongitudeTextField.value == "" || modifyLongitudeTextField.value == "-"){
 		longitudeChanged = false;
-		toggleModifySearchButton();
+		//toggleModifySearchButton();
+		toggleJobModifyButton();
 	}
 
 
