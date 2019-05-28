@@ -75,7 +75,7 @@ function mainJobListOnClick(item){
 
 
 	jobNameTextField.value = job.name;
-	jobAddressTextField.value = job.address;
+	jobAddressTextField.value = "Address:" + job.address;
 	jobId = job.jobId;
 	locationLat = job.lat;
 	locationLong = job.long;
