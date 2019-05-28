@@ -316,7 +316,8 @@ function modifyAddressTextChange(){
 
 	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" && modifyLatitudeTextField.value != "")){
 		addressTextChanged = false;
-		toggleModifySearchButton();
+		//toggleModifySearchButton();
+		toggleJobModifyButton();
 	}
 }
 
