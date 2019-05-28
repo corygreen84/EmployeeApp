@@ -311,23 +311,18 @@ function modifyAddressTextChange(){
 		addressTextChanged = false;
 	}
 
-	
+	toggleJobModifyButton();
+	toggleModifySearchButton();
 
 	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
 		addressTextChanged = false;
 		//toggleJobModifyButton();
 	}
 
-	toggleJobModifyButton();
-	toggleModifySearchButton();
-	/*
-	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" && modifyLatitudeTextField.value != "")){
-		addressTextChanged = false;
-		//toggleModifySearchButton();
-		toggleJobModifyButton();
-	}
-	*/
+	
 }
+
+
 
 
 
@@ -339,16 +334,19 @@ function modifyLongTextChange(){
 		longitudeChanged = false;
 	}
 
-	
+	toggleJobModifyButton();
+	toggleModifySearchButton();
 
 	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
 		longitudeChanged = false;
 		//toggleJobModifyButton();
 	}
 
-	toggleJobModifyButton();
-	toggleModifySearchButton();
+	
 }
+
+
+
 
 function modifyLatTextChange(){
 	if(modifyLatitudeTextField.value != "" + locationLat){
@@ -357,14 +355,15 @@ function modifyLatTextChange(){
 		latitudeChanged = false;
 	}
 	
+	toggleJobModifyButton();
+	toggleModifySearchButton();
 
 	if(jobAddressTextField.value == "" || modifyLongitudeTextField.value == "" || modifyLatitudeTextField.value == ""){
 		latitudeChanged = false;
 		//toggleJobModifyButton();
 	}
 
-	toggleJobModifyButton();
-	toggleModifySearchButton();
+	
 }
 
 
