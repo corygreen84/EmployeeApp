@@ -68,8 +68,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 		if(address != "" && (long != "" || lat != "")){
 			let alertConfirm = confirm("Please enter either an Address or a Coordinate to search.  Not both.");
 			if(alertConfirm){
-
-
+				
 				longitudeField.value = "";
 				latitudeField.value = "";
 				addressField.value = "";
@@ -292,6 +291,7 @@ function eraseButtonOnClick(){
 
 	toggleCoordinatesFilled(false, true);
 	toggleAddressFilled(false, true);
+
 	toggleSearchButton();
 	toggleCreateButton();
 }
@@ -313,6 +313,7 @@ function modifyEraseButtonOnClick(){
 
 	toggleCoordinatesFilled(false, false);
 	toggleAddressFilled(false, false);
+
 	toggleModifySearchButton();
 	toggleJobModifyButton();
 }
