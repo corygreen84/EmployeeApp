@@ -56,13 +56,13 @@ function searchForPlace(address, long, lat, cameFromCreate){
 
 	if(cameFromCreate){
 		
-		addressField = createAddressTextField;
-		longitudeField = createLongitudeTextField;
-		latitudeField = createLatitudeTextField;
+		addressField = "Address:" + createAddressTextField;
+		longitudeField = "Long:" + createLongitudeTextField;
+		latitudeField = "Lat:" + createLatitudeTextField;
 	}else{
-		addressField = modifyAddressTextField;
-		longitudeField = modifyLongitudeTextField;
-		latitudeField = modifyLatitudeTextField;
+		addressField = "Address:" + modifyAddressTextField;
+		longitudeField = "Long:" + modifyLongitudeTextField;
+		latitudeField = "Lat:" + modifyLatitudeTextField;
 	}
 
 		if(address != "" && (long != "" || lat != "")){
@@ -70,9 +70,9 @@ function searchForPlace(address, long, lat, cameFromCreate){
 			if(alertConfirm){
 
 
-				longitudeField.value = "";
-				latitudeField.value = "";
-				addressField.value = "";
+				longitudeField.value = "Long:";
+				latitudeField.value = "Lat:";
+				addressField.value = "Address:";
 
 				addressTextChanged = false;
 				
@@ -83,8 +83,8 @@ function searchForPlace(address, long, lat, cameFromCreate){
 			}
 		}else if(address != "" && long == "" && lat == ""){
 			// address search //
-			longitudeField.value = "";
-			latitudeField.value = "";
+			longitudeField.value = "Long:";
+			latitudeField.value = "Lat:";
 
 			toggleCoordinatesFilled(false, cameFromCreate);
 
@@ -209,9 +209,9 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 									// place on the map //
 									placeOnMapCreate(newJobLong, newJobLat, formattedAddress);
 
-									createAddressTextField.value = formattedAddress;
-									createLongitudeTextField.value = newJobLong;
-									createLatitudeTextField.value = newJobLat;
+									createAddressTextField.value = "Address:" + formattedAddress;
+									createLongitudeTextField.value = "Long:" + newJobLong;
+									createLatitudeTextField.value = "Lat:" + newJobLat;
 							
 									toggleAddressFilled(true, cameFromCreate);
 									toggleCoordinatesFilled(true, cameFromCreate);
@@ -220,9 +220,9 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 								}else{
 									placeOnMapModify(newJobLong, newJobLat, formattedAddress);
 
-									modifyAddressTextField.value = formattedAddress;
-									modifyLongitudeTextField.value = newJobLong;
-									modifyLatitudeTextField.value = newJobLat;
+									modifyAddressTextField.value = "Address:" +formattedAddress;
+									modifyLongitudeTextField.value = "Long:" + newJobLong;
+									modifyLatitudeTextField.value = "Lat:" + newJobLat;
 							
 									toggleAddressFilled(true, cameFromCreate);
 									toggleCoordinatesFilled(true, cameFromCreate);
@@ -279,9 +279,9 @@ function eraseButtonOnClick(){
 	newJobLong = null;
 	newJobLat = null;
 
-	createAddressTextField.value = "";
-	createLongitudeTextField.value = "";
-	createLatitudeTextField.value = "";
+	createAddressTextField.value = "Address:";
+	createLongitudeTextField.value = "Long:";
+	createLatitudeTextField.value = "Lat:";
 
 	
 
@@ -301,9 +301,9 @@ function modifyEraseButtonOnClick(){
 	newJobLong = null;
 	newJobLat = null;
 
-	modifyAddressTextField.value = "";
-	modifyLongitudeTextField.value = "";
-	modifyLatitudeTextField.value = "";
+	modifyAddressTextField.value = "Address:";
+	modifyLongitudeTextField.value = "Long:";
+	modifyLatitudeTextField.value = "Lat:";
 
 
 	if(marker != null){
@@ -339,8 +339,8 @@ function addButtonOnClick(){
 		newJobLong = marker.getPosition().lng();
 		newJobLat = marker.getPosition().lat();
 
-		createLongitudeTextField.value = newJobLong;
-		createLatitudeTextField.value = newJobLat;
+		createLongitudeTextField.value = "Long:" + newJobLong;
+		createLatitudeTextField.value = "Lat:" + newJobLat;
 
 		toggleCoordinatesFilled(true, true);
 		toggleCreateButton();
@@ -364,8 +364,8 @@ function modifyAddButtonOnClick(){
 		newJobLong = marker.getPosition().lng();
 		newJobLat = marker.getPosition().lat();
 
-		modifyLongitudeTextField.value = newJobLong;
-		modifyLatitudeTextField.value = newJobLat;
+		modifyLongitudeTextField.value = "Long:" + newJobLong;
+		modifyLatitudeTextField.value = "Lat:" + newJobLat;
 
 		toggleCoordinatesFilled(true, false);
 		toggleModifySearchButton();
