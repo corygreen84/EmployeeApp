@@ -8,3 +8,10 @@ li{
 	background-color: blue;
 }
 
+#button-selections{
+	width: 100%;
+}
+
+#employee-report, #job-report{
+	width: 10%;
+}
