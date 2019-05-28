@@ -338,6 +338,7 @@ function modifyLongTextChange(){
 		longitudeChanged = false;
 		//toggleModifySearchButton();
 		toggleJobModifyButton();
+		toggleModifySearchButton();
 	}
 
 
