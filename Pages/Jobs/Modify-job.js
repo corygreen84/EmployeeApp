@@ -330,11 +330,16 @@ function modifyLongTextChange(){
 		longitudeChanged = false;
 	}
 
-	
-
-
 	toggleJobModifyButton();
 	toggleModifySearchButton();
+
+	if(modifyLongitudeTextField.value == "" || modifyLongitudeTextField.value == "-"){
+		longitudeChanged = false;
+		toggleModifySearchButton();
+	}
+
+
+	
 }
 
 function modifyLatTextChange(){
