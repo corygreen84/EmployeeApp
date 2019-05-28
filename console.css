@@ -24,7 +24,7 @@
 
 #top-side-nav{
 	/*background-color:grey;*/
-	background-image: linear-gradient(#525963, grey);
+	background-image: linear-gradient( grey, #525963);
 	padding: 90px 8px 8px 20px;
 }
 
@@ -100,7 +100,7 @@
 /* **** top banner stuff **** */
 #top-banner{
 	/*background-color:grey;*/
-	background-image: linear-gradient(#525963, grey);
+	background-image: linear-gradient( grey, #525963);
 	width:100%;
 	height:98px;
 	/*border-bottom-color: #525963;
