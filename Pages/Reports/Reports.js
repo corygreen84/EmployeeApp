@@ -109,12 +109,14 @@ function parseEmployeeData(employees){
 			var jobAddress = employeeHistory[eh].jobAddress;
 			var jobName = employeeHistory[eh].jobName;
 
-			var className = "";
+			var dataTheme = "";
 			if(jobName == "Logged In" || jobName == "Logged Off"){
-				className = "Logged";
+				dataTheme = 'data-theme="b"';
+			}else{
+				dataTheme = 'data-theme="a"';
 			}
 
-			var secondaryLi = $('<li class='+ className +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
+			var secondaryLi = $('<li '+ dataTheme +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
 			
 			console.log(secondaryLi);
 			
