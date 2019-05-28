@@ -55,9 +55,9 @@
 }
 
 .createJobClose, .modifyJobClose {
-  color: white;
-  float: right;
-  font-size: 28px;
+  	color: white;
+  	float: right;
+  	font-size: 28px;
 	font-weight: bold;
 	text-shadow: none;
 }
@@ -76,7 +76,7 @@
 .job-p-text{
 	width: 98%;
 	margin-left: 1%;
-	margin-top: 2px;
+	margin-top: 0px;
 	text-align: center;
 	text-shadow: none;
 	font-size: 20px;
@@ -85,31 +85,6 @@
 
 
 
-
-.long-lat-div-title{
-	width: 100%;
-	display: block;
-}
-
-
-
-
-.coordinate-long{
-	width: 49%;
-	color:white;
-	text-align: center;
-	text-shadow: none;
-	font-size: 13px;
-	display: inline-block;
-}
-.coordinate-lat{
-	width: 49%;
-	color:white;
-	text-align: center;
-	text-shadow: none;
-	font-size: 13px;
-	float:right;
-}
 
 #job-title{
 	margin-bottom: 4px;
