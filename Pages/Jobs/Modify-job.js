@@ -314,7 +314,7 @@ function modifyAddressTextChange(){
 	toggleJobModifyButton();
 	toggleModifySearchButton();
 
-	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" || modifyLatitudeTextField.value != "")){
+	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" && modifyLatitudeTextField.value != "")){
 		addressTextChanged = false;
 		toggleModifySearchButton();
 	}
