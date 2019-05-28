@@ -21,7 +21,8 @@
 }
 
 #top-side-nav{
-	background-color:grey;
+	/*background-color:grey;*/
+	background-image: linear-gradient(to bottom right, #525963, grey);
 	padding: 90px 8px 8px 20px;
 }
 
