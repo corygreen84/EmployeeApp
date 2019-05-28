@@ -97,8 +97,8 @@ function mainJobListOnClick(item){
 
 
 function placeLocationOnMap(long, lat, address){
-	jobLongitudeTextField.value = long;
-	jobLatitudeTextField.value = lat;
+	jobLongitudeTextField.value = "Long:" + long;
+	jobLatitudeTextField.value = "Lat:" + lat;
 	placeOnMapModify(long, lat, address);
 }
 
@@ -312,7 +312,7 @@ function modifyJobNameTextChange(){
 
 // **** address text changes **** //
 function modifyAddressTextChange(){
-	if(jobAddressTextField.value != job.address){
+	if(jobAddressTextField.value != "Address:" + job.address){
 		addressTextChanged = true;
 	}else{
 		addressTextChanged = false;
@@ -328,7 +328,7 @@ function modifyAddressTextChange(){
 
 function modifyLongTextChange(){
 
-	if(modifyLongitudeTextField.value != "" + locationLong){
+	if(modifyLongitudeTextField.value != "Long:" + locationLong){
 		longitudeChanged = true;
 	}else{
 		longitudeChanged = false;
@@ -342,7 +342,7 @@ function modifyLongTextChange(){
 
 
 function modifyLatTextChange(){
-	if(modifyLatitudeTextField.value != "" + locationLat){
+	if(modifyLatitudeTextField.value != "Lat:" + locationLat){
 		latitudeChanged = true;
 	}else{
 		latitudeChanged = false;
