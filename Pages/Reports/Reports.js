@@ -133,7 +133,7 @@ function employeeReportOnClick(){
 }
 
 // job on click //
-function deleteJobOnClick(){
+function jobReportOnClick(){
 	
 }
 
