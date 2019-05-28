@@ -314,6 +314,9 @@ function modifyAddressTextChange(){
 	toggleJobModifyButton();
 	toggleModifySearchButton();
 
+
+
+	//**** need to come back here ****//
 	if(jobAddressTextField.value == "" && (modifyLongitudeTextField.value != "" && modifyLatitudeTextField.value != "")){
 		addressTextChanged = false;
 		//toggleModifySearchButton();
@@ -334,15 +337,14 @@ function modifyLongTextChange(){
 	toggleJobModifyButton();
 	toggleModifySearchButton();
 
+	/*
 	if(modifyLongitudeTextField.value == "" || modifyLongitudeTextField.value == "-"){
 		longitudeChanged = false;
 		//toggleModifySearchButton();
 		toggleJobModifyButton();
 		toggleModifySearchButton();
 	}
-
-
-	
+	*/
 }
 
 function modifyLatTextChange(){
