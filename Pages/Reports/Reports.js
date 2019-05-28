@@ -98,7 +98,7 @@ function parseEmployeeData(employees){
 		
 
 
-		
+
 		// creating an unordered list //
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a"});
 		firstDiv.append(secondLevelUl);
@@ -109,7 +109,12 @@ function parseEmployeeData(employees){
 			var jobAddress = employeeHistory[eh].jobAddress;
 			var jobName = employeeHistory[eh].jobName;
 
-			var secondaryLi1 = $('<li><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
+			var className = "";
+			if(jobName == "Logged In" || jobName == "Logged Off"){
+				className = "Logged";
+			}
+
+			var secondaryLi1 = $('<li class='+ className +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
 			secondLevelUl.append(secondaryLi1);
 		}
 	}
