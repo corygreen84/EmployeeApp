@@ -21,8 +21,8 @@ var modifyLatitudeTextField = document.getElementById("modify-lat-text");
 var modifyAddressTextField = document.getElementById("modify-address-text");
 
 
-var _searchButton = document.getElementById("modify-address-search");
-var _revertButton = document.getElementById("revert-button");
+var modifySearchButton = document.getElementById("modify-address-search");
+var modifyRevertButton = document.getElementById("revert-button");
 
 
 // checking if the user has logged in //
@@ -373,8 +373,8 @@ function modifyAddButtonOnClick(){
 		modifyLongitudeTextField.value = newJobLong;
 		modifyLatitudeTextField.value = newJobLat;
 
-		_searchButton.disabled = false;
-		_revertButton.disabled = false;
+		modifySearchButton.disabled = false;
+		modifyRevertButton.disabled = false;
 
 		//toggleCoordinatesFilled(true, false);
 		//toggleModifySearchButton();
