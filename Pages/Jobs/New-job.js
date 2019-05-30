@@ -143,6 +143,8 @@ function toggleSearchButton(){
 }
 
 
+
+
 function searchButtonOnClick(){
 	var addressFieldText = addressCreateTextField.value;
 	var longFieldText = longitudeTextField.value;
