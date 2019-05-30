@@ -385,7 +385,7 @@ function toggleJobModifyButton(){
 
 
 
-
+*/
 function modifySearchButtonOnClick(){
 	var addressFieldText = jobAddressTextField.value;
 	var longFieldText = jobLongitudeTextField.value;
@@ -393,7 +393,7 @@ function modifySearchButtonOnClick(){
 
 	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
 }
-*/
+
 
 
 
