@@ -14,6 +14,7 @@ var jobAddressTextField = document.getElementById("modify-address-text");
 var jobLongitudeTextField = document.getElementById("modify-long-text");
 var jobLatitudeTextField = document.getElementById("modify-lat-text");
 
+var modifyRevertButton = document.getElementById("revert-button");
 var modifySearchButton = document.getElementById("modify-address-search");
 
 var listView = document.getElementById("modify-employee-list-div");
@@ -391,7 +392,7 @@ function modifySearchButtonOnClick(){
 	var longFieldText = jobLongitudeTextField.value;
 	var latFieldText = jobLatitudeTextField.value;
 
-	revertButton.disable = true;
+	modifyRevertButton.disable = true;
 	modifySearchButton.disable = true;
 
 	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
