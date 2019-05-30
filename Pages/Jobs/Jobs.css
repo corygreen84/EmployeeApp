@@ -118,6 +118,8 @@
 	width: 98%;
 	margin-left: 1%;
 	padding-bottom: 2px;
+	display: inline-block;
+	height: 50px;
 }
 
 #revert-button-div{
