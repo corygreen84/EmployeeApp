@@ -134,6 +134,9 @@ function latTextChange(){
 	toggleCreateButton();
 }
 
+
+
+
 function toggleSearchButton(){
 	if(addressTextFilled == true || (longitudeTextFilled == true && latitudeTextFilled == true)){
 		searchButton.disabled = false;
@@ -152,6 +155,7 @@ function searchButtonOnClick(){
 
 	searchForPlace(addressFieldText, longFieldText, latFieldText, true);
 
+	searchButton.disabled = true;
 	toggleCreateButton();
 	
 }
