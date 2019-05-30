@@ -13,11 +13,22 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 function modifyAddressTextChange(){
+
+	if(jobAddressTextField.value != job.address){
+		jobLongitudeTextField.value = "";
+		jobLatitudeTextField.value = "";
+	}else{
+		jobLongitudeTextField.value = locationLong;
+		jobLatitudeTextField.value = locationLat;
+	}
+
+	/*
 	if(jobAddressTextField.value != job.address){
 		_addressTextChanged = true;
 	}else{
 		_addressTextChanged = false;
 	}
+	*/
 
 	toggleSearchButton();
 	toggleRevertButton();
@@ -30,6 +41,7 @@ function modifyLongTextChange(){
 	}else{
 		_longitudeChanged = false;
 	}
+	
 
 	toggleSearchButton();
 	toggleRevertButton();
