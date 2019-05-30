@@ -228,6 +228,9 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 
 									//toggleCreateButton();
 									//toggleJobModifyButton();
+
+									modifyRevertButton.disable = true;
+									modifySearchButton.disable = true;
 								}
 							}
 						}
@@ -269,8 +272,7 @@ function placeOnMapModify(long, lat, address){
 		title: address
 	});
 
-	modifyRevertButton.disable = true;
-	modifySearchButton.disable = true;
+	
 }
 
 
