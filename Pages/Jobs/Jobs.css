@@ -118,8 +118,8 @@
 	width: 98%;
 	margin-left: 1%;
 	padding-bottom: 2px;
-	display: block;
-	height: 50px;
+	display: inline-block;
+	height: 150px;
 	margin-top: 0px;
 }
 
