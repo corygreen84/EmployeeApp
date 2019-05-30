@@ -17,12 +17,12 @@ function modifyAddressTextChange(){
 	if(jobAddressTextField.value != job.address){
 		jobLongitudeTextField.value = "";
 		jobLatitudeTextField.value = "";
-		searchButton.disabled = false;
+		modifySearchButton.disabled = false;
 
 	}else{
 		jobLongitudeTextField.value = locationLong;
 		jobLatitudeTextField.value = locationLat;
-		searchButton.disabled = true;
+		modifySearchButton.disabled = true;
 	}
 
 
