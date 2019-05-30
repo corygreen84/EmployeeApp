@@ -1,3 +1,23 @@
 window.addEventListener('DOMContentLoaded', function () {
-	console.log("in here");
+	
 }, false);
+
+
+function modifyAddressTextChange(){
+
+
+	console.log("address change called");
+}
+
+
+function modifyLongTextChange(){
+
+	console.log("modify long change");	
+}
+
+
+
+
+function modifyLatTextChange(){
+	console.log("modify lat change");
+}
