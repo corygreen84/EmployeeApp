@@ -78,8 +78,8 @@ function searchForPlace(address, long, lat, cameFromCreate){
 
 				addressTextChanged = false;
 				
-				//toggleCoordinatesFilled(false, cameFromCreate);
-				//toggleModifySearchButton();
+				toggleCoordinatesFilled(false, cameFromCreate);
+				toggleModifySearchButton();
 
 				return;
 			}
