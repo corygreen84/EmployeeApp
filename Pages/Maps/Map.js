@@ -155,7 +155,7 @@ function parsePlaceByAddress(json, cameFromCreate){
 							createLongitudeTextField.value = newJobLong;
 							createLatitudeTextField.value = newJobLat;
 
-							//toggleCoordinatesFilled(true, cameFromCreate);
+							toggleCoordinatesFilled(true, cameFromCreate);
 						
 							toggleCreateButton();
 						}else{
