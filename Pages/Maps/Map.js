@@ -184,8 +184,9 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 		if(Object.keys(results).length == 0){
 			//toggleCoordinatesFilled(true, cameFromCreate);
 			if(cameFromCreate){
+				addressTextFilled = false;
 				//_addressTextChanged = false;
-				_addressTextChanged = false;
+				//_addressTextChanged = false;
 				toggleCreateButton();
 			}else{
 				_addressTextChanged = false;
