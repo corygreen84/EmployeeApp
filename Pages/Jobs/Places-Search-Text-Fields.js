@@ -95,6 +95,8 @@ function toggleSearchModifyButton(){
 }
 
 function toggleJobModifyButton(){
+
+	console.log("employee list changed " + employeeListChanged);
 	if(nameTextChanged == true || 
 		_addressTextChanged == true || 
 		employeeListChanged == true || 
