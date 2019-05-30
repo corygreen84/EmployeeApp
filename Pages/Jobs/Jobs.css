@@ -120,6 +120,15 @@
 	padding-bottom: 2px;
 }
 
+#revert-button-div{
+	width: 49%;
+	display: inline-block;
+}
+
+#search-button-div{
+	width: 49%;
+}
+
 .map-view{
 	display: block;
 	height: 150px;
