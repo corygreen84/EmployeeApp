@@ -75,8 +75,8 @@ function searchForPlace(address, long, lat, cameFromCreate){
 
 				addressTextChanged = false;
 				
-				toggleCoordinatesFilled(false, cameFromCreate);
-				toggleModifySearchButton();
+				//toggleCoordinatesFilled(false, cameFromCreate);
+				//toggleModifySearchButton();
 
 				return;
 			}
@@ -85,7 +85,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 			longitudeField.value = "";
 			latitudeField.value = "";
 
-			toggleCoordinatesFilled(false, cameFromCreate);
+			//toggleCoordinatesFilled(false, cameFromCreate);
 
 			this.address = address;
 
@@ -109,7 +109,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 			//longitudeField.value = "";
 			//latitudeField.value = "";
 
-			toggleCoordinatesFilled(false, cameFromCreate);
+			//toggleCoordinatesFilled(false, cameFromCreate);
 
 			this.address = address;
 			var finalUrl = url + "latlng=" + lat + "," + long + key;
@@ -153,19 +153,19 @@ function parsePlaceByAddress(json, cameFromCreate){
 							createLongitudeTextField.value = newJobLong;
 							createLatitudeTextField.value = newJobLat;
 
-							toggleCoordinatesFilled(true, cameFromCreate);
+							//toggleCoordinatesFilled(true, cameFromCreate);
 						
-							toggleCreateButton();
+							//toggleCreateButton();
 						}else{
 							placeOnMapModify(newJobLong, newJobLat);
 
 							modifyLongitudeTextField.value = newJobLong;
 							modifyLatitudeTextField.value = newJobLat;
 
-							toggleCoordinatesFilled(true, cameFromCreate);
+							//toggleCoordinatesFilled(true, cameFromCreate);
 						
 							//toggleCreateButton();
-							toggleJobModifyButton();
+							//toggleJobModifyButton();
 						}
 					}
 				}
@@ -180,13 +180,13 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 		var results = json["results"];
 
 		if(Object.keys(results).length == 0){
-			toggleCoordinatesFilled(true, cameFromCreate);
+			//toggleCoordinatesFilled(true, cameFromCreate);
 			if(cameFromCreate){
 				addressTextFilled = false;
-				toggleCreateButton();
+				//toggleCreateButton();
 			}else{
 				addressTextChanged = false;
-				toggleJobModifyButton();
+				//toggleJobModifyButton();
 			}
 		}else{
 			for(var i in results){
@@ -212,10 +212,10 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 									createLongitudeTextField.value = newJobLong;
 									createLatitudeTextField.value = newJobLat;
 							
-									toggleAddressFilled(true, cameFromCreate);
-									toggleCoordinatesFilled(true, cameFromCreate);
+									//toggleAddressFilled(true, cameFromCreate);
+									//toggleCoordinatesFilled(true, cameFromCreate);
 
-									toggleCreateButton();
+									//toggleCreateButton();
 								}else{
 									placeOnMapModify(newJobLong, newJobLat, formattedAddress);
 
@@ -223,11 +223,11 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 									modifyLongitudeTextField.value = newJobLong;
 									modifyLatitudeTextField.value = newJobLat;
 							
-									toggleAddressFilled(true, cameFromCreate);
-									toggleCoordinatesFilled(true, cameFromCreate);
+									//toggleAddressFilled(true, cameFromCreate);
+									//toggleCoordinatesFilled(true, cameFromCreate);
 
 									//toggleCreateButton();
-									toggleJobModifyButton();
+									//toggleJobModifyButton();
 								}
 							}
 						}
@@ -289,11 +289,11 @@ function eraseButtonOnClick(){
 		google.maps.event.clearInstanceListeners(createMap);
 	}
 
-	toggleCoordinatesFilled(false, true);
-	toggleAddressFilled(false, true);
+	//toggleCoordinatesFilled(false, true);
+	//toggleAddressFilled(false, true);
 
-	toggleSearchButton();
-	toggleCreateButton();
+	//toggleSearchButton();
+	//toggleCreateButton();
 }
 
 function modifyEraseButtonOnClick(){
@@ -311,11 +311,11 @@ function modifyEraseButtonOnClick(){
 		google.maps.event.clearInstanceListeners(modifyMap);
 	}
 
-	toggleCoordinatesFilled(false, false);
-	toggleAddressFilled(false, false);
+	//toggleCoordinatesFilled(false, false);
+	//toggleAddressFilled(false, false);
 
-	toggleModifySearchButton();
-	toggleJobModifyButton();
+	//toggleModifySearchButton();
+	//toggleJobModifyButton();
 }
 
 
@@ -343,9 +343,9 @@ function addButtonOnClick(){
 		createLongitudeTextField.value = newJobLong;
 		createLatitudeTextField.value = newJobLat;
 
-		toggleCoordinatesFilled(true, true);
-		toggleCreateButton();
-		toggleSearchButton();
+		//toggleCoordinatesFilled(true, true);
+		//toggleCreateButton();
+		//toggleSearchButton();
 	});
 }
 
@@ -368,12 +368,17 @@ function modifyAddButtonOnClick(){
 		modifyLongitudeTextField.value = newJobLong;
 		modifyLatitudeTextField.value = newJobLat;
 
-		toggleCoordinatesFilled(true, false);
-		toggleModifySearchButton();
+		//toggleCoordinatesFilled(true, false);
+		//toggleModifySearchButton();
 	});
 }
 
 
+
+
+
+
+/*
 function toggleCoordinatesFilled(filled, cameFromCreate){
 	if(cameFromCreate){
 		longitudeTextFilled = filled;
@@ -392,3 +397,5 @@ function toggleAddressFilled(filled, cameFromCreate){
 		addressTextChanged = filled;
 	}
 }
+
+*/

@@ -302,14 +302,14 @@ function modifyJobNameTextChange(){
 	}else{
 		nameTextChanged = false;
 	}
-	toggleJobModifyButton();
+	//toggleJobModifyButton();
 }
 
 
 
 
 
-
+/*
 // **** address text changes **** //
 function modifyAddressTextChange(){
 	if(jobAddressTextField.value != job.address){
@@ -361,8 +361,9 @@ function toggleModifySearchButton(){
 	}
 }
 // **** **** //
+*/
 
-
+/*
 function toggleJobModifyButton(){
 	if(nameTextChanged == true || 
 		addressTextChanged == true || 
@@ -392,7 +393,7 @@ function modifySearchButtonOnClick(){
 
 	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
 }
-
+*/
 
 
 
