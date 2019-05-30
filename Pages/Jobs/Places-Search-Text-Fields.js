@@ -13,8 +13,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 function modifyAddressTextChange(){
-	console.log("in here");
-	if(jobAddressTextField.value != job.address){
+	
+	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
 		jobLongitudeTextField.value = "";
 		jobLatitudeTextField.value = "";
 		modifySearchButton.disabled = false;
