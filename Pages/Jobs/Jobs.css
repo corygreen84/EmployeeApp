@@ -81,6 +81,8 @@
 	text-shadow: none;
 	font-size: 20px;
 	color:white;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
 }
 
 
@@ -99,7 +101,7 @@
 	height: 50px;
 	margin-left: 1%;
 	display: inline-block;
-	margin-top: 20px;
+	margin-top: 0px;
 }
 
 #long-div{
