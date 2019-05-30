@@ -72,10 +72,10 @@ function revertButtonOnClick(){
 
 function toggleJobModifyButton(){
 	if(nameTextChanged == true || 
-		addressTextChanged == true || 
+		_addressTextChanged == true || 
 		employeeListChanged == true || 
-		latitudeChanged == true || 
-		longitudeChanged == true){
+		_latitudeChanged == true || 
+		_longitudeChanged == true){
 
 			modifyJobButton.disabled = false;
 			
