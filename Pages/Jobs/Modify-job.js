@@ -394,6 +394,10 @@ function modifySearchButtonOnClick(){
 
 	modifySearchButton.disabled = true;
 
+	_addressTextChanged = false;
+	_longitudeChanged = false;
+	_latitudeChanged = false;
+
 	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
 }
 
