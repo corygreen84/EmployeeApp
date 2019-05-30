@@ -388,6 +388,8 @@ function toggleJobModifyButton(){
 
 */
 function modifySearchButtonOnClick(){
+
+	console.log("on click here");
 	var addressFieldText = jobAddressTextField.value;
 	var longFieldText = jobLongitudeTextField.value;
 	var latFieldText = jobLatitudeTextField.value;
