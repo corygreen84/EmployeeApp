@@ -352,7 +352,7 @@ function addButtonOnClick(){
 
 		toggleCoordinatesFilled(true, true);
 		toggleCreateButton();
-		//toggleSearchButton();
+		toggleSearchButton();
 	});
 }
 
