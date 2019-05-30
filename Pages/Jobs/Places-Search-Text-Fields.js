@@ -19,7 +19,6 @@ function modifyAddressTextChange(){
 		jobLatitudeTextField.value = "";
 		modifySearchButton.disabled = false;
 		_addressTextChanged = true;
-
 	}else if(jobAddressTextField.value == job.address){
 		jobLongitudeTextField.value = locationLong;
 		jobLatitudeTextField.value = locationLat;
@@ -33,16 +32,16 @@ function modifyAddressTextChange(){
 
 
 function modifyLongTextChange(){
-	if(jobLongitudeTextField.value != locationLong){
-
+	if(jobLongitudeTextField.value != locationLong && jobLongitudeTextField.value != ""){
 		jobAddressTextField.value = "";
 		modifySearchButton.disabled = false;
 		_longitudeChanged = true;
-	}else{
-
+	}else if(jobLongitudeTextField.value == locationLong){
 		jobAddressTextField.value = job.address;
 		modifySearchButton.disabled = true;
 		_longitudeChanged = false;
+	}else if(jobLongitudeTextField.value == ""){
+		modifySearchButton.disabled = true;
 	}
 	
 
@@ -54,13 +53,19 @@ function modifyLongTextChange(){
 
 
 function modifyLatTextChange(){
-	if(jobLatitudeTextField.value != locationLat){
+	if(jobLatitudeTextField.value != locationLat && jobLatitudeTextField.value != ""){
+		jobAddressTextField.value = "";
+		modifySearchButton.disabled = false;
 		_latitudeChanged = true;
-	}else{
+	}else if(jobLatitudeTextField.value == locationLat){
+		jobAddressTextField.value = job.address;
+		modifySearchButton.disabled = true;
 		_latitudeChanged = false;
+	}else if(jobLatitudeTextField.value == ""){
+		modifySearchButton.disabled = true;
 	}
 
-	toggleSearchModifyButton();
+	//toggleSearchModifyButton();
 	toggleRevertButton();
 }
 
