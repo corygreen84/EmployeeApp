@@ -27,3 +27,8 @@ li{
 	display: inline-block;
 	width: 150px;
 }
+
+.scrollable {
+	overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
