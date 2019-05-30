@@ -1,23 +1,57 @@
+
+var _addressTextChanged = false;
+var _longitudeChanged = false;
+var _latitudeChanged = false;
+
+
 window.addEventListener('DOMContentLoaded', function () {
 	
 }, false);
 
 
 function modifyAddressTextChange(){
+	if(jobAddressTextField.value != job.address){
+		_addressTextChanged = true;
+	}else{
+		_addressTextChanged = false;
+	}
 
-
-	console.log("address change called");
+	toggleSearchButton();
 }
 
 
 function modifyLongTextChange(){
+	if(jobLongitudeTextField.value != locationLong){
+		_longitudeChanged = true;
+	}else{
+		_longitudeChanged = false;
+	}
 
-	console.log("modify long change");	
+	toggleSearchButton();
 }
 
 
 
 
 function modifyLatTextChange(){
-	console.log("modify lat change");
+	if(jobLatitudeTextField.value != locationLat){
+		_latitudeChanged = true;
+	}else{
+		_latitudeChanged = false;
+	}
+
+	toggleSearchButton();
+}
+
+
+function revertButtonOnClick(){
+	
+}
+
+
+
+function toggleSearchButton(){
+
+
+	// if we start typing in the search bar, I would like for the coordinates to disappear
 }

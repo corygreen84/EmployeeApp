@@ -1,4 +1,6 @@
 
+
+
 // **** this is for the modal view variables **** //
 var modifyJobSpan = document.getElementsByClassName("modifyJobClose")[0];
 var modifyJobModal = document.getElementById("modify-job-modal-box");
@@ -17,9 +19,7 @@ var modifySearchButton = document.getElementById("modify-address-search");
 var listView = document.getElementById("modify-employee-list-div");
 
 var nameTextChanged = false;
-var addressTextChanged = false;
-var longitudeChanged = false;
-var latitudeChanged = false;
+
 
 var job;
 var jobId;

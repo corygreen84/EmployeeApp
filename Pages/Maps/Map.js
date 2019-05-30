@@ -73,7 +73,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 				latitudeField.value = "";
 				addressField.value = "";
 
-				addressTextChanged = false;
+				//addressTextChanged = false;
 				
 				//toggleCoordinatesFilled(false, cameFromCreate);
 				//toggleModifySearchButton();
@@ -182,10 +182,10 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 		if(Object.keys(results).length == 0){
 			//toggleCoordinatesFilled(true, cameFromCreate);
 			if(cameFromCreate){
-				addressTextFilled = false;
+				//addressTextFilled = false;
 				//toggleCreateButton();
 			}else{
-				addressTextChanged = false;
+				//addressTextChanged = false;
 				//toggleJobModifyButton();
 			}
 		}else{
