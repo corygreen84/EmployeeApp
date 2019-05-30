@@ -93,16 +93,7 @@ function revertButtonOnClick(){
 }
 
 
-
-
-
-function toggleSearchModifyButton(){
-
-}
-
 function toggleJobModifyButton(){
-
-	console.log("employee list changed " + employeeListChanged);
 
 	// address changed doesnt get reverted back nor does latitude change or longitude change //
 	if(nameTextChanged == true || 
