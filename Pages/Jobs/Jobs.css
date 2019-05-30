@@ -114,22 +114,27 @@
 	float: right;
 }
 
-#search-button-div{
+#search-button-create-div{
+	width:98%;
+	display: inline-block;
+	height: 60px;
+}
+
+#search-revert-button-div{
 	width: 98%;
 	margin-left: 1%;
-	padding-bottom: 2px;
 	display: inline-block;
-	height: 150px;
+	height: 60px;
 	margin-top: 0px;
 }
 
 #revert-button-div{
-	width: 48%;
+	width: 49%;
 	display: inline-block;
 }
 
-#search-button-div{
-	width: 48%;
+#search-botton-div{
+	width: 49%;
 	margin-right: 0px;
 	float: right;
 }
