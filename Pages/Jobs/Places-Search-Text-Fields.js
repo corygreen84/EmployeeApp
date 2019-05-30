@@ -20,6 +20,7 @@ function modifyAddressTextChange(){
 	}
 
 	toggleSearchButton();
+	toggleRevertButton();
 }
 
 
@@ -31,6 +32,7 @@ function modifyLongTextChange(){
 	}
 
 	toggleSearchButton();
+	toggleRevertButton();
 }
 
 
@@ -44,11 +46,16 @@ function modifyLatTextChange(){
 	}
 
 	toggleSearchButton();
+	toggleRevertButton();
 }
 
 
 function toggleRevertButton(){
-
+	if(jobAddressTextField.value != job.address || jobLongitudeTextField.value != locationLong || jobLatitudeTextField.value != locationLat){
+		revertButton.disabled = false;
+	}else{
+		revertButton.disabled = true;
+	}
 }
 
 
