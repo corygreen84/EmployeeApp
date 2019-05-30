@@ -149,6 +149,8 @@ function searchButtonOnClick(){
 	var latFieldText = latitudeTextField.value;
 
 	searchForPlace(addressFieldText, longFieldText, latFieldText, true);
+
+	toggleCreateButton();
 	
 }
 
