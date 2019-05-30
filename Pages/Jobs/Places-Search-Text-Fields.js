@@ -88,6 +88,8 @@ function revertButtonOnClick(){
 
 	revertButton.disabled = true;
 	modifySearchButton.disabled = true;
+
+	toggleJobModifyButton();
 }
 
 
