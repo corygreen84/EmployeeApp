@@ -45,7 +45,9 @@ function modifyLatTextChange(){
 
 
 function revertButtonOnClick(){
-	
+	jobAddressTextField.value = job.address;
+	jobLongitudeTextField.value = locationLong;
+	jobLatitudeTextField.value = locationLat;
 }
 
 
