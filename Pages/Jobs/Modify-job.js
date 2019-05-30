@@ -399,6 +399,7 @@ function modifySearchButtonOnClick(){
 	_latitudeChanged = true;
 
 	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
+	toggleJobModifyButton();
 }
 
 
