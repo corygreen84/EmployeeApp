@@ -303,7 +303,7 @@ function modifyJobNameTextChange(){
 	}else{
 		nameTextChanged = false;
 	}
-	//toggleJobModifyButton();
+	toggleJobModifyButton();
 }
 
 

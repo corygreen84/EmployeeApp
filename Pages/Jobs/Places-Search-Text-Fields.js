@@ -1,8 +1,8 @@
 
+
 var _addressTextChanged = false;
 var _longitudeChanged = false;
 var _latitudeChanged = false;
-
 
 var revertButton = document.getElementById("revert-button");
 

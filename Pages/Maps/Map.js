@@ -112,6 +112,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 			//toggleCoordinatesFilled(false, cameFromCreate);
 
 			this.address = address;
+			
 			var finalUrl = url + "latlng=" + lat + "," + long + key;
 	
 			httpRequest.open("GET", finalUrl);
