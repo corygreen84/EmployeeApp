@@ -64,7 +64,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 		longitudeField = modifyLongitudeTextField;
 		latitudeField = modifyLatitudeTextField;
 	}
-
+		
 		if(address != "" && (long != "" || lat != "")){
 			let alertConfirm = confirm("Please enter either an Address or a Coordinate to search.  Not both.");
 			if(alertConfirm){
@@ -73,7 +73,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 				latitudeField.value = "";
 				addressField.value = "";
 
-				//addressTextChanged = false;
+				addressTextChanged = false;
 				
 				//toggleCoordinatesFilled(false, cameFromCreate);
 				//toggleModifySearchButton();
@@ -120,13 +120,11 @@ function searchForPlace(address, long, lat, cameFromCreate){
 			httpRequest.onreadystatechange = function(){
 				if(httpRequest.readyState == 4 && httpRequest.status == 200){
 					var jsonParse = JSON.parse(httpRequest.responseText);
-
-					// this is coming up with multiple results //
-					// need a way of presenting this data //
 					parsePlaceByCoordinate(jsonParse, cameFromCreate);
 				}
 			}
 		}
+		
 		//toggleCreateButton();
 }
 
