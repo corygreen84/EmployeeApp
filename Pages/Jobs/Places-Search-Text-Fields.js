@@ -64,6 +64,8 @@ function revertButtonOnClick(){
 	jobAddressTextField.value = job.address;
 	jobLongitudeTextField.value = locationLong;
 	jobLatitudeTextField.value = locationLat;
+
+	revertButton.disabled = true;
 }
 
 
