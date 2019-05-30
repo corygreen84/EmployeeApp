@@ -228,9 +228,6 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 
 									//toggleCreateButton();
 									//toggleJobModifyButton();
-
-									modifyRevertButton.disable = true;
-									modifySearchButton.disable = true;
 								}
 							}
 						}
