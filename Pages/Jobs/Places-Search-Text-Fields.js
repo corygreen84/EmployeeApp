@@ -38,7 +38,7 @@ function modifyLongTextChange(){
 		_longitudeChanged = true;
 	}else{
 
-		jobAddressTextField = job.address;
+		jobAddressTextField.value = job.address;
 		modifySearchButton.disabled = true;
 		_longitudeChanged = false;
 	}
