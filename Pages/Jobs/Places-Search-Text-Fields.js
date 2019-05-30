@@ -70,8 +70,16 @@ function revertButtonOnClick(){
 
 
 
-function toggleSearchButton(){
+function toggleJobModifyButton(){
+	if(nameTextChanged == true || 
+		addressTextChanged == true || 
+		employeeListChanged == true || 
+		latitudeChanged == true || 
+		longitudeChanged == true){
 
-
-	// if we start typing in the search bar, I would like for the coordinates to disappear
+			modifyJobButton.disabled = false;
+			
+	}else{
+		modifyJobButton.disabled = true;
+	}
 }
