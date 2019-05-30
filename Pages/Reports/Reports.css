@@ -1,5 +1,5 @@
 #main-list-view-div{
-	height: 400px;
+	height: 100%;
 	width: 95%;
 	margin-left: 20px;
 }
@@ -26,6 +26,10 @@ li{
 #employee-report-div, #job-report-div{
 	display: inline-block;
 	width: 150px;
+}
+
+.secondLevelUl{
+	height: 400px;
 }
 
 .scrollable {

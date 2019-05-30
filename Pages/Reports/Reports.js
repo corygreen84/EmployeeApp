@@ -97,7 +97,7 @@ function parseEmployeeData(employees){
 
 		
 		// creating an unordered list //
-		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable"});
+		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable secondLevelUl"});
 		firstDiv.append(secondLevelUl);
 
 		for(var eh in employeeHistory){
