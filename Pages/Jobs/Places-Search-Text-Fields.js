@@ -83,6 +83,7 @@ function revertButtonOnClick(){
 	jobLatitudeTextField.value = locationLat;
 
 	revertButton.disabled = true;
+	modifySearchButton.disabled = true;
 }
 
 
