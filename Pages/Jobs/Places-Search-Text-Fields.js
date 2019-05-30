@@ -44,8 +44,6 @@ function modifyLongTextChange(){
 		modifySearchButton.disabled = true;
 	}
 	
-
-	//toggleSearchModifyButton();
 	toggleRevertButton();
 }
 
@@ -65,7 +63,6 @@ function modifyLatTextChange(){
 		modifySearchButton.disabled = true;
 	}
 
-	//toggleSearchModifyButton();
 	toggleRevertButton();
 }
 

@@ -112,7 +112,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 			//toggleCoordinatesFilled(false, cameFromCreate);
 
 			this.address = address;
-			
+
 			var finalUrl = url + "latlng=" + lat + "," + long + key;
 	
 			httpRequest.open("GET", finalUrl);
@@ -181,10 +181,11 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 		if(Object.keys(results).length == 0){
 			//toggleCoordinatesFilled(true, cameFromCreate);
 			if(cameFromCreate){
-				//addressTextFilled = false;
+				//_addressTextChanged = false;
+				_addressTextChanged = false;
 				//toggleCreateButton();
 			}else{
-				//addressTextChanged = false;
+				_addressTextChanged = false;
 				//toggleJobModifyButton();
 			}
 		}else{
