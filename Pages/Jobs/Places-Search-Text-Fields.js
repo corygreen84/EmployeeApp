@@ -25,6 +25,7 @@ function modifyAddressTextChange(){
 		modifySearchButton.disabled = true;
 		_addressTextChanged = false;
 	}else if(jobAddressTextField.value == ""){
+		console.log("in here");
 		modifySearchButton.disabled = true;
 		_addressTextChanged = true;
 	}
