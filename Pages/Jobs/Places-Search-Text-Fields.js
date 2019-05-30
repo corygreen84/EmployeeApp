@@ -18,37 +18,33 @@ function modifyAddressTextChange(){
 		jobLongitudeTextField.value = "";
 		jobLatitudeTextField.value = "";
 		modifySearchButton.disabled = false;
+		_addressTextChanged = true;
 
 	}else{
 		jobLongitudeTextField.value = locationLong;
 		jobLatitudeTextField.value = locationLat;
 		modifySearchButton.disabled = true;
-	}
-
-
-
-	/*
-	if(jobAddressTextField.value != job.address){
-		_addressTextChanged = true;
-	}else{
 		_addressTextChanged = false;
 	}
-	*/
-
-	
 	toggleRevertButton();
 }
 
 
 function modifyLongTextChange(){
 	if(jobLongitudeTextField.value != locationLong){
+
+		jobAddressTextField.value = "";
+		modifySearchButton.disabled = false;
 		_longitudeChanged = true;
 	}else{
+
+		jobAddressTextField = job.address;
+		modifySearchButton.disabled = true;
 		_longitudeChanged = false;
 	}
 	
 
-	toggleSearchModifyButton();
+	//toggleSearchModifyButton();
 	toggleRevertButton();
 }
 
