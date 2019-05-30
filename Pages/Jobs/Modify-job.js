@@ -391,6 +391,9 @@ function modifySearchButtonOnClick(){
 	var longFieldText = jobLongitudeTextField.value;
 	var latFieldText = jobLatitudeTextField.value;
 
+	revertButton.disable = true;
+	modifySearchButton.disable = true;
+
 	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
 }
 
