@@ -187,7 +187,7 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 				addressTextFilled = false;
 				//_addressTextChanged = false;
 				//_addressTextChanged = false;
-				toggleCreateButton();
+				//toggleCreateButton();
 			}else{
 				_addressTextChanged = false;
 				//toggleJobModifyButton();
@@ -295,8 +295,8 @@ function eraseButtonOnClick(){
 		google.maps.event.clearInstanceListeners(createMap);
 	}
 
-	toggleCoordinatesFilled(false, true);
-	toggleAddressFilled(false, true);
+	//toggleCoordinatesFilled(false, true);
+	//toggleAddressFilled(false, true);
 
 	//toggleSearchButton();
 	toggleCreateButton();
@@ -317,8 +317,8 @@ function modifyEraseButtonOnClick(){
 		google.maps.event.clearInstanceListeners(modifyMap);
 	}
 
-	toggleCoordinatesFilled(false, false);
-	toggleAddressFilled(false, false);
+	//toggleCoordinatesFilled(false, false);
+	//toggleAddressFilled(false, false);
 
 	//toggleModifySearchButton();
 	//toggleJobModifyButton();

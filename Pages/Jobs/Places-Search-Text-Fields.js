@@ -26,6 +26,7 @@ function modifyAddressTextChange(){
 		_addressTextChanged = false;
 	}else if(jobAddressTextField.value == ""){
 		modifySearchButton.disabled = true;
+		_addressTextChanged = true;
 	}
 	toggleRevertButton();
 }
