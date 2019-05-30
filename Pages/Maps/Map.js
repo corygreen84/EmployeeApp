@@ -25,6 +25,9 @@ var modifySearchButton = document.getElementById("modify-address-search");
 var modifyRevertButton = document.getElementById("revert-button");
 
 
+var createSearchButton = document.getElementById("create-address-search");
+
+
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 	marker = null;
@@ -79,7 +82,7 @@ function searchForPlace(address, long, lat, cameFromCreate){
 				addressTextChanged = false;
 				
 				toggleCoordinatesFilled(false, cameFromCreate);
-				toggleModifySearchButton();
+				createSearchButton.disabled = true;
 
 				return;
 			}
