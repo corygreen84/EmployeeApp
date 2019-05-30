@@ -4,8 +4,11 @@ var _longitudeChanged = false;
 var _latitudeChanged = false;
 
 
+var revertButton = document.getElementById("revert-button");
+
+
 window.addEventListener('DOMContentLoaded', function () {
-	
+	revertButton.disabled = true;
 }, false);
 
 
@@ -42,6 +45,12 @@ function modifyLatTextChange(){
 
 	toggleSearchButton();
 }
+
+
+function toggleRevertButton(){
+
+}
+
 
 
 function revertButtonOnClick(){
