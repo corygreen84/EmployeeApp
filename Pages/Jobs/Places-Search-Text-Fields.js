@@ -17,10 +17,15 @@ function modifyAddressTextChange(){
 	if(jobAddressTextField.value != job.address){
 		jobLongitudeTextField.value = "";
 		jobLatitudeTextField.value = "";
+		searchButton.disabled = false;
+
 	}else{
 		jobLongitudeTextField.value = locationLong;
 		jobLatitudeTextField.value = locationLat;
+		searchButton.disabled = true;
 	}
+
+
 
 	/*
 	if(jobAddressTextField.value != job.address){
@@ -30,7 +35,7 @@ function modifyAddressTextChange(){
 	}
 	*/
 
-	toggleSearchButton();
+	
 	toggleRevertButton();
 }
 
@@ -43,7 +48,7 @@ function modifyLongTextChange(){
 	}
 	
 
-	toggleSearchButton();
+	toggleSearchModifyButton();
 	toggleRevertButton();
 }
 
@@ -57,7 +62,7 @@ function modifyLatTextChange(){
 		_latitudeChanged = false;
 	}
 
-	toggleSearchButton();
+	toggleSearchModifyButton();
 	toggleRevertButton();
 }
 
@@ -81,6 +86,12 @@ function revertButtonOnClick(){
 }
 
 
+
+
+
+function toggleSearchModifyButton(){
+
+}
 
 function toggleJobModifyButton(){
 	if(nameTextChanged == true || 
