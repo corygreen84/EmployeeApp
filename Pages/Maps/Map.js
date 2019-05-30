@@ -268,6 +268,9 @@ function placeOnMapModify(long, lat, address){
 		animation: google.maps.Animation.DROP,
 		title: address
 	});
+
+	modifyRevertButton.disable = true;
+	modifySearchButton.disable = true;
 }
 
 
