@@ -324,6 +324,7 @@ function modifyEraseButtonOnClick(){
 	modifyLatitudeTextField.value = "";
 
 	modifySearchButton.disabled = true;
+	modifyJobButton.disabled = true;
 	revertButton.disabled = false;
 
 
