@@ -16,7 +16,7 @@ function modifyAddressTextChange(){
 
 	
 	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
-		if(!pinDropped){
+		if(pinDropped){
 			jobLongitudeTextField.value = "";
 			jobLatitudeTextField.value = "";
 			modifySearchButton.disabled = true;
