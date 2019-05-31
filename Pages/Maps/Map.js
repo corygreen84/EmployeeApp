@@ -62,7 +62,6 @@ function searchForPlace(address, long, lat, cameFromCreate){
 	var latitudeField;
 
 	if(cameFromCreate){
-		
 		addressField = createAddressTextField;
 		longitudeField = createLongitudeTextField;
 		latitudeField = createLatitudeTextField;
@@ -303,10 +302,6 @@ function eraseButtonOnClick(){
 		google.maps.event.clearInstanceListeners(createMap);
 	}
 
-	//toggleCoordinatesFilled(false, true);
-	//toggleAddressFilled(false, true);
-
-	//toggleSearchButton();
 	toggleCreateButton();
 }
 
@@ -324,12 +319,6 @@ function modifyEraseButtonOnClick(){
 		marker.setMap(null);
 		google.maps.event.clearInstanceListeners(modifyMap);
 	}
-
-	//toggleCoordinatesFilled(false, false);
-	//toggleAddressFilled(false, false);
-
-	//toggleModifySearchButton();
-	//toggleJobModifyButton();
 }
 
 
@@ -376,6 +365,9 @@ function modifyAddButtonOnClick(){
 			map: modifyMap,
 			title: "Custom Marker"
 		});
+
+		pinDropped = true;
+
 		newJobLong = marker.getPosition().lng();
 		newJobLat = marker.getPosition().lat();
 

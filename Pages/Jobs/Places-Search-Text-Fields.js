@@ -13,6 +13,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 function modifyAddressTextChange(){
+
+	console.log("pin dropped -> " + pinDropped);
 	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
 		jobLongitudeTextField.value = "";
 		jobLatitudeTextField.value = "";
@@ -39,8 +41,6 @@ function modifyAddressTextChange(){
 
 function modifyLongTextChange(){
 	if(jobLongitudeTextField.value != locationLong && jobLongitudeTextField.value != "-" && jobLongitudeTextField.value != ""){
-		//jobAddressTextField.value = "";
-		//modifySearchButton.disabled = false;
 		_longitudeChanged = true;
 	}else if(jobLongitudeTextField.value == locationLong){
 		jobAddressTextField.value = job.address;
