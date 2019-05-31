@@ -39,7 +39,7 @@ function modifyAddressTextChange(){
 function modifyLongTextChange(){
 	if(jobLongitudeTextField.value != locationLong && jobLongitudeTextField.value != "-" && jobLongitudeTextField.value != ""){
 		//jobAddressTextField.value = "";
-		modifySearchButton.disabled = false;
+		//modifySearchButton.disabled = false;
 		_longitudeChanged = true;
 	}else if(jobLongitudeTextField.value == locationLong){
 		jobAddressTextField.value = job.address;
