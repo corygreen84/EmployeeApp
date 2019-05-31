@@ -20,6 +20,8 @@ function modifyAddressTextChange(){
 			jobLongitudeTextField.value = "";
 			jobLatitudeTextField.value = "";
 			modifySearchButton.disabled = true;
+			_addressTextChanged = true;
+			toggleJobModifyButton();
 		}
 		modifySearchButton.disabled = false;
 		_addressTextChanged = true;
