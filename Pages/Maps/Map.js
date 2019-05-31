@@ -320,6 +320,7 @@ function modifyEraseButtonOnClick(){
 	modifyLatitudeTextField.value = "";
 
 	modifySearchButton.disabled = true;
+	revertButton.disabled = false;
 
 
 	if(marker != null){
