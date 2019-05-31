@@ -305,6 +305,11 @@ function eraseButtonOnClick(){
 	toggleCreateButton();
 }
 
+
+
+
+
+
 function modifyEraseButtonOnClick(){
 	address = "";
 	newJobLong = null;
@@ -313,6 +318,8 @@ function modifyEraseButtonOnClick(){
 	modifyAddressTextField.value = "";
 	modifyLongitudeTextField.value = "";
 	modifyLatitudeTextField.value = "";
+
+	modifySearchButton.disabled = true;
 
 
 	if(marker != null){
