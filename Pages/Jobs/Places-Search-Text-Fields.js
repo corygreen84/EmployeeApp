@@ -16,12 +16,15 @@ function modifyAddressTextChange(){
 	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
 		jobLongitudeTextField.value = "";
 		jobLatitudeTextField.value = "";
+		modifySearchButton.disabled = false;
 		_addressTextChanged = true;
 	}else if(jobAddressTextField.value == job.address){
 		jobLongitudeTextField.value = locationLong;
 		jobLatitudeTextField.value = locationLat;
+		modifySearchButton.disabled = true;
 		_addressTextChanged = false;
 	}
+
 
 
 	toggleRevertButton();
