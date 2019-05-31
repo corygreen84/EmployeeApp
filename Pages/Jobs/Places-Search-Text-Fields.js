@@ -77,6 +77,11 @@ function modifyLatTextChange(){
 	if(jobLatitudeTextField.value != locationLat && jobLatitudeTextField.value != "-" && jobLatitudeTextField.value != ""){
 		//jobAddressTextField.value = "";
 		//modifySearchButton.disabled = false;
+		if(pinDropped){
+			_latitudeChanged = false;
+		}else{
+			_latitudeChanged = true;
+		}
 		_latitudeChanged = true;
 	}else if(jobLatitudeTextField.value == locationLat){
 		jobAddressTextField.value = job.address;
