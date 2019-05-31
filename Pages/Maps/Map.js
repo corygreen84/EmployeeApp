@@ -298,6 +298,7 @@ function eraseButtonOnClick(){
 	createLatitudeTextField.value = "";
 
 	searchButton.disabled = true;
+	createButton.disabled = true;
 
 	if(marker != null){
 		marker.setMap(null);
