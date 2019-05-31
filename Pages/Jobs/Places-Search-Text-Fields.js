@@ -52,7 +52,12 @@ function modifyAddressTextChange(){
 
 function modifyLongTextChange(){
 	if(jobLongitudeTextField.value != locationLong && jobLongitudeTextField.value != "-" && jobLongitudeTextField.value != ""){
-		_longitudeChanged = true;
+		if(pinDropped){
+			_longitudeChanged = false;
+		}else{
+			_longitudeChanged = true;
+		}
+		
 	}else if(jobLongitudeTextField.value == locationLong){
 		jobAddressTextField.value = job.address;
 		modifySearchButton.disabled = true;
