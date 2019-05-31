@@ -14,10 +14,12 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function modifyAddressTextChange(){
 
-	console.log("pin dropped -> " + pinDropped);
+	
 	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
-		jobLongitudeTextField.value = "";
-		jobLatitudeTextField.value = "";
+		if(!pinDropped){
+			jobLongitudeTextField.value = "";
+			jobLatitudeTextField.value = "";
+		}
 		modifySearchButton.disabled = false;
 		_addressTextChanged = true;
 	}else if(jobAddressTextField.value == job.address){
