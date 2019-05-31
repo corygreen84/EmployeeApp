@@ -23,6 +23,9 @@ function modifyAddressTextChange(){
 		jobLatitudeTextField.value = locationLat;
 		modifySearchButton.disabled = true;
 		_addressTextChanged = false;
+	}else if(jobAddressTextField.value == ""){
+		modifySearchButton.disabled = true;
+		_addressTextChanged = true;
 	}
 
 
