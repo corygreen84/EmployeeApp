@@ -306,7 +306,7 @@ function eraseButtonOnClick(){
 		google.maps.event.clearInstanceListeners(createMap);
 	}
 
-	toggleCreateButton();
+	//toggleCreateButton();
 }
 
 
