@@ -188,7 +188,13 @@ function searchButtonOnClick(){
 function toggleCreateButton(){
 
 	if(nameTextFilled == true && addressTextFilled == true && (longitudeTextFilled == true && latitudeTextFilled == true)){
-		createButton.disabled = false;
+
+		if(jobCreateNameTextField.value != "" && jobAddressTextField.value != "" && jobLatitudeTextField.value != "" && jobLongitudeTextField.value != ""){
+			createButton.disabled = true;
+		}else{
+			createButton.disabled = false;
+		}
+		
 	}else{
 		createButton.disabled = true;
 	}
