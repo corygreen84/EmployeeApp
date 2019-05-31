@@ -13,41 +13,28 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 function modifyAddressTextChange(){
-	
 	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
-		console.log("im in here yo");
+		jobLongitudeTextField.value = "";
+		jobLatitudeTextField.value = "";
+	}
+
+	/*
+	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
 		jobLongitudeTextField.value = "";
 		jobLatitudeTextField.value = "";
 		modifySearchButton.disabled = false;
 		_addressTextChanged = true;
-		
-		/*
-		if(pinDropped){
-			//jobLongitudeTextField.value = "";
-			//jobLatitudeTextField.value = "";
-			modifySearchButton.disabled = false;
-			console.log("but im in here...");
-			_addressTextChanged = true;
-		}else{
-			console.log("im in here yo");
-			jobLongitudeTextField.value = "";
-			jobLatitudeTextField.value = "";
-			modifySearchButton.disabled = false;
-			_addressTextChanged = true;
-		}
-		*/
-		
 	}else if(jobAddressTextField.value == job.address){
 		jobLongitudeTextField.value = locationLong;
 		jobLatitudeTextField.value = locationLat;
 		modifySearchButton.disabled = true;
 		_addressTextChanged = false;
 	}else if(jobAddressTextField.value == ""){
-		
 		modifySearchButton.disabled = true;
 		_addressTextChanged = true;
 	}
 	toggleRevertButton();
+	*/
 }
 
 

@@ -72,6 +72,14 @@ function searchForPlace(address, long, lat, cameFromCreate){
 		latitudeField = modifyLatitudeTextField;
 	}
 		
+
+
+
+
+		// deciding if the address is filled out or the coordinates are filled out //
+		// if both are filled out, then we have a problem //
+
+		// if all three fields are filled in, then we have a problem //
 		if(address != "" && (long != "" || lat != "")){
 			let alertConfirm = confirm("Please enter either an Address or a Coordinate to search.  Not both.");
 			if(alertConfirm){
@@ -86,12 +94,12 @@ function searchForPlace(address, long, lat, cameFromCreate){
 
 				return;
 			}
+
+		// if the address field is filled in, then we search using that //
 		}else if(address != "" && long == "" && lat == ""){
 			// address search //
 			longitudeField.value = "";
 			latitudeField.value = "";
-
-			//toggleCoordinatesFilled(false, cameFromCreate);
 
 			this.address = address;
 
@@ -110,12 +118,8 @@ function searchForPlace(address, long, lat, cameFromCreate){
 				}
 			}
 
+		// if the coordinates are filled in, then we search using that //
 		}else if(address == "" && long != "" && lat != ""){
-			// long search //
-			//longitudeField.value = "";
-			//latitudeField.value = "";
-
-			//toggleCoordinatesFilled(false, cameFromCreate);
 
 			this.address = address;
 
@@ -131,11 +135,10 @@ function searchForPlace(address, long, lat, cameFromCreate){
 				}
 			}
 		}
-		
-		//toggleCreateButton();
+
 }
 
-
+// parse based by address //
 function parsePlaceByAddress(json, cameFromCreate){
 	
 	if(json["results"] != undefined){
@@ -179,6 +182,7 @@ function parsePlaceByAddress(json, cameFromCreate){
 	}
 }
 
+// parse by coordinates //
 function parsePlaceByCoordinate(json, cameFromCreate){
 
 	if(json["results"] != undefined){
@@ -263,6 +267,7 @@ function placeOnMapCreate(long, lat, address){
 }
 
 
+// placing on the map and putting a marker on //
 function placeOnMapModify(long, lat, address){
 	modifyMap = new google.maps.Map(document.getElementById("modify-map"), {
 		center: {lat: lat, lng:long},
@@ -373,18 +378,12 @@ function modifyAddButtonOnClick(){
 		});
 		newJobLong = marker.getPosition().lng();
 		newJobLat = marker.getPosition().lat();
-		
-		console.log("dropped");
-		pinDropped = true;
 
 		modifyLongitudeTextField.value = newJobLong;
 		modifyLatitudeTextField.value = newJobLat;
 
 		modifySearchButton.disabled = false;
 		modifyRevertButton.disabled = false;
-
-
-
 	});
 }
 
