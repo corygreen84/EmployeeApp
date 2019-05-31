@@ -14,8 +14,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function modifyAddressTextChange(){
 
-
-	console.log("pin dropped -> " + pinDropped);
 	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
 		if(!pinDropped){
 			jobLongitudeTextField.value = "";
@@ -23,11 +21,9 @@ function modifyAddressTextChange(){
 
 			modifySearchButton.disabled = true;
 			_addressTextChanged = true;
-			//toggleJobModifyButton()
 		}else{
 			modifySearchButton.disabled = true;
 			_addressTextChanged = true;
-			
 		}
 		
 	}else if(jobAddressTextField.value == job.address){
@@ -37,7 +33,7 @@ function modifyAddressTextChange(){
 		_addressTextChanged = false;
 	}else if(jobAddressTextField.value == ""){
 		modifySearchButton.disabled = true;
-		_addressTextChanged = true;
+		_addressTextChanged = false;
 	}
 
 	toggleRevertButton();
