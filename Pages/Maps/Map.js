@@ -297,6 +297,8 @@ function eraseButtonOnClick(){
 	createLongitudeTextField.value = "";
 	createLatitudeTextField.value = "";
 
+	searchButton.disabled = true;
+
 	if(marker != null){
 		marker.setMap(null);
 		google.maps.event.clearInstanceListeners(createMap);
