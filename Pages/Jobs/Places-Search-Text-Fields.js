@@ -111,6 +111,9 @@ function revertButtonOnClick(){
 
 	pinDropped = false;
 
+	// placing the original marker back on the map //
+	placeOnMapModify(locationLong, locationLat, job.address);
+
 	toggleJobModifyButton();
 }
 
