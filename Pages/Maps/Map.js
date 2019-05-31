@@ -273,6 +273,8 @@ function placeOnMapModify(long, lat, address){
 		zoom: 17
 	});
 
+	marker.setMap(null);
+
 	marker = new google.maps.Marker({
 		position: {lat: lat, lng: long},
 		map: modifyMap,
