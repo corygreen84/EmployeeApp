@@ -29,7 +29,7 @@ function modifyAddressTextChange(){
 	}
 
 	toggleRevertButton();
-	toggleJobModifyButton()
+	//toggleJobModifyButton()
 }
 
 
