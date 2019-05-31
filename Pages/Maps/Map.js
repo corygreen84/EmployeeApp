@@ -373,7 +373,8 @@ function modifyAddButtonOnClick(){
 		});
 		newJobLong = marker.getPosition().lng();
 		newJobLat = marker.getPosition().lat();
-
+		
+		console.log("dropped");
 		pinDropped = true;
 
 		modifyLongitudeTextField.value = newJobLong;
