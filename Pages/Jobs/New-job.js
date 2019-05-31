@@ -102,7 +102,6 @@ function jobNameTextChange(){
 
 // **** address text changes **** //
 function addressTextChange(){
-	
 	if(addressCreateTextField.value != ""){
 		addressTextFilled = true;
 	}else{

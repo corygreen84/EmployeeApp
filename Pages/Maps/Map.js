@@ -289,7 +289,6 @@ function placeOnMapModify(long, lat, address){
 
 // erases the markers on the map //
 function eraseButtonOnClick(){
-	console.log("in here....");
 	address = "";
 	newJobLong = null;
 	newJobLat = null;
