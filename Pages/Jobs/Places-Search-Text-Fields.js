@@ -16,6 +16,9 @@ function modifyAddressTextChange(){
 	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
 		jobLongitudeTextField.value = "";
 		jobLatitudeTextField.value = "";
+	}else if(jobAddressTextField.value == job.address){
+		jobLongitudeTextField.value = locationLong;
+		jobLatitudeTextField.value = locationLat;
 	}
 
 	/*
