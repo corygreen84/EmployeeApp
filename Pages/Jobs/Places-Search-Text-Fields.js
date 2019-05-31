@@ -136,8 +136,11 @@ function toggleJobModifyButton(){
 		employeeListChanged == true || 
 		_latitudeChanged == true || 
 		_longitudeChanged == true){
-
-			modifyJobButton.disabled = false;
+			if(jobAddressTextField.value != "" && jobLongitudeTextField.value != "" && jobLatitudeTextField.value != ""){
+				modifyJobButton.disabled = false;
+			}else{
+				modifyJobButton.disabled = true;
+			}
 			
 	}else{
 		modifyJobButton.disabled = true;
