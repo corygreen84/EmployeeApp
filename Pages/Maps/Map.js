@@ -12,6 +12,8 @@ var createMap;
 var modifyMap;
 var marker;
 
+var pinDropped = false;
+
 var createLongitudeTextField = document.getElementById("create-long-text");
 var createLatitudeTextField = document.getElementById("create-lat-text");
 var createAddressTextField = document.getElementById("create-address-text");
@@ -372,11 +374,15 @@ function modifyAddButtonOnClick(){
 		newJobLong = marker.getPosition().lng();
 		newJobLat = marker.getPosition().lat();
 
+		pinDropped = true;
+
 		modifyLongitudeTextField.value = newJobLong;
 		modifyLatitudeTextField.value = newJobLat;
 
 		modifySearchButton.disabled = false;
 		modifyRevertButton.disabled = false;
+
+
 
 	});
 }
