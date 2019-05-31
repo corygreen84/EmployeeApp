@@ -312,7 +312,7 @@ function eraseButtonOnClick(){
 
 
 
-
+// modify erase 
 function modifyEraseButtonOnClick(){
 	address = "";
 	newJobLong = null;
