@@ -32,7 +32,13 @@ function modifyAddressTextChange(){
 		modifySearchButton.disabled = true;
 		_addressTextChanged = false;
 	}else if(jobAddressTextField.value == ""){
-		modifySearchButton.disabled = true;
+
+		if(!pinDropped){
+			modifySearchButton.disabled = true;
+		}else{
+			modifySearchButton.disabled = false;
+		}
+		
 		_addressTextChanged = false;
 	}
 
