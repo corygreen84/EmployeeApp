@@ -307,86 +307,6 @@ function modifyJobNameTextChange(){
 }
 
 
-
-
-
-/*
-// **** address text changes **** //
-function modifyAddressTextChange(){
-	if(jobAddressTextField.value != job.address){
-		addressTextChanged = true;
-	}else{
-		addressTextChanged = false;
-	}
-
-	toggleJobModifyButton();
-	toggleModifySearchButton();
-}
-
-
-
-
-
-function modifyLongTextChange(){
-
-	if(modifyLongitudeTextField.value != locationLong){
-		longitudeChanged = true;
-	}else{
-		longitudeChanged = false;
-	}
-
-	toggleJobModifyButton();
-	toggleModifySearchButton();	
-}
-
-
-
-
-function modifyLatTextChange(){
-	if(modifyLatitudeTextField.value != locationLat){
-		latitudeChanged = true;
-	}else{
-		latitudeChanged = false;
-	}
-	
-	toggleJobModifyButton();
-	toggleModifySearchButton();	
-}
-
-
-function toggleModifySearchButton(){
-	if(addressTextChanged == true || longitudeChanged == true || latitudeChanged == true){
-		modifySearchButton.disabled = false;
-	}else{
-		modifySearchButton.disabled = true;
-	}
-}
-// **** **** //
-*/
-
-/*
-function toggleJobModifyButton(){
-	if(nameTextChanged == true || 
-		addressTextChanged == true || 
-		employeeListChanged == true || 
-		latitudeChanged == true || 
-		longitudeChanged == true){
-
-			modifyJobButton.disabled = false;
-			
-	}else{
-		modifyJobButton.disabled = true;
-	}
-}
-
-
-
-
-
-
-
-
-*/
 function modifySearchButtonOnClick(){
 	var addressFieldText = jobAddressTextField.value;
 	var longFieldText = jobLongitudeTextField.value;
@@ -401,7 +321,6 @@ function modifySearchButtonOnClick(){
 	searchForPlace(addressFieldText, longFieldText, latFieldText, false);
 	toggleJobModifyButton();
 }
-
 
 
 

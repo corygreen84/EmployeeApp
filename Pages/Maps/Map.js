@@ -283,8 +283,6 @@ function placeOnMapModify(long, lat, address){
 		animation: google.maps.Animation.DROP,
 		title: address
 	});
-
-	
 }
 
 
@@ -298,8 +296,6 @@ function eraseButtonOnClick(){
 	createAddressTextField.value = "";
 	createLongitudeTextField.value = "";
 	createLatitudeTextField.value = "";
-
-	
 
 	if(marker != null){
 		marker.setMap(null);
@@ -326,7 +322,6 @@ function modifyEraseButtonOnClick(){
 	modifySearchButton.disabled = true;
 	modifyJobButton.disabled = true;
 	revertButton.disabled = false;
-
 
 	if(marker != null){
 		marker.setMap(null);
