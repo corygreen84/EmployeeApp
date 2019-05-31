@@ -20,13 +20,15 @@ function modifyAddressTextChange(){
 			//jobLatitudeTextField.value = "";
 			modifySearchButton.disabled = false;
 			console.log("but im in here...");
+			_addressTextChanged = true;
 		}else{
 			console.log("im in here yo");
 			jobLongitudeTextField.value = "";
 			jobLatitudeTextField.value = "";
 			modifySearchButton.disabled = false;
+			_addressTextChanged = true;
 		}
-		_addressTextChanged = true;
+		
 	}else if(jobAddressTextField.value == job.address){
 		jobLongitudeTextField.value = locationLong;
 		jobLatitudeTextField.value = locationLat;
