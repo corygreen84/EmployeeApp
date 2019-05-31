@@ -23,11 +23,11 @@ function modifyAddressTextChange(){
 
 			modifySearchButton.disabled = true;
 			_addressTextChanged = true;
-			toggleJobModifyButton()
+			//toggleJobModifyButton()
 		}else{
 			modifySearchButton.disabled = true;
 			_addressTextChanged = true;
-			toggleJobModifyButton()
+			
 		}
 		
 	}else if(jobAddressTextField.value == job.address){
@@ -41,7 +41,7 @@ function modifyAddressTextChange(){
 	}
 
 	toggleRevertButton();
-	//toggleJobModifyButton()
+	toggleJobModifyButton()
 }
 
 
