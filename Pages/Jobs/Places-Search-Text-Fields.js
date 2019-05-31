@@ -14,7 +14,8 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function modifyAddressTextChange(){
 
-	
+
+	console.log("pin dropped -> " + pinDropped);
 	if(jobAddressTextField.value != job.address && jobAddressTextField.value != ""){
 		if(pinDropped){
 			jobLongitudeTextField.value = "";
