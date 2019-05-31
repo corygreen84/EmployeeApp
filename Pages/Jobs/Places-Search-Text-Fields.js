@@ -96,7 +96,7 @@ function revertButtonOnClick(){
 	revertButton.disabled = true;
 	modifySearchButton.disabled = true;
 
-	pinDropped = false;
+	//pinDropped = false;
 
 	toggleJobModifyButton();
 }
