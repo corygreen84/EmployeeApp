@@ -19,6 +19,7 @@ function modifyAddressTextChange(){
 		if(!pinDropped){
 			jobLongitudeTextField.value = "";
 			jobLatitudeTextField.value = "";
+			modifySearchButton.disabled = true;
 		}
 		modifySearchButton.disabled = false;
 		_addressTextChanged = true;
