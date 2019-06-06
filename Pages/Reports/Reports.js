@@ -96,7 +96,7 @@ function parseEmployeeData(employees){
 		console.log(jsonData);
 		*/
 
-
+		/*
 		// creating the first level div //
 		var firstDiv = $('<div>', {"data-role":"collapsible"});
 		listView.append(firstDiv);
@@ -136,6 +136,7 @@ function parseEmployeeData(employees){
 			secondLevelUl.append(secondaryLi);
 			
 		}
+		*/
 	}
 	$("#main-list-view-div").trigger("create");	
 }
