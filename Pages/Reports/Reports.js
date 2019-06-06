@@ -150,7 +150,7 @@ function parseEmployeeData(employees){
 function convertStringToJSONData(textString){
 	console.log(textString);
 
-	var replaceDash = textString.replace(/\\/g, '":"');
+	var replaceDash = textString.replace(/\\/g, "");
 	
 	console.log(replaceDash);
 }
