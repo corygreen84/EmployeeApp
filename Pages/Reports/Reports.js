@@ -148,9 +148,8 @@ function parseEmployeeData(employees){
 
 
 function convertStringToJSONData(textString){
-	console.log(textString);
-
-	var replaceDash = textString.replace(/\\/g, "");
+	var tempString = textString;
+	var replaceDash = tempString.replace(/\\/g, "");
 	
 	console.log(replaceDash);
 }
