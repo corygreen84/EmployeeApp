@@ -94,7 +94,7 @@ function parseEmployeeData(employees){
 			console.log(convertedString);
 			var jsonData = JSON.parse(convertedString);
 
-			console.log(jsonData);
+			
 			
 		}
 		// employee history has changed.  It is now just a data string that I need to pull appart //
