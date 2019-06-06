@@ -152,7 +152,7 @@ function convertStringToJSONData(textString){
 	var tempString = "";
 	tempString = textString;
 	var regExp = new RegExp("\\\\", "g");
-	var replaceDash = tempString.replace(regExp, "");
+	var replaceDash = tempString.replace(regExp, ".");
 	
 	console.log(replaceDash);
 }
