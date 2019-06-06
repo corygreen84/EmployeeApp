@@ -85,7 +85,15 @@ function parseEmployeeData(employees){
 		var name = "" + employees[e].first + " " + employees[e].last;
 		var employeeNumber = employees[e].employeeNumber;
 		var employeeEmail = employees[e].email;
+
+
+
+		// employee history has changed.  It is now just a data string that I need to pull appart //
 		var employeeHistory = employees[e].jobHistory;
+
+		console.log(employeeHistory);
+
+
 
 		// creating the first level div //
 		var firstDiv = $('<div>', {"data-role":"collapsible"});
