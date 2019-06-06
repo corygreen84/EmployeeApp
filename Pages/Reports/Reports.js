@@ -91,6 +91,7 @@ function parseEmployeeData(employees){
 		if(employees[e].jobHistory != ""){
 			
 			var convertedString = convertStringToJSONData("" + employees[e].jobHistory);
+			console.log(convertedString);
 			var jsonData = JSON.parse(convertedString);
 
 			console.log(jsonData);
