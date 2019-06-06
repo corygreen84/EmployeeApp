@@ -90,7 +90,7 @@ function parseEmployeeData(employees){
 		
 		if(employees[e].jobHistory != ""){
 			console.log(employees[e].jobHistory);
-			convertStringToJSONData(employees[e].jobHistory);
+			convertStringToJSONData("" + employees[e].jobHistory);
 			//var jsonData = JSON.parse(employees[e].jobHistory);
 			
 		}
@@ -152,7 +152,7 @@ function convertStringToJSONData(textString){
 	var tempString = "";
 	tempString = textString;
 	var regExp = new RegExp("\\\\", "g");
-	var replaceDash = tempString.replace(regExp, ".");
+	var replaceDash = tempString.replace(regExp, "");
 	
 	console.log(replaceDash);
 }
