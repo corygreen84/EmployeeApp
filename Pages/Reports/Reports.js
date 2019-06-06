@@ -89,9 +89,9 @@ function parseEmployeeData(employees){
 
 		
 		if(employees[e].jobHistory != ""){
-			console.log(employees[e].jobHistory);
-			var jsonData = JSON.parse(employees[e].jobHistory);
-			console.log(jsonData);
+			convertStringToJSONData(employees[e].jobHistory);
+			//var jsonData = JSON.parse(employees[e].jobHistory);
+			
 		}
 		// employee history has changed.  It is now just a data string that I need to pull appart //
 		/*
@@ -150,9 +150,9 @@ function parseEmployeeData(employees){
 function convertStringToJSONData(textString){
 	console.log(textString);
 
-	var replaceColon = textString.replace(/:/g, '":"');
-	var replaceComma = replaceColon.replace(/,/g, '", "');
-	console.log(replaceComma);
+	var replaceDash = textString.replace(/\\/g, '":"');
+	
+	console.log(replaceDash);
 }
 
 
