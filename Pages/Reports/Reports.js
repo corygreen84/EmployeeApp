@@ -90,6 +90,7 @@ function parseEmployeeData(employees){
 
 		// employee history has changed.  It is now just a data string that I need to pull appart //
 		var employeeHistory = employees[e].jobHistory;
+		console.log(employeeHistory);
 		var jsonData = JSON.parse(employeeHistory);
 		console.log(jsonData);
 
