@@ -151,7 +151,7 @@ function convertStringToJSONData(textString){
 	var tempString = textString;
 	var replaceDash = tempString.replace(/'/g, "|");
 	
-	console.log(replaceDash);
+	console.log(tempString);
 }
 
 
