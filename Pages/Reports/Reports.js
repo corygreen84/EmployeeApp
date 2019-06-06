@@ -90,6 +90,8 @@ function parseEmployeeData(employees){
 		
 		if(employees[e].jobHistory != ""){
 			console.log(employees[e].jobHistory);
+			var jsonData = JSON.parse(employees[e].jobHistory);
+			console.log(jsonData);
 		}
 		// employee history has changed.  It is now just a data string that I need to pull appart //
 		/*
