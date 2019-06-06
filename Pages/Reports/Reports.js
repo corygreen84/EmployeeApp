@@ -140,6 +140,9 @@ function parseEmployeeData(employees){
 
 function convertStringToJSONData(textString){
 	console.log(textString);
+
+	var replaceColon = textString.replace(/:/g, '":"');
+	console.log(replaceColon);
 }
 
 
