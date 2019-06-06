@@ -91,7 +91,7 @@ function parseEmployeeData(employees){
 		// employee history has changed.  It is now just a data string that I need to pull appart //
 		var employeeHistory = employees[e].jobHistory;
 
-		console.log(employeeHistory);
+		
 
 
 
@@ -109,6 +109,13 @@ function parseEmployeeData(employees){
 		firstDiv.append(secondLevelUl);
 
 		for(var eh in employeeHistory){
+
+
+			var jobString = employeeHistory[eh];
+			console.log(jobString);
+
+
+
 			var jobDate = employeeHistory[eh].date;
 			var jobTime = employeeHistory[eh].time;
 			var jobAddress = employeeHistory[eh].jobAddress;
