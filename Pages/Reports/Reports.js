@@ -142,7 +142,7 @@ function convertStringToJSONData(textString){
 	console.log(textString);
 
 	var replaceColon = textString.replace(/:/g, '":"');
-	var replaceComma = replaceColon.replace(/,/g, '","');
+	var replaceComma = replaceColon.replace(/,/g, '", "');
 	console.log(replaceComma);
 }
 
