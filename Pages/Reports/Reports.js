@@ -114,7 +114,7 @@ function parseEmployeeData(employees){
 			var jobString = employeeHistory[eh];
 			//var jobJSON = JSON.parse('{' + jobString + '}');
 
-			console.log(jobString[date]);
+			console.log(jobString);
 
 
 			var jobDate = employeeHistory[eh].date;
