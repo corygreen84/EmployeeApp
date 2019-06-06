@@ -87,13 +87,14 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].email;
 
 
-
+		console.log(employees[e].jobHistory)
 		// employee history has changed.  It is now just a data string that I need to pull appart //
+		/*
 		var employeeHistory = employees[e].jobHistory;
 		console.log(employeeHistory);
 		var jsonData = JSON.parse(employeeHistory);
 		console.log(jsonData);
-
+		*/
 
 
 		// creating the first level div //
