@@ -112,9 +112,9 @@ function parseEmployeeData(employees){
 
 
 			var jobString = employeeHistory[eh];
-			//var jobJSON = JSON.parse('{' + jobString + '}');
+			convertStringToJSONData(jobString);
 
-			console.log(jobString);
+			
 
 
 			var jobDate = employeeHistory[eh].date;
@@ -137,6 +137,10 @@ function parseEmployeeData(employees){
 	$("#main-list-view-div").trigger("create");	
 }
 
+
+function convertStringToJSONData(textString){
+	console.log(textString);
+}
 
 
 
