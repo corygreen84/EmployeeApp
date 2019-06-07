@@ -90,7 +90,7 @@ function parseEmployeeData(employees){
 		var count = 0;
 		if(employees[e].jobHistory != ""){
 			
-			var convertedString = convertStringToJSONData("" + employees[e].jobHistory);
+			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
 			count++;
 			console.log("" + count + " " + convertedString);
 			var jsonData = JSON.parse(convertedString);
