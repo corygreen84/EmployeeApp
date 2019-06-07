@@ -99,33 +99,18 @@ function parseEmployeeData(employees){
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable secondLevelUl"});
 		firstDiv.append(secondLevelUl);
 
-		console.log("job history -> " + employees[e].jobHistory);
-
-		
 		if(employees[e].jobHistory != "" && employees[e].jobHistory != undefined){
 
-			console.log("emp history -> " + employees[e].jobHistory);
-			
 			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
 			var jsonData = JSON.parse(convertedString);
 
 			for(var i in jsonData){
-				
-				console.log(jsonData[i]);
-	
+
 				var jobDate = jsonData[i].date;
 				var jobTime = jsonData[i].time;
 				var jobAddress = jsonData[i].jobAddress;
 				var jobName = jsonData[i].jobName;
 
-				//console.log("job Date -> " + jobDate);
-				//console.log("job Time -> " + jobTime);
-				//console.log("job address -> " + jobAddress);
-				//console.log("Job Name -> " + jobName);
-
-
-
-				
 				var dataTheme = "";
 				if(jobName == "Logged In" || jobName == "Logged Off"){
 					dataTheme = 'data-theme="b"';
