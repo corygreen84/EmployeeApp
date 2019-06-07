@@ -2,8 +2,6 @@
 
 var db = firebase.firestore();
 
-
-
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
@@ -81,7 +79,7 @@ function loadEmployeeData(user, companyName){
 }
 
 
-
+// gets the most current user file //
 function getMostCurrentUserFile(user, company){
 	var storage = firebase.storage();
 	var ref = storage.ref();
