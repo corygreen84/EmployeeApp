@@ -86,6 +86,19 @@ function parseEmployeeData(employees){
 		var employeeNumber = employees[e].employeeNumber;
 		var employeeEmail = employees[e].email;
 
+		// creating the first level div //
+		var firstDiv = $('<div>', {"data-role":"collapsible"});
+		listView.append(firstDiv);
+
+		// creating the title for the collapsing item //
+		var nameOfCollapse = $('<h2>'+ name + ' # ' + employeeNumber + ' - ' + employeeEmail + '</h2>');
+		firstDiv.append(nameOfCollapse);
+
+	
+		// creating an unordered list //
+		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable secondLevelUl"});
+		firstDiv.append(secondLevelUl);
+
 
 		var count = 0;
 		if(employees[e].jobHistory != ""){
@@ -93,18 +106,7 @@ function parseEmployeeData(employees){
 			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
 			var jsonData = JSON.parse(convertedString);
 
-			// creating the first level div //
-			var firstDiv = $('<div>', {"data-role":"collapsible"});
-			listView.append(firstDiv);
-
-			// creating the title for the collapsing item //
-			var nameOfCollapse = $('<h2>'+ name + ' # ' + employeeNumber + ' - ' + employeeEmail + '</h2>');
-			firstDiv.append(nameOfCollapse);
-
-		
-			// creating an unordered list //
-			var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable secondLevelUl"});
-			firstDiv.append(secondLevelUl);
+			
 
 			for(var i in jsonData){
 	
