@@ -94,7 +94,27 @@ function parseEmployeeData(employees){
 			var jsonData = JSON.parse(convertedString);
 
 			for(var i in jsonData){
-				console.log(jsonData[i]);
+				//var jobString = employeeHistory[eh];
+				//convertStringToJSONData(jobString);
+				//console.log(jobString);
+
+			
+
+
+				var jobDate = jsonData[i].date;
+				var jobTime = jsonData[i].time;
+				var jobAddress = jsonData[i].jobAddress;
+				var jobName = jsonData[i].jobName;
+
+				var dataTheme = "";
+				if(jobName == "Logged In" || jobName == "Logged Off"){
+					dataTheme = 'data-theme="b"';
+				}else{
+					dataTheme = 'data-theme="a"';
+				}
+
+				var secondaryLi = $('<li '+ dataTheme +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
+				secondLevelUl.append(secondaryLi);
 			}
 
 			
