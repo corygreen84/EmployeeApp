@@ -83,10 +83,10 @@ function loadEmployeeData(user, companyName){
 
 function getMostCurrentUserFile(user, company){
 	var storage = firebase.storage();
-	var ref = storage.ref();
-	var userRef = ref.child(company + '/' + user + '/');
+	//var ref = storage.ref();
+	//var userRef = ref.child(company + '/' + user + '/');
 
-	console.log("user ref -> " + userRef);
+	//console.log("user ref -> " + userRef);
 }
 
 
