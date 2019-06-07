@@ -91,20 +91,11 @@ function parseEmployeeData(employees){
 		if(employees[e].jobHistory != ""){
 			
 			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
-			count++;
-			console.log("" + count + " " + convertedString);
 			var jsonData = JSON.parse(convertedString);
 
-			
-			
+			console.log(jsonData);
+
 		}
-		// employee history has changed.  It is now just a data string that I need to pull appart //
-		/*
-		var employeeHistory = employees[e].jobHistory;
-		console.log(employeeHistory);
-		var jsonData = JSON.parse(employeeHistory);
-		console.log(jsonData);
-		*/
 
 		/*
 		// creating the first level div //
