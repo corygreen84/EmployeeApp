@@ -80,6 +80,9 @@ function parseEmployeeData(employees){
 
 	var listView = $("#main-list-view-div");
 	
+
+
+	var count = 0;
 	// getting the main list //
 	for(var e in employees){
 		var name = "" + employees[e].first + " " + employees[e].last;
@@ -93,7 +96,9 @@ function parseEmployeeData(employees){
 			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
 			var jsonData = JSON.parse(convertedString);
 
-			console.log(jsonData);
+			count++;
+
+			console.log("" + count + " " + jsonData);
 
 		}
 
