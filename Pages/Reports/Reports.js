@@ -99,6 +99,8 @@ function parseEmployeeData(employees){
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable secondLevelUl"});
 		firstDiv.append(secondLevelUl);
 
+		console.log("job history -> " + employees[e].jobHistory);
+		
 		if(employees[e].jobHistory != ""){
 
 			console.log("emp history -> " + employees[e].jobHistory);
