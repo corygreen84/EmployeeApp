@@ -113,7 +113,7 @@ function parseEmployeeData(employees){
 				var jobAddress = jsonData[i].jobAddress;
 				var jobName = jsonData[i].jobName;
 
-				console.log("job Data -> " + jobDate);
+				console.log("job Date -> " + jobDate);
 				console.log("job Time -> " + jobTime);
 				console.log("job address -> " + jobAddress);
 				console.log("Job Name -> " + jobName);
