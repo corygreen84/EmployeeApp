@@ -2,6 +2,7 @@
 
 var db = firebase.firestore();
 
+
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
@@ -41,6 +42,11 @@ function checkState(){
 
 function loadEmployeeData(user, companyName){
 	
+	getMostCurrentUserFile(user, companyName);
+
+
+
+
 	var empRef = db.collection('companies').doc(companyName).collection('employees');
 	empRef.onSnapshot(function(querySnapshot){
 		var employees = [];
@@ -71,6 +77,16 @@ function loadEmployeeData(user, companyName){
 		parseEmployeeData(employees);
 		
 	});
+}
+
+
+
+function getMostCurrentUserFile(user, company){
+	var storage = firebase.storage();
+	var ref = storage.ref();
+	var userRef = ref.child(company + '/' + user + '/');
+
+	console.log("user ref -> " + userRef);
 }
 
 
