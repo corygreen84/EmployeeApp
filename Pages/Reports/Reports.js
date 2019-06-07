@@ -99,14 +99,10 @@ function parseEmployeeData(employees){
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable secondLevelUl"});
 		firstDiv.append(secondLevelUl);
 
-
-		var count = 0;
 		if(employees[e].jobHistory != ""){
 			
 			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
 			var jsonData = JSON.parse(convertedString);
-
-			
 
 			for(var i in jsonData){
 	
@@ -114,6 +110,14 @@ function parseEmployeeData(employees){
 				var jobTime = jsonData[i].time;
 				var jobAddress = jsonData[i].jobAddress;
 				var jobName = jsonData[i].jobName;
+
+				console.log("job Data -> " + jobDate);
+				console.log("job Time -> " + jobTime);
+				console.log("job address -> " + jobAddress);
+				console.log("Job Name -> " + jobName);
+
+
+
 
 				var dataTheme = "";
 				if(jobName == "Logged In" || jobName == "Logged Off"){
@@ -125,52 +129,7 @@ function parseEmployeeData(employees){
 				var secondaryLi = $('<li '+ dataTheme +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
 				secondLevelUl.append(secondaryLi);
 			}
-
-			
-
 		}
-
-		/*
-		// creating the first level div //
-		var firstDiv = $('<div>', {"data-role":"collapsible"});
-		listView.append(firstDiv);
-
-		// creating the title for the collapsing item //
-		var nameOfCollapse = $('<h2>'+ name + ' # ' + employeeNumber + ' - ' + employeeEmail + '</h2>');
-		firstDiv.append(nameOfCollapse);
-
-		
-		// creating an unordered list //
-		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable secondLevelUl"});
-		firstDiv.append(secondLevelUl);
-
-		for(var eh in employeeHistory){
-
-
-			var jobString = employeeHistory[eh];
-			//convertStringToJSONData(jobString);
-			console.log(jobString);
-
-			
-
-
-			var jobDate = employeeHistory[eh].date;
-			var jobTime = employeeHistory[eh].time;
-			var jobAddress = employeeHistory[eh].jobAddress;
-			var jobName = employeeHistory[eh].jobName;
-
-			var dataTheme = "";
-			if(jobName == "Logged In" || jobName == "Logged Off"){
-				dataTheme = 'data-theme="b"';
-			}else{
-				dataTheme = 'data-theme="a"';
-			}
-
-			var secondaryLi = $('<li '+ dataTheme +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
-			secondLevelUl.append(secondaryLi);
-			
-		}
-		*/
 	}
 	$("#main-list-view-div").trigger("create");	
 }
