@@ -99,9 +99,9 @@ function parseEmployeeData(employees){
 		var secondLevelUl = $('<ul>', {"data-role":"listview", "data-theme": "a", "class":"scrollable secondLevelUl"});
 		firstDiv.append(secondLevelUl);
 
-		console.log(employees[e].jobHistory);
-
 		if(employees[e].jobHistory != ""){
+
+			console.log(employees[e].jobHistory);
 			
 			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
 			var jsonData = JSON.parse(convertedString);
