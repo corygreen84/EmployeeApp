@@ -87,11 +87,12 @@ function parseEmployeeData(employees){
 		var employeeEmail = employees[e].email;
 
 
-		
+		var count = 0;
 		if(employees[e].jobHistory != ""){
 			
 			var convertedString = convertStringToJSONData("" + employees[e].jobHistory);
-			console.log(convertedString);
+			count++;
+			console.log("" + count + " " + convertedString);
 			var jsonData = JSON.parse(convertedString);
 
 			
