@@ -106,25 +106,23 @@ function parseEmployeeData(employees){
 			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
 			var jsonData = JSON.parse(convertedString);
 
-			var count = 0;
-
 			for(var i in jsonData){
-				count++;
-				console.log("Count -> " + count);
+				
+				console.log(jsonData[i]);
 	
 				var jobDate = jsonData[i].date;
 				var jobTime = jsonData[i].time;
 				var jobAddress = jsonData[i].jobAddress;
 				var jobName = jsonData[i].jobName;
 
-				console.log("job Date -> " + jobDate);
-				console.log("job Time -> " + jobTime);
-				console.log("job address -> " + jobAddress);
-				console.log("Job Name -> " + jobName);
+				//console.log("job Date -> " + jobDate);
+				//console.log("job Time -> " + jobTime);
+				//console.log("job address -> " + jobAddress);
+				//console.log("Job Name -> " + jobName);
 
 
 
-
+				/*
 				var dataTheme = "";
 				if(jobName == "Logged In" || jobName == "Logged Off"){
 					dataTheme = 'data-theme="b"';
@@ -134,6 +132,7 @@ function parseEmployeeData(employees){
 
 				var secondaryLi = $('<li '+ dataTheme +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
 				secondLevelUl.append(secondaryLi);
+				*/
 			}
 		}
 	}
