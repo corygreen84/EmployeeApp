@@ -106,7 +106,11 @@ function parseEmployeeData(employees){
 			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
 			var jsonData = JSON.parse(convertedString);
 
+			var count = 0;
+
 			for(var i in jsonData){
+				count++;
+				console.log("Count -> " + count);
 	
 				var jobDate = jsonData[i].date;
 				var jobTime = jsonData[i].time;
