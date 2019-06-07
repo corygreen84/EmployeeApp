@@ -1,7 +1,7 @@
 
 
 var db = firebase.firestore();
-var storage = firebase.storage();
+
 
 
 // checking if the user has logged in //
@@ -43,7 +43,7 @@ function checkState(){
 
 function loadEmployeeData(user, companyName){
 	
-	getMostCurrentUserFile(user, companyName);
+	//getMostCurrentUserFile(user, companyName);
 
 
 
@@ -83,7 +83,7 @@ function loadEmployeeData(user, companyName){
 
 
 function getMostCurrentUserFile(user, company){
-	
+	var storage = firebase.storage();
 	var ref = storage.ref();
 	var userRef = ref.child(company + '/' + user + '/');
 
