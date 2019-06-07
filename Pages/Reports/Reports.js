@@ -100,8 +100,9 @@ function parseEmployeeData(employees){
 		firstDiv.append(secondLevelUl);
 
 		console.log("job history -> " + employees[e].jobHistory);
+
 		
-		if(employees[e].jobHistory != ""){
+		if(employees[e].jobHistory != "" && employees[e].jobHistory != null){
 
 			console.log("emp history -> " + employees[e].jobHistory);
 			
@@ -124,7 +125,7 @@ function parseEmployeeData(employees){
 
 
 
-				/*
+				
 				var dataTheme = "";
 				if(jobName == "Logged In" || jobName == "Logged Off"){
 					dataTheme = 'data-theme="b"';
@@ -134,9 +135,10 @@ function parseEmployeeData(employees){
 
 				var secondaryLi = $('<li '+ dataTheme +'><a href="#"><h3>' + jobName + '</h3><p><strong>' + jobAddress + '</strong></p><p class="ui-li-aside">' + jobDate + ' @ ' + jobTime + '</p></a></li>');
 				secondLevelUl.append(secondaryLi);
-				*/
+				
 			}
 		}
+		
 	}
 	$("#main-list-view-div").trigger("create");	
 }
