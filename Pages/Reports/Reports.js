@@ -102,7 +102,7 @@ function parseEmployeeData(employees){
 		console.log("job history -> " + employees[e].jobHistory);
 
 		
-		if(employees[e].jobHistory != "" && employees[e].jobHistory != null){
+		if(employees[e].jobHistory != "" && employees[e].jobHistory != undefined){
 
 			console.log("emp history -> " + employees[e].jobHistory);
 			
