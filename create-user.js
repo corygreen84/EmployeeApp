@@ -184,7 +184,7 @@ function createCompanyInDatabase(user, companyName){
 				db.collection("companies").doc(companyName).collection("jobs").add({
 
 				}).then(function(){
-					console.log("good to go");
+					sendOutEmailVerification(user);
 				}).catch(function(err){
 					console.log("errorrrrrrrr", err);
 				});
