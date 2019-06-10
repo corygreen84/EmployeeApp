@@ -6,28 +6,30 @@ admin.initializeApp(functions.config().firebase);
 let db = admin.firestore();
 
 exports.scheduleEmployeeHistory = functions.pubsub.schedule('every 2 minutes').onRun((context) => {
-    let companiesRef = db.collection('companies').doc().collection('employees');
+    
+    
+    var companies = [];
+    
+    let companiesRef = db.collection('companies');
     companiesRef.get().then(snapshot => {
         snapshot.forEach((doc) => {
-            console.log(doc.id, '=>', doc.data());
-        });
-        return "";
-    }).catch(err => {
-        console.log("error ", err);
-    });
+            let companyData = doc.id;
 
-    
-    /*
-    let allCompanies = companiesRef.get().then(snapshot => {
-        snapshot.forEach((doc) => {
-            console.log(doc.id, '=>', doc.data());
+            doThisOncedone(companyData);
+            
         });
         return "";
-    }).catch(err => {
-        console.log("error -> ", err);
+    }).catch(err =>{
+        console.log("error", err);
     });
-    */
+    
 });
+
+
+
+function doThisOncedone(company){
+    console.log(company);
+}
 
 
 
