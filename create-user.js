@@ -168,6 +168,8 @@ function createUserInDatabase(email, username, company, user){
 
 function createCompanyInDatabase(user, companyName){
 
+
+	// i hate having to nest all these updates but... yeah here we are.. //
 	var db = firebase.firestore();
 	if(db != null){
 
@@ -175,16 +177,23 @@ function createCompanyInDatabase(user, companyName){
 		var companyNameRef = db.collection("companies").doc(companyName);
 		batch.set(companyNameRef,{});
 
-		let newBatch = db.batch();
-
 		batch.commit().then(function(){
 			db.collection("companies").doc(companyName).collection("employees").add({
 
 			}).then(function(){
-				console.log("good to go");
+				db.collection("companies").doc(companyName).collection("jobs").add({
+
+				}).then(function(){
+					console.log("good to go");
+				}).catch(function(err){
+					console.log("errorrrrrrrr", err);
+				});
+
 			}).catch(function(err){
 				console.log("errorrrrrrrr", err);
 			});
+
+			
 			
 		});
 
