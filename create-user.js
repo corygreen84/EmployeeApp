@@ -171,18 +171,6 @@ function createCompanyInDatabase(user, companyName){
 	var db = firebase.firestore();
 	if(db != null){
 		
-		db.collection("companies").doc(companyName).add({
-			employees: '',
-			jobs: ''
-		}).then(function(event){
-			console.log("done");
-		});
-	}
-
-	/*
-	var db = firebase.firestore();
-	if(db != null){
-		
 		db.collection("companies").doc(companyName).collection("employees").add({
 			
 		}).then(function(event){
@@ -197,7 +185,7 @@ function createCompanyInDatabase(user, companyName){
 			
 		});
 	}
-	*/
+	
 }
 
 
