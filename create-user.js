@@ -170,13 +170,18 @@ function createCompanyInDatabase(user, companyName){
 
 	var db = firebase.firestore();
 	if(db != null){
-		
-
-		
 
 
+		db.collection("companies").doc(companyName).set({
 
-		
+		}).then(function(){
+			console.log("good to go");
+		}).catch(function(error){
+			console.log("nothing to add");
+		});
+
+
+		/*
 		db.collection("companies").doc(companyName).collection("employees").add({
 			
 		}).then(function(event){
@@ -190,7 +195,7 @@ function createCompanyInDatabase(user, companyName){
 		}).catch(function(error){
 			
 		});
-		
+		*/
 	}
 	
 }

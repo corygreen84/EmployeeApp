@@ -6,7 +6,7 @@ admin.initializeApp(functions.config().firebase);
 let db = admin.firestore();
 
 exports.scheduleEmployeeHistory = functions.pubsub.schedule('every 2 minutes').onRun((context) => {
-    let companiesRef = db.collection('companies');
+    let companiesRef = db.collection('companies').doc().collection('employees');
     companiesRef.get().then(snapshot => {
         snapshot.forEach((doc) => {
             console.log(doc.id, '=>', doc.data());
