@@ -171,6 +171,22 @@ function createCompanyInDatabase(user, companyName){
 	var db = firebase.firestore();
 	if(db != null){
 		
+
+		db.collection("companies").doc(companyName).collection("employees").add({
+			employee: 'none'
+		}).then(function(event){
+			db.collection("companies").doc(companyName).collection("jobs").add({
+				companies: 'none'
+			}).then(function(event){
+				sendOutEmailVerification(user);
+			}).catch(function(error){
+				
+			});
+		})
+
+
+
+		/*
 		db.collection("companies").doc(companyName).collection("employees").add({
 			
 		}).then(function(event){
@@ -184,6 +200,7 @@ function createCompanyInDatabase(user, companyName){
 		}).catch(function(error){
 			
 		});
+		*/
 	}
 	
 }
