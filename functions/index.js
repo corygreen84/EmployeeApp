@@ -8,7 +8,7 @@ let db = admin.firestore();
 exports.scheduleEmployeeHistory = functions.pubsub.schedule('every 2 minutes').onRun((context) => {
     let companiesRef = db.collection('companies');
     companiesRef.get().then(snapshot => {
-        snapshot.forEach((doc) =>{
+        snapshot.forEach((doc) => {
             console.log(doc.id, '=>', doc.data());
         });
         return "";
