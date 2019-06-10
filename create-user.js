@@ -171,18 +171,11 @@ function createCompanyInDatabase(user, companyName){
 	var db = firebase.firestore();
 	if(db != null){
 		
-		db.collection('companies').doc(companyName).set({
-
-		}).then(function(){
-			db.collection('companies').doc(companyName).collection('employees').set({
-
-			}).then(function(){
-				db.collection('companies').doc(companyName).collection('jobs').set({
-
-				}).then(function(){
-					sendOutEmailVerification(user);
-				});
-			});
+		db.collection("companies").doc(companyName).add({
+			employees: '',
+			jobs: ''
+		}).then(function(event){
+			console.log("done");
 		});
 	}
 
