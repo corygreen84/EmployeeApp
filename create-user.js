@@ -171,21 +171,23 @@ function createCompanyInDatabase(user, companyName){
 	var db = firebase.firestore();
 	if(db != null){
 
+		let batch = db.batch();
+		var companyNameRef = db.collection("companies").doc(companyName);
+		batch.set(companyNameRef);
 
+		batch.commit().then(function(){
+			console.log("good to go...");
+		});
+
+		/*
 		db.collection("companies").doc(companyName).set({
 
 		}).then(function(){
-			db.collection("companies").doc(companyName).collection("employees").set({
-
-			}).then(function(event){
-				console.log("good to go for employees");
-			}).catch(function(error){
-				console.log("error adding employees");
-			});
+			
 		}).catch(function(error){
 			console.log("nothing to add");
 		});
-
+		*/
 
 		/*
 		db.collection("companies").doc(companyName).collection("employees").add({
