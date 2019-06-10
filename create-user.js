@@ -178,7 +178,7 @@ function createCompanyInDatabase(user, companyName){
 		let newBatch = db.batch();
 
 		batch.commit().then(function(){
-			db.collection("companies").doc(companyName).collection("employees").set({
+			db.collection("companies").doc(companyName).collection("employees").add({
 
 			}).then(function(){
 				console.log("good to go");
