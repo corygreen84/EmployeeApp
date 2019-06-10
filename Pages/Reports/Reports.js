@@ -40,11 +40,6 @@ function checkState(){
 
 
 function loadEmployeeData(user, companyName){
-	
-	//getMostCurrentUserFile(user, companyName);
-
-
-
 
 	var empRef = db.collection('companies').doc(companyName).collection('employees');
 	empRef.onSnapshot(function(querySnapshot){
@@ -79,14 +74,7 @@ function loadEmployeeData(user, companyName){
 }
 
 
-// gets the most current user file //
-function getMostCurrentUserFile(user, company){
-	var storage = firebase.storage();
-	var ref = storage.ref();
-	var userRef = ref.child(company + '/' + user + '/');
 
-	console.log("user ref -> " + userRef);
-}
 
 
 

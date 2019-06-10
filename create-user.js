@@ -170,10 +170,10 @@ function createCompanyInDatabase(user, companyName){
 	var db = firebase.firestore();
 	if(db != null){
 		
-		db.collection("companies").doc("" + companyName).collection("employees").add({
+		db.collection("companies").doc(companyName).collection("employees").add({
 			
 		}).then(function(event){
-			db.collection("companies").doc("" + companyName).collection("jobs").add({
+			db.collection("companies").doc(companyName).collection("jobs").add({
 				
 			}).then(function(event){
 				sendOutEmailVerification(user);

@@ -1,7 +1,50 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
-admin.initializeApp();
+admin.initializeApp(functions.config().firebase);
+
+let db = admin.firestore();
+
+exports.scheduleEmployeeHistory = functions.pubsub.schedule('every 2 minutes').onRun((context) => {
+    let companiesRef = db.collection('companies').doc('Greenmachine Studios3').collection('employees');
+    let allCompanies = companiesRef.get().then(snapshot => {
+        snapshot.forEach((doc) => {
+            console.log(doc.id, '=>', doc.data());
+        });
+        return "";
+    }).catch(err => {
+        console.log("error -> ", err);
+    });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 const path = require('path');
 const os = require('os');
