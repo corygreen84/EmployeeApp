@@ -173,7 +173,7 @@ function createCompanyInDatabase(user, companyName){
 
 		let batch = db.batch();
 		var companyNameRef = db.collection("companies").doc(companyName);
-		batch.set(companyNameRef);
+		batch.set(companyNameRef,{});
 
 		batch.commit().then(function(){
 			console.log("good to go...");
