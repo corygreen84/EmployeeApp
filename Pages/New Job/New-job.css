@@ -11,12 +11,14 @@
     width: 300px;
     min-width: 300px;
     height: 820px;
-    left: 0;
+    left: 10;
     top: 8px;
     background-color:#525963;
     z-index: 10;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    /*border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;*/
+    border-radius: 15px;
+
     border-color: grey;
     border-style: solid;
     border-width: 0.5;
