@@ -112,7 +112,7 @@ function parseJobs(_listOfJobs){
 function createNewJobOnClick(){
 
 
-	window.location = "EmployeeApp/Pages/New Job/New-job.html";
+	window.location = "/EmployeeApp/Pages/New Job/New-job.html";
 }
 
 
