@@ -111,7 +111,7 @@ function parseJobs(_listOfJobs){
 
 function createNewJobOnClick(){
 
-	window.location.href = "Pages/New Job/New Job.html";
+	window.location.href = "Pages/New Job/New-Job.html";
 }
 
 
