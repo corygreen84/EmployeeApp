@@ -40,6 +40,16 @@ function loadJobInfo(job){
 
 
 
+function deleteButtonOnClick(){
+
+}
+
+
+function createButtonOnClick(){
+	
+}
+
+
 /*
 function checkState(){
 	firebase.auth().onAuthStateChanged(function(user){
