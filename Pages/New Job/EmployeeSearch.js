@@ -25,8 +25,8 @@ function loadEmployeesCreate(companyName){
 	
 	listOfEmployeesCreate = [];
 
-	db.collection("companies").doc(companyName).collection("employees").onSnapshot(function(doc){
-		console.log(doc.data());
+	db.collection('companies').doc(companyName).collection('employees').onSnapshot(function(doc){
+		console.log("" + doc.data());
 	});
 	/*
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
