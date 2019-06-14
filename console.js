@@ -44,23 +44,18 @@ window.onclick = function(event) {
 		showDropDown();
 	}else if(event.target.id == "JobsPage"){
 		activeNav = "JobsPageDiv";
-		//objectElement.data = "/Employee/Pages/Jobs/Jobs.html";
 		objectElement.src = "Pages/Jobs/Jobs.html";
 	}else if(event.target.id == "EmployeesPage"){
 		activeNav = "EmployeesPageDiv";
-		//objectElement.data = "/Employee/Pages/Employees/Employees.html";
 		objectElement.src = "Pages/Employees/Employees.html";
 	}else if(event.target.id == "ReportsPage"){
 		activeNav = "ReportsPageDiv";
-		//objectElement.data = "/Employee/Pages/Reports.html";
 		objectElement.src = "Pages/Reports/Reports.html";
 	}else if(event.target.id == "PayPage"){
 		activeNav = "PayPageDiv";
-		//objectElement.data = "/Employee/Pages/Pay-Period.html";
 		objectElement.src = "Pages/Pay-Period.html";
 	}else if(event.target.id == "CommunicationPage"){
 		activeNav = "CommunicationPageDiv";
-		//objectElement.data = "/Employee/Pages/Communication.html";
 		objectElement.src = "Pages/Communication.html";
 	}
 

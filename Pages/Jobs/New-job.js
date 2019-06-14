@@ -47,8 +47,10 @@ window.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 
+/*
 function createNewJobOnClick(){
 
+	
 	$('#erase-marker-button').removeClass('ui-btn');
 	$('#add-marker-button').removeClass('ui-btn');
 	
@@ -71,8 +73,9 @@ function createNewJobOnClick(){
 
 	toggleCreateButton();
 	loadEmployeesCreate(companyName);
+	
 }
-
+*/
 
 // removing the modal view //
 createJobSpan.onclick = function(){
