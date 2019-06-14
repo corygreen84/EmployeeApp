@@ -206,7 +206,6 @@ body{
 
 object{
 	width:100%;
-	/*height:800px;*/
 	height: 800px;
 	
 }
@@ -215,7 +214,6 @@ object{
 iframe{
 	margin-top:96px;
 	width: 100%;
-	/*height: 1800px;*/
 	height: 870px;
 	border-style: none;
 }
