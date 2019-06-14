@@ -115,7 +115,12 @@
 }
 
 #employee-ul{
-	height: 100px;
+	height: 200px;
+}
+
+.scrollable {
+	overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 #notes-container{
