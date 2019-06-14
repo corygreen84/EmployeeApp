@@ -25,7 +25,7 @@ function loadEmployeesCreate(companyName){
 	
 	listOfEmployeesCreate = [];
 
-	db.collection('companies').doc(companyName).collection('employees').onSnapshot(function(doc){
+	db.collection("companies").doc(companyName).collection("employees").onSnapshot(function(doc){
 		console.log(doc.data());
 	});
 	/*
