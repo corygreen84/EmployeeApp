@@ -169,7 +169,7 @@ function createUserInDatabase(email, username, company, user){
 function createCompanyInDatabase(user, companyName){
 
 
-	// i hate having to nest all these updates but... yeah here we are.. //
+	// i hate having to nest all these updates but... yeah, here we are.. //
 	var db = firebase.firestore();
 	if(db != null){
 
@@ -192,36 +192,9 @@ function createCompanyInDatabase(user, companyName){
 			}).catch(function(err){
 				console.log("errorrrrrrrr", err);
 			});
-
-			
-			
+	
 		});
 
-		/*
-		db.collection("companies").doc(companyName).set({
-
-		}).then(function(){
-			
-		}).catch(function(error){
-			console.log("nothing to add");
-		});
-		*/
-
-		/*
-		db.collection("companies").doc(companyName).collection("employees").add({
-			
-		}).then(function(event){
-			db.collection("companies").doc(companyName).collection("jobs").add({
-				
-			}).then(function(event){
-				sendOutEmailVerification(user);
-			}).catch(function(error){
-				
-			});
-		}).catch(function(error){
-			
-		});
-		*/
 	}
 	
 }

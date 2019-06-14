@@ -3,32 +3,70 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
+
+// this is for file manipulation //
+const path = require('path');
+
 let db = admin.firestore();
 
-exports.scheduleEmployeeHistory = functions.pubsub.schedule('every 2 minutes').onRun((context) => {
-    
-    
-    var companies = [];
-    
-    let companiesRef = db.collection('companies');
-    companiesRef.get().then(snapshot => {
-        snapshot.forEach((doc) => {
-            let companyData = doc.id;
 
-            doThisOncedone(companyData);
-            
+// 0 23 * * * for every night at 11pm //
+exports.scheduleEmployeeHistory = functions.pubsub.schedule('0 23 * * *').timeZone('America/Los_Angeles').onRun((context) => {
+
+    let companiesRef = db.collection('companies');
+    return companiesRef.get().then(snapshot => {
+        snapshot.forEach((doc) => {
+
+            // getting the company name //
+            let companyData = doc.id;
+    
+            lookUpCompanyEmployees(companyData);
+                
         });
-        return "";
+        return null;
     }).catch(err =>{
         console.log("error", err);
     });
-    
 });
 
 
 
-function doThisOncedone(company){
-    console.log(company);
+function lookUpCompanyEmployees(company){
+    var employeeJobHistory = [];
+
+    let employeesRef = db.collection('companies').doc(company).collection('employees');
+    return employeesRef.get().then(snapshot =>{
+        var totalEmployees = snapshot.size;
+        snapshot.forEach((doc) => {
+
+            var tempEmployeeHistory = [];
+            // getting the employee ids and history // 
+            var jobHistory = doc.data().jobHistory;
+            for(var i in jobHistory){
+                tempEmployeeHistory.push(jobHistory[i]);
+            }
+            
+
+            var newEmployeeJobHistory = new EmployeeJobHistory();
+            newEmployeeJobHistory.company = company;
+            newEmployeeJobHistory.employee = doc.id;
+            newEmployeeJobHistory.jobHistory = tempEmployeeHistory;
+
+
+            employeeJobHistory.push(newEmployeeJobHistory);
+
+            // if the employee array == the return size, then we go through and delete their data....//
+            // or at least try to //
+            if(employeeJobHistory.length === totalEmployees){
+
+                deleteEmployeeData(company, employeeJobHistory);
+            }
+            
+        });
+        return null;
+    }).catch(err => {
+        console.log("error here... ", err);
+    });
 }
 
 
@@ -39,153 +77,145 @@ function doThisOncedone(company){
 
 
 
+function deleteEmployeeData(company, companyJobHistory){
+
+    for(var i in companyJobHistory){
+
+        // if the user has a job history, then we need to grab the last history event //
+        // and make sure its a 'Log out' event.  If it is then we delete the users data //
+        // for the day because it has been archived //
+        // If there is no 'Log Out' event, then we should notify the admin and do nothing //
+        // with the users data.
+        if(companyJobHistory[i].jobHistory.length !== 0){
+            parseEmployeeHistory(companyJobHistory[i]);
+        }   
+    }   
+}
 
 
+function parseEmployeeHistory(history){
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-const path = require('path');
-const os = require('os');
-const fs = require('fs');
-
-const pdfDocument = require('pdfkit');
-
-exports.logOffFunction = functions.firestore.document('companies/{company}/{employees}/{employee}').onUpdate((change, context) =>{
-    
-    // in coming parameters //
-    var company = context.params.company;
-    var employee = context.params.employee;
-    var propertyChanged = change.after.data();
-
-    // gs:// //
-    const path = 'gs://test-application-5cb08.appspot.com';
-
-
-    const {Storage} = require('@google-cloud/storage');
-    const storage = new Storage();
-    const bucket = storage.bucket('test-application-5cb08.appspot.com');
-
-
-    // constructing a pdf //
-    const doc = new pdfDocument;
-
-    doc.text('Hey there!');
-    doc.pipe(fs.createWriteStream('/file.pdf'));
-    
-    doc.end();
-
-    
-    bucket.exists().then(data =>{
-
-        bucket.upload('/file.pdf', (err, file, apiresponse =>{
-            if(!err){
-                console.log("upload complete!");
-            }else{
-                console.log("there was an error " + err);
-            }
-        }));
-        console.log("bucket exists");
-
-        return data[0];
-    }).catch(error => {
-        console.log("error");
-        return "";
-    });
-
-    
-
-    
-
-    const {Storage} = require('@google-cloud/storage');
-             * const storage = new Storage();
-             * const bucket = storage.bucket('albums');
-             *
-             * bucket.exists(function(err, exists) {});
-             *
-             * //-
-             * // If the callback is omitted, we'll return a Promise.
-             * //-
-             * bucket.exists().then(function(data) {
-             *   const exists = data[0];
-             * });
-             * 
-             * 
-             * bucket.upload('/local/path/image.png', function(err, file, apiResponse) {
-     *   // Your bucket now contains:
-     *   // - "image.png" (with the contents of `/local/path/image.png')
-     *
-     *   // `file` is an instance of a File object that refers to your new file.
-     * });
-
-    
-
-
-
-
-    //const bucket = storage.bucket(path);
-
-
-    
-    bucket.upload('sample.txt', function(err, file){
-        if(!err){
-            console.log("good!");
+    var jobCompany = history.company;
+    var jobEmployee = history.employee;
+    var jobHistory = history.jobHistory;
+    var batch = db.batch();
+    for(var i in jobHistory){
+        var searchString = String(jobHistory[i]).search("Logged Off");
+        if(searchString !== -1){
+            let employeeRef = db.collection('companies').doc(jobCompany).collection('employees').doc(jobEmployee);
+            batch.update(employeeRef, {jobHistory: []});
         }else{
-            console.log("No good!");
+
+            // this section will be for messaging the admin that a user is still logged in through the next work //
+            // day //
+            console.log("does not contain logged off");
+        }
+    }
+    batch.commit();
+}
+
+
+class EmployeeJobHistory{
+    constructor(){
+        var company;
+        var employee;
+        var jobHistory;
+    }
+}
+
+
+
+
+
+
+
+
+// **** next function will search through storage to see if a file already exists for that DAY **** //
+// **** if one exists, then it will append what ever data has been newly added to the end of the **** //
+// **** previous data save, then delete either the new file or the old one **** //
+
+exports.combineTextFiles = functions.storage.object().onFinalize(async (object) =>{
+    const fileBucket = object.bucket;
+    const filePath = object.name;
+
+    // the file name of the incoming file //
+    const fileName = path.basename(filePath);
+
+    var filePathMinusFileName = filePath.replace(fileName, '');
+
+    console.log(filePathMinusFileName);
+
+    fileBucket.getFiles({prefix: filePathMinusFileName}, function(err, files){
+        if(!err){
+            files.forEach(function(file){
+                console.log(file);
+            });
+        }else{
+            console.log("there was an errrrrrr ", err);
         }
     });
-    console.log("bucket file -> " + bucket.file.name);
-    
 
 
 
 
 
-
-    //if(propertyChanged.status === false){
-        // cloud storage stuff //
-        //var storagebucket = 'gs://test-application-5cb08.appspot.com';
-
-        //const {Storage} = require('@google-cloud/storage');
-        //const storage = new Storage();
-
-        //var bucket = storage.bucket(storagebucket);
-        
-
-
-        //const bucket = storage.bucket(filePath);
-
-        
-        bucket.upload("Hey there", {
-            destination: "/csv-folder/temp.csv"
-        }, function(error, file){
-            if(!error){
-                console.log("good to go");
+    /*
+    fileBucket.getFiles(function(err, files){
+        if(!err){
+            for(var i in files){
+                console.log(files[i]);
             }
+        }else{
+            console.log("there was an error ", err);
+        }
+    });
+    */
+
+    /*
+    var storageRef = firebase.storage().ref(filePathMinusFileName);
+    return storageRef.listAll().then(result => {
+        result.items.forEach(things =>{
+            console.log(things);
         });
+        return null;
+    }).catch(error =>{
+        console.log("errors ", error);
+    });
+*/
+
+
+
+    // accessing the bucket that the uploaded file is stored //
+    //const bucket = admin.storage().bucket(fileBucket);
+    
+    
+    // need to see if theres a file already in here that has the same date //
+    //console.log(fileName);
+    //console.log(filePathMinusFileName);
+
     
 
-        
-
-        // uploading the file to bucket //
+});
 
 
-        
-        
-//});
-*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!--<link rel="stylesheet" href="/EmployeeApp/index.css"/>-->
+		<link rel="stylesheet" href="New-job.css"/>
+		<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
+		
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-app.js"></script>
+		
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-database.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-firestore.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-messaging.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/5.9.3/firebase-functions.js"></script>
+
+	</head>
+
+	<body>
+	
+		<div id="main-map-view"></div>
+		
+			<div id="side-view">
+				<div id="navigation-container">
+					<span class="createJobClose" id="back-button" onclick="backButtonOnClick()">&#x2B05;</span>
+					<span class="createJobClose" id="close-button" onclick="clearButtonOnClick()">&times;</span>
+				</div>
+				
+				<div id="text-box-div">
+					
+					<p class="job-p-text">Create New Job</p>
+					<input type="text" id="create-name-text" class="text-fields" placeholder="Job Name" onkeydown="createNameOnchange()" onkeyup="createNameOnchange()">
+					
+
+					<div id="location-container">
+						<input type="text" id="create-address-text" class="text-fields" placeholder="Address" onkeydown="createAddressOnchange()" onkeyup="createAddressOnchange()">
+						<p id="or-p">Or</p>
+						<div id="long">
+							<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude" onkeydown="createLongOnchange()" onkeyup="createLongOnchange()">
+						</div>
+						<div id="lat">
+							<input type="text" id="create-lat-text" class="text-fields" placeholder="Latitude" onkeydown="createLatOnchange()" onkeyup="createLatOnchange()">
+						</div>
+
+						<div id="search-button-container">
+							<button type="button" id="create-address-search" class="buttons" onclick="searchButtonOnClick()">Search for Address</button>
+						</div>
+					</div>
+
+					<div id="employee-list-container">
+						<ul data-role="listview" data-inset="true" id="employee-ul" class="scrollable">
+									
+							<!-- dynamically added -->
+									
+						</ul>
+					</div>
+
+					<div id="notes-container">
+						<textarea id="notes-textarea" placeholder="Notes..." onkeydown="createNotesOnKeyDown()"></textarea>
+					</div>
+
+					<div id="create-job-button-container">
+						<button type="button" id="create-job-button" class="buttons" onclick="createButtonOnClick()">Create Job</button>
+					</div>
+					
+				</div>
+
+			</div>
+
+
+
+
+
+
+
+
+
+
+		
+		
+
+		<script type="application/javascript" src="firebase-init.js"></script>
+		<script type="application/javascript" src="Map.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbrSfOKkZEFVCLYk254tLC3dNGX3k7yiU&callback=initMap"
+		async defer></script>
+		<script type="application/javascript" src="New-job.js"></script>
+		<script type="application/javascript" src="Check-Text-Boxes.js"></script>
+		<script type="application/javascript" src="EmployeeSearch.js"></script>
+		
+		
+		<!--
+		<script type="application/javascript" src="/EmployeeApp/Pages/Jobs/New-job.js"></script> 	
+		<script type="application/javascript" src="/EmployeeApp/Pages/Jobs/Modify-job.js"></script>
+		<script type="application/javascript" src="/EmployeeApp/Pages/Jobs/checkDifferencesInArrays.js"></script>  
+		<script type="application/javascript" src="/EmployeeApp/Pages/Jobs/Window-onclick.js"></script> 
+		<script type="application/javascript" src="/EmployeeApp/Pages/Jobs/Places-Search-Text-Fields.js"></script> 		
+		-->
+	</body>
+
+</html>
