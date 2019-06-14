@@ -13,14 +13,6 @@ var db = firebase.firestore();
 
 window.addEventListener('DOMContentLoaded', function () {
 
-	/*
-	if(user != null){
-		if(companyName != ""){
-			loadEmployeesCreate(companyName);
-		}
-	}	
-	*/
-
 }, false);
 
 
@@ -32,7 +24,13 @@ window.addEventListener('DOMContentLoaded', function () {
 function loadEmployeesCreate(companyName){
 	
 	listOfEmployeesCreate = [];
+
+	db.collection('companies').doc(companyName).collection('employees').onSnapshot(function(doc){
+		console.log(doc.data());
+	});
+	/*
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
+	
 	companyRef.get().then(function(querySnapshot){
 		
 			var data = querySnapshot.docs.map(function(documentSnapshot){
@@ -56,6 +54,7 @@ function loadEmployeesCreate(companyName){
 		}
 		parseEmployeesAndAddToListViewCreate();
 	});	
+	*/
 }
 
 
