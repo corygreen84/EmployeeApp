@@ -206,7 +206,8 @@ body{
 
 object{
 	width:100%;
-	height:800px;
+	/*height:800px;*/
+	height: inherit;
 	
 }
 
