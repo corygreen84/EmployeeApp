@@ -27,6 +27,8 @@ window.addEventListener('DOMContentLoaded', function () {
 	createSearchButton.disabled = true;
 	createJobButton.disabled = true;
 
+	checkState();
+
 }, false);
 
 
