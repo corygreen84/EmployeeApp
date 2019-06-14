@@ -107,10 +107,15 @@
 
 #employee-list-container{
     width: 100%;
-    height: 200px;
+    /*height: 200px;*/
     margin-top: 20px;
     background-color: grey;
     border-radius: 10px;
+    display: block;
+}
+
+#employee-ul{
+	height: 200px;
 }
 
 .scrollable {
