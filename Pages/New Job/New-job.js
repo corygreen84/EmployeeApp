@@ -34,6 +34,7 @@ window.addEventListener('DOMContentLoaded', function () {
 function checkState(){
 	firebase.auth().onAuthStateChanged(function(user){
 		
+		console.log("in here...");
 		// if the user is good to go, we need to pull their email address to get their company info //
 		if(user){
 			console.log("user is not null");
