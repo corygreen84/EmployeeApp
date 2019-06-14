@@ -15,6 +15,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 	if(user != null){
 		if(companyName != ""){
+			console.log("im in here....");
 			loadEmployeesCreate(companyName);
 		}
 	}	

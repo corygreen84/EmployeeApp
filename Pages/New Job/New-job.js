@@ -35,8 +35,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function checkState(){
 	firebase.auth().onAuthStateChanged(function(user){
-		
-		console.log("in here...");
+
 		// if the user is good to go, we need to pull their email address to get their company info //
 		if(user){
 			console.log("user is not null");
@@ -48,8 +47,6 @@ function checkState(){
 					companyName = doc.data().company;
 					this.user = user;
 
-					// from this, we load the employees and the jobs tied to this company //
-					loadJobs(user, companyName);
 				}).then(function(){
 					
 				}).catch(function(error){
