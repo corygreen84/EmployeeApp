@@ -17,6 +17,9 @@
     z-index: 10;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
+    border-color: grey;
+    border-style: solid;
+    border-width: 1.0;
     box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
 }
 
