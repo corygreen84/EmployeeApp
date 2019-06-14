@@ -120,7 +120,7 @@ function createButtonOnClick(){
 		}
 
 		batch.commit().then(function(){
-			//createJobModal.style.display = "none";
+			window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/Jobs/Jobs.html";
 		});
 	}).catch(function(error){
 		console.log("error" + error);
