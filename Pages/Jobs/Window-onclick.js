@@ -4,6 +4,6 @@ window.onclick = function(event) {
 		modifyJobModal.style.display = "none";
 		
 	}else if(event.target == createJobModal){
-		createJobModal.style.display = "none";
+		//createJobModal.style.display = "none";
 	}
 } 
