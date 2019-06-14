@@ -110,8 +110,6 @@ function parseJobs(_listOfJobs){
 
 
 function createNewJobOnClick(){
-
-
 	window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/New Job/New-job.html";
 }
 

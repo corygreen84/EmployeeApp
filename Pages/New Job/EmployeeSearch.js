@@ -59,8 +59,6 @@ function loadEmployeesCreate(companyName){
 function parseEmployeesAndAddToListViewCreate(){
 	
 	$("#employee-list-container ul").empty();
-	//$("#employee-list-container ul").listview('refresh');
-	//$("#employee-ul").listview('refresh');
 
 	for(var j = 0; j < listOfEmployeesCreate.length; j++){
 		

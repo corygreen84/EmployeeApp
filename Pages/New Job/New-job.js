@@ -87,6 +87,43 @@ function clearButtonOnClick(){
 }
 
 
-function createButtonOnClick(){
 
+// creation of the job //
+function createButtonOnClick(){
+	var date = new Date();
+	var dateString = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
+
+
+	var floatLong = parseFloat(createJobLongitudeTextField.value);
+	var floatLat = parseFloat(createJobLatitudeTextField.value);
+
+	// adds the data to both the job itself and the employees involved //
+	var batch = db.batch();
+	var docData = {
+		name: createJobNameTextField.value,
+		address: createJobAddressTextField.value,
+		date: dateString,
+		location: new firebase.firestore.GeoPoint(floatLat, floatLong),
+		employees: []
+	}
+	
+	db.collection('companies').doc(companyName).collection('jobs').add(docData)
+	.then(function(docRef){
+		
+		var employeesRefJobs = db.collection('companies').doc(companyName).collection('jobs').doc(docRef.id);
+		for(var i in listOfSelectedEmployees){
+
+			batch.update(employeesRefJobs, {"employees": firebase.firestore.FieldValue.arrayUnion(listOfSelectedEmployees[i].uniqueId) });
+			var jobEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc(listOfSelectedEmployees[i].uniqueId);
+			
+			batch.update(jobEmployeeRef, {"jobs": firebase.firestore.FieldValue.arrayUnion(docRef.id) });
+		}
+
+		batch.commit().then(function(){
+			//createJobModal.style.display = "none";
+		});
+	}).catch(function(error){
+		console.log("error" + error);
+	});
+	
 }
