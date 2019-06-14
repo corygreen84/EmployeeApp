@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function removeExcessFromJobId(job){
 	var returnString = job.replace("job-", "");
-	return "";
+	return returnString;
 }
 
 
