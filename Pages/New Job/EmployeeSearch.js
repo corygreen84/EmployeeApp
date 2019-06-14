@@ -25,6 +25,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
+
 // brings up all the employees for this company //
 function loadEmployeesCreate(companyName){
 	
