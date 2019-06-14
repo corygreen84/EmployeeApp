@@ -10,7 +10,7 @@
     position: fixed;
     width: 350px;
     min-width: 350px;
-    height: 820px;
+    height: 810px;
     left: 10px;
     top: 10px;
     background-color:#525963;
@@ -145,4 +145,10 @@
     width:100%;
     height: 30px;
     margin-top: 20px;
+}
+
+#create-job-button{
+	background-color:#0080ff;
+	color:white;
+	text-shadow: none;
 }

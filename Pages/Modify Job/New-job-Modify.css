@@ -10,7 +10,7 @@
     position: fixed;
     width: 350px;
     min-width: 350px;
-    height: 850px;
+    height: 865px;
     left: 10px;
     top: 10px;
     background-color:#525963;
@@ -141,7 +141,7 @@
 
 
 
-#create-job-button-container{
+#modify-job-button-container{
     width:100%;
     height: 30px;
     margin-top: 20px;
@@ -150,5 +150,18 @@
 #delete-job-button-container{
     width:100%;
     height: 30px;
-    margin-top: 15px;
+    margin-top: 25px;
+    background-color:#DC143C;
+}
+
+#modify-job-button{
+	background-color:#0080ff;
+	color:white;
+	text-shadow: none;
+}
+
+#delete-job-button{
+	background-color:#DC143C;
+	color:white;
+	text-shadow: none;
 }
