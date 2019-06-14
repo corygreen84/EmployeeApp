@@ -18,23 +18,31 @@ var user;
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
-	checkState();
+	//checkState();
 
-	createJobNameTextField.value = "";
-	createJobAddressTextField.value = "";
-	createJobLongitudeTextField.value = "";
-	createJobLatitudeTextField.value = "";
-	createJobNotes.value = "";
-
-	createSearchButton.disabled = true;
-	createJobButton.disabled = true;
-
-	console.log("item -> " + localStorage.getItem("item"));
+	
+	//console.log("item -> " + localStorage.getItem("item"));
+	var idString = removeExcessFromJobId(localStorage.getItem("item"));
+	console.log(idString);
+	loadJobInfo();
 
 }, false);
 
+function removeExcessFromJobId(job){
+	var returnString = job.replace("job-", "");
+	return "";
+}
 
 
+
+function loadJobInfo(job){
+
+}
+
+
+
+
+/*
 function checkState(){
 	firebase.auth().onAuthStateChanged(function(user){
 
@@ -126,3 +134,5 @@ function createButtonOnClick(){
 	});
 	
 }
+
+*/
