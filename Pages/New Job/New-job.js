@@ -49,7 +49,6 @@ function checkState(){
 					companyName = doc.data().company;
 					this.user = user;
 
-					console.log("user name -> " + user);
 					loadEmployeesCreate(companyName);
 
 				}).then(function(){
