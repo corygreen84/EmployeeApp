@@ -61,7 +61,7 @@ function loadEmployeesCreate(companyName){
 // shows all the possible employees for this company in the modify job panel //
 function parseEmployeesAndAddToListViewCreate(){
 	
-	$("#employee-list-div ul").empty();
+	$("#employee-list-container ul").empty();
 
 	for(var j = 0; j < listOfEmployeesCreate.length; j++){
 		
@@ -78,7 +78,7 @@ function parseEmployeesAndAddToListViewCreate(){
 		}
 
 		
-		$("#employee-list-div ul").append('<li id=' 
+		$("#employee-list-container ul").append('<li id=' 
 		+ uniqueIdentifier + ' onclick="createListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon-' 
 		+ uniqueIdentifier + '"><h2>' 
 		+ firstName + ' ' 
@@ -87,7 +87,7 @@ function parseEmployeesAndAddToListViewCreate(){
 		+ statusToString + '</strong></p></a></li>');
 	}
 	// refreshing the list //
-	$("#employee-list-div ul").listview('refresh');	
+	$("#employee-list-container ul").listview('refresh');	
 }
 
 
