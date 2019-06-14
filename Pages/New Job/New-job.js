@@ -38,11 +38,12 @@ function checkState(){
 
 		// if the user is good to go, we need to pull their email address to get their company info //
 		if(user){
-			console.log("user is not null");
+			
 			if(db != null){
 				var emailRef = db.collection("admin").doc(user.email);
 				emailRef.get().then(function(doc){
 					
+					console.log("user is not null");
 					// getting the company name //
 					companyName = doc.data().company;
 					this.user = user;
