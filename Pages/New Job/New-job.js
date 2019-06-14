@@ -18,6 +18,8 @@ var user;
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
+	checkState();
+
 	createJobNameTextField.value = "";
 	createJobAddressTextField.value = "";
 	createJobLongitudeTextField.value = "";
@@ -27,7 +29,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	createSearchButton.disabled = true;
 	createJobButton.disabled = true;
 
-	checkState();
+	
 
 }, false);
 
@@ -42,12 +44,13 @@ function checkState(){
 			if(db != null){
 				var emailRef = db.collection("admin").doc(user.email);
 				emailRef.get().then(function(doc){
-					
+
 					// getting the company name //
 					companyName = doc.data().company;
 					this.user = user;
 
-					console.log(companyName);
+					console.log("user name -> " + user);
+					loadEmployeesCreate(companyName);
 
 				}).then(function(){
 					

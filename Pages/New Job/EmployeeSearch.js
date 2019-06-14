@@ -13,12 +13,13 @@ var db = firebase.firestore();
 
 window.addEventListener('DOMContentLoaded', function () {
 
-	console.log("user -> " + user);
+	/*
 	if(user != null){
 		if(companyName != ""){
 			loadEmployeesCreate(companyName);
 		}
 	}	
+	*/
 
 }, false);
 
