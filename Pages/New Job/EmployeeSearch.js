@@ -27,7 +27,7 @@ function loadEmployeesCreate(companyName){
 
 	db.collection('companies').doc(companyName).collection('employees').onSnapshot(function(doc){
 		for(var i in doc){
-			console.log("" + doc[i]);
+			console.log("" + doc[i].first);
 		}
 	});
 	/*
