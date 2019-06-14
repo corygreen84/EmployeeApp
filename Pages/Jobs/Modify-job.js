@@ -50,6 +50,7 @@ window.addEventListener('DOMContentLoaded', function () {
 // user clicks on a job //
 function mainJobListOnClick(item){
 
+	console.log("item " + item);
 	$('#modify-erase-marker-button').removeClass('ui-btn');
 	$('#modify-add-marker-button').removeClass('ui-btn');
 
@@ -218,7 +219,7 @@ function changePlusToMinusOnEmployees(){
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
 
-	console.log("item " + item);
+	
 
 	//console.log("item id - > " + item.id);
 	resultsOfCheckingDifferencesInArrays = {};
