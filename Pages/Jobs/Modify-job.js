@@ -50,7 +50,7 @@ window.addEventListener('DOMContentLoaded', function () {
 // user clicks on a job //
 function mainJobListOnClick(item){
 
-	console.log("item " + item);
+	console.log("item " + item.id);
 	$('#modify-erase-marker-button').removeClass('ui-btn');
 	$('#modify-add-marker-button').removeClass('ui-btn');
 
