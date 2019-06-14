@@ -25,14 +25,22 @@ function loadEmployeesCreate(companyName){
 	
 	listOfEmployeesCreate = [];
 
-	db.collection('companies').doc(companyName).collection('employees').onSnapshot(function(doc){
-		for(var i in doc){
-			console.log("" + doc[i].first);
-		}
-	});
-	/*
-	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	
+	
+	var companyRef = db.collection('companies').doc(companyName).collection('employees');
+	companyRef.onSnapshot(function(querySnapshot){
+
+		var data = querySnapshot.docs.map(function(documentSnapshot){
+
+			dictionaryOfIds[documentSnapshot.data().name] = documentSnapshot.id;
+
+			return documentSnapshot.data();
+		});	
+
+		
+	});
+
+	/*
 	companyRef.get().then(function(querySnapshot){
 		
 			var data = querySnapshot.docs.map(function(documentSnapshot){
