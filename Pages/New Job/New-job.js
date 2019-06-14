@@ -96,6 +96,7 @@ function createButtonOnClick(){
 	var floatLong = parseFloat(createJobLongitudeTextField.value);
 	var floatLat = parseFloat(createJobLatitudeTextField.value);
 
+
 	// adds the data to both the job itself and the employees involved //
 	var batch = db.batch();
 	var docData = {
@@ -103,6 +104,7 @@ function createButtonOnClick(){
 		address: createJobAddressTextField.value,
 		date: dateString,
 		location: new firebase.firestore.GeoPoint(floatLat, floatLong),
+		notes: createJobNotes.value,
 		employees: []
 	}
 	
