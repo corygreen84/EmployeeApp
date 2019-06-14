@@ -66,7 +66,7 @@ function checkState(){
 
 
 function backButtonOnClick(){
-	console.log("back button clicked");
+	window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/Jobs/Jobs.html";
 }
 
 function clearButtonOnClick(){
