@@ -31,6 +31,7 @@ function loadEmployeesCreate(companyName){
 	companyRef.onSnapshot(function(querySnapshot){
 
 		var data = querySnapshot.docs.map(function(documentSnapshot){
+		listOfEmployeesCreate = [];
 
 		return documentSnapshot.data();
 	});	
@@ -57,8 +58,9 @@ function loadEmployeesCreate(companyName){
 // shows all the possible employees for this company in the modify job panel //
 function parseEmployeesAndAddToListViewCreate(){
 	
-	//$("#employee-list-container ul").empty();
-	$("#employee-list-container ul").listview('refresh');
+	$("#employee-list-container ul").empty();
+	//$("#employee-list-container ul").listview('refresh');
+	//$("#employee-ul").listview('refresh');
 
 	for(var j = 0; j < listOfEmployeesCreate.length; j++){
 		
