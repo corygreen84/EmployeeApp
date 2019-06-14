@@ -11,12 +11,11 @@
     width: 300px;
     min-width: 300px;
     height: 820px;
-    left: 0;
-    top: 8px;
+    left: 10px;
+    top: 10px;
     background-color:#525963;
     z-index: 10;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
+    border-radius: 15px;
     border-color: grey;
     border-style: solid;
     border-width: 0.5;
@@ -112,6 +111,11 @@
     margin-top: 20px;
     background-color: grey;
     border-radius: 10px;
+}
+
+.scrollable {
+	overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 #notes-container{
