@@ -48,6 +48,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 // user clicks on a job //
+/*
 function mainJobListOnClick(item){
 
 
@@ -101,6 +102,7 @@ function mainJobListOnClick(item){
 	loadAllEmployees(companyName);
 	placeLocationOnMap(locationLong, locationLat, job.address);
 }
+*/
 
 
 

@@ -114,6 +114,10 @@ function createNewJobOnClick(){
 }
 
 
+function mainJobListOnClick(item){
+	console.log("in here yo");
+}
+
 // creating the job class //
 class Employees{
 	constructor(){
