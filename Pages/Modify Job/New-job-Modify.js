@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', function () {
 	createSearchButton.disabled = true;
 	createJobButton.disabled = true;
 
-	
+	console.log("item -> " + localStorage.getItem("item"));
 
 }, false);
 
