@@ -18,13 +18,11 @@ var user;
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
-	//checkState();
-
-	
-	//console.log("item -> " + localStorage.getItem("item"));
-	var idString = removeExcessFromJobId(localStorage.getItem("item"));
-	console.log(idString);
-	loadJobInfo();
+	if(localStorage.getItem("item") != null){
+		var idString = removeExcessFromJobId(localStorage.getItem("item"));
+		
+		loadJobInfo(idString);
+	}
 
 }, false);
 
@@ -36,7 +34,7 @@ function removeExcessFromJobId(job){
 
 
 function loadJobInfo(job){
-
+	console.log(job);
 }
 
 
