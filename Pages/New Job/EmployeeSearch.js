@@ -13,7 +13,7 @@ var db = firebase.firestore();
 
 window.addEventListener('DOMContentLoaded', function () {
 
-	if(user != nil){
+	if(user != null){
 		if(companyName != ""){
 			loadEmployeesCreate(companyName);
 		}
