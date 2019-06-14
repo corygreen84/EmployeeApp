@@ -29,12 +29,13 @@
 #back-button{
     float: left;
     margin-left: 8px;
-    padding-top: 5px;
+    padding-top: 18px;
 }
 
 #close-button{
     margin-right: 10px;
     font-size: 50px;
+    padding-top: 0px;
 }
 
 .createJobClose{
