@@ -13,8 +13,6 @@ var createJobButton = document.getElementById("create-job-button");
 var companyName = "";
 var user;
 
-
-
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
