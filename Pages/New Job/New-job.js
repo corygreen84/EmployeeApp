@@ -43,10 +43,11 @@ function checkState(){
 				var emailRef = db.collection("admin").doc(user.email);
 				emailRef.get().then(function(doc){
 					
-					console.log("user is not null");
 					// getting the company name //
 					companyName = doc.data().company;
 					this.user = user;
+
+					console.log(companyName);
 
 				}).then(function(){
 					

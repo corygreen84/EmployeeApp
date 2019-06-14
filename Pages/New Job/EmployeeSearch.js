@@ -13,10 +13,9 @@ var db = firebase.firestore();
 
 window.addEventListener('DOMContentLoaded', function () {
 
+	console.log("user -> " + user);
 	if(user != null){
-		console.log("im in here...1");
 		if(companyName != ""){
-			console.log("im in here....");
 			loadEmployeesCreate(companyName);
 		}
 	}	
