@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 // **** modify name on change event **** //
 function modifyNameOnchange(){
-	if(modifyJobNameTextField.value != modifiedName || modifyJobNameTextField.value == ""){
+	if(modifyJobNameTextField.value != modifiedName && modifyJobNameTextField.value == ""){
 		modifyNameFilledIn = true;
 	}else{
 		modifyNameFilledIn = false;
