@@ -115,7 +115,8 @@ function createNewJobOnClick(){
 
 
 function mainJobListOnClick(item){
-	localStorage.setItem("item", item.id);
+	localStorage.setItem("id", item.id);
+	localStorage.setItem("name", companyName);
 	window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/Modify Job/New-job-Modify.html";
 }
 

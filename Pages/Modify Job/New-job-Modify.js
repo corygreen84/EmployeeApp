@@ -17,13 +17,14 @@ var user;
 
 
 
-// checking if the user has logged in //
+// checking if the user is logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
-	if(localStorage.getItem("item") != null){
-		var idString = removeExcessFromJobId(localStorage.getItem("item"));
+	if(localStorage.getItem("id") != null && localStorage.getItem("name") != null){
+		var idString = removeExcessFromJobId(localStorage.getItem("id"));
+		var companyString = localStorage.getItem("name")
 		
-		searchForJob(idString);
+		searchForJob(idString, companyString);
 	}
 
 }, false);
