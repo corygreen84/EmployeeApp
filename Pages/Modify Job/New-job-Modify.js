@@ -14,13 +14,9 @@ var companyName = "";
 var user;
 
 
-
-
-
 // checking if the user is logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
-	
 	if(localStorage.getItem("id") != null && localStorage.getItem("name") != null){
 		var idString = removeExcessFromJobId(localStorage.getItem("id"));
 		var companyString = localStorage.getItem("name")
@@ -36,7 +32,13 @@ function removeExcessFromJobId(job){
 	return returnString;
 }
 
+function backButtonOnClick(){
+	window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/Jobs/Jobs.html";
+}
 
+function clearButtonOnClick(){
+
+}
 
 
 
