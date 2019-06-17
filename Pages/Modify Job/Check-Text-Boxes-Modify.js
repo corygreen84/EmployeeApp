@@ -25,7 +25,7 @@ function modifyNameOnchange(){
 
 // **** address and coordinate change events **** //
 function modifyAddressOnchange(){
-	if(modifyJobAddressTextField.value != modifiedAddress){
+	if(modifyJobAddressTextField.value != modifiedAddress || modifyJobAddressTextField.value != ""){
 		console.log("welp in here...");
 		modifyAddressFilledIn = true;
 
