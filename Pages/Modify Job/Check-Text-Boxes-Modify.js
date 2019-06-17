@@ -78,12 +78,6 @@ function modifyNotesOnKeyDown(){
 function toggleSearchButton(){
 
 	// if all fields are filled in with default data, we dont enable the search button //
-
-
-
-
-
-	
 	if(modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
 
 		modifySearchButton.disabled = false;
@@ -131,6 +125,14 @@ function toggleModifyJobButton(){
 */
 
 function searchButtonOnClick(){
+
+	if(modifyJobAddressTextField.value == "" && (modifyJobLongitudeTextField.value != "" && modifyJobLatitudeTextField.value != "")){
+		console.log("search by coordinates");
+	}else if(modifyJobAddressTextField.value != "" && ((modifyJobLongitudeTextField.value != "" && modifyJobLatitudeTextField == "") || (modifyJobLongitudeTextField.value == "" && modifyJobLatitudeTextField.value != ""))){
+		console.log("search by address");
+	}
+
+
 	searchForPlace(modifyJobAddressTextField.value, modifyJobLongitudeTextField.value, modifyJobLatitudeTextField.value);
 }
 
