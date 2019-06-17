@@ -8,14 +8,12 @@ var modifiedLocation;
 var modifiedEmployees;
 var modifiedNotes;
 
-var passedInJob;
 var passedInCompany;
 
 var db = firebase.firestore();
 
 function searchForJob(job, company){
 
-	passedInJob = job;
 	passedInCompany = company;
 
 	var jobRef = db.collection('companies').doc(company).collection('jobs').doc(job);
@@ -89,7 +87,7 @@ function clearButtonClicked(){
 		modifyJobNotes.value = modifiedNotes;
 	}
 
-	console.log(passedInJob);
+	console.log(passedInCompany);
 	// getting the default employee data //
-	loadEmployeesModify(passedInJob, passedInCompany);
+	loadEmployeesModify(passedInCompany, jobLoaded.employees);
 }
