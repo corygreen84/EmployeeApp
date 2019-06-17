@@ -1,10 +1,10 @@
 
 
-var createNameFilledIn = false;
-var createAddressFilledIn = false;
-var createLongFilledIn = false;
-var createLatFilledIn = false;
-var createNotesFilledIn = false;
+var modifyNameFilledIn = false;
+var modifyAddressFilledIn = false;
+var modifyLongFilledIn = false;
+var modifyLatFilledIn = false;
+var modifyNotesFilledIn = false;
 
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
@@ -13,51 +13,51 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 // **** name change event **** //
-function createNameOnchange(){
-	if(createJobNameTextField.value != ""){
-		createNameFilledIn = true;
+function modifyNameOnchange(){
+	if(modifyJobNameTextField.value != ""){
+		modifyNameFilledIn = true;
 	}else{
-		createNameFilledIn = false;
+		modifyNameFilledIn = false;
 	}
 
-	toggleCreateJobButton();
+	toggleModifyJobButton();
 }
 
 
 
 
 // **** address and coordinate change events **** //
-function createAddressOnchange(){
-	if(createJobAddressTextField.value != ""){
-		createAddressFilledIn = true;
+function modifyAddressOnchange(){
+	if(modifyJobAddressTextField.value != ""){
+		modifyAddressFilledIn = true;
 	}else{
-		createAddressFilledIn = false;
+		modifyAddressFilledIn = false;
 	}
 
 	toggleSearchButton();
-	toggleCreateJobButton();
+	toggleModifyJobButton();
 }
 
-function createLongOnchange(){
-	if(createJobLongitudeTextField.value != ""){
-		createLongFilledIn = true;
+function modifyLongOnchange(){
+	if(modifyJobLongitudeTextField.value != ""){
+		modifyLongFilledIn = true;
 	}else{
-		createLongFilledIn = false;
+		modifyLongFilledIn = false;
 	}
 
 	toggleSearchButton();
-	toggleCreateJobButton();
+	toggleModifyJobButton();
 }
 
-function createLatOnchange(){
-	if(createJobLatitudeTextField.value != ""){
-		createLatFilledIn = true;
+function modifyLatOnchange(){
+	if(modifyJobLatitudeTextField.value != ""){
+		modifyLatFilledIn = true;
 	}else{
-		createLatFilledIn = false;
+		modifyLatFilledIn = false;
 	}
 
 	toggleSearchButton();
-	toggleCreateJobButton();
+	toggleModifyJobButton();
 }
 
 
@@ -65,11 +65,11 @@ function createLatOnchange(){
 
 
 // **** notes change event **** //
-function createNotesOnKeyDown(){
-	if(createJobNotes.value != ""){
-		createNotesFilledIn = true;
+function modifyNotesOnKeyDown(){
+	if(modifyJobNotes.value != ""){
+		modifyNotesFilledIn = true;
 	}else{
-		createNotesFilledIn = false;
+		modifyNotesFilledIn = false;
 	}
 }
 
@@ -80,37 +80,37 @@ function createNotesOnKeyDown(){
 
 function toggleSearchButton(){
 
-	if(createAddressFilledIn == true && createLongFilledIn == true && createLatFilledIn == true){
-		createSearchButton.disabled = true;
+	if(modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
+		modifySearchButton.disabled = true;
 	}else{
 
-		if(((createLongFilledIn == true && createLatFilledIn == false) || (createLongFilledIn == false && createLatFilledIn == true)) && createAddressFilledIn == true){
-			createSearchButton.disabled = false;
-		}else if(createAddressFilledIn == true && (createLongFilledIn == false && createLatFilledIn == false)){
-			createSearchButton.disabled = false;
-		}else if(createLongFilledIn == true && createLatFilledIn == true){
-			createSearchButton.disabled = false;
+		if(((modifyLongFilledIn == true && modifyLatFilledIn == false) || (modifyLongFilledIn == false && modifyLatFilledIn == true)) && modifyAddressFilledIn == true){
+			modifySearchButton.disabled = false;
+		}else if(modifyAddressFilledIn == true && (modifyLongFilledIn == false && modifyLatFilledIn == false)){
+			modifySearchButton.disabled = false;
+		}else if(modifyLongFilledIn == true && modifyLatFilledIn == true){
+			modifySearchButton.disabled = false;
 		}else{
-			createSearchButton.disabled = true;
+			modifySearchButton.disabled = true;
 		}
 	}
 }
 
 
-function toggleCreateJobButton(){
-	if(createNameFilledIn == true && createAddressFilledIn == true && createLongFilledIn == true && createLatFilledIn == true){
-		createJobButton.disabled = false;
+function toggleModifyJobButton(){
+	if(modifyNameFilledIn == true && modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
+		modifyJobButton.disabled = false;
 	}else{
-		createJobButton.disabled = true;
+		modifyJobButton.disabled = true;
 	}
 }
 
 function searchButtonOnClick(){
-	searchForPlace(createJobAddressTextField.value, createJobLongitudeTextField.value, createJobLatitudeTextField.value);
+	searchForPlace(modifyJobAddressTextField.value, modifyJobLongitudeTextField.value, modifyJobLatitudeTextField.value);
 }
 
 
-function createNotesOnKeyDown(){
+function modifyNotesOnKeyDown(){
 
 }
 

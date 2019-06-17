@@ -1,14 +1,14 @@
 
 
 /* text entry variables */
-var createJobNameTextField = document.getElementById("create-name-text");
-var createJobAddressTextField = document.getElementById("create-address-text");
-var createJobLongitudeTextField = document.getElementById("create-long-text");
-var createJobLatitudeTextField = document.getElementById("create-lat-text");
-var createJobNotes = document.getElementById("notes-textarea");
+var modifyJobNameTextField = document.getElementById("create-name-text");
+var modifyJobAddressTextField = document.getElementById("create-address-text");
+var modifyJobLongitudeTextField = document.getElementById("create-long-text");
+var modifyJobLatitudeTextField = document.getElementById("create-lat-text");
+var modifyJobNotes = document.getElementById("notes-textarea");
 
-var createSearchButton = document.getElementById("create-address-search");
-var createJobButton = document.getElementById("create-job-button");
+var modifySearchButton = document.getElementById("create-address-search");
+var modifyJobButton = document.getElementById("modify-job-button");
 
 var companyName = "";
 var user;
@@ -20,12 +20,14 @@ var user;
 // checking if the user is logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
+	/*
 	if(localStorage.getItem("id") != null && localStorage.getItem("name") != null){
 		var idString = removeExcessFromJobId(localStorage.getItem("id"));
 		var companyString = localStorage.getItem("name")
 		
 		searchForJob(idString, companyString);
 	}
+	*/
 
 }, false);
 

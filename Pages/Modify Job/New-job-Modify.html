@@ -29,28 +29,28 @@
 			<div id="side-view">
 				<div id="navigation-container">
 					<!--&times-->
-					<span class="createJobClose" id="back-button" onclick="backButtonOnClick()">&#x2B05;</span>
-					<span class="createJobClose" id="close-button" onclick="clearButtonOnClick()">&#x27F2;</span>
+					<span class="modifyJobClose" id="back-button" onclick="backButtonOnClick()">&#x2B05;</span>
+					<span class="modifyJobClose" id="close-button" onclick="clearButtonOnClick()">&#x27F2;</span>
 				</div>
 				
 				<div id="text-box-div">
 					
 					<p class="job-p-text">Modify Job</p>
-					<input type="text" id="create-name-text" class="text-fields" placeholder="Job Name" onkeydown="createNameOnchange()" onkeyup="createNameOnchange()">
+					<input type="text" id="modify-name-text" class="text-fields" placeholder="Job Name" onkeydown="modifyNameOnchange()" onkeyup="modifyNameOnchange()">
 					
 
 					<div id="location-container">
-						<input type="text" id="create-address-text" class="text-fields" placeholder="Address" onkeydown="createAddressOnchange()" onkeyup="createAddressOnchange()">
+						<input type="text" id="modify-address-text" class="text-fields" placeholder="Address" onkeydown="modifyAddressOnchange()" onkeyup="modifyAddressOnchange()">
 						<p id="or-p">Or</p>
 						<div id="long">
-							<input type="text" id="create-long-text" class="text-fields" placeholder="Longitude" onkeydown="createLongOnchange()" onkeyup="createLongOnchange()">
+							<input type="text" id="modify-long-text" class="text-fields" placeholder="Longitude" onkeydown="modifyLongOnchange()" onkeyup="modifyLongOnchange()">
 						</div>
 						<div id="lat">
-							<input type="text" id="create-lat-text" class="text-fields" placeholder="Latitude" onkeydown="createLatOnchange()" onkeyup="createLatOnchange()">
+							<input type="text" id="modify-lat-text" class="text-fields" placeholder="Latitude" onkeydown="modifyLatOnchange()" onkeyup="modifyLatOnchange()">
 						</div>
 
 						<div id="search-button-container">
-							<button type="button" id="create-address-search" class="buttons" onclick="searchButtonOnClick()">Search for Address</button>
+							<button type="button" id="modify-address-search" class="buttons" onclick="searchButtonOnClick()">Search for Address</button>
 						</div>
 					</div>
 
@@ -63,7 +63,7 @@
 					</div>
 
 					<div id="notes-container">
-						<textarea id="notes-textarea" placeholder="Notes..." onkeydown="createNotesOnKeyDown()"></textarea>
+						<textarea id="notes-textarea" placeholder="Notes..." onkeydown="modifyNotesOnKeyDown()"></textarea>
 					</div>
 
 					<div id="modify-job-button-container">
