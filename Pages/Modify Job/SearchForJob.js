@@ -26,6 +26,8 @@ function searchForJob(job, company){
 
 			jobLoaded = newJob;
 
+			console.log(job.location);
+
 			loadIntoFields(jobLoaded);
 		}else{
 
@@ -35,4 +37,6 @@ function searchForJob(job, company){
 
 function loadIntoFields(job){
 	modifyJobNameTextField.value = job.name;
+	modifyJobAddressTextField.value = job.address;
+	
 }
