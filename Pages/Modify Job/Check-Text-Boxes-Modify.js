@@ -38,13 +38,14 @@ function modifyAddressOnchange(){
 
 function modifyLongOnchange(){
 
-
-	console.log(modifiedLocation["longitude"]);
 	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] && modifyJobLongitudeTextField.value != ""){
 		modifyLongFilledIn = true;
 	}else{
 		modifyLongFilledIn = false;
 	}
+
+
+	console.log(modifyAddressFilledIn);
 
 	toggleSearchButton();
 	toggleModifyJobButton();
