@@ -25,14 +25,14 @@ function modifyNameOnchange(){
 
 // **** address and coordinate change events **** //
 function modifyAddressOnchange(){
-	if(modifyJobAddressTextField.value != modifiedAddress || modifyJobAddressTextField.value == ""){
+	if(modifyJobAddressTextField.value != modifiedAddress){
 		modifyAddressFilledIn = true;
 
 		// giving the ability to do a search when the user starts editing the address //
 		modifyJobLongitudeTextField.value = "";
 		modifyJobLatitudeTextField.value = "";
 
-	}else{
+	}else if(modifyJobAddressTextField.value == "" || modifyJobAddressTextField.value == modifiedAddress){
 		modifyAddressFilledIn = false;
 
 		modifyJobLongitudeTextField.value = modifiedLocation["longitude"];
