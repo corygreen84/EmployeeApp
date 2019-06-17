@@ -105,13 +105,16 @@ function toggleSearchButton(){
 
 
 function toggleModifyJobButton(){
-	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true && 
-		(modifyJobNameTextField.value != "" && 
+	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
+		if(modifyJobNameTextField.value != "" && 
 		modifyJobAddressTextField.value != "" && 
 		modifyJobLongitudeTextField.value != "" && 
-		modifyJobLatitudeTextField.value != "")){
-
-		modifyJobButton.disabled = false;
+		modifyJobLatitudeTextField.value != ""){
+			modifyJobButton.disabled = false;
+		}else{
+			modifyJobButton.disabled = true;
+		}
+		
 	}else{
 		modifyJobButton.disabled = true;
 	}
