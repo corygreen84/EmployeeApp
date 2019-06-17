@@ -27,7 +27,7 @@ function searchForJob(job, company){
 			newJob.employees = employees;
 
 			jobLoaded = newJob;
-
+			console.log("location -> " + location)
 			console.log(newJob.lat);
 
 			loadIntoFields(jobLoaded);
