@@ -45,7 +45,7 @@ function modifyLongOnchange(){
 	}
 
 
-	console.log(modifyAddressFilledIn);
+	console.log(modifyLongFilledIn);
 
 	toggleSearchButton();
 	toggleModifyJobButton();
