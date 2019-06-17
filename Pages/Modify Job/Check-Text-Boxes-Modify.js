@@ -37,11 +37,12 @@ function modifyAddressOnchange(){
 }
 
 function modifyLongOnchange(){
+
+
+	console.log(modifiedLocation["longitude"]);
 	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] && modifyJobLongitudeTextField.value != ""){
-		console.log("toggle doesnt equal");
 		modifyLongFilledIn = true;
 	}else{
-		console.log("toggle is equal");
 		modifyLongFilledIn = false;
 	}
 
