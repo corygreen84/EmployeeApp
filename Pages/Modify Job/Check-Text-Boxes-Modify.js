@@ -105,12 +105,12 @@ function toggleSearchButton(){
 
 
 function toggleModifyJobButton(){
-	if((modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true) ||
-		(modifyJobNameTextField.value != modifiedName || 
-		modifyJobAddressTextField.value != modifiedAddress || 
-		modifyJobLongitudeTextField != modifiedLocation["longitude"] || 
-		modifyJobLatitudeTextField != modifiedLocation["latitude"])){
-			
+	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true && 
+		(modifyJobNameTextField.value != "" && 
+		modifyJobAddressTextField.value != "" && 
+		modifyJobLongitudeTextField.value != "" && 
+		modifyJobLatitudeTextField.value != "")){
+
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
