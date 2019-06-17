@@ -11,7 +11,8 @@ var employeeSelectedListChanged = false;
 
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
-
+	toggleModifyJobButton();
+	toggleSearchButton();
 }, false);
 
 // **** modify name on change event **** //
