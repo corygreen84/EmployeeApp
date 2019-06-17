@@ -43,10 +43,6 @@ function modifyLongOnchange(){
 	}else{
 		modifyLongFilledIn = false;
 	}
-
-
-	console.log(modifyLongFilledIn);
-
 	toggleSearchButton();
 	toggleModifyJobButton();
 }

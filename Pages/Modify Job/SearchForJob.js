@@ -89,7 +89,16 @@ function clearButtonClicked(){
 		modifyJobNotes.value = "";
 	}
 
-	console.log(passedInCompany);
+	modifyNameFilledIn = false;
+	modifyAddressFilledIn = false;
+	modifyLongFilledIn = false;
+	modifyLatFilledIn = false;
+	modifyNotesFilledIn = false;
+
+	toggleSearchButton();
+
+	putOnMap(modifiedAddress, modifiedLocation["longitude"], modifiedLocation["latitude"]);
+
 	// getting the default employee data //
 	loadEmployeesModify(passedInCompany, jobLoaded.employees);
 }
