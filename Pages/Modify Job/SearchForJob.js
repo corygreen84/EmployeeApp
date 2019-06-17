@@ -21,12 +21,14 @@ function searchForJob(job, company){
 			newJob.address = address;
 			newJob.name = name;
 			newJob.date = date;
-			newJob.location = location;
+			//newJob.location = location;
+			newJob.long = location["long"];
+			newJob.lat = location["lat"];
 			newJob.employees = employees;
 
 			jobLoaded = newJob;
 
-			console.log(location);
+			console.log(newJob.lat);
 
 			loadIntoFields(jobLoaded);
 		}else{
