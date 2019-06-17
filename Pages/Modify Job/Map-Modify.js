@@ -43,8 +43,6 @@ function searchForPlace(address, long, lat){
 	}else if(address != "" && (long == "" && lat == "")){
 		searchByAddress(address);
 	}
-
-	
 }
 
 

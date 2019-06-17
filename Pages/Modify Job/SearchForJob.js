@@ -28,8 +28,6 @@ function searchForJob(job, company){
 			jobLoaded = newJob;
 
 			loadIntoFields(jobLoaded);
-		}else{
-
 		}
 	});		
 }
@@ -39,4 +37,8 @@ function loadIntoFields(job){
 	modifyJobAddressTextField.value = job.address;
 	modifyJobLongitudeTextField.value = "" + job.long;
 	modifyJobLatitudeTextField.value = "" + job.lat;
+}
+
+function putOnMap(address, long, lat){
+	placeOnMapModify(long, lat, address);
 }
