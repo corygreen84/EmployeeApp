@@ -18,7 +18,7 @@ function modifyNameOnchange(){
 	if(modifyJobNameTextField.value != modifiedName || modifyJobNameTextField.value == ""){
 		modifyNameFilledIn = true;
 	}else{
-		modifyNameFilledIn = true;
+		modifyNameFilledIn = false;
 	}
 	toggleModifyJobButton();
 }
@@ -37,47 +37,6 @@ function modifyAddressOnchange(){
 
 function modifyLongOnchange(){
 	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] || modifyJobLongitudeTextField.value == ""){
-		console.log("doesnt equal");
-		modifyLongFilledIn = true;
-	}else{
-		console.log("equal");
-		modifyLongFilledIn = false;
-	}
-
-	toggleSearchButton();
-	toggleModifyJobButton();
-}
-
-
-/*
-// **** name change event **** //
-function modifyNameOnchange(){
-	if(modifyJobNameTextField.value != ""){
-		modifyNameFilledIn = true;
-	}else{
-		modifyNameFilledIn = false;
-	}
-
-	toggleModifyJobButton();
-}
-
-
-
-
-// **** address and coordinate change events **** //
-function modifyAddressOnchange(){
-	if(modifyJobAddressTextField.value != ""){
-		modifyAddressFilledIn = true;
-	}else{
-		modifyAddressFilledIn = false;
-	}
-
-	toggleSearchButton();
-	toggleModifyJobButton();
-}
-
-function modifyLongOnchange(){
-	if(modifyJobLongitudeTextField.value != ""){
 		modifyLongFilledIn = true;
 	}else{
 		modifyLongFilledIn = false;
@@ -88,7 +47,7 @@ function modifyLongOnchange(){
 }
 
 function modifyLatOnchange(){
-	if(modifyJobLatitudeTextField.value != ""){
+	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"] || modifyJobLatitudeTextField.value == ""){
 		modifyLatFilledIn = true;
 	}else{
 		modifyLatFilledIn = false;
@@ -97,21 +56,6 @@ function modifyLatOnchange(){
 	toggleSearchButton();
 	toggleModifyJobButton();
 }
-
-
-
-
-
-// **** notes change event **** //
-function modifyNotesOnKeyDown(){
-	if(modifyJobNotes.value != ""){
-		modifyNotesFilledIn = true;
-	}else{
-		modifyNotesFilledIn = false;
-	}
-}
-
-*/
 
 
 
