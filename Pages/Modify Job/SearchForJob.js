@@ -8,9 +8,15 @@ var modifiedLocation;
 var modifiedEmployees;
 var modifiedNotes;
 
+var passedInJob;
+var passedInCompany;
+
 var db = firebase.firestore();
 
 function searchForJob(job, company){
+
+	passedInJob = job;
+	passedInCompany = company;
 
 	var jobRef = db.collection('companies').doc(company).collection('jobs').doc(job);
 	jobRef.get().then(function(doc){
@@ -75,7 +81,6 @@ function putOnMap(address, long, lat){
 
 
 function clearButtonClicked(){
-	console.log("clear click");
 	modifyJobNameTextField.value = modifiedName
 	modifyJobAddressTextField.value = modifiedAddress;
 	modifyJobLongitudeTextField.value = modifiedLocation["longitude"];
@@ -83,4 +88,7 @@ function clearButtonClicked(){
 	if(modifiedNotes != undefined){
 		modifyJobNotes.value = modifiedNotes;
 	}
+
+	// getting the default employee data //
+	loadEmployeesModify(passedInJob, passedInCompany);
 }
