@@ -6,12 +6,6 @@ var modifyLongFilledIn = false;
 var modifyLatFilledIn = false;
 var modifyNotesFilledIn = false;
 
-var modifyNameModified = false;
-var modifyAddressModified = false;
-var modifyLongModified = false;
-var modifyLatModified = false;
-var modifyNotesModified = false;
-
 
 var employeeSelectedListChanged = false;
 
@@ -105,12 +99,6 @@ function toggleSearchButton(){
 	
 }
 
-
-
-
-function toggleModifyJobButton(){
-
-}
 
 
 
