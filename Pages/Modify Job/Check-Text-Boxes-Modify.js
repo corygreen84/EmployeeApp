@@ -26,6 +26,7 @@ function modifyNameOnchange(){
 // **** address and coordinate change events **** //
 function modifyAddressOnchange(){
 	if(modifyJobAddressTextField.value != modifiedAddress){
+		console.log("welp in here...");
 		modifyAddressFilledIn = true;
 
 		// giving the ability to do a search when the user starts editing the address //
@@ -33,6 +34,7 @@ function modifyAddressOnchange(){
 		modifyJobLatitudeTextField.value = "";
 
 	}else if(modifyJobAddressTextField.value == "" || modifyJobAddressTextField.value == modifiedAddress){
+		console.log("im in here....");
 		modifyAddressFilledIn = false;
 
 		modifyJobLongitudeTextField.value = modifiedLocation["longitude"];
