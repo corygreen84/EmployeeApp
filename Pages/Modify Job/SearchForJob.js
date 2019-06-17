@@ -85,6 +85,8 @@ function clearButtonClicked(){
 	modifyJobLatitudeTextField.value = modifiedLocation["latitude"];
 	if(modifiedNotes != undefined){
 		modifyJobNotes.value = modifiedNotes;
+	}else{
+		modifyJobNotes.value = "";
 	}
 
 	console.log(passedInCompany);
