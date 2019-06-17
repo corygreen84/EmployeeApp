@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 // **** modify name on change event **** //
 function modifyNameOnchange(){
-	if(modifyJobNameTextField.value != modifiedName && modifyJobNameTextField.value == ""){
+	if(modifyJobNameTextField.value != modifiedName){
 		modifyNameFilledIn = true;
 	}else{
 		modifyNameFilledIn = false;
@@ -26,7 +26,7 @@ function modifyNameOnchange(){
 
 // **** address and coordinate change events **** //
 function modifyAddressOnchange(){
-	if(modifyJobAddressTextField.value != modifiedAddress && modifyJobAddressTextField.value != ""){
+	if(modifyJobAddressTextField.value != modifiedAddress){
 		modifyAddressFilledIn = true;
 	}else{
 		modifyAddressFilledIn = false;
@@ -38,7 +38,7 @@ function modifyAddressOnchange(){
 
 function modifyLongOnchange(){
 
-	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] && modifyJobLongitudeTextField.value != ""){
+	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"]){
 		modifyLongFilledIn = true;
 	}else{
 		modifyLongFilledIn = false;
@@ -48,7 +48,7 @@ function modifyLongOnchange(){
 }
 
 function modifyLatOnchange(){
-	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"] && modifyJobLatitudeTextField.value != ""){
+	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"]){
 		modifyLatFilledIn = true;
 	}else{
 		modifyLatFilledIn = false;
@@ -58,6 +58,12 @@ function modifyLatOnchange(){
 	toggleModifyJobButton();
 }
 
+
+
+// **** notes modify **** //
+function modifyNotesOnKeyDown(){
+
+}
 
 
 
@@ -111,9 +117,7 @@ function searchButtonOnClick(){
 }
 
 
-function modifyNotesOnKeyDown(){
 
-}
 
 
 
