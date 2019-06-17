@@ -69,13 +69,31 @@ function modifyNotesOnKeyDown(){
 
 function toggleSearchButton(){
 
+	/*
 	if(modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
 		modifySearchButton.disabled = false;
 	}else{
 		modifySearchButton.disabled = true;
 	}
+	*/
+	
+	if(modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
+		modifySearchButton.disabled = false;
+	}else{
 
-	/*
+		if(((modifyLongFilledIn == true && modifyLatFilledIn == false) || (modifyLongFilledIn == false && modifyLatFilledIn == true)) && modifyAddressFilledIn == true){
+			modifySearchButton.disabled = true;
+		}else if(modifyAddressFilledIn == true && (modifyLongFilledIn == false && modifyLatFilledIn == false)){
+			modifySearchButton.disabled = true;
+		}else if(modifyLongFilledIn == true && modifyLatFilledIn == true){
+			modifySearchButton.disabled = true;
+		}else{
+			modifySearchButton.disabled = false;
+		}
+	}
+
+
+	/* original *** 
 	if(modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
 		modifySearchButton.disabled = true;
 	}else{
@@ -91,6 +109,7 @@ function toggleSearchButton(){
 		}
 	}
 	*/
+	
 }
 
 
