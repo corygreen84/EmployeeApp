@@ -21,14 +21,11 @@ function searchForJob(job, company){
 			newJob.address = address;
 			newJob.name = name;
 			newJob.date = date;
-			//newJob.location = location;
 			newJob.long = location["longitude"];
 			newJob.lat = location["latitude"];
 			newJob.employees = employees;
 
 			jobLoaded = newJob;
-			
-			console.log(newJob.lat);
 
 			loadIntoFields(jobLoaded);
 		}else{
@@ -40,5 +37,6 @@ function searchForJob(job, company){
 function loadIntoFields(job){
 	modifyJobNameTextField.value = job.name;
 	modifyJobAddressTextField.value = job.address;
-	
+	modifyJobLongitudeTextField.value = "" + job.long;
+	modifyJobLatitudeTextField.value = "" + job.lat;
 }
