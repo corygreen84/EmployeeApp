@@ -83,16 +83,14 @@ function toggleSearchButton(){
 
 
 
-	/*
+	
 	if(modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
-
-
 
 		modifySearchButton.disabled = false;
 	}else{
 		modifySearchButton.disabled = true;
 	}
-	*/
+	
 	
 	/* original *** 
 	if(modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
