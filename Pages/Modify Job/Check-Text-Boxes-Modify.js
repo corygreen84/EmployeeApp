@@ -67,6 +67,11 @@ function modifyLatOnchange(){
 
 function toggleSearchButton(){
 
+	if(modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
+		modifySearchButton.disabled = false;
+	}
+
+	/*
 	if(modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
 		modifySearchButton.disabled = true;
 	}else{
@@ -81,6 +86,7 @@ function toggleSearchButton(){
 			modifySearchButton.disabled = true;
 		}
 	}
+	*/
 }
 
 
