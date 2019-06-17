@@ -36,14 +36,14 @@ function searchForJob(job, company){
 
 			jobLoaded = newJob;
 
-
-			console.log(jobLoaded.employees);
-
+			// finalizing the job //
 			loadIntoFields(jobLoaded);
+			loadEmployeesModify(company);
+			loadEmployeesToToggle(jobLoaded.employees);
 		}
 	});	
 	
-	loadEmployeesModify(company);
+	
 }
 
 function loadIntoFields(job){
