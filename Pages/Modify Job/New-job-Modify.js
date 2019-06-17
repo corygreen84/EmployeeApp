@@ -52,97 +52,27 @@ function modifyButtonOnClick(){
 }
 
 
-/*
-function checkState(){
-	firebase.auth().onAuthStateChanged(function(user){
 
-		// if the user is good to go, we need to pull their email address to get their company info //
-		if(user){
-			
-			if(db != null){
-				var emailRef = db.collection("admin").doc(user.email);
-				emailRef.get().then(function(doc){
-
-					// getting the company name //
-					companyName = doc.data().company;
-					this.user = user;
-
-					loadEmployeesmodify(companyName);
-
-				}).then(function(){
-					
-				}).catch(function(error){
-					console.log("something happened. " + error);
-				});
-			}
-		}else{
-			
-		}
-	});
-}
-
-
-function backButtonOnClick(){
-	window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/Jobs/Jobs.html";
-}
-
-function clearButtonOnClick(){
-	modifyJobNameTextField.value = "";
-	modifyJobAddressTextField.value = "";
-	modifyJobLongitudeTextField.value = "";
-	modifyJobLatitudeTextField.value = "";
-	modifyJobNotes.value = "";
-
-	modifySearchButton.disabled = true;
-	modifyJobButton.disabled = true;
-
-	modifyAddressFilledIn = false;
-	modifyNameFilledIn = false;
-	modifyLongFilledIn = false;
-	modifyLatFilledIn = false;
-	modifyNotesFilledIn = false;
-}
-
-
-
-// creation of the job //
-function modifyButtonOnClick(){
-	var date = new Date();
-	var dateString = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
-
-
-	var floatLong = parseFloat(modifyJobLongitudeTextField.value);
-	var floatLat = parseFloat(modifyJobLatitudeTextField.value);
-
-	// adds the data to both the job itself and the employees involved //
-	var batch = db.batch();
-	var docData = {
-		name: modifyJobNameTextField.value,
-		address: modifyJobAddressTextField.value,
-		date: dateString,
-		location: new firebase.firestore.GeoPoint(floatLat, floatLong),
-		employees: []
+class Employees{
+	constructor(){
+		var first;
+		var last;
+		var employeeNumber;
+		var status;
+		var email;
+		var phone;
+		var uniqueId;
 	}
-	
-	db.collection('companies').doc(companyName).collection('jobs').add(docData)
-	.then(function(docRef){
-		
-		var employeesRefJobs = db.collection('companies').doc(companyName).collection('jobs').doc(docRef.id);
-		for(var i in listOfSelectedEmployees){
-
-			batch.update(employeesRefJobs, {"employees": firebase.firestore.FieldValue.arrayUnion(listOfSelectedEmployees[i].uniqueId) });
-			var jobEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc(listOfSelectedEmployees[i].uniqueId);
-			
-			batch.update(jobEmployeeRef, {"jobs": firebase.firestore.FieldValue.arrayUnion(docRef.id) });
-		}
-
-		batch.commit().then(function(){
-			window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/Jobs/Jobs.html";
-		});
-	}).catch(function(error){
-		console.log("error" + error);
-	});
-	
 }
 
-*/
+class Jobs{
+	constructor(){
+		var name;
+		var address;
+		var lat;
+		var long;
+		var employees;
+		var date;
+		var jobId;
+	}
+}

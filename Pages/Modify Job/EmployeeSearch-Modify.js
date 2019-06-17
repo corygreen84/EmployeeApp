@@ -114,26 +114,3 @@ function createListItemOnClick(item){
 }
 
 
-class Employees{
-	constructor(){
-		var first;
-		var last;
-		var employeeNumber;
-		var status;
-		var email;
-		var phone;
-		var uniqueId;
-	}
-}
-
-class Jobs{
-	constructor(){
-		var name;
-		var address;
-		var lat;
-		var long;
-		var employees;
-		var date;
-		var jobId;
-	}
-}
