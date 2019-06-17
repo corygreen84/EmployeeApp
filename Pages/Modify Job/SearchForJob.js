@@ -43,8 +43,6 @@ function searchForJob(job, company){
 			//loadEmployeesToToggle(jobLoaded.employees);
 		}
 	});	
-	
-	
 }
 
 function loadIntoFields(job){
@@ -72,4 +70,17 @@ function loadIntoFields(job){
 
 function putOnMap(address, long, lat){
 	placeOnMapModify(long, lat, address);
+}
+
+
+
+function clearButtonClicked(){
+	console.log("clear click");
+	modifyJobNameTextField.value = modifiedName
+	modifyJobAddressTextField.value = modifiedAddress;
+	modifyJobLongitudeTextField.value = modifiedLocation["longitude"];
+	modifyJobLatitudeTextFieldl.value = modifiedLocation["latitude"];
+	if(modifiedNotes != undefined){
+		modifyJobNotes.value = modifiedNotes;
+	}
 }

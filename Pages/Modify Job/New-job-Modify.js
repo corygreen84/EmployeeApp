@@ -38,14 +38,7 @@ function backButtonOnClick(){
 
 function clearButtonOnClick(){
 
-	console.log("clear click");
-	modifyJobNameTextField.value = modifiedName
-	modifyJobAddressTextField.value = modifiedAddress;
-	modifyJobLongitudeTextField.value = modifiedLocation["longitude"];
-	modifyJobLatitudeTextFieldl.value = modifiedLocation["latitude"];
-	if(modifiedNotes != undefined){
-		modifyJobNotes.value = modifiedNotes;
-	}
+	clearButtonClicked();
 }
 
 
