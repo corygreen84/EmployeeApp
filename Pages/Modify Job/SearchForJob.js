@@ -29,6 +29,8 @@ function searchForJob(job, company){
 
 			jobLoaded = newJob;
 
+			console.log(notes);
+
 			loadIntoFields(jobLoaded);
 		}
 	});		
