@@ -111,8 +111,8 @@ function loadEmployeesToToggle(employees){
 	// dictionary for this job holds the unique ids for each employee //
 	var listOfEmployeeNumbersToBeMinused = [];
 	for(var i in listOfEmployeesModify){
-		for(var j in dictionaryOfEmployeesForThisJob){
-			if(dictionaryOfEmployeesForThisJob[j] == listOfEmployeesModify[i].uniqueId){
+		for(var j in employees){
+			if(employees[j] == listOfEmployeesModify[i].uniqueId){
 				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].uniqueId);
 			}
 		}
