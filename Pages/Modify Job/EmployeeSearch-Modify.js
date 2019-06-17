@@ -1,9 +1,7 @@
 
 
-
-
 var listOfSelectedEmployees = [];
-var listOfEmployeesCreate = [];
+var listOfEmployeesModify = [];
 
 // **** end of modal view variables **** //
 var listView = document.getElementById("job-listview-div");
@@ -17,21 +15,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 
-
-
-
 // brings up all the employees for this company //
-function loadEmployeesCreate(companyName){
+function loadEmployeesModify(companyName){
 	
-	listOfEmployeesCreate = [];
+	listOfEmployeesModify = [];
 
-	
-	
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	companyRef.onSnapshot(function(querySnapshot){
 
 		var data = querySnapshot.docs.map(function(documentSnapshot){
-		listOfEmployeesCreate = [];
+		listOfEmployeesModify = [];
 
 		return documentSnapshot.data();
 	});	
@@ -46,27 +39,27 @@ function loadEmployeesCreate(companyName){
 				newEmployeeObject.email = data[i].email;
 				newEmployeeObject.uniqueId = data[i].id;
 
-				listOfEmployeesCreate.push(newEmployeeObject);
+				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
-		parseEmployeesAndAddToListViewCreate();
+		parseEmployeesAndAddToListViewModify();
 
 	});
 }
 
 
 // shows all the possible employees for this company in the modify job panel //
-function parseEmployeesAndAddToListViewCreate(){
+function parseEmployeesAndAddToListViewModify(){
 	
 	$("#employee-list-container ul").empty();
 
-	for(var j = 0; j < listOfEmployeesCreate.length; j++){
+	for(var j = 0; j < listOfEmployeesModify.length; j++){
 		
-		var firstName = listOfEmployeesCreate[j].first;
-		var lastName = listOfEmployeesCreate[j].last;
-		var employeeNumber = listOfEmployeesCreate[j].employeeNumber;
-		var status = listOfEmployeesCreate[j].status;
-		var uniqueIdentifier = listOfEmployeesCreate[j].uniqueId;
+		var firstName = listOfEmployeesModify[j].first;
+		var lastName = listOfEmployeesModify[j].last;
+		var employeeNumber = listOfEmployeesModify[j].employeeNumber;
+		var status = listOfEmployeesModify[j].status;
+		var uniqueIdentifier = listOfEmployeesModify[j].uniqueId;
 		var statusToString = "";
 		if(status == true){
 			statusToString = "Available";
@@ -76,7 +69,7 @@ function parseEmployeesAndAddToListViewCreate(){
 
 		
 		$("#employee-list-container ul").append('<li id=' 
-		+ uniqueIdentifier + ' onclick="createListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon-' 
+		+ uniqueIdentifier + ' onclick="modifyListItemOnClick(this)" data-icon="plus" class="employee-li"><a href="#" id="icon-' 
 		+ uniqueIdentifier + '"><h2>' 
 		+ firstName + ' ' 
 		+ lastName + '</h2><p>Employee #: ' 
@@ -92,14 +85,14 @@ function parseEmployeesAndAddToListViewCreate(){
 
 // with this function I want to be able to toggle the + and - buttons per row //
 // and add/subtract it to the selected list //
-function createListItemOnClick(item){
+function modifyListItemOnClick(item){
 
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
 		$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 
-		for(var l = 0; l < listOfEmployeesCreate.length; l++){
-			if(listOfEmployeesCreate[l].uniqueId == item.id){
-				listOfSelectedEmployees.push(listOfEmployeesCreate[l]);
+		for(var l = 0; l < listOfEmployeesModify.length; l++){
+			if(listOfEmployeesModify[l].uniqueId == item.id){
+				listOfSelectedEmployees.push(listOfEmployeesModify[l]);
 			}
 		}
 	}else{

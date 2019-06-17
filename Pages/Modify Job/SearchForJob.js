@@ -38,7 +38,9 @@ function searchForJob(job, company){
 
 			loadIntoFields(jobLoaded);
 		}
-	});		
+	});	
+	
+	loadEmployeesModify(company);
 }
 
 function loadIntoFields(job){
