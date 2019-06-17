@@ -1,8 +1,10 @@
 
-
 var db = firebase.firestore();
 
 function searchForJob(job, company){
+
+	console.log(job);
+	console.log(company);
 
 	var jobRef = db.collection('companies').doc(company).collection('jobs').doc(job)
 	jobRef.get().then(function(querySnapshot){
