@@ -89,6 +89,7 @@ function clearButtonClicked(){
 		modifyJobNotes.value = modifiedNotes;
 	}
 
+	console.log(passedInJob);
 	// getting the default employee data //
 	loadEmployeesModify(passedInJob, passedInCompany);
 }
