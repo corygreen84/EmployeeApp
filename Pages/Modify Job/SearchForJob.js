@@ -56,11 +56,14 @@ function loadIntoFields(job){
 		modifyJobNotes.value = job.notes;
 	}
 
-	modifyNameFilledIn = true;
-	modifyAddressFilledIn = true;
-	modifyLongFilledIn = true;
-	modifyLatFilledIn = true;
-	modifyNotesFilledIn = true;
+
+	// this is the opposite of what we think //
+	// I want the search and modify buttons to be blanked out when the fields are first loaded //
+	modifyNameFilledIn = false;
+	modifyAddressFilledIn = false;
+	modifyLongFilledIn = false;
+	modifyLatFilledIn = false;
+	modifyNotesFilledIn = false;
 
 	toggleSearchButton();
 
