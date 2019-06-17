@@ -13,7 +13,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 }, false);
 
-
+// **** modify name on change event **** //
 function modifyNameOnchange(){
 	if(modifyJobNameTextField.value != modifiedName || modifyJobNameTextField.value == ""){
 		modifyNameFilledIn = true;
@@ -27,8 +27,16 @@ function modifyNameOnchange(){
 function modifyAddressOnchange(){
 	if(modifyJobAddressTextField.value != modifiedAddress || modifyJobAddressTextField.value == ""){
 		modifyAddressFilledIn = true;
+
+		// giving the ability to do a search when the user starts editing the address //
+		modifyJobLongitudeTextField.value = "";
+		modifyJobLatitudeTextField.value = "";
+
 	}else{
 		modifyAddressFilledIn = false;
+
+		modifyJobLongitudeTextField.value = modifiedLocation["longitude"];
+		modifyJobLatitudeTextField.value = modifiedLocation["latitude"];
 	}
 
 	toggleSearchButton();
