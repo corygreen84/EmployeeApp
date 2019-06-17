@@ -108,6 +108,7 @@ function modifyListItemOnClick(item){
 
 
 function loadEmployeesToToggle(employees){
+	console.log("in here....");
 	// dictionary for this job holds the unique ids for each employee //
 	var listOfEmployeeNumbersToBeMinused = [];
 	for(var i in listOfEmployeesModify){
