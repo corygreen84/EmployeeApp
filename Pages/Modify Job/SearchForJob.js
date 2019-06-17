@@ -39,7 +39,7 @@ function searchForJob(job, company){
 			// finalizing the job //
 			loadIntoFields(jobLoaded);
 			loadEmployeesModify(company);
-			loadEmployeesToToggle(jobLoaded.employees);
+			//loadEmployeesToToggle(jobLoaded.employees);
 		}
 	});	
 	

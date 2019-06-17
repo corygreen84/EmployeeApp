@@ -16,7 +16,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 // brings up all the employees for this company //
-function loadEmployeesModify(companyName){
+function loadEmployeesModify(companyName, employees){
 	
 	listOfEmployeesModify = [];
 
@@ -42,14 +42,14 @@ function loadEmployeesModify(companyName){
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
-		parseEmployeesAndAddToListViewModify();
+		parseEmployeesAndAddToListViewModify(employees);
 
 	});
 }
 
 
 // shows all the possible employees for this company in the modify job panel //
-function parseEmployeesAndAddToListViewModify(){
+function parseEmployeesAndAddToListViewModify(employeesToggle){
 	
 	$("#employee-list-container ul").empty();
 
@@ -78,6 +78,8 @@ function parseEmployeesAndAddToListViewModify(){
 	}
 	// refreshing the list //
 	$("#employee-list-container ul").listview('refresh');	
+
+	loadEmployeesToToggle(employeesToggle);
 }
 
 
@@ -108,7 +110,6 @@ function modifyListItemOnClick(item){
 
 
 function loadEmployeesToToggle(employees){
-
 
 	console.log(listOfEmployeesModify.length);
 	// dictionary for this job holds the unique ids for each employee //
