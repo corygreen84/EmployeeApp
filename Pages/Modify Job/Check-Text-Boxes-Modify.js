@@ -80,17 +80,7 @@ function toggleSearchButton(){
 
 	// if all fields are filled in with default data, we dont enable the search button //
 	if(modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
-
-		if(modifyJobAddressTextField.value != "" && 
-			modifyJobLongitudeTextField.value != "" && 
-			modifyJobLatitudeTextField.value != ""){
-
-			modifySearchButton.disabled = false;
-		}else{
-			modifySearchButton.disabled = true;
-		}
-
-		//modifySearchButton.disabled = false;
+		modifySearchButton.disabled = false;
 	}else{
 		modifySearchButton.disabled = true;
 	}
