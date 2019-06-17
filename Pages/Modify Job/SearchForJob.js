@@ -28,7 +28,7 @@ function searchForJob(job, company){
 
 			jobLoaded = newJob;
 			for(var things in location){
-				console.log(location[things]);
+				console.log(things);
 			}
 			console.log(newJob.lat);
 
