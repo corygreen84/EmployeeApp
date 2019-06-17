@@ -74,5 +74,6 @@ class Jobs{
 		var employees;
 		var date;
 		var jobId;
+		var notes;
 	}
 }

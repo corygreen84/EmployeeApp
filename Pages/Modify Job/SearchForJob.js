@@ -38,6 +38,13 @@ function loadIntoFields(job){
 	modifyJobLongitudeTextField.value = "" + job.long;
 	modifyJobLatitudeTextField.value = "" + job.lat;
 
+	modifyNameFilledIn = true;
+	modifyAddressFilledIn = true;
+	modifyLongFilledIn = true;
+	modifyLatFilledIn = true;
+
+	toggleSearchButton();
+
 	putOnMap(job.address, job.long, job.lat);
 }
 
