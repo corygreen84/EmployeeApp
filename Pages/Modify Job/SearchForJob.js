@@ -1,6 +1,13 @@
 
 var jobLoaded;
 
+var modifiedAddress;
+var modifiedDate;
+var modifiedName;
+var modifiedLocation;
+var modifiedEmployees;
+var modifiedNotes;
+
 var db = firebase.firestore();
 
 function searchForJob(job, company){
@@ -12,24 +19,22 @@ function searchForJob(job, company){
 			var data = doc.data();
 			var newJob = new Jobs();
 
-			var address = data["address"];
-			var date = data["date"];
-			var name = data["name"];
-			var location = data["location"];
-			var employees = data["employees"];
-			var notes = data["notes"];
+			modifiedAddress = data["address"];
+			modifiedDate = data["date"];
+			modifiedName = data["name"];
+			modifiedLocation = data["location"];
+			modifiedEmployees = data["employees"];
+			modifiedNotes = data["notes"];
 
-			newJob.address = address;
-			newJob.name = name;
-			newJob.date = date;
-			newJob.long = location["longitude"];
-			newJob.lat = location["latitude"];
-			newJob.employees = employees;
-			newJob.notes = notes;
+			newJob.address = modifiedAddress;
+			newJob.name = modifiedName;
+			newJob.date = modifiedDate;
+			newJob.long = modifiedLocation["longitude"];
+			newJob.lat = modifiedLocation["latitude"];
+			newJob.employees = modifiedEmployees;
+			newJob.notes = modifiedNotes;
 
 			jobLoaded = newJob;
-
-			console.log(notes);
 
 			loadIntoFields(jobLoaded);
 		}
@@ -41,7 +46,9 @@ function loadIntoFields(job){
 	modifyJobAddressTextField.value = job.address;
 	modifyJobLongitudeTextField.value = "" + job.long;
 	modifyJobLatitudeTextField.value = "" + job.lat;
-	modifyJobNotes.value = job.notes;
+	if(job.notes != undefined){
+		modifyJobNotes.value = job.notes;
+	}
 
 	modifyNameFilledIn = true;
 	modifyAddressFilledIn = true;
