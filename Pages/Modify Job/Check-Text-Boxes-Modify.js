@@ -26,15 +26,14 @@ function modifyNameOnchange(){
 // **** address and coordinate change events **** //
 function modifyAddressOnchange(){
 	if(modifyJobAddressTextField.value != modifiedAddress && modifyJobAddressTextField.value != ""){
-		console.log("welp in here...");
+		
 		modifyAddressFilledIn = true;
-
+		
 		// giving the ability to do a search when the user starts editing the address //
 		modifyJobLongitudeTextField.value = "";
 		modifyJobLatitudeTextField.value = "";
 
 	}else{
-		console.log("im in here....");
 		modifyAddressFilledIn = false;
 
 		modifyJobLongitudeTextField.value = modifiedLocation["longitude"];
@@ -46,10 +45,14 @@ function modifyAddressOnchange(){
 }
 
 function modifyLongOnchange(){
-	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] || modifyJobLongitudeTextField.value == ""){
+	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] && modifyJobLongitudeTextField.value != ""){
 		modifyLongFilledIn = true;
+
+		modifyJobAddressTextField.value = "";
+
 	}else{
 		modifyLongFilledIn = false;
+		modifyJobAddressTextField.value = modifiedAddress;
 	}
 
 	toggleSearchButton();
@@ -57,10 +60,14 @@ function modifyLongOnchange(){
 }
 
 function modifyLatOnchange(){
-	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"] || modifyJobLatitudeTextField.value == ""){
+	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"] && modifyJobLatitudeTextField.value != ""){
 		modifyLatFilledIn = true;
+
+		modifyJobAddressTextField.value = "";
 	}else{
 		modifyLatFilledIn = false;
+
+		modifyJobAddressTextField.value = modifiedAddress;
 	}
 
 	toggleSearchButton();
