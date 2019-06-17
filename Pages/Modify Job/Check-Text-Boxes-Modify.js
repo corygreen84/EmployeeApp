@@ -33,7 +33,7 @@ function modifyAddressOnchange(){
 		modifyJobLongitudeTextField.value = "";
 		modifyJobLatitudeTextField.value = "";
 
-	}else if(modifyJobAddressTextField.value == "" || modifyJobAddressTextField.value == modifiedAddress){
+	}else{
 		console.log("im in here....");
 		modifyAddressFilledIn = false;
 
