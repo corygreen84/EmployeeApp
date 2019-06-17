@@ -15,14 +15,38 @@ window.addEventListener('DOMContentLoaded', function () {
 
 
 function modifyNameOnchange(){
-	if(modifyJobNameTextField.value != modifiedName){
-		console.log("doesnt equal");
+	if(modifyJobNameTextField.value != modifiedName || modifyJobNameTextField.value == ""){
+		modifyNameFilledIn = true;
 	}else{
-		console.log("its equal");
+		modifyNameFilledIn = true;
 	}
+	toggleModifyJobButton();
 }
 
+// **** address and coordinate change events **** //
+function modifyAddressOnchange(){
+	if(modifyJobAddressTextField.value != modifiedAddress || modifyJobAddressTextField.value == ""){
+		modifyAddressFilledIn = true;
+	}else{
+		modifyAddressFilledIn = false;
+	}
 
+	toggleSearchButton();
+	toggleModifyJobButton();
+}
+
+function modifyLongOnchange(){
+	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] || modifyJobLongitudeTextField.value == ""){
+		console.log("doesnt equal");
+		modifyLongFilledIn = true;
+	}else{
+		console.log("equal");
+		modifyLongFilledIn = false;
+	}
+
+	toggleSearchButton();
+	toggleModifyJobButton();
+}
 
 
 /*
