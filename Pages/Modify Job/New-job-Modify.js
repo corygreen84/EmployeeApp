@@ -1,13 +1,13 @@
 
 
 /* text entry variables */
-var modifyJobNameTextField = document.getElementById("create-name-text");
-var modifyJobAddressTextField = document.getElementById("create-address-text");
-var modifyJobLongitudeTextField = document.getElementById("create-long-text");
-var modifyJobLatitudeTextField = document.getElementById("create-lat-text");
+var modifyJobNameTextField = document.getElementById("modify-name-text");
+var modifyJobAddressTextField = document.getElementById("modify-address-text");
+var modifyJobLongitudeTextField = document.getElementById("modify-long-text");
+var modifyJobLatitudeTextField = document.getElementById("modify-lat-text");
 var modifyJobNotes = document.getElementById("notes-textarea");
 
-var modifySearchButton = document.getElementById("create-address-search");
+var modifySearchButton = document.getElementById("modify-address-search");
 var modifyJobButton = document.getElementById("modify-job-button");
 
 var companyName = "";
@@ -20,14 +20,14 @@ var user;
 // checking if the user is logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
-	/*
+	
 	if(localStorage.getItem("id") != null && localStorage.getItem("name") != null){
 		var idString = removeExcessFromJobId(localStorage.getItem("id"));
 		var companyString = localStorage.getItem("name")
 		
 		searchForJob(idString, companyString);
 	}
-	*/
+	
 
 }, false);
 
@@ -45,7 +45,7 @@ function deleteButtonOnClick(){
 }
 
 
-function createButtonOnClick(){
+function modifyButtonOnClick(){
 	
 }
 
@@ -65,7 +65,7 @@ function checkState(){
 					companyName = doc.data().company;
 					this.user = user;
 
-					loadEmployeesCreate(companyName);
+					loadEmployeesmodify(companyName);
 
 				}).then(function(){
 					
@@ -85,38 +85,38 @@ function backButtonOnClick(){
 }
 
 function clearButtonOnClick(){
-	createJobNameTextField.value = "";
-	createJobAddressTextField.value = "";
-	createJobLongitudeTextField.value = "";
-	createJobLatitudeTextField.value = "";
-	createJobNotes.value = "";
+	modifyJobNameTextField.value = "";
+	modifyJobAddressTextField.value = "";
+	modifyJobLongitudeTextField.value = "";
+	modifyJobLatitudeTextField.value = "";
+	modifyJobNotes.value = "";
 
-	createSearchButton.disabled = true;
-	createJobButton.disabled = true;
+	modifySearchButton.disabled = true;
+	modifyJobButton.disabled = true;
 
-	createAddressFilledIn = false;
-	createNameFilledIn = false;
-	createLongFilledIn = false;
-	createLatFilledIn = false;
-	createNotesFilledIn = false;
+	modifyAddressFilledIn = false;
+	modifyNameFilledIn = false;
+	modifyLongFilledIn = false;
+	modifyLatFilledIn = false;
+	modifyNotesFilledIn = false;
 }
 
 
 
 // creation of the job //
-function createButtonOnClick(){
+function modifyButtonOnClick(){
 	var date = new Date();
 	var dateString = "" + date.getMonth() + "/" + date.getDate() + "/" + date.getFullYear();
 
 
-	var floatLong = parseFloat(createJobLongitudeTextField.value);
-	var floatLat = parseFloat(createJobLatitudeTextField.value);
+	var floatLong = parseFloat(modifyJobLongitudeTextField.value);
+	var floatLat = parseFloat(modifyJobLatitudeTextField.value);
 
 	// adds the data to both the job itself and the employees involved //
 	var batch = db.batch();
 	var docData = {
-		name: createJobNameTextField.value,
-		address: createJobAddressTextField.value,
+		name: modifyJobNameTextField.value,
+		address: modifyJobAddressTextField.value,
 		date: dateString,
 		location: new firebase.firestore.GeoPoint(floatLat, floatLong),
 		employees: []

@@ -9,7 +9,7 @@ var newJobLong;
 var newJobLat;
 
 
-var createMap;
+var modifyMap;
 var marker;
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
@@ -21,7 +21,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 function initMap(){
 
-	createMap = new google.maps.Map(document.getElementById("main-map-view"), {
+	modifyMap = new google.maps.Map(document.getElementById("main-map-view"), {
 		disableDefaultUI: true,
 		center: {lat: 37.984361, lng:-120.381767},
 		zoom: 9
@@ -100,16 +100,16 @@ function parsePlaceByAddress(json, address){
 
 
 
-							placeOnMapCreate(newJobLong, newJobLat, address);
-							createJobLongitudeTextField.value = newJobLong;
-							createJobLatitudeTextField.value = newJobLat;
+							placeOnMapModify(newJobLong, newJobLat, address);
+							modifyJobLongitudeTextField.value = newJobLong;
+							modifyJobLatitudeTextField.value = newJobLat;
 						
-							createAddressFilledIn = true;
-							createLongFilledIn = true;
-							createLatFilledIn = true;
+							modifyAddressFilledIn = true;
+							modifyLongFilledIn = true;
+							modifyLatFilledIn = true;
 						
 							toggleSearchButton();
-							toggleCreateJobButton();
+							toggleModifyJobButton();
 						}
 					}
 				}
@@ -121,7 +121,7 @@ function parsePlaceByAddress(json, address){
 
 
 // parse by coordinates //
-function parsePlaceByCoordinate(json, cameFromCreate){
+function parsePlaceByCoordinate(json, cameFrommodify){
 
 	if(json["results"] != undefined){
 		var results = json["results"];
@@ -146,18 +146,18 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 								this.address = formattedAddress;
 
 								// place on the map //
-								placeOnMapCreate(newJobLong, newJobLat, formattedAddress);
+								placeOnMapModify(newJobLong, newJobLat, formattedAddress);
 
-								createJobAddressTextField.value = formattedAddress;
-								createJobLongitudeTextField.value = newJobLong;
-								createJobLatitudeTextField.value = newJobLat;
+								modifyJobAddressTextField.value = formattedAddress;
+								modifyJobLongitudeTextField.value = newJobLong;
+								modifyJobLatitudeTextField.value = newJobLat;
 							
-								createAddressFilledIn = true;
-								createLongFilledIn = true;
-								createLatFilledIn = true;
+								modifyAddressFilledIn = true;
+								modifyLongFilledIn = true;
+								modifyLatFilledIn = true;
 						
 								toggleSearchButton();
-								toggleCreateJobButton();
+								toggleModifyJobButton();
 							}
 						}
 					}
@@ -174,15 +174,15 @@ function parsePlaceByCoordinate(json, cameFromCreate){
 
 
 // placing on the map and putting a marker on //
-function placeOnMapCreate(long, lat, address){
-	createMap = new google.maps.Map(document.getElementById("main-map-view"), {
+function placeOnMapModify(long, lat, address){
+	modifyMap = new google.maps.Map(document.getElementById("main-map-view"), {
 		center: {lat: lat, lng:long},
 		zoom: 17
 	});
 
 	marker = new google.maps.Marker({
 		position: {lat: lat, lng: long},
-		map: createMap,
+		map: modifyMap,
 		animation: google.maps.Animation.DROP,
 		title: address
 	});
@@ -192,16 +192,16 @@ function placeOnMapCreate(long, lat, address){
 // give the user a notification that there were no results found //
 function noResultsFound(){
 	if(confirm("No results found.  Please try again.")) {
-		createJobAddressTextField.value = "";
-		createJobLongitudeTextField.value = "";
-		createJobLatitudeTextField.value = "";
+		modifyJobAddressTextField.value = "";
+		modifyJobLongitudeTextField.value = "";
+		modifyJobLatitudeTextField.value = "";
 							
-		createAddressFilledIn = false;
-		createLongFilledIn = false;
-		createLatFilledIn = false;
+		modifyAddressFilledIn = false;
+		modifyLongFilledIn = false;
+		modifyLatFilledIn = false;
 
 		toggleSearchButton();
-		toggleCreateJobButton();
+		toggleModifyJobButton();
 	}
 
 	
