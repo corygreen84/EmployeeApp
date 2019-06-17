@@ -105,11 +105,7 @@ function toggleSearchButton(){
 
 
 function toggleModifyJobButton(){
-	console.log(modifyNameFilledIn);
-	console.log(modifyAddressFilledIn);
-	console.log(modifyLongFilledIn);
-	console.log(modifyLatFilledIn);
-	if(modifyNameFilledIn == true && modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
+	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
 		modifyJobButton.disabled = false;
 	}else{
 		modifyJobButton.disabled = true;
