@@ -17,6 +17,7 @@ function searchForJob(job, company){
 			var name = data["name"];
 			var location = data["location"];
 			var employees = data["employees"];
+			var notes = data["notes"];
 
 			newJob.address = address;
 			newJob.name = name;
@@ -24,6 +25,7 @@ function searchForJob(job, company){
 			newJob.long = location["longitude"];
 			newJob.lat = location["latitude"];
 			newJob.employees = employees;
+			newJob.notes = notes;
 
 			jobLoaded = newJob;
 
@@ -37,11 +39,13 @@ function loadIntoFields(job){
 	modifyJobAddressTextField.value = job.address;
 	modifyJobLongitudeTextField.value = "" + job.long;
 	modifyJobLatitudeTextField.value = "" + job.lat;
+	modifyJobNotes.value = job.notes;
 
 	modifyNameFilledIn = true;
 	modifyAddressFilledIn = true;
 	modifyLongFilledIn = true;
 	modifyLatFilledIn = true;
+	modifyNotesFilledIn = true;
 
 	toggleSearchButton();
 
