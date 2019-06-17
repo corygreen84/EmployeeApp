@@ -114,9 +114,7 @@ function loadEmployeesToToggle(employees){
 	// dictionary for this job holds the unique ids for each employee //
 	var listOfEmployeeNumbersToBeMinused = [];
 	for(var i in listOfEmployeesModify){
-		console.log(listOfEmployeesModify[i].uniqueId);
 		for(var j in employees){
-			console.log("emp -> " + employees[j]);
 			if(employees[j] == listOfEmployeesModify[i].uniqueId){
 				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].uniqueId);
 			}
@@ -124,7 +122,7 @@ function loadEmployeesToToggle(employees){
 	}
 
 	for(var h in listOfEmployeeNumbersToBeMinused){
-		$('#icon--' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+		$('#icon-' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}	
 }
 

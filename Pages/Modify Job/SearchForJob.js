@@ -36,11 +36,6 @@ function searchForJob(job, company){
 
 			jobLoaded = newJob;
 
-			console.log("in here...!");
-			for(var i in jobLoaded.employees){
-				console.log(jobLoaded.employees[i]);
-			}
-
 
 			// finalizing the job //
 			loadIntoFields(jobLoaded);
