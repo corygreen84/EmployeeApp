@@ -124,5 +124,7 @@ function loadEmployeesToToggle(employees){
 	for(var h in listOfEmployeeNumbersToBeMinused){
 		$('#icon-' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 	}	
+
+	
 }
 

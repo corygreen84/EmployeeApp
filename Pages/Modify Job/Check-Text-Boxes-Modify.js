@@ -6,12 +6,26 @@ var modifyLongFilledIn = false;
 var modifyLatFilledIn = false;
 var modifyNotesFilledIn = false;
 
+var employeeSelectedListChanged = false;
+
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
 }, false);
 
 
+function modifyNameOnchange(){
+	if(modifyJobNameTextField.value != modifiedName){
+		console.log("doesnt equal");
+	}else{
+		console.log("its equal");
+	}
+}
+
+
+
+
+/*
 // **** name change event **** //
 function modifyNameOnchange(){
 	if(modifyJobNameTextField.value != ""){
@@ -73,7 +87,7 @@ function modifyNotesOnKeyDown(){
 	}
 }
 
-
+*/
 
 
 
@@ -97,6 +111,15 @@ function toggleSearchButton(){
 }
 
 
+
+
+function toggleModifyJobButton(){
+
+}
+
+
+
+/*
 function toggleModifyJobButton(){
 	if(modifyNameFilledIn == true && modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
 		modifyJobButton.disabled = false;
@@ -104,6 +127,7 @@ function toggleModifyJobButton(){
 		modifyJobButton.disabled = true;
 	}
 }
+*/
 
 function searchButtonOnClick(){
 	searchForPlace(modifyJobAddressTextField.value, modifyJobLongitudeTextField.value, modifyJobLatitudeTextField.value);
