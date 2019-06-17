@@ -65,7 +65,13 @@ function modifyLatOnchange(){
 
 // **** notes modify **** //
 function modifyNotesOnKeyDown(){
+	if(modifyJobNotes.value != modifiedNotes){
+		modifyNotesFilledIn = true;
+	}else{
+		modifyNotesFilledIn = false;
+	}
 
+	toggleModifyJobButton();
 }
 
 
@@ -95,11 +101,12 @@ function toggleSearchButton(){
 
 
 function toggleModifyJobButton(){
-	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
+	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true || modifyNotesFilledIn){
 		if(modifyJobNameTextField.value != "" && 
 			modifyJobAddressTextField.value != "" && 
 			modifyJobLongitudeTextField.value != "" && 
-			modifyJobLatitudeTextField.value != ""){
+			modifyJobLatitudeTextField.value != "" && 
+			modifyJobNotes.value != ""){
 
 			modifyJobButton.disabled = false;
 		}else{
