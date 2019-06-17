@@ -37,6 +37,8 @@ function loadIntoFields(job){
 	modifyJobAddressTextField.value = job.address;
 	modifyJobLongitudeTextField.value = "" + job.long;
 	modifyJobLatitudeTextField.value = "" + job.lat;
+
+	putOnMap(job.address, job.long, job.lat);
 }
 
 function putOnMap(address, long, lat){
