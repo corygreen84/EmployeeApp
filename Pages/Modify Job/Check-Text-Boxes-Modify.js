@@ -114,7 +114,7 @@ function toggleModifyJobButton(){
 
 
 
-/*
+
 function toggleModifyJobButton(){
 	if(modifyNameFilledIn == true && modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
 		modifyJobButton.disabled = false;
@@ -122,16 +122,9 @@ function toggleModifyJobButton(){
 		modifyJobButton.disabled = true;
 	}
 }
-*/
+
 
 function searchButtonOnClick(){
-
-	if(modifyJobAddressTextField.value == "" && (modifyJobLongitudeTextField.value != "" && modifyJobLatitudeTextField.value != "")){
-		console.log("search by coordinates");
-	}else if(modifyJobAddressTextField.value != "" && ((modifyJobLongitudeTextField.value != "" && modifyJobLatitudeTextField.value == "") || (modifyJobLongitudeTextField.value == "" && modifyJobLatitudeTextField.value != ""))){
-		console.log("search by address");
-	}
-
 
 	searchForPlace(modifyJobAddressTextField.value, modifyJobLongitudeTextField.value, modifyJobLatitudeTextField.value);
 }
