@@ -79,7 +79,7 @@ function clearButtonClicked(){
 	modifyJobNameTextField.value = modifiedName
 	modifyJobAddressTextField.value = modifiedAddress;
 	modifyJobLongitudeTextField.value = modifiedLocation["longitude"];
-	modifyJobLatitudeTextFieldl.value = modifiedLocation["latitude"];
+	modifyJobLatitudeTextField.value = modifiedLocation["latitude"];
 	if(modifiedNotes != undefined){
 		modifyJobNotes.value = modifiedNotes;
 	}
