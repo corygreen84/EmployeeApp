@@ -111,6 +111,9 @@ function toggleModifyJobButton(){
 
 function searchButtonOnClick(){
 
+	if(modifyJobAddressTextField.value != "" && modifyJobLongitudeTextField.value != "" && modifyJobLatitudeTextField.value != ""){
+		console.log("need to give the user to decide if they want to use address or coordinates");
+	}
 	searchForPlace(modifyJobAddressTextField.value, modifyJobLongitudeTextField.value, modifyJobLatitudeTextField.value);
 }
 
