@@ -22,33 +22,12 @@ window.addEventListener('DOMContentLoaded', function () {
 
 // **** modify name on change event **** //
 function modifyNameOnchange(){
-	/*
+	
 	if(modifyJobNameTextField.value != modifiedName){
 		modifyNameFilledIn = true;
 	}else{
 		modifyNameFilledIn = false;
 	}
-	*/
-
-	if(modifyJobNameTextField.value != modifiedName && modifyJobNameTextField.value != ""){
-		modifyNameModified = true;
-		modifyNameFilledIn = true;
-	}else if(modifyJobNameTextField.value != modifiedName && modifyJobNameTextField == ""){
-		modifyNameModified = true;
-		modifyNameFilledIn = false;
-	}else if(modifyJobNameTextField.value == modifiedName && modifyJobNameTextField.value != ""){
-		modifyNameModified = false;
-		modifyNameFilledIn = false;
-	}else if(modifyJobNameTextField.value == modifiedName && modifyJobNameTextField.value == ""){
-		modifyNameModified = false;
-		modifyNameFilledIn = true;
-	}
-
-
-	console.log("name modified? " + modifyNameModified);
-	console.log("name is empty? " + modifyNameFilledIn);
-	
-
 
 	toggleModifyJobButton();
 }
