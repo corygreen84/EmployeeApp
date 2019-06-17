@@ -95,8 +95,7 @@ function toggleModifyJobButton(){
 		if(modifyJobNameTextField.value != "" && 
 			modifyJobAddressTextField.value != "" && 
 			modifyJobLongitudeTextField.value != "" && 
-			modifyJobLatitudeTextField.value != "" && 
-			modifyJobNotes.value != ""){
+			modifyJobLatitudeTextField.value != ""){
 
 			modifyJobButton.disabled = false;
 		}else{
