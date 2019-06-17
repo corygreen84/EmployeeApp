@@ -89,6 +89,7 @@ function setThingsToDefault(name, address, long, lat, notes){
 	modifyNotesFilledIn = false;
 
 	toggleSearchButton();
+	toggleModifyJobButton();
 
 	putOnMap(address, long, lat);
 }
