@@ -111,7 +111,13 @@ function bringUpUserCompanyName(email){
 
 function loginOffOnClick(){
 	firebase.auth().signOut().then(function() {
+
+		if(localStorage.get("id") != null && localStorage.getItem("name") != null){
+			localStorage.removeItem("id");
+			localStorage.removeItem("name");
+		}
 		window.location.href = "index.html";
+
 	}).catch(function(error) {
 		console.log("error signing out...");
 	});
