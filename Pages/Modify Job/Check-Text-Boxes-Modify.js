@@ -75,29 +75,19 @@ function toggleSearchButton(){
 	// if all fields are filled in with default data, we dont enable the search button //
 	if(modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
 
-		modifySearchButton.disabled = false;
-	}else{
-		modifySearchButton.disabled = true;
-	}
-	
-	
-	/* original *** 
-	if(modifyAddressFilledIn == true && modifyLongFilledIn == true && modifyLatFilledIn == true){
-		modifySearchButton.disabled = true;
-	}else{
+		if(modifyJobAddressTextField.value != "" && 
+			modifyJobLongitudeTextField.value != "" && 
+			modifyJobLatitudeTextField.value != ""){
 
-		if(((modifyLongFilledIn == true && modifyLatFilledIn == false) || (modifyLongFilledIn == false && modifyLatFilledIn == true)) && modifyAddressFilledIn == true){
-			modifySearchButton.disabled = false;
-		}else if(modifyAddressFilledIn == true && (modifyLongFilledIn == false && modifyLatFilledIn == false)){
-			modifySearchButton.disabled = false;
-		}else if(modifyLongFilledIn == true && modifyLatFilledIn == true){
 			modifySearchButton.disabled = false;
 		}else{
 			modifySearchButton.disabled = true;
 		}
+
+		//modifySearchButton.disabled = false;
+	}else{
+		modifySearchButton.disabled = true;
 	}
-	*/
-	
 }
 
 
@@ -106,7 +96,6 @@ function toggleSearchButton(){
 
 function toggleModifyJobButton(){
 	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true){
-		console.log("changed");
 		if(modifyJobNameTextField.value != "" && 
 			modifyJobAddressTextField.value != "" && 
 			modifyJobLongitudeTextField.value != "" && 
