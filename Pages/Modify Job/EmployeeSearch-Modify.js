@@ -106,6 +106,57 @@ function modifyListItemOnClick(item){
 			}
 		}
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// **** really left off here **** //
+
+	// **** this section is for figuring out what has and hasnt been added to the job **** //
+	var tempArrayOfEmployeesModify = [];
+	var tempArrayOfOriginalEmployees = [];
+
+
+	for(var mod in dictionaryOfEmployeesForThisJob){
+		tempArrayOfEmployeesModify.push(dictionaryOfEmployeesForThisJob[mod]);
+	}
+	
+	
+	for(var orig in originalDictionaryOfJobs){
+		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
+	}
+
+	// **** checking to see what is the same, what has been added and what has been deleted **** //
+	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
+
+	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
+	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
+
+	if(addedArray.length > 0 || deletedArray.length > 0){
+		employeeListChanged = true;
+	}else{
+		employeeListChanged = false;
+	}
+
+
+	// **** really left off here **** //
+
+
+
+
+
+
+
 }
 
 
