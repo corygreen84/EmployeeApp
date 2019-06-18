@@ -24,14 +24,19 @@ window.addEventListener('DOMContentLoaded', function () {
 // brings up all the employees for this company //
 function loadEmployeesModify(companyName, employees){
 	
-	listOfEmployeesModify = [];
+	//listOfEmployeesModify = [];
 	listOfOriginalEmployees = [];
+
+	
 
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	companyRef.onSnapshot(function(querySnapshot){
 
 		var data = querySnapshot.docs.map(function(documentSnapshot){
 		listOfEmployeesModify = [];
+
+		dictionaryOfModifiedEmployees = {};
+		dictionaryOfOriginalEmployees = {};
 
 		return documentSnapshot.data();
 	});	
