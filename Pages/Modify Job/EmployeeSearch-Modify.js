@@ -200,10 +200,10 @@ function modifyListItemOnClick(item){
 	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
 
-	/*
+	
 	console.log("added array length " + addedArray.length);
 	console.log("Deleted array length " + deletedArray.length);
-	*/
+	
 
 
 	if(addedArray.length > 0 || deletedArray.length > 0){
