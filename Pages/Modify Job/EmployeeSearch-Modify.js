@@ -153,6 +153,15 @@ function modifyListItemOnClick(item){
 	}
 	*/
 
+	for(var i in listOfEmployeesModify){
+		console.log("original " + listOfEmployeesModify[i]);
+	}
+
+	for(var j in listOfSelectedEmployees){
+		console.log("selected " + listOfSelectedEmployees[j]);
+	}
+
+
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
 	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(/*tempArrayOfOriginalEmployees*/listOfEmployeesModify, listOfSelectedEmployees/*tempArrayOfEmployeesModify*/);
 	
