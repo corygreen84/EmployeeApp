@@ -262,20 +262,17 @@ function addMarkerOnClick(){
 // recentering the map //
 function recenterOnClick(){
 
+	// recenters the map on the original job //
 
-	console.log("recenter clicked ");
 
-	placeOnMapModify(jobLoaded.long, jobLoaded.lat, jobLoaded.address);
-	//searchForPlace(address, newJobLong, newJobLat);
-	/*
-	createJobAddressTextField.value = "";
-	createJobLongitudeTextField.value = "";
-	createJobLatitudeTextField.value = "";
-
-	createAddressFilledIn = false;
-	createLongFilledIn = false;
-	createLatFilledIn = false;
-	*/
+	var address = "";
+	var newJobLong;
+	var newJobLat;
+	if(address != "" && newJobLong != undefined && newJobLat != undefined){
+		placeOnMapModify(newJobLong, newJobLat, address);	
+	}else{
+		placeOnMapModify(jobLoaded.long, jobLoaded.lat, jobLoaded.address);	
+	}
 	
 }
 
