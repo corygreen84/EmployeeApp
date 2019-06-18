@@ -39,7 +39,7 @@ function createAddressOnchange(){
 }
 
 function createLongOnchange(){
-	if(createJobLongitudeTextField.value != "" && checkToMakeSureLongAndLatOnlyContainNumbers(createJobLongitudeTextField.value)){
+	if(createJobLongitudeTextField.value != ""){
 		createLongFilledIn = true;
 	}else{
 		createLongFilledIn = false;
@@ -50,7 +50,7 @@ function createLongOnchange(){
 }
 
 function createLatOnchange(){
-	if(createJobLatitudeTextField.value != "" && checkToMakeSureLongAndLatOnlyContainNumbers(createJobLatitudeTextField.value)){
+	if(createJobLatitudeTextField.value != ""){
 		createLatFilledIn = true;
 	}else{
 		createLatFilledIn = false;

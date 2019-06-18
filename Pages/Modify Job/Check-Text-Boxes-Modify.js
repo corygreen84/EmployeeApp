@@ -43,7 +43,7 @@ function modifyAddressOnchange(){
 
 function modifyLongOnchange(){
 
-	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] && checkToMakeSureLongAndLatOnlyContainNumbers(modifyJobLongitudeTextField.value)){
+	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"]){
 		modifyLongFilledIn = true;
 	}else{
 		modifyLongFilledIn = false;
@@ -53,7 +53,7 @@ function modifyLongOnchange(){
 }
 
 function modifyLatOnchange(){
-	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"] && checkToMakeSureLongAndLatOnlyContainNumbers(modifyJobLatitudeTextField.value)){
+	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"]){
 		modifyLatFilledIn = true;
 	}else{
 		modifyLatFilledIn = false;
