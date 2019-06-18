@@ -113,6 +113,7 @@ function loadEmployeesToToggle(employees){
 
 // with this function I want to be able to toggle the + and - buttons per row //
 // and add/subtract it to the selected list //
+/*
 function modifyListItemOnClick(item){
 
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
@@ -145,15 +146,15 @@ function modifyListItemOnClick(item){
 		tempArrayOfEmployeesModify.push(dictionaryOfEmployeesForThisJob[mod]);
 	}
 	
-	/*
+	
 	for(var orig in originalDictionaryOfJobs){
 		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
 	}
 	*/
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
-	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(/*tempArrayOfOriginalEmployees*/listOfEmployeesModify, tempArrayOfEmployeesModify);
-
+	//resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(/*tempArrayOfOriginalEmployees*/listOfEmployeesModify, tempArrayOfEmployeesModify);
+	/*
 	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
 
@@ -167,6 +168,6 @@ function modifyListItemOnClick(item){
 
 }
 
-
+*/
 
 
