@@ -57,8 +57,8 @@ function loadEmployeesModify(companyName, employees){
 				newEmployeeObject.email = data[i].email;
 				newEmployeeObject.uniqueId = data[i].id;
 
-				dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject.uniqueId;
-				dictionaryOfModifiedEmployees[data[i].id] = newEmployeeObject.uniqueId;
+				//dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject.uniqueId;
+				//dictionaryOfModifiedEmployees[data[i].id] = newEmployeeObject.uniqueId;
 				
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
@@ -109,8 +109,8 @@ function parseEmployeesAndAddToListViewModify(employeesToggle){
 
 function loadEmployeesToToggle(employees){
 
-	for(var i in dictionaryOfAllEmployees){
-		console.log("all employees " + dictionaryOfAllEmployees[i]);
+	for(var k in employees){
+		dictionaryOfOriginalEmployees[employees[k]] = employees[k];
 	}
 
 	// dictionary for this job holds the unique ids for each employee //
@@ -139,7 +139,7 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
-	console.log("change log 3");
+	console.log("change log 5");
 
 	resultsOfCheckingDifferencesInArrays = {};
 
