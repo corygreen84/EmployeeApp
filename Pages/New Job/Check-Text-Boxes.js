@@ -39,7 +39,7 @@ function createAddressOnchange(){
 }
 
 function createLongOnchange(){
-	if(createJobLongitudeTextField.value != ""){
+	if(createJobLongitudeTextField.value != "" && checkToMakeSureLongAndLatOnlyContainNumbers(createJobLongitudeTextField.value)){
 		createLongFilledIn = true;
 	}else{
 		createLongFilledIn = false;
@@ -50,7 +50,7 @@ function createLongOnchange(){
 }
 
 function createLatOnchange(){
-	if(createJobLatitudeTextField.value != ""){
+	if(createJobLatitudeTextField.value != "" && checkToMakeSureLongAndLatOnlyContainNumbers(createJobLatitudeTextField.value)){
 		createLatFilledIn = true;
 	}else{
 		createLatFilledIn = false;
@@ -60,6 +60,15 @@ function createLatOnchange(){
 	toggleCreateJobButton();
 }
 
+
+function checkToMakeSureLongAndLatOnlyContainNumbers(text){
+	var isNumber = text.match(/^\d+$/);
+	if(isNumber){
+		console.log("is a number");
+	}else{
+		console.log("is not a number");
+	}
+}
 
 
 
