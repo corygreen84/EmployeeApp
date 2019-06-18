@@ -226,7 +226,7 @@ function changePlusToMinusOnEmployees(){
 
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
-
+	console.log("in here yo");
 	
 
 	//console.log("item id - > " + item.id);
@@ -264,7 +264,7 @@ function modifyListItemOnClick(item){
 	for(var orig in originalDictionaryOfJobs){
 		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
 	}
-	
+
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
 	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
