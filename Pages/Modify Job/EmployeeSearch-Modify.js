@@ -46,14 +46,8 @@ function loadEmployeesModify(companyName, employees){
 				newEmployeeObject.email = data[i].email;
 				newEmployeeObject.uniqueId = data[i].id;
 
-				//listOfEmployeesModify.push(newEmployeeObject);
-				//listOfOriginalEmployees.push(newEmployeeObject);
-
-				console.log("data id -> " + data[i].id);
-
-
-				dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject;
-				dictionaryOfModifiedEmployees[data[i].id] = newEmployeeObject;
+				dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject.uniqueId;
+				dictionaryOfModifiedEmployees[data[i].id] = newEmployeeObject.uniqueId;
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
@@ -137,7 +131,7 @@ function modifyListItemOnClick(item){
 		for(var l = 0; l < listOfEmployeesModify.length; l++){
 			if(listOfEmployeesModify[l].uniqueId == item.id){
 				//listOfSelectedEmployees.push(listOfEmployeesModify[l]);
-				dictionaryOfModifiedEmployees[item.id] = listOfEmployeesModify[l];
+				dictionaryOfModifiedEmployees[item.id] = listOfEmployeesModify[l].uniqueId;
 			}
 		}
 	}else{
@@ -172,10 +166,12 @@ function modifyListItemOnClick(item){
 	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
 
-	/*
+	
 	console.log("added array length " + addedArray.length);
 	console.log("Deleted array length " + deletedArray.length);
-	*/
+	
+
+
 	if(addedArray.length > 0 || deletedArray.length > 0){
 		employeeListChanged = true;
 	}else{
