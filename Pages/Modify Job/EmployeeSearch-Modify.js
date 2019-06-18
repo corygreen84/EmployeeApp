@@ -57,6 +57,9 @@ function loadEmployeesModify(companyName, employees){
 				newEmployeeObject.email = data[i].email;
 				newEmployeeObject.uniqueId = data[i].id;
 
+				
+
+
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
@@ -108,6 +111,7 @@ function loadEmployeesToToggle(employees){
 
 	for(var k in employees){
 		dictionaryOfOriginalEmployees[employees[k]] = employees[k];
+		dictionaryOfModifiedEmployees[employees[k]] = employees[k];
 	}
 
 	// dictionary for this job holds the unique ids for each employee //
@@ -136,7 +140,7 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
-	console.log("change log 6");
+	console.log("change log 7");
 
 	resultsOfCheckingDifferencesInArrays = {};
 
