@@ -110,6 +110,7 @@ function loadEmployeesToToggle(employees){
 
 	for(var k in employees){
 		console.log(employees[k]);
+		console.log(k);
 		dictionaryOfOriginalEmployees[employees[k]] = employees[k];
 	}
 
