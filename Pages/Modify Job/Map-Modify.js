@@ -264,9 +264,8 @@ function recenterOnClick(){
 
 
 	console.log("recenter clicked ");
-	console.log("lat -> " + jobLoaded.lat);
-	console.log("long -> " + jobLoaded.long);
-	//placeOnMapModify(newJobLong, newJobLat, address);
+
+	placeOnMapModify(jobLoaded.long, jobLoaded.lat, jobloaded.address);
 	//searchForPlace(address, newJobLong, newJobLat);
 	/*
 	createJobAddressTextField.value = "";
