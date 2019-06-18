@@ -113,7 +113,7 @@ function loadEmployeesToToggle(employees){
 
 // with this function I want to be able to toggle the + and - buttons per row //
 // and add/subtract it to the selected list //
-/*
+
 function modifyListItemOnClick(item){
 
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
@@ -121,8 +121,8 @@ function modifyListItemOnClick(item){
 
 		for(var l = 0; l < listOfEmployeesModify.length; l++){
 			if(listOfEmployeesModify[l].uniqueId == item.id){
-				//listOfSelectedEmployees.push(listOfEmployeesModify[l]);
-				dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[l].uniqueId;
+				listOfSelectedEmployees.push(listOfEmployeesModify[l]);
+				//dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[l].uniqueId;
 			}
 		}
 	}else{
@@ -130,14 +130,15 @@ function modifyListItemOnClick(item){
 
 		for(var m = 0; m < listOfSelectedEmployees.length; m++){
 			if(listOfSelectedEmployees[m].uniqueIdentifier == item.id){
-				//listOfSelectedEmployees.splice(m, 1);
-				delete dictionaryOfEmployeesForThisJob[item.id];
+				listOfSelectedEmployees.splice(m, 1);
+				//delete dictionaryOfEmployeesForThisJob[item.id];
 			}
 		}
 	}
 
 
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
+	/*
 	var tempArrayOfEmployeesModify = [];
 	var tempArrayOfOriginalEmployees = [];
 
@@ -145,16 +146,16 @@ function modifyListItemOnClick(item){
 	for(var mod in dictionaryOfEmployeesForThisJob){
 		tempArrayOfEmployeesModify.push(dictionaryOfEmployeesForThisJob[mod]);
 	}
-	
-	
+	*/
+	/*
 	for(var orig in originalDictionaryOfJobs){
 		tempArrayOfOriginalEmployees.push(originalDictionaryOfJobs[orig]);
 	}
 	*/
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
-	//resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(/*tempArrayOfOriginalEmployees*/listOfEmployeesModify, tempArrayOfEmployeesModify);
-	/*
+	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(/*tempArrayOfOriginalEmployees*/listOfEmployeesModify, listOfSelectedEmployees/*tempArrayOfEmployeesModify*/);
+	
 	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
 
@@ -168,6 +169,5 @@ function modifyListItemOnClick(item){
 
 }
 
-*/
 
 
