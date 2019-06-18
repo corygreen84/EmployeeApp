@@ -156,7 +156,7 @@ function modifyListItemOnClick(item){
 
 	// this is a list of all the employees involved with this job //
 	for(var i in listOfOriginalEmployees){
-		console.log("original " + listOfOriginalEmployees[i].uniqueId);
+		console.log("original " + listOfOriginalEmployees[i].uniqueIdentifier);
 	}
 
 	
