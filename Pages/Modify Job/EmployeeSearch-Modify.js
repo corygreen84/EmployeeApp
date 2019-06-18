@@ -57,9 +57,6 @@ function loadEmployeesModify(companyName, employees){
 				newEmployeeObject.email = data[i].email;
 				newEmployeeObject.uniqueId = data[i].id;
 
-				//dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject.uniqueId;
-				//dictionaryOfModifiedEmployees[data[i].id] = newEmployeeObject.uniqueId;
-				
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
@@ -109,7 +106,10 @@ function parseEmployeesAndAddToListViewModify(employeesToggle){
 
 function loadEmployeesToToggle(employees){
 
+
+
 	for(var k in employees){
+		console.log(employees[k]);
 		dictionaryOfOriginalEmployees[employees[k]] = employees[k];
 	}
 
@@ -167,13 +167,7 @@ function modifyListItemOnClick(item){
 		*/
 	}
 
-	for(var i in listOfEmployeesModify){
-		console.log(listOfEmployeesModify[i]);
-	}
 
-	for(var q in dictionaryOfModifiedEmployees){
-		console.log(dictionaryOfModifiedEmployees[q]);
-	}
 
 
 
