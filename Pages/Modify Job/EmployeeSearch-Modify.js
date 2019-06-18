@@ -57,7 +57,7 @@ function loadEmployeesModify(companyName, employees){
 				newEmployeeObject.email = data[i].email;
 				newEmployeeObject.uniqueId = data[i].id;
 
-				
+
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
@@ -138,7 +138,7 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
-	console.log("change log 11");
+	console.log("change log 12");
 
 	resultsOfCheckingDifferencesInArrays = {};
 

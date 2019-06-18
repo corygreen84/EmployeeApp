@@ -53,8 +53,8 @@ let confirmOk = confirm("Are you sure you want to delete this job?");
 		batch.delete(deleteFromJob);
 
 
-		for(var j in listOfEmployeesModify){
-			console.log("delete list -> " + listOfEmployeesModify[j].uniqueId);
+		for(var j in dictionaryOfModifiedEmployees){
+			console.log("delete list -> " + dictionaryOfModifiedEmployees[j]);
 		}
 		/*
 		for(var j in dictionaryOfEmployeesForThisJob){
