@@ -144,9 +144,7 @@ function modifyListItemOnClick(item){
 	resultsOfCheckingDifferencesInArrays = {};
 
 
-	for(var i in listOfEmployeesModify){
-		console.log(listOfEmployeesModify[i]);
-	}
+	
 
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
 		$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
@@ -168,6 +166,16 @@ function modifyListItemOnClick(item){
 		}
 		*/
 	}
+
+	for(var i in listOfEmployeesModify){
+		console.log(listOfEmployeesModify[i]);
+	}
+
+	for(var q in dictionaryOfModifiedEmployees){
+		console.log(dictionaryOfModifiedEmployees[q]);
+	}
+
+
 
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
 	
