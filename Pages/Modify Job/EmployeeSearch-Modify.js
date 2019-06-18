@@ -137,7 +137,7 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
-	console.log("change log 7");
+	console.log("change log 8");
 
 	resultsOfCheckingDifferencesInArrays = {};
 
@@ -155,10 +155,6 @@ function modifyListItemOnClick(item){
 			delete dictionaryOfModifiedEmployees[item.id];
 
 	}
-
-
-
-
 
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
 	
