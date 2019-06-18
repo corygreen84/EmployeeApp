@@ -42,6 +42,7 @@ function loadEmployeesModify(companyName, employees){
 
 		dictionaryOfModifiedEmployees = {};
 		dictionaryOfOriginalEmployees = {};
+		dictionaryOfAllEmployees = {};
 
 		return documentSnapshot.data();
 	});	
