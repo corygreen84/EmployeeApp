@@ -151,7 +151,7 @@ function modifyListItemOnClick(item){
 
 
 	for(var i in dictionaryOfModifiedEmployees){
-		console.log("dictionary -> " + dictionaryOfModifiedEmployees[i]);
+		console.log("dictionary -> " + dictionaryOfModifiedEmployees[i].uniqueId);
 	}
 
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
