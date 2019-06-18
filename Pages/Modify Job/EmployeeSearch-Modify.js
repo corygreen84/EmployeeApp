@@ -137,7 +137,7 @@ function modifyListItemOnClick(item){
 		for(var l = 0; l < listOfEmployeesModify.length; l++){
 			if(listOfEmployeesModify[l].uniqueId == item.id){
 				//listOfSelectedEmployees.push(listOfEmployeesModify[l]);
-				dictionaryOfModifiedEmployees[item.id] = listOfEmployeesModify[l].uniqueId;
+				dictionaryOfModifiedEmployees[item.id] = listOfEmployeesModify[l];
 			}
 		}
 	}else{
