@@ -11,9 +11,9 @@ var dictionaryOfOriginalEmployees = {};
 // modified employees are those employees that the user adds or removes from the original list //
 var dictionaryOfModifiedEmployees = {};
 
-// all employees is a list of all the employees total //
-var dictionaryOfAllEmployees = {};
 
+
+// results of comparing the original list to the updated 
 var resultsOfCheckingDifferencesInArrays = {};
 
 // **** end of modal view variables **** //
@@ -109,11 +109,6 @@ function parseEmployeesAndAddToListViewModify(employeesToggle){
 
 function loadEmployeesToToggle(employees){
 
-
-	for(var id in employees){
-		dictionaryOfAllEmployees[employees[id]] = employees[id];
-	}
-
 	for(var i in dictionaryOfAllEmployees){
 		console.log("all employees " + dictionaryOfAllEmployees[i]);
 	}
@@ -144,9 +139,14 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
-	console.log("change log 2");
+	console.log("change log 3");
 
 	resultsOfCheckingDifferencesInArrays = {};
+
+
+	for(var i in listOfEmployeesModify){
+		console.log(listOfEmployeesModify[i]);
+	}
 
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
 		$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
