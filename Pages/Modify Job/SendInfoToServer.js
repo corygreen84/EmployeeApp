@@ -59,7 +59,7 @@ let confirmOk = confirm("Are you sure you want to delete this job?");
 		}
 		
 		batch.commit().then(function(){
-			modifyJobModal.style.display = "none";
+			window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/Jobs/Jobs.html";
 		});
 	}
 }
