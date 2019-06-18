@@ -129,7 +129,7 @@ function modifyListItemOnClick(item){
 		$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 
 		for(var m = 0; m < listOfSelectedEmployees.length; m++){
-			if(listOfSelectedEmployees[m].uniqueIdentifier == item.id){
+			if(listOfSelectedEmployees[m].uniqueId == item.id){
 				listOfSelectedEmployees.splice(m, 1);
 				//delete dictionaryOfEmployeesForThisJob[item.id];
 			}
@@ -156,7 +156,7 @@ function modifyListItemOnClick(item){
 
 	// this is a list of all the employees involved with this job //
 	for(var i in listOfOriginalEmployees){
-		console.log("original " + listOfOriginalEmployees[i].uniqueIdentifier);
+		console.log("original " + listOfOriginalEmployees[i].uniqueId);
 	}
 
 	
