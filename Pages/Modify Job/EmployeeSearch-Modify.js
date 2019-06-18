@@ -20,6 +20,7 @@ window.addEventListener('DOMContentLoaded', function () {
 function loadEmployeesModify(companyName, employees){
 	
 	listOfEmployeesModify = [];
+	listOfOriginalEmployees = [];
 
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	companyRef.onSnapshot(function(querySnapshot){
