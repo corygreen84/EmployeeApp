@@ -4,8 +4,15 @@ var listOfSelectedEmployees = [];
 var listOfEmployeesModify = [];
 var listOfOriginalEmployees = [];
 
+
+// original employees is a list of all the employees that are originally attached to the job //
 var dictionaryOfOriginalEmployees = {};
+
+// modified employees are those employees that the user adds or removes from the original list //
 var dictionaryOfModifiedEmployees = {};
+
+// all employees is a list of all the employees total //
+var dictionaryOfAllEmployees = {};
 
 var resultsOfCheckingDifferencesInArrays = {};
 
@@ -26,8 +33,6 @@ function loadEmployeesModify(companyName, employees){
 	
 	//listOfEmployeesModify = [];
 	listOfOriginalEmployees = [];
-
-	
 
 	var companyRef = db.collection('companies').doc(companyName).collection('employees');
 	companyRef.onSnapshot(function(querySnapshot){
@@ -53,6 +58,7 @@ function loadEmployeesModify(companyName, employees){
 
 				dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject.uniqueId;
 				dictionaryOfModifiedEmployees[data[i].id] = newEmployeeObject.uniqueId;
+				
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
@@ -101,6 +107,15 @@ function parseEmployeesAndAddToListViewModify(employeesToggle){
 
 
 function loadEmployeesToToggle(employees){
+
+
+	for(var id in employees){
+		dictionaryOfAllEmployees[employees[i]] = employees[i];
+	}
+
+	for(var i in dictionaryOfAllEmployees){
+		console.log("all employees " + dictionaryOfAllEmployees[i]);
+	}
 
 	// dictionary for this job holds the unique ids for each employee //
 	var listOfEmployeeNumbersToBeMinused = [];
