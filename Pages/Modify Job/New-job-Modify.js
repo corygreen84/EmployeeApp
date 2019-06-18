@@ -10,18 +10,19 @@ var modifyJobNotes = document.getElementById("notes-textarea");
 var modifySearchButton = document.getElementById("modify-address-search");
 var modifyJobButton = document.getElementById("modify-job-button");
 
-var companyName = "";
-var user;
+
+var id;
+var companyName;
 
 
 // checking if the user is logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
 	if(localStorage.getItem("id") != null && localStorage.getItem("name") != null){
-		var idString = removeExcessFromJobId(localStorage.getItem("id"));
-		var companyString = localStorage.getItem("name")
+		id = removeExcessFromJobId(localStorage.getItem("id"));
+		companyName = localStorage.getItem("name")
 		
-		searchForJob(idString, companyString);
+		searchForJob(id, companyName);
 	}
 	
 
@@ -41,15 +42,8 @@ function clearButtonOnClick(){
 	clearButtonClicked();
 }
 
-
-
-function deleteButtonOnClick(){
-
-}
-
-
 function modifyButtonOnClick(){
-	
+	modifyJobOnClick(id, companyName);
 }
 
 
