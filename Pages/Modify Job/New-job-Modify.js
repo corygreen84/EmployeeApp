@@ -43,7 +43,11 @@ function clearButtonOnClick(){
 }
 
 function modifyButtonOnClick(){
-	modifyJobOnClick(id, companyName);
+	modifyJobOnClick(companyName, id);
+}
+
+function deleteButtonOnClick(){
+	deleteJobOnClick(companyName, id);
 }
 
 

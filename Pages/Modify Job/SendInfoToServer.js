@@ -44,7 +44,7 @@ function modifyJobOnClick(companyName, jobId){
 }
 
 
-function deleteButtonOnClick(companyName, jobId, dictionaryOfEmployeesForThisJob){
+function deleteJobOnClick(companyName, jobId){
 let confirmOk = confirm("Are you sure you want to delete this job?");
 	if(confirmOk){
 		var batch = db.batch();
@@ -52,13 +52,21 @@ let confirmOk = confirm("Are you sure you want to delete this job?");
 		var deleteFromJob = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
 		batch.delete(deleteFromJob);
 
+
+		for(var j in listOfEmployeesModify){
+			console.log("delete list -> " + listOfEmployeesModify[j].uniqueId);
+		}
+		/*
 		for(var j in dictionaryOfEmployeesForThisJob){
 			var deleteFromEmployee = db.collection('companies').doc(companyName).collection('employees').doc(dictionaryOfEmployeesForThisJob[j]);
 			batch.update(deleteFromEmployee, {"jobs": firebase.firestore.FieldValue.arrayRemove(jobId)});
 		}
+		*/
 
+		/*
 		batch.commit().then(function(){
 			modifyJobModal.style.display = "none";
 		});
+		*/
 	}
 }
