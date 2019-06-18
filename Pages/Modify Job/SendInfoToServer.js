@@ -35,14 +35,11 @@ function modifyJobOnClick(companyName, jobId){
 			batch.update(mainUpdate, {"employees": firebase.firestore.FieldValue.arrayRemove(deletedArr[j])} );
 		}
 
-		console.log("added arr " + addedArr.length);
-		console.log("deleted arr " + deletedArr.length);
-
-		/*
+		
 		batch.commit().then(function(){
-			modifyJobModal.style.display = "none";
+			window.location = "https://seekanddestroy84.github.io/EmployeeApp/Pages/Jobs/Jobs.html";
 		});
-		*/
+		
 	}
 }
 

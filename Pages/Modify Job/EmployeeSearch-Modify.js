@@ -137,7 +137,7 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
-	console.log("change log 9");
+	console.log("change log 10");
 
 	resultsOfCheckingDifferencesInArrays = {};
 
