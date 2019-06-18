@@ -49,6 +49,9 @@ function loadEmployeesModify(companyName, employees){
 				//listOfEmployeesModify.push(newEmployeeObject);
 				//listOfOriginalEmployees.push(newEmployeeObject);
 
+				console.log("data id -> " + data[i].id);
+
+
 				dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject;
 				dictionaryOfModifiedEmployees[data[i].id] = newEmployeeObject;
 				listOfEmployeesModify.push(newEmployeeObject);
