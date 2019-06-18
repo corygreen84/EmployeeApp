@@ -205,3 +205,73 @@ function noResultsFound(){
 	
 }
 
+
+
+function deleteMarkerOnClick(){
+	
+	createJobAddressTextField.value = "";
+	createJobLongitudeTextField.value = "";
+	createJobLatitudeTextField.value = "";
+
+	createAddressFilledIn = false;
+	createLongFilledIn = false;
+	createLatFilledIn = false;
+	
+
+	if(marker != null){
+		marker.setMap(null);
+		google.maps.event.clearInstanceListeners(createMap);
+	}
+
+	toggleCreateJobButton();
+}
+
+
+
+function addMarkerOnClick(){
+	var _ = createMap.addListener('click', function(event){
+
+		if(marker != null){
+			marker.setMap(null);
+		}
+
+		var location = event.latLng;
+		marker = new google.maps.Marker({
+			position: location,
+			map: createMap,
+			title: "Custom Marker"
+		});
+		
+		newJobLong = marker.getPosition().lng();
+		newJobLat = marker.getPosition().lat();
+
+		createJobLongitudeTextField.value = newJobLong;
+		createJobLatitudeTextField.value = newJobLat;
+
+		createLongFilledIn = true;
+		createLatFilledIn = true;
+		
+		toggleCreateJobButton();
+		toggleSearchButton();
+	});
+}
+
+
+
+
+// recentering the map //
+function recenterOnClick(){
+
+	searchForPlace(address, newJobLong, newJobLat);
+	/*
+	createJobAddressTextField.value = "";
+	createJobLongitudeTextField.value = "";
+	createJobLatitudeTextField.value = "";
+
+	createAddressFilledIn = false;
+	createLongFilledIn = false;
+	createLatFilledIn = false;
+	*/
+	
+}
+
