@@ -136,20 +136,6 @@ function modifyListItemOnClick(item){
 	}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-	// **** really left off here **** //
-
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
 	var tempArrayOfEmployeesModify = [];
 	var tempArrayOfOriginalEmployees = [];
@@ -178,14 +164,6 @@ function modifyListItemOnClick(item){
 	}
 
 	toggleModifyJobButton();
-
-	// **** really left off here **** //
-
-
-
-
-
-
 
 }
 
