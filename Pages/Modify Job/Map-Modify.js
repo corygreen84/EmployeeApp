@@ -209,27 +209,27 @@ function noResultsFound(){
 
 function deleteMarkerOnClick(){
 	
-	createJobAddressTextField.value = "";
-	createJobLongitudeTextField.value = "";
-	createJobLatitudeTextField.value = "";
+	modifyJobAddressTextField.value = "";
+	modifyJobLongitudeTextField.value = "";
+	modifyJobLatitudeTextField.value = "";
 
-	createAddressFilledIn = false;
-	createLongFilledIn = false;
-	createLatFilledIn = false;
+	modifyAddressFilledIn = false;
+	modifyLongFilledIn = false;
+	modifyLatFilledIn = false;
 	
 
 	if(marker != null){
 		marker.setMap(null);
-		google.maps.event.clearInstanceListeners(createMap);
+		google.maps.event.clearInstanceListeners(modifyMap);
 	}
 
-	toggleCreateJobButton();
+	toggleModifyJobButton();
 }
 
 
 
 function addMarkerOnClick(){
-	var _ = createMap.addListener('click', function(event){
+	var _ = modifyMap.addListener('click', function(event){
 
 		if(marker != null){
 			marker.setMap(null);
@@ -238,20 +238,20 @@ function addMarkerOnClick(){
 		var location = event.latLng;
 		marker = new google.maps.Marker({
 			position: location,
-			map: createMap,
+			map: modifyMap,
 			title: "Custom Marker"
 		});
 		
 		newJobLong = marker.getPosition().lng();
 		newJobLat = marker.getPosition().lat();
 
-		createJobLongitudeTextField.value = newJobLong;
-		createJobLatitudeTextField.value = newJobLat;
+		modifyJobLongitudeTextField.value = newJobLong;
+		modifyJobLatitudeTextField.value = newJobLat;
 
-		createLongFilledIn = true;
-		createLatFilledIn = true;
+		modifyLongFilledIn = true;
+		mofidyLatFilledIn = true;
 		
-		toggleCreateJobButton();
+		toggleModifyJobButton();
 		toggleSearchButton();
 	});
 }
