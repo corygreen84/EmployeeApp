@@ -156,12 +156,12 @@ function modifyListItemOnClick(item){
 
 	// this is a list of all the employees involved with this job //
 	for(var i in listOfOriginalEmployees){
-		console.log("original " + listOfOriginalEmployees[i]);
+		console.log("original " + listOfOriginalEmployees[i].uniqueId);
 	}
 
 	
 	for(var j in listOfSelectedEmployees){
-		console.log("selected " + listOfSelectedEmployees[j]);
+		console.log("selected " + listOfSelectedEmployees[j].uniqueId);
 	}
 	
 
