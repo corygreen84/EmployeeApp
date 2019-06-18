@@ -137,9 +137,7 @@ function loadEmployeesToToggle(employees){
 // and add/subtract it to the selected list //
 
 function modifyListItemOnClick(item){
-
-	console.log("change log 13");
-
+	
 	resultsOfCheckingDifferencesInArrays = {};
 
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){

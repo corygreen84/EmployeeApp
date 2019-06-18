@@ -43,7 +43,7 @@ function modifyAddressOnchange(){
 
 function modifyLongOnchange(){
 
-	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"]){
+	if(modifyJobLongitudeTextField.value != modifiedLocation["longitude"] && checkToMakeSureLongAndLatOnlyContainNumbers(modifyJobLongitudeTextField.value)){
 		modifyLongFilledIn = true;
 	}else{
 		modifyLongFilledIn = false;
@@ -53,7 +53,7 @@ function modifyLongOnchange(){
 }
 
 function modifyLatOnchange(){
-	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"]){
+	if(modifyJobLatitudeTextField.value != modifiedLocation["latitude"] && checkToMakeSureLongAndLatOnlyContainNumbers(modifyJobLatitudeTextField.value)){
 		modifyLatFilledIn = true;
 	}else{
 		modifyLatFilledIn = false;
@@ -62,6 +62,19 @@ function modifyLatOnchange(){
 	toggleSearchButton();
 	toggleModifyJobButton();
 }
+
+
+
+function checkToMakeSureLongAndLatOnlyContainNumbers(text){
+	var isNumber = text.match(/^\d+$/);
+	if(isNumber){
+		console.log("is a number");
+	}else{
+		console.log("is not a number");
+	}
+}
+
+
 
 
 
