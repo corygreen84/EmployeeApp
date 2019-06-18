@@ -50,7 +50,7 @@ function loadEmployeesModify(companyName, employees){
 				//listOfOriginalEmployees.push(newEmployeeObject);
 
 				dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject;
-				dictionaryOfEmployeesForThisJob[data[i].id] = newEmployeeObject;
+				dictionaryOfModifiedEmployees[data[i].id] = newEmployeeObject;
 			}
 		}
 		parseEmployeesAndAddToListViewModify(employees);
