@@ -110,7 +110,7 @@ function loadEmployeesToToggle(employees){
 
 
 	for(var id in employees){
-		dictionaryOfAllEmployees[employees[i]] = employees[i];
+		dictionaryOfAllEmployees[employees[id]] = employees[id];
 	}
 
 	for(var i in dictionaryOfAllEmployees){
