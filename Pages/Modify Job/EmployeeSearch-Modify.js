@@ -123,7 +123,6 @@ function modifyListItemOnClick(item){
 		for(var l = 0; l < listOfEmployeesModify.length; l++){
 			if(listOfEmployeesModify[l].uniqueId == item.id){
 				listOfSelectedEmployees.push(listOfEmployeesModify[l]);
-				//dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[l].uniqueId;
 			}
 		}
 	}else{
@@ -132,7 +131,6 @@ function modifyListItemOnClick(item){
 		for(var m = 0; m < listOfSelectedEmployees.length; m++){
 			if(listOfSelectedEmployees[m].uniqueId == item.id){
 				listOfSelectedEmployees.splice(m, 1);
-				//delete dictionaryOfEmployeesForThisJob[item.id];
 			}
 		}
 	}
@@ -163,7 +161,7 @@ function modifyListItemOnClick(item){
 	*/
 	
 	for(var j in listOfSelectedEmployees){
-		console.log("selected " + listOfSelectedEmployees[j].uniqueId);
+		console.log("\nselected " + listOfSelectedEmployees[j].uniqueId);
 	}
 	
 
@@ -173,9 +171,10 @@ function modifyListItemOnClick(item){
 	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
 
+	/*
 	console.log("added array length " + addedArray.length);
 	console.log("Deleted array length " + deletedArray.length);
-
+	*/
 	if(addedArray.length > 0 || deletedArray.length > 0){
 		employeeListChanged = true;
 	}else{
