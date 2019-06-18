@@ -57,9 +57,6 @@ function loadEmployeesModify(companyName, employees){
 				newEmployeeObject.email = data[i].email;
 				newEmployeeObject.uniqueId = data[i].id;
 
-				
-
-
 				listOfEmployeesModify.push(newEmployeeObject);
 			}
 		}
@@ -144,9 +141,6 @@ function modifyListItemOnClick(item){
 
 	resultsOfCheckingDifferencesInArrays = {};
 
-
-	
-
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
 		$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 
@@ -159,13 +153,7 @@ function modifyListItemOnClick(item){
 	}else{
 		$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
 			delete dictionaryOfModifiedEmployees[item.id];
-		/*
-		for(var m = 0; m < listOfSelectedEmployees.length; m++){
-			if(listOfSelectedEmployees[m].uniqueId == item.id){
-				listOfSelectedEmployees.splice(m, 1);
-			}
-		}
-		*/
+
 	}
 
 
@@ -186,25 +174,11 @@ function modifyListItemOnClick(item){
 		tempArrayOfOriginalEmployees.push(dictionaryOfOriginalEmployees[orig]);
 	}
 
-	console.log("original employees " + tempArrayOfOriginalEmployees.length);
-	console.log("temp Array modify employees " + tempArrayOfEmployeesModify.length);
-	
-
-
-
-
-
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
 	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
 	
 	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
-
-	/*
-	console.log("added array length " + addedArray.length);
-	console.log("Deleted array length " + deletedArray.length);
-	*/
-
 
 	if(addedArray.length > 0 || deletedArray.length > 0){
 		employeeListChanged = true;
