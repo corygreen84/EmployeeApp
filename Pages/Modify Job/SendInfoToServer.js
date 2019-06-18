@@ -15,7 +15,7 @@ function modifyJobOnClick(companyName, jobId){
 		var mainUpdate = db.collection('companies').doc(companyName).collection('jobs').doc(jobId);
 		batch.update(mainUpdate, {"name": modifyJobNameTextField.value, 
 								"address": modifyJobAddressTextField.value,
-								"location": new firebase.firestore.GeoPoint(parseFloat(modifyJobLongitudeTextField.value),parseFloat(modifyJobLatitudeTextField.value)),
+								"location": new firebase.firestore.GeoPoint(parseFloat(modifyJobLatitudeTextField.value),parseFloat(modifyJobLongitudeTextField.value)),
 								"notes": modifyJobNotes.value});
 
 		var addedArr = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
