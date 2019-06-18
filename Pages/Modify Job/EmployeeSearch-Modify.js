@@ -3,6 +3,8 @@
 var listOfSelectedEmployees = [];
 var listOfEmployeesModify = [];
 
+let dictionaryOfEmployeesForThisJob = {};
+
 // **** end of modal view variables **** //
 var listView = document.getElementById("job-listview-div");
 var listOfJobs = [];
@@ -85,6 +87,30 @@ function parseEmployeesAndAddToListViewModify(employeesToggle){
 
 
 
+
+function loadEmployeesToToggle(employees){
+
+	// dictionary for this job holds the unique ids for each employee //
+	var listOfEmployeeNumbersToBeMinused = [];
+	for(var i in listOfEmployeesModify){
+		for(var j in employees){
+			if(employees[j] == listOfEmployeesModify[i].uniqueId){
+				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].uniqueId);
+			}
+		}
+	}
+
+	for(var h in listOfEmployeeNumbersToBeMinused){
+		$('#icon-' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
+	}	
+}
+
+
+
+
+
+
+
 // with this function I want to be able to toggle the + and - buttons per row //
 // and add/subtract it to the selected list //
 function modifyListItemOnClick(item){
@@ -94,7 +120,8 @@ function modifyListItemOnClick(item){
 
 		for(var l = 0; l < listOfEmployeesModify.length; l++){
 			if(listOfEmployeesModify[l].uniqueId == item.id){
-				listOfSelectedEmployees.push(listOfEmployeesModify[l]);
+				//listOfSelectedEmployees.push(listOfEmployeesModify[l]);
+				dictionaryOfEmployeesForThisJob[item.id] = listOfEmployeesModify[i].uniqueId;
 			}
 		}
 	}else{
@@ -102,7 +129,8 @@ function modifyListItemOnClick(item){
 
 		for(var m = 0; m < listOfSelectedEmployees.length; m++){
 			if(listOfSelectedEmployees[m].uniqueIdentifier == item.id){
-				listOfSelectedEmployees.splice(m, 1);
+				//listOfSelectedEmployees.splice(m, 1);
+				delete dictionaryOfEmployeesForThisJob[item.id];
 			}
 		}
 	}
@@ -148,6 +176,7 @@ function modifyListItemOnClick(item){
 		employeeListChanged = false;
 	}
 
+	toggleModifyJobButton();
 
 	// **** really left off here **** //
 
@@ -160,22 +189,5 @@ function modifyListItemOnClick(item){
 }
 
 
-function loadEmployeesToToggle(employees){
 
-	// dictionary for this job holds the unique ids for each employee //
-	var listOfEmployeeNumbersToBeMinused = [];
-	for(var i in listOfEmployeesModify){
-		for(var j in employees){
-			if(employees[j] == listOfEmployeesModify[i].uniqueId){
-				listOfEmployeeNumbersToBeMinused.push(listOfEmployeesModify[i].uniqueId);
-			}
-		}
-	}
-
-	for(var h in listOfEmployeeNumbersToBeMinused){
-		$('#icon-' + listOfEmployeeNumbersToBeMinused[h]).removeClass('ui-icon-plus').addClass('ui-icon-minus');
-	}	
-
-	
-}
 

@@ -6,6 +6,8 @@ var modifyLongFilledIn = false;
 var modifyLatFilledIn = false;
 var modifyNotesFilledIn = false;
 
+var employeeListChanged = false;
+
 
 var employeeSelectedListChanged = false;
 
@@ -91,7 +93,7 @@ function toggleSearchButton(){
 
 
 function toggleModifyJobButton(){
-	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true || modifyNotesFilledIn){
+	if(modifyNameFilledIn == true || modifyAddressFilledIn == true || modifyLongFilledIn == true || modifyLatFilledIn == true || modifyNotesFilledIn || employeeListChanged == true){
 		if(modifyJobNameTextField.value != "" && 
 			modifyJobAddressTextField.value != "" && 
 			modifyJobLongitudeTextField.value != "" && 
