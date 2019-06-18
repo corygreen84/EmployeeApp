@@ -106,15 +106,8 @@ function parseEmployeesAndAddToListViewModify(employeesToggle){
 
 function loadEmployeesToToggle(employees){
 
-
-
 	for(var k in employees){
 		dictionaryOfOriginalEmployees[employees[k]] = employees[k];
-	}
-
-	for(var l in dictionaryOfOriginalEmployees){
-		console.log("key -> " + l);
-		console.log("value -> " + dictionaryOfOriginalEmployees[l]);
 	}
 
 	// dictionary for this job holds the unique ids for each employee //
@@ -189,16 +182,24 @@ function modifyListItemOnClick(item){
 		tempArrayOfOriginalEmployees.push(dictionaryOfOriginalEmployees[orig]);
 	}
 
+	console.log("original employees " + tempArrayOfOriginalEmployees.length);
+	console.log("temp Array modify employees " + tempArrayOfEmployeesModify.length);
+	
+
+
+
+
+
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
 	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(tempArrayOfOriginalEmployees, tempArrayOfEmployeesModify);
 	
 	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
 
-	
+	/*
 	console.log("added array length " + addedArray.length);
 	console.log("Deleted array length " + deletedArray.length);
-	
+	*/
 
 
 	if(addedArray.length > 0 || deletedArray.length > 0){
