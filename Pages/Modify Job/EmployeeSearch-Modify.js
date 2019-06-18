@@ -4,6 +4,11 @@ var listOfSelectedEmployees = [];
 var listOfEmployeesModify = [];
 var listOfOriginalEmployees = [];
 
+var dictionaryOfOriginalEmployees = {};
+var dictionaryOfModifiedEmployees = {};
+
+var resultsOfCheckingDifferencesInArrays = {};
+
 // **** end of modal view variables **** //
 var listView = document.getElementById("job-listview-div");
 var listOfJobs = [];
@@ -41,8 +46,11 @@ function loadEmployeesModify(companyName, employees){
 				newEmployeeObject.email = data[i].email;
 				newEmployeeObject.uniqueId = data[i].id;
 
-				listOfEmployeesModify.push(newEmployeeObject);
-				listOfOriginalEmployees.push(newEmployeeObject);
+				//listOfEmployeesModify.push(newEmployeeObject);
+				//listOfOriginalEmployees.push(newEmployeeObject);
+
+				dictionaryOfOriginalEmployees[data[i].id] = newEmployeeObject;
+				dictionaryOfEmployeesForThisJob[data[i].id] = newEmployeeObject;
 			}
 		}
 		parseEmployeesAndAddToListViewModify(employees);
@@ -117,24 +125,34 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
+	resultsOfCheckingDifferencesInArrays = {};
+
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
 		$('#icon-' + item.id).removeClass('ui-icon-plus').addClass('ui-icon-minus');
 
 		for(var l = 0; l < listOfEmployeesModify.length; l++){
 			if(listOfEmployeesModify[l].uniqueId == item.id){
-				listOfSelectedEmployees.push(listOfEmployeesModify[l]);
+				//listOfSelectedEmployees.push(listOfEmployeesModify[l]);
+				dictionaryOfModifiedEmployees[item.id] = listOfEmployeesModify[i].uniqueId;
 			}
 		}
 	}else{
 		$('#icon-' + item.id).removeClass('ui-icon-minus').addClass('ui-icon-plus');
-
+			delete dictionaryOfModifiedEmployees[item.id];
+		/*
 		for(var m = 0; m < listOfSelectedEmployees.length; m++){
 			if(listOfSelectedEmployees[m].uniqueId == item.id){
 				listOfSelectedEmployees.splice(m, 1);
 			}
 		}
+		*/
 	}
 
+
+
+	for(var i in dictionaryOfModifiedEmployees){
+		console.log("dictionary -> " + dictionaryOfModifiedEmployees[i]);
+	}
 
 	// **** this section is for figuring out what has and hasnt been added to the job **** //
 	/*
@@ -155,6 +173,7 @@ function modifyListItemOnClick(item){
 
 	// this is a list of all the employees involved with this job //
 	
+	/*
 	for(var i in listOfOriginalEmployees){
 		console.log("\noriginal " + listOfOriginalEmployees[i].uniqueId);
 	}
@@ -163,9 +182,11 @@ function modifyListItemOnClick(item){
 	for(var j in listOfSelectedEmployees){
 		console.log("\nselected " + listOfSelectedEmployees[j].uniqueId);
 	}
-
+	*/
 
 	
+
+
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
 	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(/*tempArrayOfOriginalEmployees*/listOfOriginalEmployees, listOfSelectedEmployees/*tempArrayOfEmployeesModify*/);
