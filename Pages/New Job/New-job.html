@@ -4,7 +4,6 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!--<link rel="stylesheet" href="/EmployeeApp/index.css"/>-->
 		<link rel="stylesheet" href="New-job.css">
 		<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
 		
@@ -25,6 +24,20 @@
 	<body>
 	
 		<div id="main-map-view"></div>
+
+
+			<div id="map-controls-container">
+				
+				<div id="delete-marker-container" class="marker-buttons">
+					<button type="button" id="delete-marker-button" class="buttons" onclick="deleteMarkerOnClick()">&#x2B05;</button>
+				</div>
+				<div id="add-marker-container" class="marker-buttons">
+					<button type="button" id="add-marker-button" class="buttons" onclick="addMarkerOnClick">+</button>
+				</div>
+				<div id="recenter-marker-container" class="marker-buttons">
+					<button type="button" id="recenter-button" class="buttons" onclick="recenterOnClick()">*</button>
+				</div>
+			</div>
 		
 			<div id="side-view">
 				<div id="navigation-container">
@@ -72,18 +85,6 @@
 				</div>
 
 			</div>
-
-
-
-
-
-
-
-
-
-
-		
-		
 
 		<script type="application/javascript" src="firebase-init.js"></script>
 		<script type="application/javascript" src="Map.js"></script>

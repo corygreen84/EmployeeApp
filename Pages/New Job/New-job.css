@@ -5,6 +5,30 @@
     position: relative;
 }
 
+#map-controls-container{
+    position: fixed; 
+    right: 10px;
+    top: 20px;
+    width: 70px;
+    height: 168px;
+    background-color:#525963;
+    z-index: 10;
+    border-radius: 15px;
+    border-color: grey;
+    border-style: solid;
+    border-width: 0.5;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+}
+
+#delete-marker-container{
+    margin-top: 8px;
+}
+
+.marker-buttons{
+    width: 80%;
+    margin-left: 10%;
+}
+
 
 #side-view{
     position: fixed;
