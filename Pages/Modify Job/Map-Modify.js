@@ -263,7 +263,8 @@ function addMarkerOnClick(){
 function recenterOnClick(){
 
 	console.log("recenter clicked ");
-	searchForPlace(address, newJobLong, newJobLat);
+	placeOnMapModify(newJobLong, newJobLat, address);
+	//searchForPlace(address, newJobLong, newJobLat);
 	/*
 	createJobAddressTextField.value = "";
 	createJobLongitudeTextField.value = "";
