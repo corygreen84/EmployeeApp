@@ -2,8 +2,7 @@
 
 var listOfSelectedEmployees = [];
 var listOfEmployeesModify = [];
-
-let dictionaryOfEmployeesForThisJob = {};
+var listOfOriginalEmployees = [];
 
 // **** end of modal view variables **** //
 var listView = document.getElementById("job-listview-div");
@@ -42,6 +41,7 @@ function loadEmployeesModify(companyName, employees){
 				newEmployeeObject.uniqueId = data[i].id;
 
 				listOfEmployeesModify.push(newEmployeeObject);
+				listOfOriginalEmployees.push(newEmployeeObject);
 			}
 		}
 		parseEmployeesAndAddToListViewModify(employees);
@@ -153,18 +153,20 @@ function modifyListItemOnClick(item){
 	}
 	*/
 
-	for(var i in listOfEmployeesModify){
-		console.log("original " + listOfEmployeesModify[i]);
+
+	// this is a list of all the employees involved with this job //
+	for(var i in listOfOriginalEmployees){
+		console.log("original " + listOfOriginalEmployees[i]);
 	}
 
-	/*
+	
 	for(var j in listOfSelectedEmployees){
-		console.log("selected " + listOfSelectedEmployees[j].firstName);
+		console.log("selected " + listOfSelectedEmployees[j]);
 	}
-	*/
+	
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
-	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(/*tempArrayOfOriginalEmployees*/listOfEmployeesModify, listOfSelectedEmployees/*tempArrayOfEmployeesModify*/);
+	resultsOfCheckingDifferencesInArrays = checkDifferenceBetweenTwoArrays(/*tempArrayOfOriginalEmployees*/listOfOriginalEmployees, listOfSelectedEmployees/*tempArrayOfEmployeesModify*/);
 	
 	var addedArray = resultsOfCheckingDifferencesInArrays["updatedToAdd"];
 	var deletedArray = resultsOfCheckingDifferencesInArrays["originalsToDelete"];
