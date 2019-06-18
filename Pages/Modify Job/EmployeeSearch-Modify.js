@@ -154,11 +154,11 @@ function modifyListItemOnClick(item){
 	*/
 
 	for(var i in listOfEmployeesModify){
-		console.log("original " + listOfEmployeesModify[i]);
+		console.log("original " + listOfEmployeesModify[i].firstName);
 	}
 
 	for(var j in listOfSelectedEmployees){
-		console.log("selected " + listOfSelectedEmployees[j]);
+		console.log("selected " + listOfSelectedEmployees[j].firstName);
 	}
 
 
