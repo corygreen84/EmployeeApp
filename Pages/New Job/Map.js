@@ -207,3 +207,110 @@ function noResultsFound(){
 	
 }
 
+
+
+function deleteMarkerOnClick(){
+	
+	createJobAddressTextField.value = "";
+	createJobLongitudeTextField.value = "";
+	createJobLatitudeTextField.value = "";
+
+	createAddressFilledIn = false;
+	createLongFilledIn = false;
+	createLatFilledIn = false;
+	
+
+	if(marker != null){
+		marker.setMap(null);
+		google.maps.event.clearInstanceListeners(createMap);
+	}
+
+	toggleCreateJobButton();
+}
+
+
+
+function addMarkerOnClick(){
+	var _ = createMap.addListener('click', function(event){
+		if(marker != null){
+			marker.setMap(null);
+		}
+		var location = event.latLng;
+		marker = new google.maps.Marker({
+			position: location,
+			map: createMap,
+			title: "Custom Marker"
+		});
+		newJobLong = marker.getPosition().lng();
+		newJobLat = marker.getPosition().lat();
+
+		createJobLongitudeTextField.value = newJobLong;
+		createJobLatitudeTextField.value = newJobLat;
+
+		createLongFilledIn = true;
+		createLatFilledIn = true;
+		
+		toggleCreateJobButton();
+		toggleSearchButton();
+	});
+}
+
+
+
+
+// recentering the map //
+function recenterOnClick(){
+	initMap();
+}
+
+
+
+
+/*
+
+function eraseButtonOnClick(){
+	address = "";
+	newJobLong = null;
+	newJobLat = null;
+
+	createAddressTextField.value = "";
+	createLongitudeTextField.value = "";
+	createLatitudeTextField.value = "";
+
+	searchButton.disabled = true;
+	createButton.disabled = true;
+
+	if(marker != null){
+		marker.setMap(null);
+		google.maps.event.clearInstanceListeners(createMap);
+	}
+
+	//toggleCreateButton();
+}
+
+
+// adds a marker to the map //
+function addButtonOnClick(){
+	var _ = createMap.addListener('click', function(event){
+		if(marker != null){
+			marker.setMap(null);
+		}
+		var location = event.latLng;
+		marker = new google.maps.Marker({
+			position: location,
+			map: createMap,
+			title: "Custom Marker"
+		});
+		newJobLong = marker.getPosition().lng();
+		newJobLat = marker.getPosition().lat();
+
+		createLongitudeTextField.value = newJobLong;
+		createLatitudeTextField.value = newJobLat;
+
+		toggleCoordinatesFilled(true, true);
+		toggleCreateButton();
+		toggleSearchButton();
+	});
+}
+
+*/
