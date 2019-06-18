@@ -154,15 +154,17 @@ function modifyListItemOnClick(item){
 
 
 	// this is a list of all the employees involved with this job //
-	/*
+	
 	for(var i in listOfOriginalEmployees){
-		console.log("original " + listOfOriginalEmployees[i].uniqueId);
+		console.log("\noriginal " + listOfOriginalEmployees[i].uniqueId);
 	}
-	*/
+	
 	
 	for(var j in listOfSelectedEmployees){
 		console.log("\nselected " + listOfSelectedEmployees[j].uniqueId);
 	}
+
+
 	
 
 	// **** checking to see what is the same, what has been added and what has been deleted **** //
