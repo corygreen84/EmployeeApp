@@ -226,7 +226,7 @@ function changePlusToMinusOnEmployees(){
 
 // when the user selects the employee from the list //
 function modifyListItemOnClick(item){
-	console.log("change log 1");
+	
 
 	//console.log("item id - > " + item.id);
 	resultsOfCheckingDifferencesInArrays = {};

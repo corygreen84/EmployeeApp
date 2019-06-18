@@ -123,6 +123,8 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
+	console.log("change log 1");
+
 	resultsOfCheckingDifferencesInArrays = {};
 
 	if($('#icon-' + item.id).hasClass('ui-icon-plus') == true){
