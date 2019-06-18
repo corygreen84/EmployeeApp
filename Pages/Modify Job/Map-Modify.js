@@ -262,9 +262,10 @@ function addMarkerOnClick(){
 // recentering the map //
 function recenterOnClick(){
 
+
 	console.log("recenter clicked ");
-	console.log("lat -> " + newJobLat);
-	console.log("long -> " + newJobLong);
+	console.log("lat -> " + jobLoaded.lat);
+	console.log("long -> " + jobLoaded.long);
 	//placeOnMapModify(newJobLong, newJobLat, address);
 	//searchForPlace(address, newJobLong, newJobLat);
 	/*
