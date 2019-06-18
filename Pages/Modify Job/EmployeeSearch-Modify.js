@@ -109,9 +109,12 @@ function loadEmployeesToToggle(employees){
 
 
 	for(var k in employees){
-		console.log(employees[k]);
-		console.log(k);
 		dictionaryOfOriginalEmployees[employees[k]] = employees[k];
+	}
+
+	for(var l in dictionaryOfOriginalEmployees){
+		console.log("key -> " + l);
+		console.log("value -> " + dictionaryOfOriginalEmployees[l]);
 	}
 
 	// dictionary for this job holds the unique ids for each employee //
@@ -140,7 +143,7 @@ function loadEmployeesToToggle(employees){
 
 function modifyListItemOnClick(item){
 
-	console.log("change log 5");
+	console.log("change log 6");
 
 	resultsOfCheckingDifferencesInArrays = {};
 
