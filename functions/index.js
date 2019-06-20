@@ -129,74 +129,44 @@ class EmployeeJobHistory{
 
 
 
+// **** this function creates a new user **** //
+exports.createUser = functions.firestore.document('companies/{companies}/{employees}/{employee}').onCreate((snapshot, context) => {
+    const newValue = snapshot.data();
 
-// **** next function will search through storage to see if a file already exists for that DAY **** //
-// **** if one exists, then it will append what ever data has been newly added to the end of the **** //
-// **** previous data save, then delete either the new file or the old one **** //
+    const _fName = newValue.first;
+    const _lName = newValue.last;
+    const _email = newValue.email;
+    const _phoneNumber = newValue.phoneNumber;
+    const _displayName = _lName;
 
-exports.combineTextFiles = functions.storage.object().onFinalize(async (object) =>{
-    const fileBucket = object.bucket;
-    const filePath = object.name;
+    // setting the password to be their employee number //
+    const _password = newValue.password;
 
-    // the file name of the incoming file //
-    const fileName = path.basename(filePath);
-
-    var filePathMinusFileName = filePath.replace(fileName, '');
-
-    console.log(filePathMinusFileName);
-
-    fileBucket.getFiles({prefix: filePathMinusFileName}, function(err, files){
-        if(!err){
-            files.forEach(function(file){
-                console.log(file);
-            });
-        }else{
-            console.log("there was an errrrrrr ", err);
-        }
-    });
+    console.log(_fName);
+    console.log(_lName);
+    console.log(_email);
+    console.log(_phoneNumber);
+    console.log(_displayName);
+    console.log(_password);
 
 
+    
+    return admin.auth().createUser({
+        email: _email,
+        emailVerified: false,
+        phoneNumber: '+1', _phoneNumber,
+        password: '', _password,
+        displayName: _displayName,
+        disabled: false
 
-
-
-    /*
-    fileBucket.getFiles(function(err, files){
-        if(!err){
-            for(var i in files){
-                console.log(files[i]);
-            }
-        }else{
-            console.log("there was an error ", err);
-        }
-    });
-    */
-
-    /*
-    var storageRef = firebase.storage().ref(filePathMinusFileName);
-    return storageRef.listAll().then(result => {
-        result.items.forEach(things =>{
-            console.log(things);
-        });
+    }).then(userRecord =>{
+        console.log('successfully created new user : ', userRecord.uid);
         return null;
     }).catch(error =>{
-        console.log("errors ", error);
+        console.log('error creating new user', error);
     });
-*/
-
-
-
-    // accessing the bucket that the uploaded file is stored //
-    //const bucket = admin.storage().bucket(fileBucket);
-    
-    
-    // need to see if theres a file already in here that has the same date //
-    //console.log(fileName);
-    //console.log(filePathMinusFileName);
-
-    
 
 });
-
 
 
 

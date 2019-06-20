@@ -7,6 +7,7 @@ var lastName = document.getElementById("last-name-text");
 var email = document.getElementById("email-text");
 var phone = document.getElementById("phone-text");
 var employeeNumber = document.getElementById("employee-Number-text");
+var employeePassword = document.getElementById("employee-Password-text");
 
 var createButton = document.getElementById("employee-create-button");
 
@@ -15,6 +16,7 @@ var lastNameFilled = false;
 var emailFilled = false;
 var phoneFilled = false;
 var employeeNumberFilled = false;
+var employeePasswordFilled = false;
 
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
@@ -113,11 +115,19 @@ function employeeNumberTextChange(){
 	toggleCreateButton();
 }
 
+function employeePasswordTextChange(){
+	if(employeePassword.value != ""){
+		employeePasswordFilled = true;
+	}else{
+		employeeNumberFilled = false;
+	}
+}
+
 
 
 // toggling the create button //
 function toggleCreateButton(){
-	if(firstNameFilled == true && lastNameFilled == true && emailFilled == true && phoneFilled == true && employeeNumberFilled == true){
+	if(firstNameFilled == true && lastNameFilled == true && emailFilled == true && phoneFilled == true && employeeNumberFilled == true && employeePasswordFilled == true){
 		createButton.disabled = false;
 	}else{
 		createButton.disabled = true;
@@ -140,6 +150,7 @@ function createEmployeeButtonOnClick(){
 		email: email.value,
 		phoneNumber: parseInt(phone.value, 10),
 		employeeNumber: parseInt(employeeNumber.value, 10),
+		password: employeePassword.value,
 		jobs: [],
 		jobsCurrentlyAt: "",
 		jobHistory: [],
