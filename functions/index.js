@@ -136,18 +136,12 @@ exports.createUser = functions.firestore.document('companies/{companies}/{employ
     const _fName = newValue.first;
     const _lName = newValue.last;
     const _email = newValue.email;
-    const _phoneNumber = newValue.phoneNumber;
-    const _displayName = _lName;
-
-    // setting the password to be their employee number //
     const _password = newValue.password;
 
     return admin.auth().createUser({
         email: _email,
-        emailVerified: false,
-        phoneNumber: '+1', _phoneNumber,
-        password: '', _password,
-        displayName: _displayName,
+        emailVerified: true,
+        password: _password,
         disabled: false
 
     }).then(userRecord =>{
@@ -156,7 +150,7 @@ exports.createUser = functions.firestore.document('companies/{companies}/{employ
     }).catch(error =>{
         console.log('error creating new user', error);
     });
-
+    
 });
 
 
