@@ -142,15 +142,6 @@ exports.createUser = functions.firestore.document('companies/{companies}/{employ
     // setting the password to be their employee number //
     const _password = newValue.password;
 
-    console.log(_fName);
-    console.log(_lName);
-    console.log(_email);
-    console.log(_phoneNumber);
-    console.log(_displayName);
-    console.log(_password);
-
-
-    
     return admin.auth().createUser({
         email: _email,
         emailVerified: false,
