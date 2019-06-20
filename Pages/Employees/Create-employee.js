@@ -121,6 +121,7 @@ function employeePasswordTextChange(){
 	}else{
 		employeeNumberFilled = false;
 	}
+	toggleCreateButton();
 }
 
 
