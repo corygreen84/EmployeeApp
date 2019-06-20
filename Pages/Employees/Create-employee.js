@@ -144,9 +144,37 @@ function toggleCreateButton(){
 // creation of the Employee //
 function createEmployeeButtonOnClick(){
 
+	var batch = db.batch();
+
+	// ref for adding the employee to the company //
+	var newEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc();
+	batch.set(newEmployeeRef, {first:firstName.value,
+								last: lastName.value,
+								email: email.value,
+								phoneNumber: parseInt(phone.value, 10),
+								employeeNumber: parseInt(employeeNumber.value, 10),
+								password: employeePassword.value,
+								jobs: [],
+								jobsCurrentlyAt: "",
+								jobHistory: [],
+								id: newEmployeeRef.id,
+								status: false});
+
+	// ref for adding the employee to the users section at the beginning of the tree //
+	var usersRef = db.collection('users').doc(email.value);
+	batch.set(usersRef, {company: companyName, id: newEmployeeRef.id});
+
+
+	batch.commit().then(function(){
+		createEmployeeModal.style.display = "none";
+	});
+
+	
+
 
 	// using a unique identifier instead of their email for the document title. //
-	var newEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc();
+	//var newEmployeeRef = db.collection('companies').doc(companyName).collection('employees').doc();
+	/*
 	newEmployeeRef.set({
 		first:firstName.value,
 		last: lastName.value,
@@ -162,6 +190,7 @@ function createEmployeeButtonOnClick(){
 	}).then(function(){
 		createEmployeeModal.style.display = "none";
 	});
+	*/
 }
 
 
