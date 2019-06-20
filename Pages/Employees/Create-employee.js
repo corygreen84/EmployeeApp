@@ -120,7 +120,7 @@ function employeePasswordTextChange(){
 	if(employeePassword.value != ""){
 		employeePasswordFilled = true;
 	}else{
-		employeeNumberFilled = false;
+		employeePasswordFilled = false;
 	}
 	toggleCreateButton();
 }
