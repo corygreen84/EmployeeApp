@@ -162,7 +162,7 @@ function createEmployeeButtonOnClick(){
 
 	// ref for adding the employee to the users section at the beginning of the tree //
 	var usersRef = db.collection('users').doc(email.value);
-	batch.set(usersRef, {company: companyName, id: newEmployeeRef.id, password: employeePassword.value});
+	batch.set(usersRef, {company: companyName, id: newEmployeeRef.id, password: employeePassword.value, email: email.value});
 
 
 	batch.commit().then(function(){
