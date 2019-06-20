@@ -116,6 +116,7 @@ function employeeNumberTextChange(){
 }
 
 function employeePasswordTextChange(){
+	console.log("in here...");
 	if(employeePassword.value != ""){
 		employeePasswordFilled = true;
 	}else{
