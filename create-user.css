@@ -1,7 +1,9 @@
 body{
 	background-image: url("bg-01.jpg");
 	background-repeat: no-repeat;
-	background-size: auto;
+	background-size: cover;
+	width:100%;
+	height:100%;
 }
 
 #account-create-div{
