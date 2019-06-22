@@ -130,7 +130,8 @@ class EmployeeJobHistory{
 
 
 // **** this function creates a new user **** //
-exports.createUser = functions.firestore.document('users/{users}').onCreate((snapshot, context) => {
+exports.createUser = functions.firestore.document('users/{user}').onCreate((snapshot, context) => {
+
     const newValue = snapshot.data();
 
     const _email = newValue.email;
