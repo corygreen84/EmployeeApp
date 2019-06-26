@@ -104,7 +104,8 @@ function parseEmployeeData(employees){
 
 		if(employees[e].jobHistory != "" && employees[e].jobHistory != undefined){
 
-			var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
+			//var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
+			var convertedString = convertStringToJSONData(employees[e].jobHistory);
 			var jsonData = JSON.parse(convertedString);
 
 			for(var i in jsonData){

@@ -5,9 +5,15 @@ admin.initializeApp(functions.config().firebase);
 
 
 // this is for file manipulation //
-const path = require('path');
+//const path = require('path');
 
 let db = admin.firestore();
+
+
+
+// .txt file creation //
+var fs = require('fs');
+
 
 
 // 0 23 * * * for every night at 11pm //
@@ -154,6 +160,33 @@ exports.createUser = functions.firestore.document('users/{user}').onCreate((snap
 
 
 
+
+
+
+
+exports.userLogOutFunction = functions.firestore.document('companies/{company}/{employees}/{employee}').onUpdate((snap, context) => {
+    const newValue = snap.after.data();
+    var jobHistory = newValue.jobHistory;
+    var lastJob = jobHistory[jobHistory.length - 1];
+    
+    //var lastJobAsJSON = JSON.parse(lastJob);
+
+
+    console.log(lastJob);
+    
+
+
+    /*
+    var data = "new data file thingy";
+    fs.writeFile("/tmp/temp.txt", data, (err) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.log("success!");
+        }
+    });
+    */
+});
 
 
 
