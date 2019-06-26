@@ -107,7 +107,8 @@ function parseEmployeeData(employees){
 			console.log(employees[e].jobHistory);
 
 			//var convertedString = convertStringToJSONData("{" + employees[e].jobHistory + "}");
-			var convertedString = convertStringToJSONData(employees[e].jobHistory);
+			//var convertedString = convertStringToJSONData(employees[e].jobHistory);
+			var convertedString = convertStringToJSONData("[" + employees[e].jobHistory + "]");
 			var jsonData = JSON.parse(convertedString);
 
 			//console.log(jsonData);
@@ -140,7 +141,9 @@ function parseEmployeeData(employees){
 function convertStringToJSONData(textString){
 	var tempString = textString;
 	var regExp = new RegExp("\\\\", "g");
+	
 	var replaceDash = tempString.replace(regExp, "");
+	console.log(replaceDash);
 	
 	return replaceDash;
 }
