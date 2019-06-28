@@ -1,6 +1,9 @@
 
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
+const {Storage} = require('@google-cloud/storage');
+
+
 admin.initializeApp(functions.config().firebase);
 
 
@@ -9,10 +12,9 @@ admin.initializeApp(functions.config().firebase);
 
 let db = admin.firestore();
 
-
-
 // .txt file creation //
 var fs = require('fs');
+
 
 
 
@@ -168,24 +170,77 @@ exports.userLogOutFunction = functions.firestore.document('companies/{company}/{
     const newValue = snap.after.data();
     var jobHistory = newValue.jobHistory;
     var lastJob = jobHistory[jobHistory.length - 1];
+
+    var arrayOfJobs = [];
+
+    var company = context.params.company;
+    var employee = context.params.employee;
     
-    //var lastJobAsJSON = JSON.parse(lastJob);
+    console.log("company -> ", company);
 
 
-    console.log(lastJob);
-    
+    if(lastJob.length !== 0){
+        // getting the last job //
+        var lastJobAsJSON = JSON.parse(lastJob);
+
+        var jobName = lastJobAsJSON.jobName;
+
+        if(jobName === "Logged Off"){
+
+            // iterating in reverse, the job history //
+            // we stop once we have a job name that is //
+            // 'Logged In' //
+            for(var i = jobHistory.length - 1; i >= 0; --i){
+
+                var parsedJob = JSON.parse(jobHistory[i]);
+                var nameOfParsedJob = parsedJob.jobName;
+                arrayOfJobs.push('', jobHistory[i]);
+
+                if(nameOfParsedJob === "Logged In"){
+                    break;
+                }
+            }
+
+            // reversing the array and adding it to a string //
+            var tempString = '[';
+            for(var j = arrayOfJobs.length - 1; j >= 0; --j){
+                if(j !== 0){
+                    //tempString = tempString.concat(arrayOfJobs[j], ',');
+                    tempString = tempString.concat(arrayOfJobs[j]);
+                }
+            }
 
 
-    /*
-    var data = "new data file thingy";
-    fs.writeFile("/tmp/temp.txt", data, (err) => {
-        if(err){
-            console.log(err);
-        }else{
-            console.log("success!");
+            tempString = tempString.concat("]");
+            var finalString = tempString.replace(/}{/g, '},{');
+
+
+
+            // writting this data to a temporary folder //
+            fs.writeFile("/tmp/temp.txt", finalString, (err) => {
+                if(err){
+                    console.log(err);
+                }else{
+
+                    var date = new Date();
+                    var offSet = date.getTimezoneOffset();
+
+                    var date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear() + '/' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+                    var fileNameString = company + '/' + employee + '/' + date + '.txt';
+
+                    const storage = new Storage();
+                    const bucketName = 'gs://test-application-5cb08.appspot.com/';
+                    storage.bucket(bucketName).upload("/tmp/temp.txt", {
+                        gzip:false,
+                        destination: fileNameString,
+                        contentType: 'application/octet-stream'
+
+                    });
+                }
+            });
         }
-    });
-    */
+    }
+    return null;
 });
 
 
