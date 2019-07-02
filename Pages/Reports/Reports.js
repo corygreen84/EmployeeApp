@@ -59,8 +59,8 @@ function loadEmployeeData(user, companyName){
 				newEmployee.employeeNumber = data[d].employeeNumber;
 				newEmployee.status = data[d].status;
 				newEmployee.email = data[d].email;
-				newEmployee.phone = data[d].phone;
-				newEmployee.uniqueId = data[d].uniqueId;
+				newEmployee.phone = data[d].phoneNumber;
+				newEmployee.uniqueId = data[d].id;
 				newEmployee.jobHistory = data[d].jobHistory;
 
 				employees.push(newEmployee);
