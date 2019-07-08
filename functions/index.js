@@ -163,6 +163,13 @@ exports.createUser = functions.firestore.document('users/{user}').onCreate((snap
 
 
 
+// **** this function will delete a user from authentication **** //
+exports.deleteUser = functions.firestore.document('companies/{company}/{employees}/{employee}').onDelete((snap, context) =>{
+    
+});
+
+
+
 
 
 
@@ -175,9 +182,6 @@ exports.userLogOutFunction = functions.firestore.document('companies/{company}/{
 
     var company = context.params.company;
     var employee = context.params.employee;
-    
-    console.log("company -> ", company);
-
 
     if(lastJob.length !== 0){
         // getting the last job //
@@ -223,7 +227,6 @@ exports.userLogOutFunction = functions.firestore.document('companies/{company}/{
                 }else{
 
                     var date = new Date();
-                    var offSet = date.getTimezoneOffset();
 
                     var date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear() + '/' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
                     var fileNameString = company + '/' + employee + '/' + date + '.txt';
