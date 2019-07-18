@@ -87,6 +87,12 @@ li{
 	width: 100%;
 }
 
+.check-box{
+	z-index: 2 !important;
+	top:19% !important;
+	left: .7em !important;
+}
+
 #date-container{
 	margin-top: 20px;
 	display: inline-block;
