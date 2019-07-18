@@ -245,7 +245,7 @@ function createTableHeader(newArrayToPush){
             var labelForCheckmark = $('<label for="checkmark-1" class="ui-btn ui-corner-all ui-btn-inherit ui-btn-icon-left ui-checkbox-off">Add to Edit/Export</label>');
             regDiv.append(labelForCheckmark);
 
-            var checkboxInput = $('<input type="checkbox" name="checkbox-1" id="checkbox-"' + tempDateString + 'date-cacheval="false" checked="true">');
+            var checkboxInput = $('<input type="checkbox" class="check-box" name="checkbox-1" id="checkbox-' + tempDateString + '" date-cacheval="false" onChange="checkmarkChanged(this)">');
             regDiv.append(checkboxInput);
             // end of checkmark selection //
 
