@@ -65,7 +65,6 @@ function loadEmployeeData(user, companyName){
 
 				employees.push(newEmployee);
 			}
-			
 		};
 
 		parseEmployeeData(employees);
