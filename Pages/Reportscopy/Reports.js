@@ -25,6 +25,11 @@ window.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 
+
+
+
+
+
 function employeesOnClick(){
 	loadEmployees(companyName);
 	employeeDiv.style.display = "block";

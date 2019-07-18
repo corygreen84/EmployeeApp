@@ -180,6 +180,7 @@ function createTableHeader(newArrayToPush){
     for(var k in newArrayToPush){
         var data = newArrayToPush[k];
         for(var j in data){
+            console.log(j);
             // start of the list item //
             var firstLevelLi = $('<li>', {"id": "first-li-" + j});
             $('#main-area ul').append(firstLevelLi);
