@@ -9,13 +9,15 @@ var jobsbuttonToggle = false;
 var employeeDiv = document.getElementById("by-employee");
 var jobDiv = document.getElementById("by-job");
 
-var companyName = "Greenmachine Studios";
+//var companyName = "Greenmachine Studios";
+var companyName = "";
 
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
 	// this will be on the live version for checking to make sure there is an active users present //
-	loadEmployees(companyName);
+	//loadEmployees(companyName);
+	checkState();
 
 	employeesButtonToggle = true;
 
@@ -23,6 +25,32 @@ window.addEventListener('DOMContentLoaded', function () {
 	jobDiv.style.display = "none";
 
 }, false);
+
+function checkState(){
+	firebase.auth().onAuthStateChanged(function(user){
+		
+		// if the user is good to go, we need to pull their email address to get their company info //
+		if(user){
+			if(db != null){
+				var emailRef = db.collection("admin").doc(user.email);
+				emailRef.get().then(function(doc){
+					
+					// getting the company name //
+					companyName = doc.data().company;
+					// from this, we load the employees and the jobs tied to this company //
+					loadEmployees(companyName);
+				}).then(function(){
+					
+				}).catch(function(error){
+					console.log("something happened. " + error);
+				});
+			}
+			
+		}else{
+			
+		}
+	});
+}
 
 
 
