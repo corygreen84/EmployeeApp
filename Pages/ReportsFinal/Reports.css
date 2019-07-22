@@ -1,0 +1,178 @@
+
+#main-body{
+	width: 100%;
+}
+
+#employees-jobs-sidebar{
+	width: 350px;
+	height: 800px;
+	background-color: grey;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+	position: absolute;
+	display: inline-block;
+	left: 0;
+}
+
+
+
+#name-label, #employee-number-label{
+	margin-left: 10px;
+	text-shadow: none;
+	font-size: 20px;
+}
+#employee-number-label{
+	font-size: 15px;
+}
+
+
+#employee-label-div{
+	margin-top: 10px;
+}
+
+#divider{
+	width: 60%;
+	min-width: 770px;
+	height: 5px;
+	margin-left: 10px;
+	margin-top: 10px;
+	background-color: grey;
+	border-radius: 2px;
+}
+
+#employee-job-div, #employee-report-type{
+	margin-left: 10px;
+	width: 325px;
+	padding-top: 10px;
+}
+
+#drop-down-container{
+	width:370px;
+	display: inline-block;
+}
+
+#month-container{
+	width: 200px;
+	float:left;
+}
+
+#year-container{
+	margin-left: 10px;
+	width: 100px;
+	float:left;
+}
+
+#go-button-container{
+	width:50px;
+	float: right;
+	margin-left: 10px;
+	margin-top:0px;
+}
+
+li{
+	list-style: none;
+}
+
+.options{
+	text-align: left;
+}
+
+#main-area-ul{
+	padding-left: 0px;
+	height: 500px;
+}
+
+#checkbox-date-container{
+	margin-top: 5px;
+	display: inline-block;
+	width: 100%;
+}
+
+
+.check-box{
+	z-index: 2 !important;
+	top:19% !important;
+	left: .7em !important;
+}
+
+#date-container{
+	margin-top: 20px;
+	display: inline-block;
+}
+
+#date-p{
+	font-size: 20px;
+}
+
+#options-button-container{
+	width: 390px;
+	float: right;
+}
+#edit-button-container{
+	width: 125px;
+	float: left;
+}
+
+#select-all-button-container{
+	width: 125px;
+	float: left;
+	margin-right: 7px;
+}
+
+#export-button-container{
+	width: 125px;
+	float: right;
+}
+
+#checkmark-selection-div{
+	width: 200px;
+	float: right;
+	display: block;
+	position: relative;
+	/*margin-bottom: 5px;*/
+}
+
+#checkbox-1{
+	margin-top: 0px;
+}
+
+
+#employee-job-list-div{
+	width: 329px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+
+#employee-live-view-div, #employee-report-view-div{
+	margin-top: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	width: 60%;
+	min-width: 770px;
+}
+
+#employee-live-view-ul{
+	height: 600px;
+}
+
+#employee-job-ul{
+	height: 600px;
+}
+
+#main-body-div{
+	width:100%;
+	min-width: 600px;
+	height:800px;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+	position: absolute;
+	display: inline-block;
+	left: 350px;
+}
+
+
+
+
+.scrollable {
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
+	
+}

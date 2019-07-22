@@ -223,6 +223,10 @@ exports.userLogOutFunction = functions.firestore.document('companies/{company}/{
         var lastJobAsJSON = JSON.parse(lastJob);
 
         var jobName = lastJobAsJSON.jobName;
+        var _date = lastJobAsJSON.date;
+        var _time = lastJobAsJSON.time;
+
+
 
         if(jobName === "Logged Off"){
 
@@ -261,8 +265,11 @@ exports.userLogOutFunction = functions.firestore.document('companies/{company}/{
             const _bucket = storage.bucket(bucketName);
             
             // constructing a file name //
-            var today = new Date();
-            var dateString = today.getFullYear() + '/' + (today.getMonth() + 1) + '/' + today.getDate() + '/' + 'tempFile';
+            //var today = new Date()
+
+            var dateArray = _date.split("-");
+            
+            var dateString = "" + String(dateArray[2]) + "/" + String(dateArray[0]) + "/" + String(dateArray[1]) + "/tempFile";
             var fileNameString = company + '/' + employee + '/' + dateString + '.txt';
 
 

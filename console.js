@@ -50,7 +50,7 @@ window.onclick = function(event) {
 		objectElement.src = "Pages/Employees/Employees.html";
 	}else if(event.target.id == "ReportsPage"){
 		activeNav = "ReportsPageDiv";
-		objectElement.src = "Pages/Reportscopy/Reports.html";
+		objectElement.src = "Pages/ReportsFinal/Reports.html";
 	}else if(event.target.id == "PayPage"){
 		activeNav = "PayPageDiv";
 		objectElement.src = "Pages/Pay-Period.html";
