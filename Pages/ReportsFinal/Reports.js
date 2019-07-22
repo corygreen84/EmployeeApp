@@ -9,16 +9,16 @@ var jobsbuttonToggle = false;
 var employeeDiv = document.getElementById("by-employee");
 var jobDiv = document.getElementById("by-job");
 
-var companyName = "Greenmachine Studios";
+//var companyName = "Greenmachine Studios";
 //var companyName = "";
 
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
 	// this will be on the live version for checking to make sure there is an active users present //
-	//checkState();
+	checkState();
 
-	loadEmployees(companyName);
+	//loadEmployees(companyName);
 	employeesButtonToggle = true;
 
 	employeeDiv.style.display = "none";
@@ -26,7 +26,7 @@ window.addEventListener('DOMContentLoaded', function () {
 
 }, false);
 
-/*
+
 function checkState(){
 	firebase.auth().onAuthStateChanged(function(user){
 		
@@ -52,7 +52,7 @@ function checkState(){
 		}
 	});
 }
-*/
+
 
 
 
