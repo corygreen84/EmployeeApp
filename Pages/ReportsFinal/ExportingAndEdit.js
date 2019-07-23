@@ -1,9 +1,17 @@
 
 var dictionaryOfDatesToBeAdded = {};
 
+
+var editModal = document.getElementById("edit-report-data");
+
+var editButton = document.getElementById("edit-button");
+var exportButton = document.getElementById("export-button");
+
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
     selectAllButton.disabled = true;
+    editButton.disabled = true;
+    exportButton.disabled = true;
 }, false);
 
 
@@ -11,6 +19,8 @@ function checkmarkChanged(checkmark){
 
     var checkmarkId = checkmark.id;
     var checkboxElement = document.getElementById(checkmarkId);
+    editButton.disabled = false;
+    exportButton.disabled = false;
 
     // gathering data based on the checkmark noted //
     for(var i in newArrayToPush){
@@ -25,13 +35,19 @@ function checkmarkChanged(checkmark){
             }
         }
     }
-    console.log(Object.keys(dictionaryOfDatesToBeAdded).length);
+    if(Object.keys(dictionaryOfDatesToBeAdded).length == 0){
+        editButton.disabled = true;
+        exportButton.disabled = true;
+    }
 }
 
 function selectAllOnClick(){
     if(selectAllButton.innerHTML == "Select All"){
         $(".check-box").prop('checked', true);
         selectAllButton.innerHTML = "Deselect All";
+
+        editButton.disabled = false;
+        exportButton.disabled = false;
 
         for(var m in newArrayToPush){
             var newElement = newArrayToPush[m];
@@ -45,6 +61,8 @@ function selectAllOnClick(){
         dictionaryOfDatesToBeAdded = {};
 
         selectAllButton.innerHTML = "Select All";
+        editButton.disabled = true;
+        exportButton.disabled = true;
     }
 
     
@@ -54,7 +72,8 @@ function selectAllOnClick(){
 
 function editOnClick(){
     if(Object.keys(dictionaryOfDatesToBeAdded).length != 0){
-        editValues();
+        createTableEdit();
+        editModal.style.display = "inline-block";
     }else{
         alert("No records selected.  Please check one or more records for exporting.");
     }
@@ -70,12 +89,6 @@ function exportOnClick(){
     }
 }
 
-
-
-
-function editValues(){
-
-}
 
 
 function exportParse(){

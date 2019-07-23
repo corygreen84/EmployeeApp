@@ -180,12 +180,12 @@ function sortDictionaryOfeventsByDate(dictionaryOfEvents){
             }
         }
         
-        createTableHeader(newArrayToPush);
+        createTable(newArrayToPush);
     }
 }
 
 
-function createTableHeader(newArrayToPush){
+function createTable(newArrayToPush){
 
     for(var k in newArrayToPush){
         var data = newArrayToPush[k];

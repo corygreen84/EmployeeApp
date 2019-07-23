@@ -3,6 +3,58 @@
 	width: 100%;
 }
 
+
+/* edit data modal popup */
+#edit-report-data{
+	display: none;
+	position: absolute;
+	width: 350px;
+	min-width: 600px;
+	height: 600px;
+	background-color: grey;
+	left: 350px;
+	margin-left: 10px;
+	margin-top: 100px;
+	margin-right: 10px;
+	z-index: 3;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+	border-radius: 20px;
+}
+
+#cancel-button-container{
+	width: 100px;
+	float: left;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+#revert-save-button-container{
+	width: 200px;
+	float: right;
+	margin-top: 10px;
+	margin-right: 20px;
+}
+
+#revert-button-container{
+	float:left;
+	width: 90px;
+}
+
+#save-button-container{
+	float: right;
+	width: 90px;
+}
+
+#edit-main-area{
+	display: inline-block;
+	width: 93.5%;
+	margin-left: 20px;
+	background-color: white;
+	height: 85%; 
+	border-radius: 20px;
+}
+
+
 #employees-jobs-sidebar{
 	width: 350px;
 	height: 800px;
@@ -76,9 +128,10 @@ li{
 	text-align: left;
 }
 
-#main-area-ul{
+#main-area-ul, #edit-main-area-ul{
 	padding-left: 0px;
 	height: 500px;
+	border-radius: 20px;
 }
 
 #checkbox-date-container{
@@ -137,9 +190,17 @@ li{
 
 
 #employee-job-list-div{
-	width: 329px;
+	/*width: 329px; */
+	width: 94%;
 	margin-top: 10px;
 	margin-left: 10px;
+}
+
+#side-bar-pullout-container{
+	width: 70px;
+	margin-left: 15px;
+	margin-top: 10px;
+	display: none;
 }
 
 #employee-live-view-div, #employee-report-view-div{
@@ -156,6 +217,7 @@ li{
 
 #employee-job-ul{
 	height: 600px;
+	width:100%;
 }
 
 #main-body-div{

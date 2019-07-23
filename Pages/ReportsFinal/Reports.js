@@ -9,6 +9,14 @@ var jobsbuttonToggle = false;
 var employeeDiv = document.getElementById("by-employee");
 var jobDiv = document.getElementById("by-job");
 
+var navBar = document.getElementById("employees-jobs-sidebar");
+var navBarUl = document.getElementById("employee-job-list-div");
+var employeeJobToggle = document.getElementById("employee-job-div");
+
+var sidebarButton = document.getElementById("side-bar-pullout-container");
+
+var mainBodyDiv = document.getElementById("main-body-div");
+
 //var companyName = "Greenmachine Studios";
 //var companyName = "";
 
@@ -113,7 +121,7 @@ function parseEmployeesAndAddToListView(){
 		var firstName = listOfEmployees[j].first;
 		var lastName = listOfEmployees[j].last;
 		var employeeNumber = listOfEmployees[j].employeeNumber;
-		var employeeId = listOfEmployees[j].uniqueId;
+		//var employeeId = listOfEmployees[j].uniqueId;
 
 		// appending the info to the modal views list view //
 		$("#employee-job-ul").append('<li id=' + j + ' onclick="listItemOnClick(this)"><a href="#" id="icon-' + employeeNumber + '"><h2>' + firstName + ' ' + lastName + '</h2><p>Employee #: ' + employeeNumber + '</p></a></li>');
@@ -185,8 +193,34 @@ function listItemOnClick(item){
 	employeeDiv.style.display = "block";
 	jobDiv.style.display = "none";
 	loadEmployeeHistory(item.id);
+
+	pushInNav();
 }
 
+
+// changing the size of the submenu //
+function pullOutOnClick(){
+	pullOutNav();
+}
+
+
+function pushInNav(){
+	
+	sidebarButton.style.display = "inline-block";
+	navBar.style.width = "100px";
+	navBarUl.style.display = "none"
+	employeeJobToggle.style.display = "none"
+	mainBodyDiv.style.left = "100px";
+}
+
+
+function pullOutNav(){
+	sidebarButton.style.display = "none";
+	navBar.style.width = "350px";
+	navBarUl.style.display = "inline-block";
+	employeeJobToggle.style.display = "block";
+	mainBodyDiv.style.left = "350px";
+}
 
 
 

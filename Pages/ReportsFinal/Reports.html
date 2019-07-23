@@ -3,6 +3,7 @@
 
 	<head>
 			<meta charset="utf-8" />
+			<!--<link rel="stylesheet" href="/EmployeeApp/Pages/Reportscopy/Reports.css"/>-->
 			<link rel="stylesheet" href="/EmployeeApp/Pages/ReportsFinal/Reports.css"/>
 			<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
 			<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
@@ -33,8 +34,16 @@
 
 	<body>
 		<div id="main-body">
+
+			
 				
 			<div id="employees-jobs-sidebar">
+
+				<div id="side-bar-pullout-container">
+					
+					<button type="button" id="pullout-button" class="buttons" onclick="pullOutOnClick()">=</button>
+				</div>
+
 				<div data-role="navbar" id="employee-job-div">
 					<ul>
 						<li><a href="#" class="ui-btn-active" onclick="employeesOnClick()">By Employee</a></li>
@@ -47,6 +56,32 @@
 						<!--Dynamically populated-->
 					</ul>
 				</div>		
+			</div>
+
+
+
+			<!-- edit report data modal view -->
+			<!-- This will be a modal view that is hidden right away -->
+			<div id="edit-report-data">
+				<div id="cancel-button-container">
+					<div id="cancel-container">
+						<button type="button" id="cancel-button" class="buttons" onclick="cancelOnClick()">Cancel</button>
+					</div>
+				</div>
+				<div id="revert-save-button-container">
+					<div id="revert-button-container">
+						<button type="button" id="revert-button" class="buttons" onclick="revertOnClick()">Revert</button>
+					</div>
+					<div id="save-button-container">
+						<button type="button" id="save-button" class="buttons" onclick="saveOnClick()">Save</button>
+					</div>
+				</div>
+
+				<div id="edit-main-area">
+					<ul id="edit-main-area-ul" class="scrollable">
+						<!-- Dynamically populated -->
+					</ul>
+				</div>
 			</div>
 
 
@@ -88,15 +123,15 @@
 									<option class="options" value="12">December</option>
 									<option class="options" value="11">November</option>
 									<option class="options" value="10">October</option>
-									<option class="options" value="9">September</option>
-									<option class="options" value="8">August</option>
-									<option class="options" value="7">July</option>				
-									<option class="options" value="6">June</option>	
-									<option class="options" value="5">May</option>	
-									<option class="options" value="4">April</option>	
-									<option class="options" value="3">March</option>
-									<option class="options" value="2">February</option>
-									<option class="options" value="1">January</option>
+									<option class="options" value="09">September</option>
+									<option class="options" value="08">August</option>
+									<option class="options" value="07">July</option>				
+									<option class="options" value="06">June</option>	
+									<option class="options" value="05">May</option>	
+									<option class="options" value="04">April</option>	
+									<option class="options" value="03">March</option>
+									<option class="options" value="02">February</option>
+									<option class="options" value="01">January</option>
 									
 								</select>
 							</div>
@@ -163,6 +198,7 @@
 		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/Report-views.js"></script>
 		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/PullInfoFromStorage.js"></script>
 		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/ExportingAndEdit.js"></script>
+		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/Edit.js"></script>
 
 		<!-- <script type="application/javascript" src="/EmployeeApp/Pages/Reports/Reports.js"></script> -->
 	</body>
