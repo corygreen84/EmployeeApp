@@ -215,6 +215,7 @@ function pushInNav(){
 
 
 function pullOutNav(){
+	editModal.style.display = "none";
 	sidebarButton.style.display = "none";
 	navBar.style.width = "350px";
 	navBarUl.style.display = "inline-block";
