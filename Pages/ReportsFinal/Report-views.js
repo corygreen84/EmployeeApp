@@ -32,6 +32,8 @@ function loadEmployeeHistory(id){
 	$('#live-view-button').addClass("ui-btn-active");
 
 	selectAllButton.disabled = true;
+	editButton.disabled = true;
+    exportButton.disabled = true;
 	selectAllButton.innerHTML = "Select All";
 
 	dictionaryOfDatesToBeAdded = {};
