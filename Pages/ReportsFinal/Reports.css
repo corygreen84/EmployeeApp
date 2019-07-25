@@ -140,6 +140,10 @@ li{
 	width: 100%;
 }
 
+.plus-buttons{
+	float:right;
+}
+
 
 .check-box{
 	z-index: 2 !important;

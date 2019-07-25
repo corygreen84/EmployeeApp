@@ -72,7 +72,8 @@ function selectAllOnClick(){
 
 function editOnClick(){
     if(Object.keys(dictionaryOfDatesToBeAdded).length != 0){
-        createTableEdit();
+        //createTableEdit();
+        sortDictionaryOfeventsByDateEdit();
         editModal.style.display = "inline-block";
     }else{
         alert("No records selected.  Please check one or more records for exporting.");

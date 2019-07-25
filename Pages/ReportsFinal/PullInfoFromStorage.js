@@ -148,7 +148,6 @@ function sortDictionaryOfeventsByDate(dictionaryOfEvents){
     if(isDone){
 
         var arrayOfKeys = [];
-        //var newArrayToPush = [];
         newArrayToPush = [];
         for(var i in arrayOfDictionaries){
 
@@ -233,7 +232,7 @@ function createTable(newArrayToPush){
 
             var tempDateString = "";
             if(j === dateString){
-                tempDateString = "Today";
+                tempDateString = "Today (" + dateString + ")";
             }else{
                 tempDateString = "" + j;
             }
@@ -311,6 +310,14 @@ function createTable(newArrayToPush){
                 trElement.append(tdTime);
                 trElement.append(tdEventAddress);
             }
+
+            var plusDiv = $('<div>', {"id": "plus-div-" + j + ""});
+            mainTableDiv.append(plusDiv);
+
+
+            //<button type="button" id="save-button" class="buttons" onclick="saveOnClick()">Save</button>
+            var plusButton = $('<button type="button" id="plus-button-"' + j + '" class="buttons plus-buttons" onclick="plusButtonOnClick(this.id)">+</button>');
+            plusDiv.append(plusButton);
         }
     }
 
