@@ -7,7 +7,6 @@ var editModal = document.getElementById("edit-report-data");
 var editButton = document.getElementById("edit-button");
 var exportButton = document.getElementById("export-button");
 
-// checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
     selectAllButton.disabled = true;
     editButton.disabled = true;

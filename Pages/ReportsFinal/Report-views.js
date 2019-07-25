@@ -33,7 +33,8 @@ function loadEmployeeHistory(id){
 
 	selectAllButton.disabled = true;
 	editButton.disabled = true;
-    exportButton.disabled = true;
+	exportButton.disabled = true;
+	
 	selectAllButton.innerHTML = "Select All";
 
 	dictionaryOfDatesToBeAdded = {};
@@ -50,6 +51,9 @@ function liveViewListOnClick(){
 function reportViewOnClick(){
 	liveViewDiv.style.display = "none";
 	reportViewDiv.style.display = "block";
+	selectAllButton.disabled = true;
+	editButton.disabled = true;
+	exportButton.disabled = true;
 	$("#main-area ul").empty();
 }
 
@@ -64,7 +68,6 @@ function getEmployeeLiveHistory(employee){
 	var employeeRef = db.collection('companies').doc(companyName).collection('employees').doc(employee.uniqueId);
 	employeeRef.onSnapshot(function(doc){
 		var docData = doc.data();
-
 		var history = docData.jobHistory;
 		parseEmployeeHistory(history);
 	});
