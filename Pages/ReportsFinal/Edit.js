@@ -330,6 +330,8 @@ function parseData(id){
 
 function createTxtFileAndPushToServer(){
 
+    var uploadCount = 0;
+
     var storageRef = firebase.storage().ref();
 
     for(var t in tempCopyOfArraytoPushEdit){
@@ -351,6 +353,12 @@ function createTxtFileAndPushToServer(){
                 console.log(error);
             }, function(){
                 console.log("success!");
+                uploadCount++;
+
+                if(uploadCount == Object.keys(tempCopyOfArraytoPushEdit).length){
+                    goButtonOnClick();
+                }
+                
             });
         }
     }
