@@ -1,22 +1,30 @@
 
 var newArrayToPushEdit = [];
 
-var changeCount = 0;
+// this will be a copy of the newArrayToPushEdit in json form to keep it //
+// from keeping a reference to the original //
+var tempCopyOfArraytoPushEdit;
+
+
+
+var tempFirstDictionary = {};
+var changeCountDictionary = {};
 
 var revertButton = document.getElementById("revert-button");
 var saveButton = document.getElementById("save-button");
 
+
+
 // sorting the array of dictionaries based on most current to least //
 function sortDictionaryOfeventsByDateEdit(){
 
-    changeCount = 0;
     revertButton.disabled = true;
     saveButton.disabled = true;
 
-    //arrayOfDictionaries.push(dictionaryOfEvents);
     var arrayOfKeysEdit = [];
     newArrayToPushEdit = [];
     for(var i in dictionaryOfDatesToBeAdded){
+
         // going through and collecting the keys from the main arrayOfDictionaries //
         arrayOfKeysEdit.push(i);
     }
@@ -27,27 +35,34 @@ function sortDictionaryOfeventsByDateEdit(){
     for(var m in newArray){
 
         for(var n in dictionaryOfDatesToBeAdded){
-            console.log(newArray[m]);
             if(n == newArray[m]){
                 var dictionaryObject = {};
                 dictionaryObject[n] = dictionaryOfDatesToBeAdded[n];
                 newArrayToPushEdit.push(dictionaryObject);
             }
-
         }
     }
+
+    // creating a copy of the newArrayToPushEdit //
+    // this is used for reverting back to the original //
+    // data //
+
+
+    //tempCopyOfArraytoPushEdit = newArrayToPushEdit.concat(0);
+    tempCopyOfArraytoPushEdit = JSON.parse(JSON.stringify(newArrayToPushEdit));
+    newArrayToPushEdit = JSON.parse(JSON.stringify(newArrayToPushEdit));
 
     createTableEdit(newArrayToPushEdit);    
 }
 
 
 
-function createTableEdit(newArrayToPushEdit){
+function createTableEdit(_newArrayToPushEdit){
 
     $("#edit-main-area ul").empty();
 
-    for(var p in newArrayToPushEdit){
-        var firstLevel = newArrayToPushEdit[p];
+    for(var p in _newArrayToPushEdit){
+        var firstLevel = _newArrayToPushEdit[p];
         for(var k in firstLevel){
             var firstLevelLi = $('<li>', {"id": "first-li-" + k});
             $('#edit-main-area-ul').append(firstLevelLi);
@@ -136,9 +151,9 @@ function createTableEdit(newArrayToPushEdit){
                 tableBody.append(trElement);
 
                 // adding tr elements and giving them id's //
-                var tdEventJob = $('<td contenteditable="true" id="'+ k + '--JobName--' + l + '" oninput="parseData(this.id)">' + individualEventArray[l].jobName + '</td>');
-                var tdTime = $('<td contenteditable="true" id="'+ k + '--Time--' + l + '" oninput="parseData(this.id)">' + individualEventArray[l].time + '</td>');
-                var tdEventAddress = $('<td contenteditable="true" id="'+ k + '--JobAddress--' + l + '" oninput="parseData(this.id)">' + individualEventArray[l].jobAddress + '</td>');
+                var tdEventJob = $('<td contenteditable="true" id="'+ k + '--JobName--' + l + '" oninput="parseData(this.id)" onkeyup="onKeyUp(this.id)">' + individualEventArray[l].jobName + '</td>');
+                var tdTime = $('<td contenteditable="true" id="'+ k + '--Time--' + l + '" oninput="parseData(this.id)" onkeyup="onKeyUp(this.id)">' + individualEventArray[l].time + '</td>');
+                var tdEventAddress = $('<td contenteditable="true" id="'+ k + '--JobAddress--' + l + '" oninput="parseData(this.id)" onkeyup="onKeyUp(this.id)">' + individualEventArray[l].jobAddress + '</td>');
 
                 trElement.append(tdEventJob);
                 trElement.append(tdTime);
@@ -150,20 +165,39 @@ function createTableEdit(newArrayToPushEdit){
 }
 
 
+
+
+
+
+// **** button on click handlers **** //
 function cancelOnClick(){
     editModal.style.display = "none";
     $("#edit-main-area ul").empty();
 }
 
 function revertOnClick(){
-    sortDictionaryOfeventsByDateEdit();
+    createTableEdit(newArrayToPushEdit);
 }
 
 function saveOnClick(){
+    createTxtFileAndPushToServer();
     editModal.style.display = "none";
     $("#edit-main-area ul").empty();
 }
 
+
+
+
+function onKeyUp(id){
+
+    var elementValue = document.getElementById(id).innerHTML;
+    var elementWithBrRemoved = elementValue.replace("<br>", "");
+    if(elementWithBrRemoved == ""){
+        document.getElementById(id).style.backgroundColor = "red";
+    }else{
+        document.getElementById(id).style.backgroundColor = "white";
+    }
+}
 
 
 
@@ -172,24 +206,28 @@ function saveOnClick(){
 // I also need to make sure that the data entered isnt blank //
 // and is the correct type //
 function parseData(id){
-    
+
+
     // idsplit - 0: date, 1: event/job, 2: row //
     var idSplit = id.split("--");
     var date = idSplit[0];
     var element = idSplit[1];
     var row = idSplit[2];
-    
+
     for(var newArray in newArrayToPushEdit){
         var firstArray = newArrayToPushEdit[newArray];
-        console.log(firstArray);
+        
         if(firstArray[date] != undefined){
+            
+            tempFirstDictionary = firstArray[date];
+            
             var mainArray = firstArray[date];
             var mainElement = mainArray[row];
-            
-            var tdElement = document.getElementById(id);
-            if(tdElement.innerHTML != ""){
 
-                //console.log(mainElement);
+            var tdElement = document.getElementById(id);
+            
+            if(tdElement.innerHTML != ""){
+ 
                 // setting up some variables //
                 var _date = mainElement["date"];
                 var _time = mainElement["time"];
@@ -197,33 +235,37 @@ function parseData(id){
                 var _jobAddress = mainElement["jobAddress"];
                 var _jobId = mainElement["jobId"];
 
+                var tdElementwithBRRemoved = tdElement.innerHTML.replace("<br>", "");
+
                 if(element == "JobAddress"){
-                    if(_jobAddress != tdElement.innerHTML){
-                        _jobAddress = tdElement.innerHTML;
-                        changeCount++;
+                    if(_jobAddress != tdElementwithBRRemoved){
+                        _jobAddress = tdElementwithBRRemoved;
+                        changeCountDictionary[tdElement.id] = true;
                     }else{
-                        changeCount--;
+                        delete changeCountDictionary[tdElement.id];
                     }
                     
                 }else if(element == "JobName"){
-                    if(_jobName != tdElement.innerHTML){
-                        _jobName = tdElement.innerHTML;
-                        changeCount++;
+                    if(_jobName != tdElementwithBRRemoved){
+                        _jobName = tdElementwithBRRemoved;
+                        changeCountDictionary[tdElement.id] = true;
                     }else{
-                        changeCount--;
+                        delete changeCountDictionary[tdElement.id];
                     }
                     
                 }else if(element == "Time"){
-                    if(_time != tdElement.innerHTML){
-                        _time = tdElement.innerHTML;
-                        changeCount++;
+                    if(_time != tdElementwithBRRemoved){
+                        _time = tdElementwithBRRemoved;
+                        changeCountDictionary[tdElement.id] = true;
                     }else{
-                        changeCount--;
+                        delete changeCountDictionary[tdElement.id];
                     }
-                    
                 }
 
-                if(changeCount != 0){
+                
+                
+
+                if(Object.keys(changeCountDictionary).length != 0){
                     // enable the revert and save buttons //
                     revertButton.disabled = false;
                     saveButton.disabled = false;
@@ -232,15 +274,29 @@ function parseData(id){
                     saveButton.disabled = true;
                 }
 
-                // creating a new dictionary object to put back into the main array //                
-                var dictionaryObject = {"date": _date, "jobAddress": _jobAddress, "jobId": _jobId, "jobName": _jobName, "time": _time};
-                mainElement[row] = dictionaryObject;
 
-                
+                for(var tc in tempCopyOfArraytoPushEdit){
+                    var firstLevelCopy = tempCopyOfArraytoPushEdit[tc];
+                    for(var flc in firstLevelCopy){
+                        if(flc == _date){
+                            var objectSelected = firstLevelCopy[flc];
+                            var objectRow = objectSelected[row];
+                            objectRow.date = _date;
+                            objectRow.jobAddress = _jobAddress;
+                            objectRow.jobId = _jobId;
+                            objectRow.jobName = _jobName;
+                        }
+                    }
+                }
             }
         }
     }
 }
 
 
+
+function createTxtFileAndPushToServer(){
+
+    
+}
 

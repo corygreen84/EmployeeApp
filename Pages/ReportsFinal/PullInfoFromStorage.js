@@ -8,6 +8,8 @@ var yearDropDown = document.getElementById("year");
 var mainAreaUl = document.getElementById("main-area");
 
 var selectAllButton = document.getElementById("select-all-button");
+var editButton = document.getElementById("edit-button");
+var exportButton = document.getElementById("export-button");
 
 
 var arrayOfDictionaries = [];
@@ -37,6 +39,10 @@ function goButtonOnClick(){
     count = 0;
     fileExists = 0;
     isDone = false;
+
+    selectAllButton.innerHTML = "Select All";
+    editButton.disabled = true;
+    exportButton.disabled = true;
     
     
     for(var i = 1; i < daysUpToToday + 1; i++){
@@ -189,7 +195,7 @@ function createTable(newArrayToPush){
     for(var k in newArrayToPush){
         var data = newArrayToPush[k];
         for(var j in data){
-            console.log(j);
+            //console.log(j);
             // start of the list item //
             var firstLevelLi = $('<li>', {"id": "first-li-" + j});
             $('#main-area ul').append(firstLevelLi);

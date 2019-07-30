@@ -1,6 +1,8 @@
 
 var dictionaryOfDatesToBeAdded = {};
 
+var tempDictionaryOfDatesToBeAdded = {};
+
 
 var editModal = document.getElementById("edit-report-data");
 
@@ -28,12 +30,15 @@ function checkmarkChanged(checkmark){
             if(j == checkmarkId){
                 if(checkboxElement.checked){
                     dictionaryOfDatesToBeAdded[checkmarkId] = element[j];
+                    tempDictionaryOfDatesToBeAdded[checkmarkId] = element[j];
                 }else{
                     delete dictionaryOfDatesToBeAdded[checkmarkId];
+                    delete tempDictionaryOfDatesToBeAdded[checkmarkId];
                 }
             }
         }
     }
+
     if(Object.keys(dictionaryOfDatesToBeAdded).length == 0){
         editButton.disabled = true;
         exportButton.disabled = true;
@@ -52,32 +57,53 @@ function selectAllOnClick(){
             var newElement = newArrayToPush[m];
             for(var n in newElement){
                 dictionaryOfDatesToBeAdded[n] = newElement[n];
+                tempDictionaryOfDatesToBeAdded[n] = newElement[n];
             }
         }
     }else{
         $(".check-box").prop('checked', false);
         
         dictionaryOfDatesToBeAdded = {};
+        tempDictionaryOfDatesToBeAdded = {};
 
         selectAllButton.innerHTML = "Select All";
         editButton.disabled = true;
         exportButton.disabled = true;
-    }
-
-    
+    } 
 }
 
 
 
+
+
+
+
+
+
+
+
+
+// need to create a copy of dictionaryOfDatesToBeAdded //
 function editOnClick(){
     if(Object.keys(dictionaryOfDatesToBeAdded).length != 0){
-        //createTableEdit();
+
         sortDictionaryOfeventsByDateEdit();
         editModal.style.display = "inline-block";
     }else{
         alert("No records selected.  Please check one or more records for exporting.");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 function exportOnClick(){
