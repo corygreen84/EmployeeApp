@@ -23,6 +23,8 @@ var fileExists = 0;
 
 var isDone = false;
 
+var uniqueId;
+
   
 function goButtonOnClick(){
 
@@ -31,7 +33,7 @@ function goButtonOnClick(){
     var month = monthDropDown.options[monthDropDown.selectedIndex].value;
     var year = yearDropDown.options[yearDropDown.selectedIndex].value;
 
-    var uniqueId = selectedEmployee.uniqueId;
+    uniqueId = selectedEmployee.uniqueId;
 
     var today = new Date();
     var daysUpToToday = today.getDate();
@@ -316,19 +318,13 @@ function createTable(newArrayToPush){
                 trElement.append(tdTime);
                 trElement.append(tdEventAddress);
             }
-
-            var plusDiv = $('<div>', {"id": "plus-div-" + j + ""});
-            mainTableDiv.append(plusDiv);
-
-
-            //<button type="button" id="save-button" class="buttons" onclick="saveOnClick()">Save</button>
-            var plusButton = $('<button type="button" id="plus-button-"' + j + '" class="buttons plus-buttons" onclick="plusButtonOnClick(this.id)">+</button>');
-            plusDiv.append(plusButton);
         }
     }
 
     $('#main-area ul').listview().listview('refresh');
 }
+
+
 
 
 class Event{

@@ -9,6 +9,7 @@ var tempCopyOfArraytoPushEdit;
 
 var tempFirstDictionary = {};
 var changeCountDictionary = {};
+var errorDictionary = {};
 
 var revertButton = document.getElementById("revert-button");
 var saveButton = document.getElementById("save-button");
@@ -58,6 +59,8 @@ function sortDictionaryOfeventsByDateEdit(){
 
 
 function createTableEdit(_newArrayToPushEdit){
+
+    changeCountDictionary = {};
 
     $("#edit-main-area ul").empty();
 
@@ -159,11 +162,23 @@ function createTableEdit(_newArrayToPushEdit){
                 trElement.append(tdTime);
                 trElement.append(tdEventAddress);
             }
+
+            var plusDiv = $('<div>', {"id": "plus-div-" + k + ""});
+            mainTableDiv.append(plusDiv);
+
+
+            //<button type="button" id="save-button" class="buttons" onclick="saveOnClick()">Save</button>
+            var plusButton = $('<button type="button" id="plus-button-' + k + '" class="buttons plus-buttons" onclick="plusButtonOnClick(this.id)">+</button>');
+            plusDiv.append(plusButton);
         }
     }
     $('#edit-main-area ul').listview().listview('refresh');
 }
 
+
+function plusButtonOnClick(id){
+    console.log("plus button clicked " + id);
+}
 
 
 
@@ -176,13 +191,20 @@ function cancelOnClick(){
 }
 
 function revertOnClick(){
+    revertButton.disabled = true;
+    saveButton.disabled = true;
     createTableEdit(newArrayToPushEdit);
 }
 
 function saveOnClick(){
-    createTxtFileAndPushToServer();
-    editModal.style.display = "none";
-    $("#edit-main-area ul").empty();
+
+    if(Object.keys(errorDictionary).length != 0){
+        alert("Please correct all errors before saving.");
+    }else{
+        createTxtFileAndPushToServer();
+        editModal.style.display = "none";
+        $("#edit-main-area ul").empty();
+    }
 }
 
 
@@ -193,9 +215,11 @@ function onKeyUp(id){
     var elementValue = document.getElementById(id).innerHTML;
     var elementWithBrRemoved = elementValue.replace("<br>", "");
     if(elementWithBrRemoved == ""){
-        document.getElementById(id).style.backgroundColor = "red";
+        document.getElementById(id).style.backgroundColor = "#FF6347";
+        errorDictionary[id] = true;
     }else{
         document.getElementById(id).style.backgroundColor = "white";
+        delete errorDictionary[id];
     }
 }
 
@@ -244,6 +268,8 @@ function parseData(id){
                     }else{
                         delete changeCountDictionary[tdElement.id];
                     }
+
+                    
                     
                 }else if(element == "JobName"){
                     if(_jobName != tdElementwithBRRemoved){
@@ -252,7 +278,9 @@ function parseData(id){
                     }else{
                         delete changeCountDictionary[tdElement.id];
                     }
-                    
+
+
+
                 }else if(element == "Time"){
                     if(_time != tdElementwithBRRemoved){
                         _time = tdElementwithBRRemoved;
@@ -262,9 +290,11 @@ function parseData(id){
                     }
                 }
 
-                
-                
 
+                
+                
+                
+                // changing the revert and save buttons //
                 if(Object.keys(changeCountDictionary).length != 0){
                     // enable the revert and save buttons //
                     revertButton.disabled = false;
@@ -275,6 +305,9 @@ function parseData(id){
                 }
 
 
+
+
+                // pushing info into the tempCopyOfArrayToPushEdit //
                 for(var tc in tempCopyOfArraytoPushEdit){
                     var firstLevelCopy = tempCopyOfArraytoPushEdit[tc];
                     for(var flc in firstLevelCopy){
@@ -297,6 +330,29 @@ function parseData(id){
 
 function createTxtFileAndPushToServer(){
 
-    
+    var storageRef = firebase.storage().ref();
+
+    for(var t in tempCopyOfArraytoPushEdit){
+        var firstLevelPushEdit = tempCopyOfArraytoPushEdit[t];
+        for(var s in firstLevelPushEdit){
+
+            var dateArray = s.split("-");
+            var day = dateArray[1];
+            var month = dateArray[0];
+            var year = dateArray[2];
+
+            // this is valid json data //
+            var jsonVersion = JSON.stringify(firstLevelPushEdit[s]);
+            
+            var uploadTask = storageRef.child('' + companyName + '/' + uniqueId + '/' + year + '/' + month + '/' + day + '/tempFile.txt').putString(jsonVersion);
+            uploadTask.on('state_changed', function(snapshot){
+
+            }, function(error){
+                console.log(error);
+            }, function(){
+                console.log("success!");
+            });
+        }
+    }
 }
 

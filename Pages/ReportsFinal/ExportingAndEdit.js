@@ -132,6 +132,10 @@ function exportParse(){
     saveToCSV(mainString);
 }
 
+
+
+
+
 function saveToCSV(fileString){
 
     var date = new Date();
