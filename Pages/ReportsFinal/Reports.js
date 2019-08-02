@@ -17,16 +17,16 @@ var sidebarButton = document.getElementById("side-bar-pullout-container");
 
 var mainBodyDiv = document.getElementById("main-body-div");
 
-//var companyName = "Greenmachine Studios";
+var companyName = "Greenmachine Studios";
 //var companyName = "";
 
 // checking if the user has logged in //
 window.addEventListener('DOMContentLoaded', function () {
 
 	// this will be on the live version for checking to make sure there is an active users present //
-	checkState();
+	//checkState();
 
-	//loadEmployees(companyName);
+	loadEmployees(companyName);
 	employeesButtonToggle = true;
 
 	employeeDiv.style.display = "none";

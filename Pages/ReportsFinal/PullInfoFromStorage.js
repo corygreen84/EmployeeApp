@@ -34,9 +34,7 @@ function goButtonOnClick(){
     var year = yearDropDown.options[yearDropDown.selectedIndex].value;
 
     uniqueId = selectedEmployee.uniqueId;
-
-    var today = new Date();
-    var daysUpToToday = today.getDate();
+    var daysUpToToday = 31;
 
     count = 0;
     fileExists = 0;

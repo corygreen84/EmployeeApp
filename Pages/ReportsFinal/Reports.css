@@ -144,6 +144,13 @@ li{
 	float:right;
 }
 
+.minus-buttons{
+	float: right;
+	padding-right: 7px;
+	margin-right: 15px;
+	margin-top: 6px;
+}
+
 
 .check-box{
 	z-index: 2 !important;

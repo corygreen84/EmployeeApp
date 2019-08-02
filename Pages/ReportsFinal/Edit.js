@@ -117,7 +117,7 @@ function createTableEdit(_newArrayToPushEdit){
             var mainTableDiv = $('<div>', {"id": "edit-main-table-div"});
             firstLevelLi.append(mainTableDiv);
 
-            var table = $('<table>', {"id": "report-table", "class": "table table-striped table-bordered", "width": "100%", "cellspacing": "0"});
+            var table = $('<table>', {"id": "report-table-" + k, "class": "table table-striped table-bordered", "width": "100%", "cellspacing": "0"});
             mainTableDiv.append(table);
 
             var column1Width = $('<col width="150">');
@@ -140,6 +140,8 @@ function createTableEdit(_newArrayToPushEdit){
             tr.append(timeTh);
             var addressTh = $('<th class="th-sm">Address</th>');
             tr.append(addressTh);
+            var blankTh = $('<th class="th-sm"></th>');
+            tr.append(blankTh);
             
             // end of the table head //
 
@@ -158,9 +160,12 @@ function createTableEdit(_newArrayToPushEdit){
                 var tdTime = $('<td contenteditable="true" id="'+ k + '--Time--' + l + '" oninput="parseData(this.id)" onkeyup="onKeyUp(this.id)">' + individualEventArray[l].time + '</td>');
                 var tdEventAddress = $('<td contenteditable="true" id="'+ k + '--JobAddress--' + l + '" oninput="parseData(this.id)" onkeyup="onKeyUp(this.id)">' + individualEventArray[l].jobAddress + '</td>');
 
+                var tdMinus = $('<button type="button" id="minus-button-' + k + '-row-' + l + '" class="buttons minus-buttons" onclick="minusButtonOnClick(this.id)">-</button>');
+
                 trElement.append(tdEventJob);
                 trElement.append(tdTime);
                 trElement.append(tdEventAddress);
+                trElement.append(tdMinus);
             }
 
             var plusDiv = $('<div>', {"id": "plus-div-" + k + ""});
@@ -176,8 +181,45 @@ function createTableEdit(_newArrayToPushEdit){
 }
 
 
+
+
+function minusButtonOnClick(id){
+    var splitId = id.split("-");
+    var month = splitId[2];
+    var day = splitId[3];
+    var year = splitId[4];
+    var row = splitId[6];
+
+    for(var jk in tempCopyOfArraytoPushEdit){
+        var firstLevelTemp = tempCopyOfArraytoPushEdit[jk];
+        for(var kl in firstLevelTemp){
+            var dateString = month + "-" + day + "-" + year;
+            if(kl == dateString){
+                var secondLevelArray = firstLevelTemp[kl];
+                secondLevelArray.splice(row, 1);
+                if(secondLevelArray.length == 0){
+
+                    // if the array length is 0, then we can go ahead and just //
+                    // remove the entire data object //
+                    tempCopyOfArraytoPushEdit.splice(jk, 1);
+                }
+            }
+        }
+    }
+    revertButton.disabled = false;
+    saveButton.disabled = false;
+    createTableEdit(tempCopyOfArraytoPushEdit);
+}
+
 function plusButtonOnClick(id){
-    console.log("plus button clicked " + id);
+    
+    var splitId = id.split("-");
+    var month = splitId[2];
+    var day = splitId[3];
+    var year = splitId[4];
+    
+    var dateString = month + "-" + day + "-" + year;
+    var idOfTable = "report-table-" + dateString;
 }
 
 
@@ -193,6 +235,10 @@ function cancelOnClick(){
 function revertOnClick(){
     revertButton.disabled = true;
     saveButton.disabled = true;
+
+    tempCopyOfArraytoPushEdit = JSON.parse(JSON.stringify(newArrayToPushEdit));
+    newArrayToPushEdit = JSON.parse(JSON.stringify(newArrayToPushEdit));
+
     createTableEdit(newArrayToPushEdit);
 }
 
