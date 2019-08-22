@@ -4,7 +4,7 @@
 	<head>
 			<meta charset="utf-8" />
 			<!--<link rel="stylesheet" href="/EmployeeApp/Pages/ReportsFinal/Reports.css"/>-->
-			<link rel="stylesheet" href="/EmployeeApp/Pages/ReportsFinal/Reports.css"/>
+			<link rel="stylesheet" href="Reports.css"/>
 			<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
 			<link href='https://fonts.googleapis.com/css?family=Allerta' rel='stylesheet'>
 			
@@ -31,9 +31,6 @@
 
 	<body>
 		<div id="main-body">
-
-			
-				
 			<div id="employees-jobs-sidebar">
 
 				<div id="side-bar-pullout-container">
@@ -80,6 +77,64 @@
 					</ul>
 				</div>
 			</div>
+
+
+			<!-- adding a new line -->
+			<div id="add-new-line-modal">
+				<div id="new-line-buttons-container">
+					<button type="button" id="add-new-cancel-button" class="buttons" onclick="addNewCancelOnClick()">Cancel</button>
+					<button type="button" id="add-new-save-button" class="buttons" onclick="addNewSaveOnClick()">Save</button>
+				</div>
+				<div id="new-line-container">
+					<table style="width:100%" id="add-line-table" class="table table-striped table-bordered">
+						<colgroup>
+							<col width="150">
+							<col width="60">
+						</colgroup>
+						<thead>
+							<th>Event/Job</th>
+							<th>Time</th>
+							<th>Address</th>
+						</thead>
+						<tr>
+							<th contenteditable="true" id="create-new-event"></th>
+							<th contenteditable="true" id="create-new-time"></th>
+							<th contenteditable="true" id="create-new-address"></th>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+
+
+
+
+
+			<!-- var table = $('<table>', {"id": "report-table-" + k, "class": "table table-striped table-bordered", "width": "100%", "cellspacing": "0"});
+            mainTableDiv.append(table);
+
+            var column1Width = $('<col width="150">');
+            var column2Width = $('<col width="60">');
+            
+            table.append(column1Width);
+            table.append(column2Width);
+            
+
+            // start of the table head //
+            var tableHead = $('<thead>');
+            table.append(tableHead);
+
+            var tr = $('<tr>');
+            tableHead.append(tr);
+
+            var jobTh = $('<th class="th-sm">Event/Job</th>');
+            tr.append(jobTh);
+            var timeTh = $('<th class="th-sm">Time</th>');
+            tr.append(timeTh);
+            var addressTh = $('<th class="th-sm">Address</th>');
+            tr.append(addressTh);
+            var blankTh = $('<th class="th-sm"></th>');
+            tr.append(blankTh);-->
 
 
 			<!-- This is the main body of the page -->
@@ -190,12 +245,12 @@
 		</div>
 
 		<!-- <link rel="stylesheet" href="/EmployeeApp/Pages/ReportsFinal/Reports.css"/> -->
-		<script type="application/javascript" src="/EmployeeApp/firebase-init.js"></script>
-		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/Reports.js"></script>
-		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/Report-views.js"></script>
-		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/PullInfoFromStorage.js"></script>
-		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/ExportingAndEdit.js"></script>
-		<script type="application/javascript" src="/EmployeeApp/Pages/ReportsFinal/Edit.js"></script>
+		<script type="application/javascript" src="firebase-init.js"></script>
+		<script type="application/javascript" src="Reports.js"></script>
+		<script type="application/javascript" src="Report-views.js"></script>
+		<script type="application/javascript" src="PullInfoFromStorage.js"></script>
+		<script type="application/javascript" src="ExportingAndEdit.js"></script>
+		<script type="application/javascript" src="Edit.js"></script>
 
 		<!-- <script type="application/javascript" src="/EmployeeApp/Pages/Reports/Reports.js"></script> -->
 	</body>

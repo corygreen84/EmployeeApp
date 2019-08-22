@@ -5,8 +5,6 @@ var newArrayToPushEdit = [];
 // from keeping a reference to the original //
 var tempCopyOfArraytoPushEdit;
 
-
-
 var tempFirstDictionary = {};
 var changeCountDictionary = {};
 var errorDictionary = {};
@@ -14,7 +12,7 @@ var errorDictionary = {};
 var revertButton = document.getElementById("revert-button");
 var saveButton = document.getElementById("save-button");
 
-
+var addNewLineId = "";
 
 // sorting the array of dictionaries based on most current to least //
 function sortDictionaryOfeventsByDateEdit(){
@@ -182,7 +180,7 @@ function createTableEdit(_newArrayToPushEdit){
 
 
 
-
+// minus and plus button stuff //
 function minusButtonOnClick(id){
     var splitId = id.split("-");
     var month = splitId[2];
@@ -213,6 +211,15 @@ function minusButtonOnClick(id){
 
 function plusButtonOnClick(id){
     
+    addNewLineId = id;
+    var addNewPopup = document.getElementById("add-new-line-modal");
+    addNewPopup.style.display = "inline-block";
+
+    document.getElementById("create-new-event").innerHTML = "";
+    document.getElementById("create-new-time").innerHTML = "";
+    document.getElementById("create-new-address").innerHTML = "";
+
+    /*
     var splitId = id.split("-");
     var month = splitId[2];
     var day = splitId[3];
@@ -220,14 +227,65 @@ function plusButtonOnClick(id){
     
     var dateString = month + "-" + day + "-" + year;
     var idOfTable = "report-table-" + dateString;
+
+    var reportTable = $(idOfTable);
+    */
 }
 
 
 
 
 
+
+// add new cancel and save buttons //
+function addNewCancelOnClick(){
+    addNewLineId = "";
+    var addNewPopup = document.getElementById("add-new-line-modal");
+    addNewPopup.style.display = "none";
+}
+
+
+
+
+function addNewSaveOnClick(){
+
+    var eventElement = removeBR(document.getElementById("create-new-event").innerHTML);
+    var timeElement = removeBR(document.getElementById("create-new-time").innerHTML);
+    var addressElement = removeBR(document.getElementById("create-new-address").innerHTML);
+
+    if(checkForBlankString(eventElement) == false || checkForBlankString(timeElement) == false || checkForBlankString(addressElement) == false){
+        alert("Please check your fields for missing information");
+    }else{
+        var addNewPopup = document.getElementById("add-new-line-modal");
+        addNewPopup.style.display = "none";
+    }
+
+    
+}
+
+
+function removeBR(text){
+    var tempString = text.replace("<br>", "");
+    return tempString;
+}
+
+
+
+function checkForBlankString(text){
+    if(text != ""){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+
 // **** button on click handlers **** //
 function cancelOnClick(){
+    var addNewPopup = document.getElementById("add-new-line-modal");
+    addNewPopup.style.display = "none";
+    
     editModal.style.display = "none";
     $("#edit-main-area ul").empty();
 }
