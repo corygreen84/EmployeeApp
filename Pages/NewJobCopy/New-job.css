@@ -1,0 +1,216 @@
+
+#main-map-view{
+    width: 100%;
+    height: 1000px;
+    position: relative;
+}
+
+#map-controls-container{
+    position: fixed; 
+    right: 10px;
+    top: 20px;
+    width: 70px;
+    height: 168px;
+    background-color:#525963;
+    z-index: 10;
+    border-radius: 15px;
+    border-color: grey;
+    border-style: solid;
+    border-width: 0.5;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+}
+
+#delete-marker-container{
+    margin-top: 8px;
+}
+
+.marker-buttons{
+    width: 80%;
+    margin-left: 10%;
+}
+
+
+
+
+#main-collapsible-area-div{
+    display: inline-block;
+    width: 100%;
+}
+
+
+#side-view{
+    position: fixed;
+    width: 350px;
+    min-width: 350px;
+    height: 620px;
+    left: 10px;
+    top: 10px;
+    background-color:#525963;
+    z-index: 10;
+    border-radius: 15px;
+    border-color: grey;
+    border-style: solid;
+    border-width: 0.5;
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5);
+}
+
+#navigation-container{
+    width: 100%;
+}
+
+#back-button{
+    float: left;
+    margin-left: 8px;
+    padding-top: 18px;
+}
+
+#close-button{
+    margin-right: 10px;
+    font-size: 50px;
+    padding-top: 0px;
+}
+
+.createJobClose{
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-shadow: none;
+    
+}
+
+.createJobClose:hover,
+.createJobClose:focus
+ {
+    color: black;
+    text-decoration: none;
+	cursor: pointer;
+	text-shadow: none;
+}
+
+.job-p-text{
+	width: 98%;
+	margin-left: 1%;
+	margin-top: 40px;
+	text-align: center;
+	text-shadow: none;
+	font-size: 20px;
+	color:white;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+#or-p{
+    width: 98%;
+	margin-left: 1%;
+	margin-top: 5px;
+	text-align: center;
+	text-shadow: none;
+	font-size: 15px;
+	color:black;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+
+#text-box-div{
+    width: 96%;
+    margin-left: 2%;
+}
+
+
+#day-time-div, #lunch-time-div{
+    width: 100%;
+}
+
+#start-time-div, #lunch-start-div, #end-time-div, #lunch-end-div{
+    width: 45%;
+}
+
+#start-day-div, #end-day-div{
+    width: 45%;
+}
+
+#start-time-div, #lunch-start-div, #start-day-div{
+    display: inline-block;
+}
+
+#end-time-div, #lunch-end-div, #end-day-div{
+    float: right;
+}
+
+#checkmark-div{
+    width: 100%;
+}
+
+#checkmark-label{
+    font-size: 13px;
+}
+
+
+#location-container{
+    width:100%;
+    margin-top: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#long{
+	width: 49%;
+    display: inline-block;
+}
+#lat{
+	width: 49%;
+	margin-right: 0px;
+    float: right;
+}
+
+
+#employee-list-container{
+    width: 100%;
+    /*height: 200px;*/
+    margin-top: 20px;
+    background-color: grey;
+    border-radius: 10px;
+    display: block;
+}
+
+#employee-ul{
+	height: 200px;
+}
+
+.scrollable {
+	overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+#notes-container{
+    width: 100%;
+    height: 200px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#notes-textarea{
+    resize: none;
+    min-height: 200px;
+    border-radius: 10px;
+}
+
+
+
+#create-job-button-container{
+    width:96%;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 35px;
+    
+}
+
+#create-job-button{
+	background-color:#0080ff;
+	color:white;
+	text-shadow: none;
+}
